@@ -8,10 +8,10 @@
 
 class BaseGame{
 private:
-    Window* w;
-    Renderer* r;
-    Input* i;
-    CollisionManager* cm;
+    Window* _window;
+    Renderer* _renderer;
+    Input* _input;
+    CollisionManager* _collisionManager;
 public:
     void launchGod();
 };
