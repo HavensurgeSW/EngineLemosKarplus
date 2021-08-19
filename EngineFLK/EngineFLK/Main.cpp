@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Window.h"
 
+
 int main(void)
 {
     GLFWwindow* window;
@@ -12,6 +13,7 @@ int main(void)
     if (!glfwInit())
         return -1;
 
+  
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
     if (!window) {
