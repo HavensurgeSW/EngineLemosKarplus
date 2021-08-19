@@ -1,40 +1,31 @@
 #include "BaseGame.h"
 
-void rendererStuff(GLFWwindow* window) {
-
-    /* Render here */
-    glClear(GL_COLOR_BUFFER_BIT);
-
-
-    /* Swap front and back buffers */
-    glfwSwapBuffers(window);
-
-    /* Poll for and process events */
-    glfwPollEvents();
+BaseGame::BaseGame(){
+   
 }
 
 void BaseGame::launchGod() {
   
-        GLFWwindow* window;
-
         /* Initialize the library */
         if (!glfwInit())
            std::cout<<"Error de inicializacion"<<std::endl;
 
-
-        /* Create a windowed mode window and its OpenGL context */
-        window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
-        if (!window) {
+        _window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
+       
+        if (!_window) {
             glfwTerminate();
             std::cout << "Terminate() successful" << std::endl;
         }
 
         /* Make the window's context current */
-        glfwMakeContextCurrent(window);
+        glfwMakeContextCurrent(_window);
 
         /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window)){
-            rendererStuff(window);
+        while (!glfwWindowShouldClose(_window)){
+            glClear(GL_COLOR_BUFFER_BIT);
+            glfwSwapBuffers(_window);
+            glfwPollEvents();
+        
         }
 
         glfwTerminate();    

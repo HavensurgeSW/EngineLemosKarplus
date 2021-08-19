@@ -10,6 +10,5 @@ private:
 public:
 	void clear();
 	void swapBuffer();
-	//void pollEvents(); Checkear porque vendra en Renderer? Creemos que seria input o BaseGame
 };
 
