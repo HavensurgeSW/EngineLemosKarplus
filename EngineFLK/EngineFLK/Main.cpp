@@ -1,4 +1,8 @@
 #include <GLFW\glfw3.h>
+#include "CollisionManager.h"
+#include "Input.h"
+#include "Renderer.h"
+#include "Window.h"
 
 int main(void)
 {
