@@ -10,7 +10,7 @@
 
 class BaseGame{
 private:
-    //Window* _window; Mover GLFWWindow a constructor
+    Window* myWindow; //Mover GLFWWindow a constructor
     GLFWwindow* _window;
     Renderer* _renderer;
     Input* _input;
@@ -18,7 +18,10 @@ private:
 
 public:
     BaseGame();
+    ~BaseGame();
+
     void launchGod();
+    void launchGodTest();
 };
 
 

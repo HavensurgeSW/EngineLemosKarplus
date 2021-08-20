@@ -1,9 +1,21 @@
 #include "Renderer.h"
 
-void Renderer::clear() {
+Renderer::Renderer()
+{
+
+}
+
+Renderer::~Renderer()
+{
+
+}
+
+void Renderer::clear() 
+{
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::swapBuffer(){
+void Renderer::swapBuffer()
+{
 	glfwSwapBuffers(_window);
 }

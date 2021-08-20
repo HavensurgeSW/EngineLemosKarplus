@@ -8,6 +8,9 @@ private:
 	GLFWwindow* _window;
 
 public:
+	Renderer();
+	~Renderer();
+
 	void clear();
 	void swapBuffer();
 };
