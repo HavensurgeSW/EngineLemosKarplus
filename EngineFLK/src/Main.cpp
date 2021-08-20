@@ -2,7 +2,7 @@
 
 void main(){
 	BaseGame* game = new BaseGame;
-	//game->launchGod();
-	game->launchGodTest();
+	game->launchGod();
+	//game->launchGodTest();
 	delete game;	
 }

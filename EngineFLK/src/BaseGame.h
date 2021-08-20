@@ -11,7 +11,6 @@
 class BaseGame{
 private:
     Window* myWindow; //Mover GLFWWindow a constructor
-    GLFWwindow* _window;
     Renderer* _renderer;
     Input* _input;
     CollisionManager* _collisionManager;

@@ -13,5 +13,6 @@ public:
 
 	void clear();
 	void swapBuffer();
+	void setWindow(GLFWwindow* _window);
 };
 
