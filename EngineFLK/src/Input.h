@@ -1,6 +1,8 @@
 #pragma once
 
-class Input{
+class Input {
+private:
 
+public:
 };
 

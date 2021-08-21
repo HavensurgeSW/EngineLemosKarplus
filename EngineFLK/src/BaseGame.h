@@ -8,9 +8,9 @@
 
 #include <iostream>
 
-class BaseGame{
+class BaseGame {
 private:
-    Window* myWindow; //Mover GLFWWindow a constructor
+    Window* _window; //Mover GLFWWindow a constructor
     Renderer* _renderer;
     Input* _input;
     CollisionManager* _collisionManager;
@@ -21,6 +21,7 @@ public:
 
     void launchGod();
     void launchGodTest();
+    void terminate();
 };
 
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 
-class Window{
+class Window {
 private:
 	GLFWwindow* _window;
 

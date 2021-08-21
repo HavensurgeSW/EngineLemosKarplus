@@ -3,9 +3,9 @@
 #include "Window.h"
 #include "GLFW/glfw3.h"
 
-class Renderer{
+class Renderer {
 private:
-	GLFWwindow* _window;
+	Window* _window;
 
 public:
 	Renderer();
@@ -13,6 +13,6 @@ public:
 
 	void clear();
 	void swapBuffer();
-	void setWindow(GLFWwindow* _window);
+	void setWindow(Window* window);
 };
 

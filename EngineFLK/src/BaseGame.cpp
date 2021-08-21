@@ -1,13 +1,12 @@
 #include "BaseGame.h"
 
-BaseGame::BaseGame(){
-	myWindow = new Window();
+BaseGame::BaseGame() {
+	_window = new Window();
 	_renderer = new Renderer();
-
 }
 
-BaseGame::~BaseGame(){
-	delete myWindow;
+BaseGame::~BaseGame() {
+	delete _window;
 	delete _renderer;
 }
 
@@ -17,25 +16,25 @@ void BaseGame::launchGod() {
 		std::cout << "Error de inicializacion" << std::endl;
 	}
 
-	myWindow->setWindow(myWindow->createWindow(800, 600, "Hello World", NULL, NULL));
-	_renderer->setWindow(myWindow->getWindow());
+	_window->setWindow(_window->createWindow(800, 600, "Hello World", NULL, NULL));
+	_renderer->setWindow(_window);
 
-	if (!myWindow->getWindow()){
-		glfwTerminate();
+	if (!_window->getWindow()){
+		terminate();
 		std::cout << "Terminate() successful" << std::endl;
 	}
 
 	/* Make the window's context current */
-	glfwMakeContextCurrent(myWindow->getWindow());
+	glfwMakeContextCurrent(_window->getWindow());
 
 	/* Loop until the user closes the window */
-	while (!myWindow->shouldClose()){
+	while (!_window->shouldClose()){
 		_renderer->clear();
 		_renderer->swapBuffer();
 		glfwPollEvents();
 	}
 
-	glfwTerminate();
+	terminate();
 }
 
 void BaseGame::launchGodTest() 
@@ -46,24 +45,28 @@ void BaseGame::launchGodTest()
 		std::cout << "Error de inicializacion" << std::endl;
 	}
 
-	myWindow->setWindow(myWindow->createWindow(800, 600, "Hello World", NULL, NULL));
+	_window->setWindow(_window->createWindow(800, 600, "Hello World", NULL, NULL));
 
-	if (!myWindow->getWindow())
+	if (!_window->getWindow())
 	{
-		glfwTerminate();
+		terminate();
 		std::cout << "Terminate() successful" << std::endl;
 	}
 
 	/* Make the window's context current */
-	glfwMakeContextCurrent(myWindow->getWindow());
+	glfwMakeContextCurrent(_window->getWindow());
 
 	/* Loop until the user closes the window */
-	while (!myWindow->shouldClose())
+	while (!_window->shouldClose())
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		glfwSwapBuffers(myWindow->getWindow());
+		glfwSwapBuffers(_window->getWindow());
 		glfwPollEvents();
 	}
 
+	terminate();
+}
+
+void BaseGame::terminate() {
 	glfwTerminate();
 }

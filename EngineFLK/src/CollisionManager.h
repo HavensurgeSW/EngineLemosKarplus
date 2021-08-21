@@ -1,6 +1,8 @@
 #pragma once
 
-class CollisionManager{
+class CollisionManager {
+private:
 
+public:
 };
 

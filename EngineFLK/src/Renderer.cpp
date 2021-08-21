@@ -1,11 +1,10 @@
 #include "Renderer.h"
 
-Renderer::Renderer(){
+Renderer::Renderer() {
 
 }
 
-Renderer::~Renderer()
-{
+Renderer::~Renderer() {
 
 }
 
@@ -13,11 +12,10 @@ void Renderer::clear() {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::swapBuffer()
-{
-	glfwSwapBuffers(_window);
+void Renderer::swapBuffer() {
+	glfwSwapBuffers(_window->getWindow());
 }
 
-void Renderer::setWindow(GLFWwindow* win){
-	_window = win;
+void Renderer::setWindow(Window* window) {
+	_window = window;
 }
