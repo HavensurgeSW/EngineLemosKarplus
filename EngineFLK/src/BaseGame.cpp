@@ -1,4 +1,5 @@
 #include "BaseGame.h"
+#include <time.h>
 
 BaseGame::BaseGame() {
 	_window = new Window();
@@ -12,6 +13,7 @@ BaseGame::~BaseGame() {
 
 void BaseGame::launchGod() {
 	/* Initialize the library */
+	srand(time(NULL));
 	if (!glfwInit()){
 		std::cout << "Error de inicializacion" << std::endl;
 	}
@@ -27,9 +29,15 @@ void BaseGame::launchGod() {
 	/* Make the window's context current */
 	glfwMakeContextCurrent(_window->getWindow());
 
+	//I FUCKING HATE RANDOM FLOAT VALUES HOW CAN THIS BE SO HARD ON C++
+	float random = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	std::cout << random;
+
+	_renderer->setClearColor(0.7f, 0.5f, 0.9f, 1.0f);
+
 	/* Loop until the user closes the window */
 	while (!_window->shouldClose()){
-		_renderer->clear();
+		_renderer->clearScreen();
 		_renderer->swapBuffer();
 		glfwPollEvents();
 	}

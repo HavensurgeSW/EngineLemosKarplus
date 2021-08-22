@@ -23,7 +23,3 @@ public:
     void launchGodTest();
     void terminate();
 };
-
-
-
-

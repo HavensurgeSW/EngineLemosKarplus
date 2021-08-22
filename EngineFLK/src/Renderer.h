@@ -11,8 +11,9 @@ public:
 	Renderer();
 	~Renderer();
 
-	void clear();
 	void swapBuffer();
+	void setClearColor(float r, float g, float b, float a);
+	void clearScreen();
 	void setWindow(Window* window);
 };
 
