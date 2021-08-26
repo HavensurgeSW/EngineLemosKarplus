@@ -28,7 +28,9 @@ void Renderer::setWindow(Window* window) {
 }
 
 void Renderer::genBuffers() {
-	float positions[6] = {
+	const int maxPositions = 6;
+
+	float positions[maxPositions] = {
 		-0.5f, -0.5f,
 		 0.0f,  0.5f,
 		 0.5f,  0.5f
@@ -37,5 +39,5 @@ void Renderer::genBuffers() {
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, maxPositions * sizeof(float), positions, GL_STATIC_DRAW);
 }

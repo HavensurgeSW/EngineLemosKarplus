@@ -71,6 +71,7 @@ void BaseGame::launchGodTest()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glfwSwapBuffers(_window->getWindow());
+		_renderer->genBuffers();
 		glfwPollEvents();
 	}
 

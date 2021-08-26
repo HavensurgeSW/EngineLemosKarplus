@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Window.h"
-#include "glew.h"
 #include "glfw3.h"
+#include "glew.h"
 
 class Renderer {
 private:
@@ -18,4 +18,3 @@ public:
 	void setWindow(Window* window);
 	void genBuffers();
 };
-
