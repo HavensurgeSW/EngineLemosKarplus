@@ -33,7 +33,7 @@ void BaseGame::launchGod() {
 	float random = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
 	std::cout << random;
 
-	_renderer->setClearColor(0.7f, 0.5f, 0.9f, 1.0f);
+	_renderer->setClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	/* Loop until the user closes the window */
 	while (!_window->shouldClose()){

@@ -1,6 +1,5 @@
 #pragma once
-#include "glew.h"
-#include <GLFW/glfw3.h>
+
 
 class Window {
 private:

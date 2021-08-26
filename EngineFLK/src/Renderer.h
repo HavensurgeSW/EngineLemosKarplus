@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Window.h"
-#include "glew.h"
-#include "GLFW/glfw3.h"
 
 class Renderer {
 private:
@@ -16,5 +14,6 @@ public:
 	void setClearColor(float r, float g, float b, float a);
 	void clearScreen();
 	void setWindow(Window* window);
+	void genBuffers();
 };
 
