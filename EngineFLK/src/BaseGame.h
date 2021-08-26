@@ -6,6 +6,9 @@
 #include "Renderer.h"
 #include "Window.h"
 
+#include "glew.h"
+#include "glfw3.h"
+
 #include <iostream>
 
 class BaseGame {

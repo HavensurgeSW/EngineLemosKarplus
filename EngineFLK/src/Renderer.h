@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Window.h"
+#include "glew.h"
+#include "glfw3.h"
 
 class Renderer {
 private:
