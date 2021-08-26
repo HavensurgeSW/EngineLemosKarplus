@@ -17,4 +17,5 @@ public:
 	void clearScreen();
 	void setWindow(Window* window);
 	void genBuffers();
+	void drawTriangle();
 };

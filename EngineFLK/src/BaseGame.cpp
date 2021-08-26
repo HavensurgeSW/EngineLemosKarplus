@@ -65,13 +65,14 @@ void BaseGame::launchGodTest()
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(_window->getWindow());
+	_renderer->genBuffers();
 
 	/* Loop until the user closes the window */
 	while (!_window->shouldClose())
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glfwSwapBuffers(_window->getWindow());
-		_renderer->genBuffers();
+		_renderer->drawTriangle();
 		glfwPollEvents();
 	}
 
