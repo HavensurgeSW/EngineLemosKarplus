@@ -68,10 +68,14 @@ void BaseGame::LaunchGod()
 
 	//----------------------------
 	//haha pretty background colors go brrr
-	float randomColorR = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
-	float randomColorG = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
-	float randomColorB = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	float randomColorR = static_cast<float>((std::rand()) % 100) / 100.0f;
+	float randomColorG = static_cast<float>((std::rand()) % 100) / 100.0f;
+	float randomColorB = static_cast<float>((std::rand()) % 100) / 100.0f;
 	
+	std::cout << randomColorR << std::endl;
+	std::cout << randomColorG << std::endl;
+	std::cout << randomColorB << std::endl;
+
 	renderer->SetClearColor(randomColorR, randomColorG, randomColorB, 1.0f);
 	//----------------------------
 
@@ -85,6 +89,7 @@ void BaseGame::LaunchGod()
 		input->PollEvents();
 	}
 
+	glDeleteProgram(shader); //can also be glDeleteShader()
 	Terminate();
 }
 
@@ -104,6 +109,8 @@ unsigned int BaseGame::CreateShader(const std::string& vertexShader, const std::
 	glLinkProgram(program);
 	glValidateProgram(program);
 
+	//glDetachShader(vs); //this method deletes the source code from the shader, kinda dangerous but techincally correct
+	//glDetachShader(fs);
 	glDeleteShader(vs);
 	glDeleteShader(fs);
 
@@ -114,6 +121,7 @@ unsigned int BaseGame::CompileShader(const std::string& source, unsigned int typ
 {
 	unsigned int id = glCreateShader(type);
 	const char* src = source.c_str();
+
 	glShaderSource(id, 1, &src, nullptr);
 	glCompileShader(id);
 
@@ -124,11 +132,15 @@ unsigned int BaseGame::CompileShader(const std::string& source, unsigned int typ
 	{
 		int length;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+
 		char* message = (char*)_malloca(length * sizeof(char));
 		glGetShaderInfoLog(id, length, &length, message);
+
 		std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
 		std::cout << message << std::endl;
+
 		glDeleteShader(id);
+
 		return 0;
 	}
 
