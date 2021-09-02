@@ -1,8 +1,9 @@
 #pragma once
 
-class Input {
+class Input 
+{
 private:
 
 public:
-	void pollEvents();
+	void PollEvents();
 };

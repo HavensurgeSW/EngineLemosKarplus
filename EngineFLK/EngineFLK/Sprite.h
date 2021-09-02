@@ -3,7 +3,7 @@
 
 class Sprite {
 private:
-	Animation _animation;
+	Animation animation;
 
 public:
 };

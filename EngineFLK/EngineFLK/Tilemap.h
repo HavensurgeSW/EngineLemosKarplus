@@ -1,6 +1,7 @@
 #pragma once
 
-class Tilemap {
+class Tilemap 
+{
 private:
 
 public:

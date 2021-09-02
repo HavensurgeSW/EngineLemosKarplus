@@ -2,6 +2,7 @@
 
 #include "glfw3.h"
 
-void Input::pollEvents() {
+void Input::PollEvents() 
+{
 	glfwPollEvents();
 }

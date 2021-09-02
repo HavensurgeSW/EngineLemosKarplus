@@ -4,43 +4,53 @@
 #include "glew.h"
 #include "glfw3.h"
 
-Renderer::Renderer() {
+Renderer::Renderer() 
+{
 
 }
 
-Renderer::~Renderer() {
+Renderer::~Renderer() 
+{
 
 }
 
-void Renderer::initGlew() {
+void Renderer::InitGlew() 
+{
 	glewInit();
 
-	if (!glewInit()) {
+	if (!glewInit()) 
+	{
 		std::cout << "Error. Failed to Init Glew." << std::endl;
 	}
 }
 
-void Renderer::swapBuffer() {
-	glfwSwapBuffers(_window->getWindow());
+void Renderer::SwapBuffer() 
+{
+	glfwSwapBuffers(window->GetWindow());
 }
 
 //Sets background color with RGBA values
-void Renderer::setClearColor(float r, float g, float b, float a) {
+void Renderer::SetClearColor(float r, float g, float b, float a) 
+{
 	glClearColor(r, g, b, a);
 }
 
-void Renderer::clearScreen() {
+void Renderer::ClearScreen() 
+{
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::setWindow(Window* window) {
-	_window = window;
+void Renderer::SetWindow(Window* window) 
+{
+	this->window = window;
 }
 
-void Renderer::genBuffers() {
+void Renderer::GenBuffers() 
+{
 	const int maxPositions = 6;
 
-	float positions[maxPositions] = {
+	float positions[maxPositions] = 
+	{
 		-0.5f, -0.5f,
 		 0.0f,  0.5f,
 		 0.5f,  -0.5f
@@ -56,10 +66,12 @@ void Renderer::genBuffers() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Renderer::makeContextCurrent(Window* window) {
-	glfwMakeContextCurrent(window->getWindow());
+void Renderer::MakeContextCurrent(Window* window) 
+{
+	glfwMakeContextCurrent(window->GetWindow());
 }
 
-void Renderer::drawTriangle() {
+void Renderer::DrawTriangle() 
+{
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }

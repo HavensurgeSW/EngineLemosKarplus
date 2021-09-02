@@ -1,8 +1,10 @@
 #include "BaseGame.h"
 
-void main() {
-	BaseGame* game = new BaseGame;
-	game->launchGod();
-	//game->launchGodTest();
+void main() 
+{
+	BaseGame* game = new BaseGame();
+
+	game->LaunchGod();
+
 	delete game;	
 }

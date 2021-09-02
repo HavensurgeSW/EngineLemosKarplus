@@ -7,19 +7,20 @@
 
 #include <iostream>
 
-class BaseGame {
+class BaseGame 
+{
 private:
-    Window* _window; //Mover GLFWWindow a constructor
-    Renderer* _renderer;
-    Input* _input;
-    CollisionManager* _collisionManager;
+    Window* window; //Mover GLFWWindow a constructor
+    Renderer* renderer;
+    Input* input;
+    CollisionManager* collisionManager;
 
 public:
     BaseGame();
     ~BaseGame();
     
-    void launchGod();
-    void terminate();
-    static unsigned int createShader(const std::string& vertexShader, const std::string fragmentShader);
-    static unsigned int compileShader(const std::string& source, unsigned int type);
+    void LaunchGod();
+    void Terminate();
+    static unsigned int CreateShader(const std::string& vertexShader, const std::string fragmentShader);
+    static unsigned int CompileShader(const std::string& source, unsigned int type);
 };

@@ -3,6 +3,8 @@
 
 class Entity : public Entity2D
 {
-
+private:
+	
+public:
 };
 
