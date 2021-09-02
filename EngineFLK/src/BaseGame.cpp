@@ -6,11 +6,15 @@
 BaseGame::BaseGame() {
 	_window = new Window();
 	_renderer = new Renderer();
+	_input = new Input();
+	_collisionManager = new CollisionManager();
 }
 
 BaseGame::~BaseGame() {
 	delete _window;
 	delete _renderer;
+	delete _input;
+	delete _collisionManager;
 }
 
 void BaseGame::launchGod() {

@@ -17,7 +17,7 @@ private:
 public:
     BaseGame();
     ~BaseGame();
-
+    
     void launchGod();
     void terminate();
     static unsigned int createShader(const std::string& vertexShader, const std::string fragmentShader);
