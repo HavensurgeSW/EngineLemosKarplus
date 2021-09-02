@@ -25,4 +25,6 @@ public:
     void launchGod();
     void launchGodTest();
     void terminate();
+    static unsigned int createShader(const std::string& vertexShader, const std::string fragmentShader);
+    static unsigned int compileShader(const std::string& source, unsigned int type);
 };
