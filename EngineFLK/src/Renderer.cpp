@@ -33,21 +33,20 @@ void Renderer::genBuffers() {
 	float positions[maxPositions] = {
 		-0.5f, -0.5f,
 		 0.0f,  0.5f,
-		 0.5f,  0.5f
+		 0.5f,  -0.5f
 	};
 
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
 	glBufferData(GL_ARRAY_BUFFER, maxPositions * sizeof(float), positions, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
-	glEnableVertexAttribArray(0); //Antes del Pointer, pero despues de bindear el buffer DICE CHERNO. A checkear?
 
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Renderer::drawTriangle() {
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
 }

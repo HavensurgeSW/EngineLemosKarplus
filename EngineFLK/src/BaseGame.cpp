@@ -23,6 +23,7 @@ void BaseGame::launchGod() {
 	_window->setWindow(_window->createWindow(800, 600, "Hello World", NULL, NULL));
 	_renderer->setWindow(_window);
 
+
 	if (!_window->getWindow()){
 		terminate();
 		std::cout << "Terminate() successful" << std::endl;
@@ -30,16 +31,37 @@ void BaseGame::launchGod() {
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(_window->getWindow());
+	glewInit();
+	_renderer->genBuffers();
 
-	//I FUCKING HATE RANDOM FLOAT VALUES HOW CAN THIS BE SO HARD ON C++
-	float random = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
-	std::cout << random;
+	std::string vertexShader =
+		"#version 330 core\n"
+		"\n"
+		"layout(location = 0) in vec4 position;\n"
+		"\n"
+		"void main(){\n"
+		"gl_Position = position;\n"
+		"}\n";
 
-	_renderer->setClearColor(1.0f, 0.5f, 0.2f, 1.0f);
+	std::string fragmentShader =
+		"#version 330 core\n"
+		"\n"
+		"layout(location = 0) out vec4 color;\n"
+		"\n"
+		"void main(){\n"
+		"color = vec4(1.0, 0.0, 0.0, 1.0);\n"
+		"}\n";
+
+	unsigned int shader = createShader(vertexShader, fragmentShader);
+	glUseProgram(shader);
+	
+
+	_renderer->setClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	/* Loop until the user closes the window */
 	while (!_window->shouldClose()){
 		_renderer->clearScreen();
+		_renderer->drawTriangle();
 		_renderer->swapBuffer();
 		glfwPollEvents();
 	}
@@ -62,6 +84,10 @@ void BaseGame::launchGodTest()
 		terminate();
 		std::cout << "Terminate() successful" << std::endl;
 	}
+
+	//I FUCKING HATE RANDOM FLOAT VALUES HOW CAN THIS BE SO HARD ON C++
+	float random = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	std::cout << random;
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(_window->getWindow());
@@ -100,7 +126,7 @@ unsigned int BaseGame::createShader(const std::string& vertexShader, const std::
 }
 
 unsigned int BaseGame::compileShader(const std::string& source, unsigned int type) {
-	unsigned int id = glCreateShader(GL_VERTEX_SHADER);
+	unsigned int id = glCreateShader(type);
 	const char* src = source.c_str();
 	glShaderSource(id, 1, &src, nullptr);
 	glCompileShader(id);
@@ -109,7 +135,7 @@ unsigned int BaseGame::compileShader(const std::string& source, unsigned int typ
 	if (result == GL_FALSE) {
 		int length;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-		char* message = (char*)alloca(length* sizeof(char));
+		char* message = (char*)alloca(length * sizeof(char));
 		glGetShaderInfoLog(id, length, &length, message);
 		std::cout << "Failed to compile"<< (type==GL_VERTEX_SHADER ? "vertex" : "fragment")<< std::endl;
 		std::cout << message << std::endl;
