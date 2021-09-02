@@ -14,24 +14,25 @@ BaseGame::~BaseGame() {
 }
 
 void BaseGame::launchGod() {
-	/* Initialize the library */
+
 	srand(time(NULL));
-	if (!glfwInit()){
+
+	/* Initialize the library */
+	if (!glfwInit()) {
 		std::cout << "Error de inicializacion" << std::endl;
 	}
 
 	_window->setWindow(_window->createWindow(800, 600, "Hello World", NULL, NULL));
-	_renderer->setWindow(_window);
 
-
-	if (!_window->getWindow()){
+	if (!_window->getWindow()) {
+		std::cout << "Error. Window is null, terminating." << std::endl;
 		terminate();
-		std::cout << "Terminate() successful" << std::endl;
 	}
 
+	_renderer->setWindow(_window);
 	/* Make the window's context current */
-	glfwMakeContextCurrent(_window->getWindow());
-	glewInit();
+	_renderer->makeContextCurrent(_window);
+	_renderer->initGlew();
 	_renderer->genBuffers();
 
 	std::string vertexShader =
@@ -54,52 +55,23 @@ void BaseGame::launchGod() {
 
 	unsigned int shader = createShader(vertexShader, fragmentShader);
 	glUseProgram(shader);
-	
 
-	_renderer->setClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	//----------------------------
+	//haha pretty background colors go brrr
+	float randomColorR = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	float randomColorG = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	float randomColorB = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
+	
+	_renderer->setClearColor(randomColorR, randomColorG, randomColorB, 1.0f);
+	//----------------------------
+
 
 	/* Loop until the user closes the window */
-	while (!_window->shouldClose()){
+	while (!_window->shouldClose()) {
 		_renderer->clearScreen();
 		_renderer->drawTriangle();
 		_renderer->swapBuffer();
-		glfwPollEvents();
-	}
-
-	terminate();
-}
-
-void BaseGame::launchGodTest() 
-{
-	/* Initialize the library */
-	if (!glfwInit())
-	{
-		std::cout << "Error de inicializacion" << std::endl;
-	}
-
-	_window->setWindow(_window->createWindow(800, 600, "Hello World", NULL, NULL));
-
-	if (!_window->getWindow())
-	{
-		terminate();
-		std::cout << "Terminate() successful" << std::endl;
-	}
-
-	//I FUCKING HATE RANDOM FLOAT VALUES HOW CAN THIS BE SO HARD ON C++
-	float random = static_cast<float>(((std::rand()) % 100) + 1) / 100.0f;
-	std::cout << random;
-
-	/* Make the window's context current */
-	glfwMakeContextCurrent(_window->getWindow());
-	_renderer->genBuffers();
-
-	/* Loop until the user closes the window */
-	while (!_window->shouldClose())
-	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		glfwSwapBuffers(_window->getWindow());
-		_renderer->drawTriangle();
-		glfwPollEvents();
+		_input->pollEvents();
 	}
 
 	terminate();
@@ -111,7 +83,7 @@ void BaseGame::terminate() {
 
 unsigned int BaseGame::createShader(const std::string& vertexShader, const std::string fragmentShader) {
 	unsigned int program = glCreateProgram();
-	unsigned int vs = compileShader(vertexShader, GL_VERTEX_SHADER); //???
+	unsigned int vs = compileShader(vertexShader, GL_VERTEX_SHADER);
 	unsigned int fs = compileShader(fragmentShader, GL_FRAGMENT_SHADER);
 
 	glAttachShader(program, vs);
@@ -130,14 +102,16 @@ unsigned int BaseGame::compileShader(const std::string& source, unsigned int typ
 	const char* src = source.c_str();
 	glShaderSource(id, 1, &src, nullptr);
 	glCompileShader(id);
+
 	int result;
 	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+
 	if (result == GL_FALSE) {
 		int length;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-		char* message = (char*)alloca(length * sizeof(char));
+		char* message = (char*)_malloca(length * sizeof(char));
 		glGetShaderInfoLog(id, length, &length, message);
-		std::cout << "Failed to compile"<< (type==GL_VERTEX_SHADER ? "vertex" : "fragment")<< std::endl;
+		std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
 		std::cout << message << std::endl;
 		glDeleteShader(id);
 		return 0;

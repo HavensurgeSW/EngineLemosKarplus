@@ -1,13 +1,9 @@
 #pragma once
 
-
-#include "CollisionManager.h"
-#include "Input.h"
-#include "Renderer.h"
 #include "Window.h"
-
-#include "glew.h"
-#include "glfw3.h"
+#include "Renderer.h"
+#include "Input.h"
+#include "CollisionManager.h"
 
 #include <iostream>
 
@@ -23,7 +19,6 @@ public:
     ~BaseGame();
 
     void launchGod();
-    void launchGodTest();
     void terminate();
     static unsigned int createShader(const std::string& vertexShader, const std::string fragmentShader);
     static unsigned int compileShader(const std::string& source, unsigned int type);

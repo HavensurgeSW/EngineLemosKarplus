@@ -4,5 +4,5 @@ class Input {
 private:
 
 public:
+	void pollEvents();
 };
-

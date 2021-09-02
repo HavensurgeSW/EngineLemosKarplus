@@ -1,4 +1,6 @@
-﻿#include "Renderer.h"
+﻿#include <iostream>
+
+#include "Renderer.h"
 #include "glew.h"
 #include "glfw3.h"
 
@@ -8,6 +10,14 @@ Renderer::Renderer() {
 
 Renderer::~Renderer() {
 
+}
+
+void Renderer::initGlew() {
+	glewInit();
+
+	if (!glewInit()) {
+		std::cout << "Error. Failed to Init Glew." << std::endl;
+	}
 }
 
 void Renderer::swapBuffer() {
@@ -43,8 +53,11 @@ void Renderer::genBuffers() {
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void Renderer::makeContextCurrent(Window* window) {
+	glfwMakeContextCurrent(window->getWindow());
 }
 
 void Renderer::drawTriangle() {
