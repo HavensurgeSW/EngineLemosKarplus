@@ -85,8 +85,8 @@ void BaseGame::terminate() {
 
 unsigned int BaseGame::createShader(const std::string& vertexShader, const std::string fragmentShader) {
 	unsigned int program = glCreateProgram();
-	unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader); //???
-	unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader); //???
+	unsigned int vs = compileShader(vertexShader, GL_VERTEX_SHADER); //???
+	unsigned int fs = compileShader(fragmentShader, GL_FRAGMENT_SHADER);
 
 	glAttachShader(program, vs);
 	glAttachShader(program, fs);
