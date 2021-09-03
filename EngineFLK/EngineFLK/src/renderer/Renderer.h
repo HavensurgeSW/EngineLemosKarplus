@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.h"
+#include "window/Window.h"
 #include "glfw3.h"
 #include "glew.h"
 
@@ -18,7 +18,7 @@ public:
 	void SetClearColor(float r, float g, float b, float a);
 	void ClearScreen();
 	void SetWindow(Window* window);
-	void GenBuffers();
+	void GenerateBuffers(); //genBuffers
 	void MakeContextCurrent(Window* window);
 	void DrawTriangle();
 };

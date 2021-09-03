@@ -1,5 +1,5 @@
 #pragma once
-#include "Animation.h"
+#include "entities/animation/Animation.h"
 
 class Sprite {
 private:

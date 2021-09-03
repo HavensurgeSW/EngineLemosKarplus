@@ -19,32 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\BaseGame.cpp" />
-    <ClCompile Include="..\src\CollisionManager.cpp" />
-    <ClCompile Include="..\src\Input.cpp" />
-    <ClCompile Include="..\src\Main.cpp" />
-    <ClCompile Include="..\src\Renderer.cpp" />
-    <ClCompile Include="..\src\Window.cpp" />
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Entity2D.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="src\base_game\BaseGame.cpp" />
+    <ClCompile Include="src\collision_manager\CollisionManager.cpp" />
+    <ClCompile Include="src\entities\animation\Animation.cpp" />
+    <ClCompile Include="src\entities\entity2d\Entity2D.cpp" />
+    <ClCompile Include="src\entities\entity\Entity.cpp" />
+    <ClCompile Include="src\entities\shape\Shape.cpp" />
+    <ClCompile Include="src\entities\sprite\Sprite.cpp" />
+    <ClCompile Include="src\entities\tilemap\Tilemap.cpp" />
+    <ClCompile Include="src\input\Input.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\renderer\Renderer.cpp" />
+    <ClCompile Include="src\window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\BaseGame.h" />
-    <ClInclude Include="..\src\CollisionManager.h" />
-    <ClInclude Include="..\src\Exports.h" />
-    <ClInclude Include="..\src\Input.h" />
-    <ClInclude Include="..\src\Renderer.h" />
-    <ClInclude Include="..\src\Window.h" />
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Entity2D.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="src\base_game\BaseGame.h" />
+    <ClInclude Include="src\collision_manager\CollisionManager.h" />
+    <ClInclude Include="src\entities\animation\Animation.h" />
+    <ClInclude Include="src\entities\entity2d\Entity2D.h" />
+    <ClInclude Include="src\entities\entity\Entity.h" />
+    <ClInclude Include="src\entities\shape\Shape.h" />
+    <ClInclude Include="src\entities\sprite\Sprite.h" />
+    <ClInclude Include="src\entities\tilemap\Tilemap.h" />
+    <ClInclude Include="src\Exports.h" />
+    <ClInclude Include="src\input\Input.h" />
+    <ClInclude Include="src\renderer\Renderer.h" />
+    <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -123,12 +123,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\GLEW\include\GL;$(SolutionDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include\GL;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\GLEW\lib\Release\Win32;$(SolutionDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\GLEW\lib\Release\Win32;$(ProjectDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -138,13 +138,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\GLEW\include\GL;$(SolutionDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include\GL;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\GLEW\lib\Release\Win32;$(SolutionDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\GLEW\lib\Release\Win32;$(ProjectDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -155,14 +155,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\GLEW\include\GL;$(SolutionDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include\GL;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\GLEW\lib\Release\Win32;$(SolutionDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\GLEW\lib\Release\Win32;$(ProjectDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -175,14 +175,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\GLEW\include\GL;$(SolutionDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include\GL;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\GLEW\lib\Release\Win32;$(SolutionDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\GLEW\lib\Release\Win32;$(ProjectDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

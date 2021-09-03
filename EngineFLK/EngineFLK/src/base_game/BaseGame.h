@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Window.h"
-#include "Renderer.h"
-#include "Input.h"
-#include "CollisionManager.h"
+#include "window/Window.h"
+#include "renderer/Renderer.h"
+#include "input/Input.h"
+#include "collision_manager/CollisionManager.h"
 
 #include <iostream>
 

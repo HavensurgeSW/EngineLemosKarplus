@@ -45,7 +45,7 @@ void Renderer::SetWindow(Window* window)
 	this->window = window;
 }
 
-void Renderer::GenBuffers() 
+void Renderer::GenerateBuffers() 
 {
 	const int maxPositions = 6;
 

@@ -13,81 +13,120 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{85bc4ddf-7bbb-4892-aa35-a73aaed82d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{9c400865-6769-4509-85ca-6a6eaff02ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{ddaf0997-6d07-45b7-ae66-3b992bcc3186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer">
+      <UniqueIdentifier>{1d00a3a4-d46e-428e-907e-42f09982f2a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\collision_manager">
+      <UniqueIdentifier>{cdb741dc-024a-495d-86aa-4df3001b3b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\window">
+      <UniqueIdentifier>{9387e816-6413-460c-9193-ff7e030a7ddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base_game">
+      <UniqueIdentifier>{96cc7eed-34de-4c75-bbdd-83955713ba48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\animation">
+      <UniqueIdentifier>{c4cb04d7-90cb-4bc6-8668-d90178ba6506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\entity">
+      <UniqueIdentifier>{6e0f13ed-8feb-4a6e-882e-29bf409e5453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\entity2d">
+      <UniqueIdentifier>{c09ccb8a-98a3-4090-ae1d-0233dbba0034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\shape">
+      <UniqueIdentifier>{ebdc1ddc-ace6-4a73-b378-701ce69d0a12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\sprite">
+      <UniqueIdentifier>{f9f2408c-e59d-4a10-97a4-7b866ed11db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\tilemap">
+      <UniqueIdentifier>{dd6ac629-8202-4985-bb3f-b265e949112f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Window.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\animation\Animation.cpp">
+      <Filter>src\entities\animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Renderer.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\entity\Entity.cpp">
+      <Filter>src\entities\entity</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Main.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\entity2d\Entity2D.cpp">
+      <Filter>src\entities\entity2d</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Input.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\tilemap\Tilemap.cpp">
+      <Filter>src\entities\tilemap</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\BaseGame.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\sprite\Sprite.cpp">
+      <Filter>src\entities\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\CollisionManager.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\shape\Shape.cpp">
+      <Filter>src\entities\shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\input\Input.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="Entity2D.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\collision_manager\CollisionManager.cpp">
+      <Filter>src\collision_manager</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\base_game\BaseGame.cpp">
+      <Filter>src\base_game</Filter>
     </ClCompile>
-    <ClCompile Include="Tilemap.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\window\Window.cpp">
+      <Filter>src\window</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\renderer\Renderer.cpp">
+      <Filter>src\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\BaseGame.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\animation\Animation.h">
+      <Filter>src\entities\animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CollisionManager.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\entity\Entity.h">
+      <Filter>src\entities\entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Exports.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\entity2d\Entity2D.h">
+      <Filter>src\entities\entity2d</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Input.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\tilemap\Tilemap.h">
+      <Filter>src\entities\tilemap</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Renderer.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\sprite\Sprite.h">
+      <Filter>src\entities\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Window.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\shape\Shape.h">
+      <Filter>src\entities\shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\input\Input.h">
+      <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="Entity2D.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\collision_manager\CollisionManager.h">
+      <Filter>src\collision_manager</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\base_game\BaseGame.h">
+      <Filter>src\base_game</Filter>
     </ClInclude>
-    <ClInclude Include="Tilemap.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\window\Window.h">
+      <Filter>src\window</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\renderer\Renderer.h">
+      <Filter>src\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\Exports.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
