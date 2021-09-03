@@ -17,11 +17,6 @@ Renderer::~Renderer()
 void Renderer::InitGlew() 
 {
 	glewInit();
-
-	if (!glewInit()) 
-	{
-		std::cout << "Error. Failed to Init Glew." << std::endl;
-	}
 }
 
 void Renderer::SwapBuffer() 
@@ -51,9 +46,9 @@ void Renderer::GenerateBuffers()
 
 	float positions[maxPositions] = 
 	{
-		-0.5f, -0.5f,
-		 0.0f,  0.5f,
-		 0.5f,  -0.5f
+		-0.5f, -0.5f, //vertex 1
+		 0.0f,  0.5f, //vertex 2
+		 0.5f, -0.5f  //vertex 3
 	};
 
 	unsigned int buffer;

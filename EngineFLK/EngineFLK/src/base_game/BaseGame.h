@@ -7,6 +7,12 @@
 
 #include <iostream>
 
+//Wrong, should not be here. Create shader class?
+struct ShaderTest {
+    std::string vertexSource;
+    std::string fragmentSource;
+};
+
 class BaseGame 
 {
 private:
@@ -23,4 +29,5 @@ public:
     void Terminate();
     static unsigned int CreateShader(const std::string& vertexShader, const std::string fragmentShader);
     static unsigned int CompileShader(const std::string& source, unsigned int type);
+    static ShaderTest ParseShader(const std::string& filepath);
 };

@@ -52,6 +52,12 @@
     <Filter Include="src\entities\tilemap">
       <UniqueIdentifier>{dd6ac629-8202-4985-bb3f-b265e949112f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{a1797995-231d-46a9-b54f-b0190cc1fb08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{91d95d85-36e3-42b6-8e1f-2d102888eee8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -128,5 +134,10 @@
     <ClInclude Include="src\Exports.h">
       <Filter>src</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\Basic.shader">
+      <Filter>res\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

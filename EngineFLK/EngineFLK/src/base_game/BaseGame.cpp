@@ -3,6 +3,9 @@
 #include "glfw3.h"
 
 #include <time.h>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 BaseGame::BaseGame() 
 {
@@ -43,27 +46,11 @@ void BaseGame::LaunchGod()
 	/* Make the window's context current */
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
-	renderer->GenBuffers();
+	renderer->GenerateBuffers();
 
-	std::string vertexShader =
-		"#version 330 core\n"
-		"\n"
-		"layout(location = 0) in vec4 position;\n"
-		"\n"
-		"void main(){\n"
-		"gl_Position = position;\n"
-		"}\n";
-
-	std::string fragmentShader =
-		"#version 330 core\n"
-		"\n"
-		"layout(location = 0) out vec4 color;\n"
-		"\n"
-		"void main(){\n"
-		"color = vec4(1.0, 0.0, 0.0, 1.0);\n"
-		"}\n";
-
-	unsigned int shader = CreateShader(vertexShader, fragmentShader);
+	ShaderTest test = ParseShader("res/shaders/Basic.shader");
+	
+	unsigned int shader = CreateShader(test.vertexSource, test.fragmentSource);
 	glUseProgram(shader);
 
 	//----------------------------
@@ -89,7 +76,7 @@ void BaseGame::LaunchGod()
 		input->PollEvents();
 	}
 
-	glDeleteProgram(shader); //can also be glDeleteShader()
+	//glDeleteProgram(shader); //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
 	Terminate();
 }
 
@@ -147,4 +134,40 @@ unsigned int BaseGame::CompileShader(const std::string& source, unsigned int typ
 	//Hacer error handling. Try catches?
 
 	return id;
+}
+
+
+
+ShaderTest BaseGame::ParseShader(const std::string& filepath)
+{
+	std::ifstream stream(filepath);
+
+	enum class ShaderType
+	{
+		NONE,
+		VERTEX,
+		FRAGMENT
+	};
+
+	std::string line;
+	ShaderType type = ShaderType::NONE;
+	std::stringstream stringStreams[2];
+
+	while (getline(stream, line))
+	{
+		if (line.find("#vertex_shader") != std::string::npos)
+		{
+			type = ShaderType::VERTEX;
+		}
+		else if (line.find("#fragment_shader") != std::string::npos)
+		{
+			type = ShaderType::FRAGMENT;
+		}
+		else
+		{
+			stringStreams[(static_cast<int>(type)) - 1] << line << '\n';
+		}
+	}
+
+	return { stringStreams[0].str(), stringStreams[1].str() };
 }

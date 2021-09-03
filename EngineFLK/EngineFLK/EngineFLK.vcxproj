@@ -46,6 +46,9 @@
     <ClInclude Include="src\renderer\Renderer.h" />
     <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\Basic.shader" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{891E4201-1306-498C-ADBB-B725273F468C}</ProjectGuid>
