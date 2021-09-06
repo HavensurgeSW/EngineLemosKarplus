@@ -21,4 +21,5 @@ public:
 	void GenerateBuffers(); //genBuffers
 	void MakeContextCurrent(Window* window);
 	void DrawTriangle();
+	void DrawElement(int indices);
 };

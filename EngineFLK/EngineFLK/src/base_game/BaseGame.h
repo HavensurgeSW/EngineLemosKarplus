@@ -8,7 +8,7 @@
 #include <iostream>
 
 //Wrong, should not be here. Create shader class?
-struct ShaderTest {
+struct ShaderPaths {
     std::string vertexSource;
     std::string fragmentSource;
 };
@@ -29,5 +29,5 @@ public:
     void Terminate();
     static unsigned int CreateShader(const std::string& vertexShader, const std::string fragmentShader);
     static unsigned int CompileShader(const std::string& source, unsigned int type);
-    static ShaderTest ParseShader(const std::string& filepath);
+    static ShaderPaths ParseShader(const std::string& filepath);
 };

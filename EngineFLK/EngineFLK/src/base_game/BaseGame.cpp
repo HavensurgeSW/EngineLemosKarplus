@@ -30,7 +30,7 @@ void BaseGame::LaunchGod()
 	/* Initialize the library */
 	if (!glfwInit()) 
 	{
-		std::cout << "Error de inicializacion" << std::endl;
+		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
 
 	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
@@ -48,35 +48,31 @@ void BaseGame::LaunchGod()
 	renderer->InitGlew();
 	renderer->GenerateBuffers();
 
-	ShaderTest test = ParseShader("res/shaders/Basic.shader");
+	ShaderPaths test = ParseShader("res/shaders/Basic.shader");
 	
 	unsigned int shader = CreateShader(test.vertexSource, test.fragmentSource);
 	glUseProgram(shader);
 
 	//----------------------------
 	//haha pretty background colors go brrr
-	float randomColorR = static_cast<float>((std::rand()) % 100) / 100.0f;
 	float randomColorG = static_cast<float>((std::rand()) % 100) / 100.0f;
 	float randomColorB = static_cast<float>((std::rand()) % 100) / 100.0f;
-	
-	std::cout << randomColorR << std::endl;
-	std::cout << randomColorG << std::endl;
-	std::cout << randomColorB << std::endl;
 
-	renderer->SetClearColor(randomColorR, randomColorG, randomColorB, 1.0f);
+	renderer->SetClearColor(0.0f, randomColorG, randomColorB, 1.0f);
 	//----------------------------
-
+	
 
 	/* Loop until the user closes the window */
 	while (!window->ShouldClose()) 
 	{
 		renderer->ClearScreen();
-		renderer->DrawTriangle();
+		//renderer->DrawTriangle();
+		renderer->DrawElement(6); //6 is the size of de indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
 	}
 
-	//glDeleteProgram(shader); //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
+	glDeleteProgram(shader); //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
 	Terminate();
 }
 
@@ -88,21 +84,22 @@ void BaseGame::Terminate()
 unsigned int BaseGame::CreateShader(const std::string& vertexShader, const std::string fragmentShader) 
 {
 	unsigned int program = glCreateProgram();
-	unsigned int vs = CompileShader(vertexShader, GL_VERTEX_SHADER);
-	unsigned int fs = CompileShader(fragmentShader, GL_FRAGMENT_SHADER);
+	unsigned int vShader = CompileShader(vertexShader, GL_VERTEX_SHADER);
+	unsigned int fShader = CompileShader(fragmentShader, GL_FRAGMENT_SHADER);
 
-	glAttachShader(program, vs);
-	glAttachShader(program, fs);
+	glAttachShader(program, vShader);
+	glAttachShader(program, fShader);
 	glLinkProgram(program);
 	glValidateProgram(program);
 
-	//glDetachShader(vs); //this method deletes the source code from the shader, kinda dangerous but techincally correct
+	//glDetachShader(vs); //this method deletes the source code from the shader, kinda dangerous but techincally correct?
 	//glDetachShader(fs);
-	glDeleteShader(vs);
-	glDeleteShader(fs);
+	glDeleteShader(vShader);
+	glDeleteShader(fShader);
 
 	return program;
 }
+
 
 unsigned int BaseGame::CompileShader(const std::string& source, unsigned int type)
 {
@@ -137,8 +134,7 @@ unsigned int BaseGame::CompileShader(const std::string& source, unsigned int typ
 }
 
 
-
-ShaderTest BaseGame::ParseShader(const std::string& filepath)
+ShaderPaths BaseGame::ParseShader(const std::string& filepath)
 {
 	std::ifstream stream(filepath);
 
@@ -165,7 +161,7 @@ ShaderTest BaseGame::ParseShader(const std::string& filepath)
 		}
 		else
 		{
-			stringStreams[(static_cast<int>(type)) - 1] << line << '\n';
+			stringStreams[((int)type) - 1] << line << '\n';
 		}
 	}
 

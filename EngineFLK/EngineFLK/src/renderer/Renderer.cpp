@@ -24,7 +24,6 @@ void Renderer::SwapBuffer()
 	glfwSwapBuffers(window->GetWindow());
 }
 
-//Sets background color with RGBA values
 void Renderer::SetClearColor(float r, float g, float b, float a) 
 {
 	glClearColor(r, g, b, a);
@@ -42,13 +41,21 @@ void Renderer::SetWindow(Window* window)
 
 void Renderer::GenerateBuffers() 
 {
-	const int maxPositions = 6;
+	const int maxPositions = 8;
 
-	float positions[maxPositions] = 
+	float positions[maxPositions] = //Vertices
 	{
-		-0.5f, -0.5f, //vertex 1
-		 0.0f,  0.5f, //vertex 2
-		 0.5f, -0.5f  //vertex 3
+		-0.5f, -0.5f, //vertex 0
+		 0.5f, -0.5f, //vertex 1
+		 0.5f,  0.5f, //vertex 2
+		-0.5f,  0.5f  //vertex 3 for square
+	};
+
+	const int maxIndices = 6;
+	unsigned int indices[maxIndices] = //Triangle connections
+	{
+		0, 1, 2, //triangle 1
+		2, 3, 0  //triangle 2
 	};
 
 	unsigned int buffer;
@@ -58,6 +65,13 @@ void Renderer::GenerateBuffers()
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
+
+
+	unsigned int indexBufferObject;
+	glGenBuffers(1, &indexBufferObject);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, maxIndices * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -68,5 +82,11 @@ void Renderer::MakeContextCurrent(Window* window)
 
 void Renderer::DrawTriangle() 
 {
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+// Used to draw an element utilizing indices
+void Renderer::DrawElement(int indices) 
+{
+	glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr); //must always be GL_UNSIGNED_INT
 }
