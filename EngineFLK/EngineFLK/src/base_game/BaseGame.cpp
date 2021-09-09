@@ -13,6 +13,7 @@ BaseGame::BaseGame()
 	renderer = new Renderer();
 	input = new Input();
 	collisionManager = new CollisionManager();
+	entity = new Entity();
 }
 
 BaseGame::~BaseGame() 
@@ -23,12 +24,12 @@ BaseGame::~BaseGame()
 	delete collisionManager;
 }
 
-void BaseGame::LaunchGod() 
+void BaseGame::LaunchGod()
 {
 	srand(time(NULL));
 
 	/* Initialize the library */
-	if (!glfwInit()) 
+	if (!glfwInit())
 	{
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
@@ -48,8 +49,14 @@ void BaseGame::LaunchGod()
 	renderer->InitGlew();
 	renderer->GenerateBuffers();
 
+	float arrnum = 8;
+	float* arr = new float[arrnum];
+
+
+	entity->SetPositions(arr);
+	// int *arr = new int(n);
+
 	ShaderPaths test = ParseShader("res/shaders/Basic.shader");
-	
 	unsigned int shader = CreateShader(test.vertexSource, test.fragmentSource);
 	glUseProgram(shader);
 
@@ -67,7 +74,7 @@ void BaseGame::LaunchGod()
 	{
 		renderer->ClearScreen();
 		//renderer->DrawTriangle();
-		renderer->DrawElement(6); //6 is the size of de indices array
+		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
 	}
@@ -99,7 +106,6 @@ unsigned int BaseGame::CreateShader(const std::string& vertexShader, const std::
 
 	return program;
 }
-
 
 unsigned int BaseGame::CompileShader(const std::string& source, unsigned int type)
 {

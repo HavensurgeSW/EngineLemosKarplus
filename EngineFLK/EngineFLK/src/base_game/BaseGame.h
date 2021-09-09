@@ -4,6 +4,7 @@
 #include "renderer/Renderer.h"
 #include "input/Input.h"
 #include "collision_manager/CollisionManager.h"
+#include "entities/entity/Entity.h"
 
 #include <iostream>
 
@@ -20,6 +21,7 @@ private:
     Renderer* renderer;
     Input* input;
     CollisionManager* collisionManager;
+    Entity* entity;
 
 public:
     BaseGame();

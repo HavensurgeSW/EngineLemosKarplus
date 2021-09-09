@@ -1,8 +1,11 @@
 ﻿#include <iostream>
-
+#include <vector>
+#include <algorithm>
+using namespace std;
 #include "Renderer.h"
 #include "glew.h"
 #include "glfw3.h"
+
 
 Renderer::Renderer() 
 {
@@ -50,6 +53,13 @@ void Renderer::GenerateBuffers()
 		 0.5f,  0.5f, //vertex 2
 		-0.5f,  0.5f  //vertex 3 for square
 	};
+
+	//vector<float> positions2(maxPositions);
+	//for (int i = 0; i < maxPositions; i++)
+	//{
+	//	positions2[i] = positions[i];
+	//}
+	//Intento fallido de usar Vectores para tener acceso a algoritmos
 
 	const int maxIndices = 6;
 	unsigned int indices[maxIndices] = //Triangle connections
