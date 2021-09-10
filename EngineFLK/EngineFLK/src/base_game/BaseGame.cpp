@@ -52,7 +52,6 @@ void BaseGame::LaunchGod()
 	float arrnum = 8;
 	float* arr = new float[arrnum];
 
-
 	entity->SetPositions(arr);
 	// int *arr = new int(n);
 

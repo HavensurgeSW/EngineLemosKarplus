@@ -1,11 +1,14 @@
-﻿#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-#include "Renderer.h"
-#include "glew.h"
+﻿#include "glew.h"
 #include "glfw3.h"
 
+#include "Renderer.h"
+#include "error_handling/ErrorHandling.h"
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
 
 Renderer::Renderer() 
 {
@@ -98,5 +101,6 @@ void Renderer::DrawTriangle()
 // Used to draw an element utilizing indices
 void Renderer::DrawElement(int indices) 
 {
-	glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr); //must always be GL_UNSIGNED_INT
+	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
+	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic
 }
