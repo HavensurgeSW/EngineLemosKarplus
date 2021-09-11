@@ -28,5 +28,7 @@
 //To use GLCheck, you just need to wrap whatever GL function with GLCall and boom, error handling
 //Would it be smart to encapsulate every single GL function in this?
 
+void InitErrorHandling();
 void GLClearError();
 bool GLCheckError(const char* sourceFile, const char* functionName, int errorLine);
+static void GLAPIENTRY GLLogMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * message, const void* userParameters);

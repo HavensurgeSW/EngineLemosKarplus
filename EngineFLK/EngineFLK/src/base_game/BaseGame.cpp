@@ -1,6 +1,7 @@
 #include "BaseGame.h"
 
 #include "glfw3.h"
+#include "error_handling/ErrorHandling.h"
 
 #include <time.h>
 #include <fstream>
@@ -27,7 +28,6 @@ BaseGame::~BaseGame()
 void BaseGame::LaunchGod()
 {
 	srand(time(NULL));
-
 	/* Initialize the library */
 	if (!glfwInit())
 	{
@@ -48,6 +48,7 @@ void BaseGame::LaunchGod()
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
 	renderer->GenerateBuffers();
+	//InitErrorHandling();
 
 	float arrnum = 8;
 	float* arr = new float[arrnum];

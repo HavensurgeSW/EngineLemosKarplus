@@ -23,6 +23,7 @@ Renderer::~Renderer()
 void Renderer::InitGlew() 
 {
 	glewInit();
+	InitErrorHandling();
 }
 
 void Renderer::SwapBuffer() 
@@ -85,7 +86,7 @@ void Renderer::GenerateBuffers()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, maxIndices * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);	
 }
 
 void Renderer::MakeContextCurrent(Window* window) 
@@ -101,6 +102,6 @@ void Renderer::DrawTriangle()
 // Used to draw an element utilizing indices
 void Renderer::DrawElement(int indices) 
 {
-	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
+	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr);)
 	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic
 }
