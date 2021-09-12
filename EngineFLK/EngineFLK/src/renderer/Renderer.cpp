@@ -2,7 +2,7 @@
 #include "glfw3.h"
 
 #include "Renderer.h"
-#include "error_handling/ErrorHandling.h"
+#include "utility/error_handling/ErrorHandling.h"
 
 #include <iostream>
 #include <vector>

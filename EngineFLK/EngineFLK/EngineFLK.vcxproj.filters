@@ -64,6 +64,12 @@
     <Filter Include="src\utility\error_handling">
       <UniqueIdentifier>{1ebec506-2d0e-4c7c-980c-1ed8fdd0bf7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utility\utils">
+      <UniqueIdentifier>{a909663b-b562-4be0-95cc-66c168cd15b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility\color">
+      <UniqueIdentifier>{73c4b440-56f3-4554-9561-975ef0ace628}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -105,6 +111,12 @@
     <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp">
       <Filter>src\utility\error_handling</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\color\Color.cpp">
+      <Filter>src\utility\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\utils\Utils.cpp">
+      <Filter>src\utility\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\animation\Animation.h">
@@ -145,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="src\utility\error_handling\ErrorHandling.h">
       <Filter>src\utility\error_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\color\Color.h">
+      <Filter>src\utility\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\utils\Utils.h">
+      <Filter>src\utility\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

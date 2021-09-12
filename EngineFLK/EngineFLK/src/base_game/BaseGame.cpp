@@ -1,7 +1,8 @@
 #include "BaseGame.h"
 
 #include "glfw3.h"
-#include "error_handling/ErrorHandling.h"
+#include "utility/error_handling/ErrorHandling.h"
+#include "utility/utils/Utils.h"
 
 #include <time.h>
 #include <fstream>
@@ -27,7 +28,7 @@ BaseGame::~BaseGame()
 
 void BaseGame::LaunchGod()
 {
-	srand(time(NULL));
+	srand(time(0));
 	/* Initialize the library */
 	if (!glfwInit())
 	{
@@ -62,8 +63,8 @@ void BaseGame::LaunchGod()
 
 	//----------------------------
 	//haha pretty background colors go brrr
-	float randomColorG = static_cast<float>((std::rand()) % 100) / 100.0f;
-	float randomColorB = static_cast<float>((std::rand()) % 100) / 100.0f;
+	float randomColorG = Utils::RandomRange(0.0f, 1.0f);
+	float randomColorB = Utils::RandomRange(0.0f, 1.0f);
 
 	renderer->SetClearColor(0.0f, randomColorG, randomColorB, 1.0f);
 	//----------------------------
