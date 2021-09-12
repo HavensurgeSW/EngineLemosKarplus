@@ -6,8 +6,6 @@
 #include "collision_manager/CollisionManager.h"
 #include "entities/entity/Entity.h"
 
-#include <iostream>
-
 //Wrong, should not be here. Create shader class?
 struct ShaderPaths {
     std::string vertexSource;

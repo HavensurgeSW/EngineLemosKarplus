@@ -1,8 +1,10 @@
 #include "BaseGame.h"
 
 #include "glfw3.h"
+
 #include "utility/error_handling/ErrorHandling.h"
 #include "utility/utils/Utils.h"
+#include "utility/color/Color.h"
 
 #include <time.h>
 #include <fstream>
@@ -63,12 +65,8 @@ void BaseGame::LaunchGod()
 
 	//----------------------------
 	//haha pretty background colors go brrr
-	float randomColorG = Utils::RandomRange(0.0f, 1.0f);
-	float randomColorB = Utils::RandomRange(0.0f, 1.0f);
-
-	renderer->SetClearColor(0.0f, randomColorG, randomColorB, 1.0f);
+	renderer->SetClearColor(Color::RandomColor());
 	//----------------------------
-	
 
 	/* Loop until the user closes the window */
 	while (!window->ShouldClose()) 

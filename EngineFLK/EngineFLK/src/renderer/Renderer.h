@@ -1,8 +1,8 @@
 #pragma once
 
 #include "window/Window.h"
-#include "glfw3.h"
-#include "glew.h"
+
+#include "utility/color/Color.h"
 
 class Renderer 
 {
@@ -15,7 +15,7 @@ public:
 
 	void InitGlew();
 	void SwapBuffer();
-	void SetClearColor(float r, float g, float b, float a);
+	void SetClearColor(Color color);
 	void ClearScreen();
 	void SetWindow(Window* window);
 	void GenerateBuffers(); //genBuffers

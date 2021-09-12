@@ -13,6 +13,17 @@ struct Color
 	Color(float r, float g, float b);
 	Color(float r, float g, float b, float a);
 
-	//Color Red(); or like this?
-	//Add random color?
+	static Color Red();
+	static Color Green();
+	static Color Blue();
+	static Color Yellow();
+	static Color Black();
+	static Color White();
+	static Color Purple();
+	static Color Clear();
+
+	static Color RandomRedShade();
+	static Color RandomGreenShade();
+	static Color RandomBlueShade();
+	static Color RandomColor();
 };

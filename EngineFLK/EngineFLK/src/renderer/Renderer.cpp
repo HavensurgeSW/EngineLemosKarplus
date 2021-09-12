@@ -1,7 +1,8 @@
-﻿#include "glew.h"
+﻿#include "Renderer.h"
+
+#include "glew.h"
 #include "glfw3.h"
 
-#include "Renderer.h"
 #include "utility/error_handling/ErrorHandling.h"
 
 #include <iostream>
@@ -31,9 +32,9 @@ void Renderer::SwapBuffer()
 	glfwSwapBuffers(window->GetWindow());
 }
 
-void Renderer::SetClearColor(float r, float g, float b, float a) 
+void Renderer::SetClearColor(Color color) 
 {
-	glClearColor(r, g, b, a);
+	glClearColor(color.r, color.g, color.b, color.a);
 }
 
 void Renderer::ClearScreen() 

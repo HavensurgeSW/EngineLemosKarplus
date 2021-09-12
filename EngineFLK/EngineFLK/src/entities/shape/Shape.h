@@ -6,9 +6,11 @@ class Shape
 {
 private:
 	float positions[8];
+
 public:
 	Shape();
 	~Shape();
+
 	void SetPositions(float *arr);
 };
 
