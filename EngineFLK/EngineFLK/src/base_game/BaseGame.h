@@ -5,6 +5,7 @@
 #include "input/Input.h"
 #include "collision_manager/CollisionManager.h"
 #include "entities/entity/Entity.h"
+#include "../Vector2.h"
 
 //Wrong, should not be here. Create shader class?
 struct ShaderPaths {

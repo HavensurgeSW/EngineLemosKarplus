@@ -34,6 +34,7 @@
     <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp" />
     <ClCompile Include="src\utility\utils\Utils.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\base_game\BaseGame.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="src\utility\error_handling\ErrorHandling.h" />
     <ClInclude Include="src\utility\utils\Utils.h" />
     <ClInclude Include="src\window\Window.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />
@@ -141,14 +143,8 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>REM Copy Library files to Game lib
-MKDIR "$(SolutionDir)Game\lib\Engine\libs"
-COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).dll"
-COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).lib"
-
-MKDIR "$(SolutionDir)Game\lib\Engine\include\API"
-COPY "$(Projectdir)src\Application.h" "$(SolutionDir)Game\lib\Engine\include\Application.h"
-COPY "$(ProjectDir)src\API\EngineAPI.h" "$(SolutionDir)Game\lib\Engine\include\API\EngineAPI.h""</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -186,14 +182,8 @@ COPY "$(ProjectDir)src\API\EngineAPI.h" "$(SolutionDir)Game\lib\Engine\include\A
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>REM Copy Library files to Game lib
-MKDIR "$(SolutionDir)Game\lib\Engine\libs"
-COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).dll"
-COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).lib"
-
-MKDIR "$(SolutionDir)Game\lib\Engine\include\API"
-COPY "$(Projectdir)src\Application.h" "$(SolutionDir)Game\lib\Engine\include\Application.h"
-COPY "$(ProjectDir)src\API\EngineAPI.h" "$(SolutionDir)Game\lib\Engine\include\API\EngineAPI.h""</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

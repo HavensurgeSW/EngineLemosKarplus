@@ -70,6 +70,9 @@
     <Filter Include="src\utility\color">
       <UniqueIdentifier>{73c4b440-56f3-4554-9561-975ef0ace628}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utility\Vector2">
+      <UniqueIdentifier>{914aa11e-3ccd-4104-8c17-bea8f1e5a55e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -117,6 +120,9 @@
     <ClCompile Include="src\utility\utils\Utils.cpp">
       <Filter>src\utility\utils</Filter>
     </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>src\utility\Vector2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\animation\Animation.h">
@@ -163,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="src\utility\utils\Utils.h">
       <Filter>src\utility\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>src\utility\Vector2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
