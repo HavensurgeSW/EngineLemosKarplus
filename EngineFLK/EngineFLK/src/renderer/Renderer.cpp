@@ -59,11 +59,11 @@ void Renderer::GenerateBuffers()
 		-0.5f,  0.5f  //vertex 3 for square
 	};
 
-	//vector<float> positions2(maxPositions);
-	//for (int i = 0; i < maxPositions; i++)
-	//{
-	//	positions2[i] = positions[i];
-	//}
+	vector<float> positions2(maxPositions);
+	for (int i = 0; i < maxPositions; i++)
+	{
+		positions2[i] = positions[i];
+	}
 	//Intento fallido de usar Vectores para tener acceso a algoritmos
 
 	const int maxIndices = 6;
@@ -76,7 +76,7 @@ void Renderer::GenerateBuffers()
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, maxPositions * sizeof(float), positions, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, maxPositions * sizeof(float), positions2., GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y

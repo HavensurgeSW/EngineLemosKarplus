@@ -140,6 +140,16 @@
       <AdditionalLibraryDirectories>$(ProjectDir)lib\GLEW\lib\Release\Win32;$(ProjectDir)lib\GLFW\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>REM Copy Library files to Game lib
+MKDIR "$(SolutionDir)Game\lib\Engine\libs"
+COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).dll"
+COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).lib"
+
+MKDIR "$(SolutionDir)Game\lib\Engine\include\API"
+COPY "$(Projectdir)src\Application.h" "$(SolutionDir)Game\lib\Engine\include\Application.h"
+COPY "$(ProjectDir)src\API\EngineAPI.h" "$(SolutionDir)Game\lib\Engine\include\API\EngineAPI.h""</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -175,6 +185,16 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PostBuildEvent>
+      <Command>REM Copy Library files to Game lib
+MKDIR "$(SolutionDir)Game\lib\Engine\libs"
+COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).dll"
+COPY "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Game\lib\Engine\Libs\$(TargetName).lib"
+
+MKDIR "$(SolutionDir)Game\lib\Engine\include\API"
+COPY "$(Projectdir)src\Application.h" "$(SolutionDir)Game\lib\Engine\include\Application.h"
+COPY "$(ProjectDir)src\API\EngineAPI.h" "$(SolutionDir)Game\lib\Engine\include\API\EngineAPI.h""</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
