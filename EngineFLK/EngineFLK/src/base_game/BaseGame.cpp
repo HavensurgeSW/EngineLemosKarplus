@@ -67,18 +67,6 @@ void BaseGame::LaunchGod()
 	//haha pretty background colors go brrr
 	renderer->SetClearColor(Color::RandomColor());
 	//----------------------------
-	Vector2 vec1;
-	Vector2 vec2;
-
-	vec1.SetValues(93.8f, 8.2f);
-	vec2.SetValues(26.2f, 18.9f);
-	std::cout << "Vec 1 values: " << vec1.ToString()<<std::endl;
-	std::cout << "Vec 2 values: " << vec2.ToString()<<std::endl;
-
-	std::cout << std::endl << std::endl;
-	Vector2 newVec;
-	newVec = vec1 + vec2;
-	std::cout << "New vec values: " << newVec.ToString();
 
 	/* Loop until the user closes the window */
 	while (!window->ShouldClose()) 
@@ -88,9 +76,7 @@ void BaseGame::LaunchGod()
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
-	}
-
-	
+	}	
 	
 	glDeleteProgram(shader); //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
 	Terminate();

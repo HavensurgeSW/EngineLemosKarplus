@@ -33,8 +33,9 @@
     <ClCompile Include="src\utility\color\Color.cpp" />
     <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp" />
     <ClCompile Include="src\utility\utils\Utils.cpp" />
+    <ClCompile Include="src\utility\vector2\Vector2.cpp" />
+    <ClCompile Include="src\utility\vector3\Vector3.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
-    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\base_game\BaseGame.h" />
@@ -51,8 +52,9 @@
     <ClInclude Include="src\utility\color\Color.h" />
     <ClInclude Include="src\utility\error_handling\ErrorHandling.h" />
     <ClInclude Include="src\utility\utils\Utils.h" />
+    <ClInclude Include="src\utility\vector2\Vector2.h" />
+    <ClInclude Include="src\utility\vector3\Vector3.h" />
     <ClInclude Include="src\window\Window.h" />
-    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />

@@ -24,7 +24,5 @@ struct Vector2
 	bool operator ==(const Vector2& otherVector) const;
 	Vector2 operator *(const float scalar) const;
 	Vector2 operator /(const float scalar) const;
-	Vector2 operator +=(const Vector2& otherVector) const;
-	Vector2 operator -=(const Vector2& otherVector) const;
 	std::string ToString() const;
 };

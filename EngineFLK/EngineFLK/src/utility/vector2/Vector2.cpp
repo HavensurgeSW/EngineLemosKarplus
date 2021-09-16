@@ -78,26 +78,6 @@ Vector2 Vector2::operator /(const float scalar) const
 	return Vector2(x / scalar, y / scalar);
 }
 
-Vector2 Vector2::operator +=(const Vector2& otherVector) const
-{
-	float newX = x;
-	float newY = y;
-	newX += otherVector.x;
-	newY += otherVector.y;
-
-	return Vector2(newX, newY);
-}
-
-Vector2 Vector2::operator -=(const Vector2& otherVector) const
-{
-	float newX = x;
-	float newY = y;
-	newX -= otherVector.x;
-	newY -= otherVector.y;
-
-	return Vector2(newX, newY);
-}
-
 std::string Vector2::ToString() const
 {
 	std::string vectorData = "X: " + std::to_string(x) + " Y: " + std::to_string(y);
