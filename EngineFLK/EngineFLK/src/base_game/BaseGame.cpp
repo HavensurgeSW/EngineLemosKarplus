@@ -1,4 +1,4 @@
-#include "BaseGame.h"
+﻿#include "BaseGame.h"
 
 #include "glfw3.h"
 
@@ -10,6 +10,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vertex_buffer/VertexBuffer.h>
+#include <index_buffer/IndexBuffer.h>
 
 BaseGame::BaseGame() 
 {
@@ -50,12 +52,8 @@ void BaseGame::LaunchGod()
 
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
-	renderer->GenerateBuffers();
-	float arrnum = 8;
-	float* arr = new float[arrnum];
 
-	entity->SetPositions(arr);
-	// int *arr = new int(n);
+	renderer->GenerateBuffers();
 
 	ShaderPaths test = ParseShader("res/shaders/Basic.shader");
 	unsigned int shader = CreateShader(test.vertexSource, test.fragmentSource);

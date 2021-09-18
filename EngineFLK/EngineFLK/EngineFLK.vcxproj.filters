@@ -76,6 +76,12 @@
     <Filter Include="src\utility\vector3">
       <UniqueIdentifier>{c2f3a569-dcdd-4503-85ab-3fb60e7b61b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\vertex_buffer">
+      <UniqueIdentifier>{a1c33d5a-a081-42a6-9379-ad7bc71b0f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\index_buffer">
+      <UniqueIdentifier>{8edabddf-2950-4860-973a-1c3aa143c782}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -129,6 +135,12 @@
     <ClCompile Include="src\utility\vector2\Vector2.cpp">
       <Filter>src\utility\vector2</Filter>
     </ClCompile>
+    <ClCompile Include="src\index_buffer\IndexBuffer.cpp">
+      <Filter>src\index_buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vertex_buffer\VertexBuffer.cpp">
+      <Filter>src\vertex_buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\animation\Animation.h">
@@ -181,6 +193,12 @@
     </ClInclude>
     <ClInclude Include="src\utility\vector2\Vector2.h">
       <Filter>src\utility\vector2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\index_buffer\IndexBuffer.h">
+      <Filter>src\index_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vertex_buffer\VertexBuffer.h">
+      <Filter>src\vertex_buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

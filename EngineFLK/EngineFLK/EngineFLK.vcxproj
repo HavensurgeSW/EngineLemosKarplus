@@ -27,6 +27,7 @@
     <ClCompile Include="src\entities\shape\Shape.cpp" />
     <ClCompile Include="src\entities\sprite\Sprite.cpp" />
     <ClCompile Include="src\entities\tilemap\Tilemap.cpp" />
+    <ClCompile Include="src\index_buffer\IndexBuffer.cpp" />
     <ClCompile Include="src\input\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="src\utility\utils\Utils.cpp" />
     <ClCompile Include="src\utility\vector2\Vector2.cpp" />
     <ClCompile Include="src\utility\vector3\Vector3.cpp" />
+    <ClCompile Include="src\vertex_buffer\VertexBuffer.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +49,7 @@
     <ClInclude Include="src\entities\sprite\Sprite.h" />
     <ClInclude Include="src\entities\tilemap\Tilemap.h" />
     <ClInclude Include="src\Exports.h" />
+    <ClInclude Include="src\index_buffer\IndexBuffer.h" />
     <ClInclude Include="src\input\Input.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
     <ClInclude Include="src\utility\color\Color.h" />
@@ -54,6 +57,7 @@
     <ClInclude Include="src\utility\utils\Utils.h" />
     <ClInclude Include="src\utility\vector2\Vector2.h" />
     <ClInclude Include="src\utility\vector3\Vector3.h" />
+    <ClInclude Include="src\vertex_buffer\VertexBuffer.h" />
     <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
   <ItemGroup>
