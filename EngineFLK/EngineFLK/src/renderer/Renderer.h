@@ -20,6 +20,7 @@ public:
 	void SetWindow(Window* window);
 	void GenerateBuffers(); //genBuffers
 	void MakeContextCurrent(Window* window);
+	void Unbind();
 	void DrawTriangle();
 	void DrawElement(int indices);
 };

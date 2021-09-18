@@ -96,6 +96,13 @@ void Renderer::MakeContextCurrent(Window* window)
 	glfwSwapInterval(1); //synchrinizes with our vSync
 }
 
+void Renderer::Unbind()
+{
+	glUseProgram(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
 void Renderer::DrawTriangle() 
 {
 	glDrawArrays(GL_TRIANGLES, 0, 6);

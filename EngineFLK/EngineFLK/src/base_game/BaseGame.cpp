@@ -64,13 +64,15 @@ void BaseGame::LaunchGod()
 
 	int location = glGetUniformLocation(shader, "u_Color"); //searches for the "uniform" value inside the .shader file
 	ASSERT(location != -1); //check if uniform was not found
+	
 	glUniform4f(location, 0.2f, 0.8f, 1.0f, 1.0f); //finds the "location" index and sets the vec4 Color
 
-	renderer->SetClearColor(Color::RandomColor());
+	//renderer->Unbind();
 
 	float rValue = 0.0f;
 	float increment = 0.05f;
 
+	renderer->SetClearColor(Color::RandomColor());
 	while (!window->ShouldClose()) 
 	{
 		renderer->ClearScreen();
