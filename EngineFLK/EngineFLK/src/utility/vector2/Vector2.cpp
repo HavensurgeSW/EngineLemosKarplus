@@ -14,7 +14,6 @@ Vector2::Vector2(float x, float y)
 	this->y = y;
 }
 
-
 void Vector2::SetValues(float x, float y)
 {
 	this->x = x;

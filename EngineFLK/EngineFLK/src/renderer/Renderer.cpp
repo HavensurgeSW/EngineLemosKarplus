@@ -93,6 +93,7 @@ void Renderer::GenerateBuffers()
 void Renderer::MakeContextCurrent(Window* window) 
 {
 	glfwMakeContextCurrent(window->GetWindow());
+	glfwSwapInterval(1); //synchrinizes with our vSync
 }
 
 void Renderer::DrawTriangle() 

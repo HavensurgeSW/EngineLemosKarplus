@@ -31,6 +31,7 @@ BaseGame::~BaseGame()
 void BaseGame::LaunchGod()
 {
 	srand(time(0));
+
 	/* Initialize the library */
 	if (!glfwInit())
 	{
@@ -47,12 +48,9 @@ void BaseGame::LaunchGod()
 
 	renderer->SetWindow(window);
 
-	/* Make the window's context current */
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
 	renderer->GenerateBuffers();
-	//InitErrorHandling();
-
 	float arrnum = 8;
 	float* arr = new float[arrnum];
 
@@ -61,17 +59,29 @@ void BaseGame::LaunchGod()
 
 	ShaderPaths test = ParseShader("res/shaders/Basic.shader");
 	unsigned int shader = CreateShader(test.vertexSource, test.fragmentSource);
-	glUseProgram(shader);
 
-	//----------------------------
-	//haha pretty background colors go brrr
+	glUseProgram(shader); //bind the shader
+
+	int location = glGetUniformLocation(shader, "u_Color"); //searches for the "uniform" value inside the .shader file
+	ASSERT(location != -1); //check if uniform was not found
+	glUniform4f(location, 0.2f, 0.8f, 1.0f, 1.0f); //finds the "location" index and sets the vec4 Color
+
 	renderer->SetClearColor(Color::RandomColor());
-	//----------------------------
 
-	/* Loop until the user closes the window */
+	float rValue = 0.0f;
+	float increment = 0.05f;
+
 	while (!window->ShouldClose()) 
 	{
 		renderer->ClearScreen();
+		glUniform4f(location, rValue, 1.0f, 1.0f, 1.0f);
+
+		if (rValue > 1.0f || rValue < 0.0f)
+		{
+			increment *= -1;
+		}
+		rValue += increment;
+
 		//renderer->DrawTriangle();
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
@@ -98,8 +108,8 @@ unsigned int BaseGame::CreateShader(const std::string& vertexShader, const std::
 	glLinkProgram(program);
 	glValidateProgram(program);
 
-	//glDetachShader(vs); //this method deletes the source code from the shader, kinda dangerous but techincally correct?
-	//glDetachShader(fs);
+	//glDetachShader(vShader); //this method deletes the source code from the shader, kinda dangerous but techincally correct?
+	//glDetachShader(fShader);
 	glDeleteShader(vShader);
 	glDeleteShader(fShader);
 
