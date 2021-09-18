@@ -40,7 +40,7 @@ void GLAPIENTRY GLLogMessage(GLenum source, GLenum type, GLuint id, GLenum sever
 		std::cout << "Error Flag: " << id << std::endl;
 		std::cout << "Error: " << message << std::endl;
 		break;
-	}	
+	}
 }
 
 void InitErrorHandling()

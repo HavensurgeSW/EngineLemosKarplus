@@ -3,7 +3,7 @@
 #include "glew.h"
 #include "glfw3.h"
 
-class Window 
+class Window
 {
 private:
 	GLFWwindow* window;

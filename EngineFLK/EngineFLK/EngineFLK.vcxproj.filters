@@ -82,6 +82,9 @@
     <Filter Include="src\index_buffer">
       <UniqueIdentifier>{8edabddf-2950-4860-973a-1c3aa143c782}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\shader">
+      <UniqueIdentifier>{0e03d7d6-5034-4942-a3e4-7a6dfb9cc3d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -141,6 +144,9 @@
     <ClCompile Include="src\vertex_buffer\VertexBuffer.cpp">
       <Filter>src\vertex_buffer</Filter>
     </ClCompile>
+    <ClCompile Include="src\shader\Shader.cpp">
+      <Filter>src\shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\animation\Animation.h">
@@ -199,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="src\vertex_buffer\VertexBuffer.h">
       <Filter>src\vertex_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shader\Shader.h">
+      <Filter>src\shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

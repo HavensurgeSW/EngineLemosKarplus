@@ -4,7 +4,7 @@
 
 #include "utility/color/Color.h"
 
-class Renderer 
+class Renderer
 {
 private:
 	Window* window;

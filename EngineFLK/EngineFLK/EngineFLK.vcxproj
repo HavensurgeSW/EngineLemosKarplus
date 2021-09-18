@@ -31,6 +31,7 @@
     <ClCompile Include="src\input\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
+    <ClCompile Include="src\shader\Shader.cpp" />
     <ClCompile Include="src\utility\color\Color.cpp" />
     <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp" />
     <ClCompile Include="src\utility\utils\Utils.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="src\index_buffer\IndexBuffer.h" />
     <ClInclude Include="src\input\Input.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
+    <ClInclude Include="src\shader\Shader.h" />
     <ClInclude Include="src\utility\color\Color.h" />
     <ClInclude Include="src\utility\error_handling\ErrorHandling.h" />
     <ClInclude Include="src\utility\utils\Utils.h" />

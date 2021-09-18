@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-Color::Color() 
+Color::Color()
 {
 	r = 1.0f;
 	g = 1.0f;
@@ -12,7 +12,7 @@ Color::Color()
 	a = 1.0f;
 }
 
-Color::Color(float r, float g, float b) 
+Color::Color(float r, float g, float b)
 {
 	this->r = r;
 	this->g = g;
@@ -20,7 +20,7 @@ Color::Color(float r, float g, float b)
 	a = 1.0f;
 }
 
-Color::Color(float r, float g, float b, float a) 
+Color::Color(float r, float g, float b, float a)
 {
 	this->r = r;
 	this->g = g;

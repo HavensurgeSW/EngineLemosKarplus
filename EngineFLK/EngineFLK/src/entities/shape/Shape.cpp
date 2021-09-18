@@ -16,8 +16,8 @@ Shape::~Shape()
 
 }
 
-void Shape::SetPositions(float *arr){
-
+void Shape::SetPositions(float *arr)
+{
 	int size = *(&arr + 1) - arr;
 	int arrSize = sizeof(arr) / sizeof(arr[0]);
 	std::cout << arrSize << std::endl;

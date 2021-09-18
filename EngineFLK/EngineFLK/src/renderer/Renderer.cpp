@@ -13,43 +13,43 @@
 
 using namespace std;
 
-Renderer::Renderer() 
+Renderer::Renderer()
 {
 
 }
 
-Renderer::~Renderer() 
+Renderer::~Renderer()
 {
 
 }
 
-void Renderer::InitGlew() 
+void Renderer::InitGlew()
 {
 	glewInit();
 	InitErrorHandling();
 }
 
-void Renderer::SwapBuffer() 
+void Renderer::SwapBuffer()
 {
 	glfwSwapBuffers(window->GetWindow());
 }
 
-void Renderer::SetClearColor(Color color) 
+void Renderer::SetClearColor(Color color)
 {
 	glClearColor(color.r, color.g, color.b, color.a);
 }
 
-void Renderer::ClearScreen() 
+void Renderer::ClearScreen()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::SetWindow(Window* window) 
+void Renderer::SetWindow(Window* window)
 {
 	this->window = window;
 }
 
-void Renderer::GenerateBuffers() 
+void Renderer::GenerateBuffers()
 {
 	const int maxPositions = 8;
 
@@ -77,7 +77,7 @@ void Renderer::GenerateBuffers()
 	indexBuffer.Bind();
 }
 
-void Renderer::MakeContextCurrent(Window* window) 
+void Renderer::MakeContextCurrent(Window* window)
 {
 	glfwMakeContextCurrent(window->GetWindow());
 	glfwSwapInterval(1); //synchrinizes with our vSync
@@ -90,13 +90,13 @@ void Renderer::Unbind()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void Renderer::DrawTriangle() 
+void Renderer::DrawTriangle()
 {
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 // Used to draw an element utilizing indices
-void Renderer::DrawElement(int indices) 
+void Renderer::DrawElement(int indices)
 {
 	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic

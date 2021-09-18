@@ -1,7 +1,9 @@
 #pragma once
+
 #include "entities/animation/Animation.h"
 
-class Sprite {
+class Sprite 
+{
 private:
 	Animation animation;
 
