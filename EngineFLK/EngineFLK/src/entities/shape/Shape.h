@@ -3,8 +3,9 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
+#include "Exports.h"
 
-class Shape
+class FLK_API Shape
 {
 private:
 	float positions[8];

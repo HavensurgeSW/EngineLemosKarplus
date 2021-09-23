@@ -1,6 +1,7 @@
 #pragma once
+#include "Exports.h"
 
-class IndexBuffer
+class FLK_API IndexBuffer
 {
 private:
 	unsigned int rendererId;

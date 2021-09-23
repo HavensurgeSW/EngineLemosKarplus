@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
+#include "Exports.h"
 
 #include "utility/color/Color.h"
 
@@ -9,7 +10,7 @@ struct ShaderPaths {
 	std::string fragmentSource;
 };
 
-class Shader
+class FLK_API Shader
 {
 private:
 

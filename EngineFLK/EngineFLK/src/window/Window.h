@@ -2,8 +2,9 @@
 
 #include "glew.h"
 #include "glfw3.h"
+#include "Exports.h"
 
-class Window
+class FLK_API Window
 {
 private:
 	GLFWwindow* window;

@@ -2,8 +2,9 @@
 
 #include "entities/entity2d/Entity2D.h"
 #include "renderer/Renderer.h"
+#include "Exports.h"
 
-class Entity : public Entity2D
+class FLK_API Entity : public Entity2D
 {
 private:
 	Renderer* renderer;

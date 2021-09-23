@@ -1,6 +1,7 @@
 #pragma once
+#include "Exports.h"
 
-class Tilemap 
+class FLK_API Tilemap
 {
 private:
 

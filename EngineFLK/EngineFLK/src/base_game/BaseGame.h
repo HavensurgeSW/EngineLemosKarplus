@@ -5,8 +5,9 @@
 #include "input/Input.h"
 #include "collision_manager/CollisionManager.h"
 #include "entities/entity/Entity.h"
+#include "Exports.h"
 
-class BaseGame
+class FLK_API BaseGame
 {
 private:
 	Window* window; //Mover GLFWWindow a constructor

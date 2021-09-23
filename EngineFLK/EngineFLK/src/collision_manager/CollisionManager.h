@@ -1,6 +1,7 @@
 #pragma once
+#include "Exports.h"
 
-class CollisionManager 
+class FLK_API CollisionManager
 {
 private:
 

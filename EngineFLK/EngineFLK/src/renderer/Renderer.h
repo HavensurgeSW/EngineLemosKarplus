@@ -1,10 +1,10 @@
 #pragma once
 
 #include "window/Window.h"
-
 #include "utility/color/Color.h"
+#include "Exports.h"
 
-class Renderer
+class FLK_API Renderer
 {
 private:
 	Window* window;
