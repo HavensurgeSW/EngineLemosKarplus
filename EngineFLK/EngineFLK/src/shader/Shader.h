@@ -24,6 +24,7 @@ private:
 
 public:
 
+	Shader();
 	Shader(const std::string& filePath);
 	~Shader();
 

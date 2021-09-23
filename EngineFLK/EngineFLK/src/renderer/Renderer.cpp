@@ -101,3 +101,8 @@ void Renderer::DrawElement(int indices)
 	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic
 }
+
+void Renderer::Draw(Shader shader)
+{
+
+}

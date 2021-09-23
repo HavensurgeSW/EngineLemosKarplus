@@ -3,6 +3,7 @@
 #include "Exports.h"
 
 #include "window/Window.h"
+#include "shader/Shader.h"
 
 #include "utility/color/Color.h"
 
@@ -25,4 +26,5 @@ public:
 	void Unbind();
 	void DrawTriangle();
 	void DrawElement(int indices);
+	void Draw(Shader shader); //agregar mas datos
 };
