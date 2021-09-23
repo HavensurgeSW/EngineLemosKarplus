@@ -13,6 +13,9 @@
 #include <string>
 #include <vertex_buffer/VertexBuffer.h>
 #include <index_buffer/IndexBuffer.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 BaseGame::BaseGame()
 {
@@ -35,7 +38,6 @@ void BaseGame::LaunchGod()
 {
 	srand(time(0));
 
-	/* Initialize the library */
 	if (!glfwInit())
 	{
 		std::cout << "Failed to initialize GLFW." << std::endl;
@@ -60,30 +62,34 @@ void BaseGame::LaunchGod()
 	shader.Bind();
 
 	Color shaderColor = Color::RandomColor();
-	shader.SetColorUniform("u_Color", shaderColor);
+	shader.SetColorUniform(shaderColor);
 	shader.Unbind();
 
-	//renderer->Unbind(); ????
 	renderer->SetClearColor(Color::RandomColor());
 
-	float rValue = shaderColor.r;
 	float increment = 0.05f;
-
+	
 	while (!window->ShouldClose())
 	{
 		renderer->ClearScreen();
 		shader.Bind();
 
-		Color color(rValue, shaderColor.g, shaderColor.b, shaderColor.a);
-		shader.SetColorUniform("u_Color", color);
+		shader.SetColorUniform(shaderColor);
 
-		if (rValue > 1.0f || rValue < 0.0f)
+		glm::mat4 transform = glm::mat4(1.0f);
+
+		transform = glm::translate(transform, glm::vec3(-0.5f, -0.5f, 0.0f));                       //
+		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));		// MAGIK
+		transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, 1.0f));								//
+		
+		shader.SetTransformUniform(transform);
+
+		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
 		{
 			increment *= -1;
 		}
-		rValue += increment;
+		shaderColor.r += increment;
 
-		//renderer->DrawTriangle();
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();

@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "utility/color/Color.h"
 
 struct ShaderPaths {
@@ -25,7 +27,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 
-	void SetColorUniform(const std::string uniformName, Color color); //will need to expand
+	void SetColorUniform(Color color); //will need to expand
+	void SetTransformUniform(glm::mat4 trans);
 
 private:
 

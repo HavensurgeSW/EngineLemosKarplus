@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 
+
 Shader::Shader(const std::string& filePath) : filePath(filePath)
 {
 	ShaderPaths shaderPaths = ParseShader(filePath);
@@ -26,20 +27,26 @@ void Shader::Unbind() const
 	glUseProgram(0);
 }
 
-void Shader::SetColorUniform(const std::string uniformName, Color color)
+void Shader::SetColorUniform(Color color)
 {
-	glUniform4f(GetUniformLocation(uniformName), color.r, color.g, color.b, color.a); //finds the "location" index and sets the vec4 Color
+	glUniform4f(GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a); //finds the "location" index and sets the vec4 Color
 }
+
+void Shader::SetTransformUniform(glm::mat4 trans)
+{
+	glUniformMatrix4fv(GetUniformLocation("u_Transform"), 1, GL_FALSE, glm::value_ptr(trans));
+}
+
 
 int Shader::GetUniformLocation(const std::string& uniformName)
 {
-	int location = glGetUniformLocation(rendererId, uniformName.c_str()); //searches for the "uniform" or "rendererId" value inside the .shader file
-
 	if (uniformLocationsSaved.find(uniformName) != uniformLocationsSaved.end())
 	{
 		return uniformLocationsSaved[uniformName];
 	}
 
+	int location = glGetUniformLocation(rendererId, uniformName.c_str()); //searches for the "uniform" or "rendererId" value inside the .shader file
+	
 	if (location == -1)
 	{
 		std::cout << "Shader.cpp error" << std::endl << "Uniform " << uniformName << " doesnt exist." << std::endl;
