@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Exports.h"
 #include "window/Window.h"
 #include "renderer/Renderer.h"
 #include "input/Input.h"
 #include "collision_manager/CollisionManager.h"
 #include "entities/entity/Entity.h"
 
-class BaseGame
+class FLK_API BaseGame
 {
 private:
 	Window* window; //Mover GLFWWindow a constructor

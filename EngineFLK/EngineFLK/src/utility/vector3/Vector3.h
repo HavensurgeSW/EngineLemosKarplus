@@ -1,8 +1,12 @@
 #pragma once
+
+#include "Exports.h"
+
 #include <iostream>
+
 #include "utility/vector2/Vector2.h"
 
-struct Vector3
+struct FLK_API Vector3
 {
 	float x;
 	float y;

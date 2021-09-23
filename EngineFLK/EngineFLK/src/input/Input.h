@@ -1,6 +1,7 @@
 #pragma once
+#include "Exports.h"
 
-class Input 
+class FLK_API Input
 {
 private:
 

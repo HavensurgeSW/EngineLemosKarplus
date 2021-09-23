@@ -1,17 +1,20 @@
 #pragma once
+#include "Exports.h"
+
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
 #include "utility/color/Color.h"
 
-struct ShaderPaths {
+struct FLK_API ShaderPaths {
 	std::string vertexSource;
 	std::string fragmentSource;
 };
 
-class Shader
+class FLK_API Shader
 {
 private:
 

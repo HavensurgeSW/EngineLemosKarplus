@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Exports.h"
+
 #include <iostream>
 #include <iterator>
 #include <vector>
 
-class Shape
+class FLK_API Shape
 {
 private:
 	float positions[8];

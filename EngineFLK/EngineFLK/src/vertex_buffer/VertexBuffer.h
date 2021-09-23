@@ -1,6 +1,7 @@
 #pragma once
+#include "Exports.h"
 
-class VertexBuffer
+class FLK_API VertexBuffer
 {
 private:
 	unsigned int rendererId;

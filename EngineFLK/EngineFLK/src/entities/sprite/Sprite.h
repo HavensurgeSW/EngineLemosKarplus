@@ -1,8 +1,8 @@
 #pragma once
-
+#include "Exports.h"
 #include "entities/animation/Animation.h"
 
-class Sprite 
+class FLK_API Sprite
 {
 private:
 	Animation animation;

@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Exports.h"
 #include "glew.h"
 #include "glfw3.h"
 
-class Window
+class FLK_API Window
 {
 private:
 	GLFWwindow* window;
