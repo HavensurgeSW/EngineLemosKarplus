@@ -26,7 +26,7 @@ void IndexBuffer::Unbind()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-inline unsigned int IndexBuffer::GetIndexCount() const
+unsigned int IndexBuffer::GetIndexCount() const
 {
 	return indexCount;
 }

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "window/Window.h"
+#include "vertex_buffer/VertexBuffer.h"
+#include "index_buffer/IndexBuffer.h"
+#include "shader/Shader.h"
 
 #include "utility/color/Color.h"
 
@@ -8,6 +11,7 @@ class Renderer
 {
 private:
 	Window* window;
+
 
 public:
 	Renderer();
@@ -23,4 +27,5 @@ public:
 	void Unbind();
 	void DrawTriangle();
 	void DrawElement(int indices);
+	void TestDraw(VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, Shader& shader);
 };

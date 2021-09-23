@@ -3,8 +3,7 @@
 #include "glew.h"
 #include "glfw3.h"
 
-#include "vertex_buffer/VertexBuffer.h"
-#include "index_buffer/IndexBuffer.h"
+
 #include "utility/error_handling/ErrorHandling.h"
 
 #include <iostream>
@@ -100,4 +99,12 @@ void Renderer::DrawElement(int indices)
 {
 	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic
+}
+
+void Renderer::TestDraw(VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, Shader& shader)
+{
+	shader.Bind();
+	vertexBuffer.Bind();
+	indexBuffer.Bind();
+	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
 }

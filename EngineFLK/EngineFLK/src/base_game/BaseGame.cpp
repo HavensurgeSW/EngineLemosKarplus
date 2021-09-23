@@ -54,37 +54,47 @@ void BaseGame::LaunchGod()
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
 
-	renderer->GenerateBuffers();
+	//renderer->GenerateBuffers();
+	const int maxPositions = 8;
 
+	float positions[maxPositions] = //Vertices
+	{
+		-0.5f, -0.5f, //vertex 0
+		 0.5f, -0.5f, //vertex 1
+		 0.5f,  0.5f, //vertex 2
+		-0.5f,  0.5f  //vertex 3 for square
+	};
+
+	const int maxIndices = 6;
+	unsigned int indices[maxIndices] = //Triangle connections
+	{
+		0, 1, 2, //triangle 1
+		2, 3, 0  //triangle 2 
+	};
+
+	//Color shaderColor = Color::RandomColor();
+    //shader.SetColorUniform("u_Color", shaderColor);
 	Shader shader("res/shaders/Basic.shader");
-	shader.Bind();
 
-	Color shaderColor = Color::RandomColor();
-	shader.SetColorUniform("u_Color", shaderColor);
-	shader.Unbind();
+	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tamaño de 2 floats. X e Y
+	
+    // ^
+	// |
+	// where tf do i move these
+
+	IndexBuffer indexBuffer(indices, maxIndices);
 
 	//renderer->Unbind(); ????
 	renderer->SetClearColor(Color::RandomColor());
 
-	float rValue = shaderColor.r;
-	float increment = 0.05f;
-
 	while (!window->ShouldClose())
 	{
 		renderer->ClearScreen();
-		shader.Bind();
 
-		Color color(rValue, shaderColor.g, shaderColor.b, shaderColor.a);
-		shader.SetColorUniform("u_Color", color);
-
-		if (rValue > 1.0f || rValue < 0.0f)
-		{
-			increment *= -1;
-		}
-		rValue += increment;
-
-		//renderer->DrawTriangle();
-		renderer->DrawElement(6); //6 is the size of the indices array
+		renderer->TestDraw(vertexBuffer, indexBuffer, shader);
 		renderer->SwapBuffer();
 		input->PollEvents();
 	}
