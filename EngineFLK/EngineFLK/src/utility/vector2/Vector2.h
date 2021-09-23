@@ -11,6 +11,9 @@ struct Vector2
 	Vector2(float x, float y);
 
 	void SetValues(float x, float y);
+	float Dot(const Vector2 otherVector);
+	Vector2 Cross(const Vector2 otherVector);
+	Vector2 Normalize();
 
 	static Vector2 Zero();
 	static Vector2 One();

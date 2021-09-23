@@ -14,10 +14,32 @@ Vector2::Vector2(float x, float y)
 	this->y = y;
 }
 
+
 void Vector2::SetValues(float x, float y)
 {
 	this->x = x;
 	this->y = y;
+}
+
+float Vector2::Dot(const Vector2 otherVector)
+{
+	return (x * otherVector.x) + (y * otherVector.y);
+}
+
+Vector2 Vector2::Cross(const Vector2 otherVector)
+{
+	return One() * (x * otherVector.y - (y * otherVector.x));
+}
+
+Vector2 Vector2::Normalize()
+{
+	float sqRoot = sqrt(x * x + y * y);
+	if (sqRoot != 0)
+	{
+		x /= sqRoot;
+		y /= sqRoot;
+	}
+	return Vector2(x, y);
 }
 
 

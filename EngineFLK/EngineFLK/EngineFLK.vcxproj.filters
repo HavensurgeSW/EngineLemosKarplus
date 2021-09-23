@@ -85,6 +85,9 @@
     <Filter Include="src\shader">
       <UniqueIdentifier>{0e03d7d6-5034-4942-a3e4-7a6dfb9cc3d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utility\transform">
+      <UniqueIdentifier>{4622eaf2-e83c-467b-89d0-561ece932c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\animation\Animation.cpp">
@@ -147,6 +150,9 @@
     <ClCompile Include="src\shader\Shader.cpp">
       <Filter>src\shader</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\transform\Transform.cpp">
+      <Filter>src\utility\transform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\animation\Animation.h">
@@ -208,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="src\shader\Shader.h">
       <Filter>src\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\transform\Transform.h">
+      <Filter>src\utility\transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

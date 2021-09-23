@@ -24,6 +24,32 @@ void Vector3::SetValues(float x, float y, float z)
 	this->z = z;
 }
 
+Vector3 Vector3::Cross(Vector3 otherVector)
+{
+	Vector3 result;
+	result.x = y * otherVector.z - (otherVector.y * z);
+	result.y = -(x * otherVector.z - (otherVector.x * z));
+	result.z = x * otherVector.y - (otherVector.x * y);
+	return result;
+}
+
+float Vector3::Dot(Vector3 otherVector)
+{
+	return (x * otherVector.x) + (y * otherVector.y) + (z * otherVector.z);
+}
+
+Vector3 Vector3::Normalize()
+{
+	float sqRoot = sqrt(x * x + y * y + z * z);
+	if (sqRoot != 0) 
+	{
+		x /= sqRoot;
+		y /= sqRoot;
+		z /= sqRoot;
+	}
+	return Vector3(x, y, z);
+}
+
 
 Vector3 Vector3::Zero()
 {
@@ -101,6 +127,14 @@ Vector3 Vector3::operator /(const float scalar) const
 bool Vector3::operator ==(const Vector3& otherVector) const
 {
 	return x == otherVector.x && y == otherVector.y && z == otherVector.z;
+}
+
+Vector3 Vector3::operator+=(const Vector3& otherVector)
+{
+	x += otherVector.x;
+	y += otherVector.y;
+	z += otherVector.z;
+	return Vector3(x, y, z);
 }
 
 std::string Vector3::ToString() const
