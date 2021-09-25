@@ -99,10 +99,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>XCOPY "$(SolutionDir)EngineFLK\bin\Debug\EngineFLK.dll" "$(SolutionDir)Game"
-XCOPY "$(SolutionDir)EngineFLK\bin\Debug\EngineFLK.lib" "$(SolutionDir)Game"
-MKDIR "$(ProjectDir)\res"
-XCOPY "$(SolutionDir)EngineFLK\res" "$(ProjectDir)\res" /E /H /C /I</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
