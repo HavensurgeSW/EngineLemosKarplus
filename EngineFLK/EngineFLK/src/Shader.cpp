@@ -5,6 +5,11 @@
 #include <fstream>
 #include <sstream>
 
+Shader::Shader()
+{
+	rendererId = 0;
+}
+
 Shader::Shader(const std::string& filePath) : filePath(filePath)
 {
 	ShaderPaths shaderPaths = ParseShader(filePath);

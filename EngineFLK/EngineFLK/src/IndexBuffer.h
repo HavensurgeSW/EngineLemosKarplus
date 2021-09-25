@@ -9,11 +9,12 @@ private:
 
 public:
 
+	IndexBuffer();
 	IndexBuffer(const unsigned int* data, unsigned int indexCount);
 	~IndexBuffer();
 
 	void Bind();  //both could be const
 	void Unbind();
 
-	inline unsigned int GetIndexCount() const;
+	unsigned int GetIndexCount() const;
 };

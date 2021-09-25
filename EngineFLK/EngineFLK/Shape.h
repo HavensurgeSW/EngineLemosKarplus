@@ -1,32 +1,10 @@
-<<<<<<< HEAD:EngineFLK/EngineFLK/src/Shape.h
 #pragma once
-
-#include <iostream>
-#include <iterator>
-#include <vector>
 #include "Exports.h"
+#include "Renderer.h"
+#include "Shader.h"
 #include "Entity2D.h"
-
-class FLK_API Shape : public Entity2D
-{
-private:
-	float positions[8];
-
-public:
-	Shape();
-	~Shape();
-
-	void SetPositions(float *arr);
-};
-
-
-// Las matrices copadas son: Model, View, Projection
-=======
-#pragma once
-
-#include "Exports.h"
-#include "renderer/Renderer.h"
-#include "shader/Shader.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 #include <iostream>
 #include <iterator>
@@ -38,10 +16,12 @@ enum class FLK_API ShapeType //Primitive?
 	QUAD
 };
 
-class FLK_API Shape
+class FLK_API Shape : public Entity2D
 {
 private:
-	Renderer* renderer;
+	VertexBuffer vertexBuffer;
+	IndexBuffer indexBuffer;
+
 	ShapeType type;
 	Shader shader;
 	float positions[8];
@@ -57,9 +37,8 @@ public:
 	void SetShapeType(ShapeType type);
 	void Draw();
 
-	void SetPositions(float *arr);
+	void SetPositions(float* arr);
 };
 
 
 // Las matrices copadas son: Model, View, Projection
->>>>>>> main:EngineFLK/EngineFLK/src/entities/shape/Shape.h

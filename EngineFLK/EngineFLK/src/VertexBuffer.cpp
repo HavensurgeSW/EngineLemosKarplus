@@ -2,6 +2,11 @@
 #include "glew.h"
 #include "ErrorHandling.h"
 
+VertexBuffer::VertexBuffer()
+{
+
+}
+
 VertexBuffer::VertexBuffer(const void* data, unsigned int byteSize)
 {
 	GLCheck(glGenBuffers(1, &rendererId));

@@ -57,9 +57,6 @@
     <ClCompile Include="src\Shader.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shape.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Sprite.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -82,6 +79,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Transform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,9 +122,6 @@
     <ClInclude Include="src\Shader.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shape.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\Sprite.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -147,6 +144,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Transform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
