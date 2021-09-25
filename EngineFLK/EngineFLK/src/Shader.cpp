@@ -18,22 +18,22 @@ Shader::Shader(const std::string& filePath) : filePath(filePath)
 
 Shader::~Shader()
 {
-	glDeleteProgram(rendererId); //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
+	GLCheck(glDeleteProgram(rendererId);) //should not be glDeleteShader() (Cherno How I Deal with Shaders in OpenGL 17:00)
 }
 
 void Shader::Bind() const
 {
-	glUseProgram(rendererId);
+	GLCheck(glUseProgram(rendererId);)
 }
 
 void Shader::Unbind() const
 {
-	glUseProgram(0);
+	GLCheck(glUseProgram(0);)
 }
 
 void Shader::SetColorUniform(const std::string uniformName, Color color)
 {
-	glUniform4f(GetUniformLocation(uniformName), color.r, color.g, color.b, color.a); //finds the "location" index and sets the vec4 Color
+	GLCheck(glUniform4f(GetUniformLocation(uniformName), color.r, color.g, color.b, color.a);) //finds the "location" index and sets the vec4 Color
 }
 
 int Shader::GetUniformLocation(const std::string& uniformName)
@@ -59,24 +59,24 @@ unsigned int Shader::CompileShader(const std::string& source, unsigned int type)
 	unsigned int id = glCreateShader(type);
 	const char* src = source.c_str();
 
-	glShaderSource(id, 1, &src, nullptr);
-	glCompileShader(id);
+	GLCheck(glShaderSource(id, 1, &src, nullptr);)
+	GLCheck(glCompileShader(id);)
 
 	int result;
-	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+	GLCheck(glGetShaderiv(id, GL_COMPILE_STATUS, &result);)
 
 	if (result == GL_FALSE)
 	{
 		int length;
-		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+		GLCheck(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);)
 
 		char* message = (char*)_malloca(length * sizeof(char));
-		glGetShaderInfoLog(id, length, &length, message);
+		GLCheck(glGetShaderInfoLog(id, length, &length, message);)
 
 		std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
 		std::cout << message << std::endl;
 
-		glDeleteShader(id);
+		GLCheck(glDeleteShader(id);)
 
 		return 0;
 	}
@@ -90,15 +90,15 @@ unsigned int Shader::CreateShader(const std::string& vertexShader, const std::st
 	unsigned int vShader = CompileShader(vertexShader, GL_VERTEX_SHADER);
 	unsigned int fShader = CompileShader(fragmentShader, GL_FRAGMENT_SHADER);
 
-	glAttachShader(program, vShader);
-	glAttachShader(program, fShader);
-	glLinkProgram(program);
-	glValidateProgram(program);
+	GLCheck(glAttachShader(program, vShader);)
+	GLCheck(glAttachShader(program, fShader);)
+	GLCheck(glLinkProgram(program);)
+	GLCheck(glValidateProgram(program);)
 
 	//glDetachShader(vShader); //this method deletes the source code from the shader, kinda dangerous but techincally correct?
 	//glDetachShader(fShader);
-	glDeleteShader(vShader);
-	glDeleteShader(fShader);
+	GLCheck(glDeleteShader(vShader);)
+	GLCheck(glDeleteShader(fShader);)
 
 	return program;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Exports.h"
+#include "ErrorHandling.h"
 
 class FLK_API IndexBuffer
 {

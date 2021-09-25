@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
 #include "Exports.h"
+#include "ErrorHandling.h"
 
 #include "Color.h"
 

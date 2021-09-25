@@ -8,9 +8,9 @@ IndexBuffer::IndexBuffer()
 
 IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int indexCount) : indexCount(indexCount)
 {
-	glGenBuffers(1, &rendererId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), data, GL_STATIC_DRAW);
+	GLCheck(glGenBuffers(1, &rendererId);)
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId);)
+	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), data, GL_STATIC_DRAW);)
 }
 
 IndexBuffer::~IndexBuffer()
@@ -23,12 +23,12 @@ IndexBuffer::~IndexBuffer()
 
 void IndexBuffer::Bind()
 {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId);
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId);)
 }
 
 void IndexBuffer::Unbind()
 {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);)
 }
 
 unsigned int IndexBuffer::GetIndexCount() const

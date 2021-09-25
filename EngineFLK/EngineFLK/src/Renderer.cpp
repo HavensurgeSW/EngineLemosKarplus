@@ -36,12 +36,12 @@ void Renderer::SwapBuffer()
 
 void Renderer::SetClearColor(Color color)
 {
-	glClearColor(color.r, color.g, color.b, color.a);
+	GLCheck(glClearColor(color.r, color.g, color.b, color.a);)
 }
 
 void Renderer::ClearScreen()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	GLCheck(glClear(GL_COLOR_BUFFER_BIT);)
 }
 
 void Renderer::SetWindow(Window* window)
@@ -70,8 +70,8 @@ void Renderer::GenerateBuffers()
 
 	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
+	GLCheck(glEnableVertexAttribArray(0);)
+	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);) //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
 
 	IndexBuffer indexBuffer(indices, maxIndices);
 	indexBuffer.Bind();
