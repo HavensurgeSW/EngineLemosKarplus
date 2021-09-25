@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Programacion\GRAFICOS-1\EngineLemosKarplus\EngineFLK\EngineFLK\lib\GLFW\include;D:\Programacion\GRAFICOS-1\EngineLemosKarplus\EngineFLK\EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\src;D:\Programacion\GRAFICOS-1\EngineLemosKarplus\EngineFLK\EngineFLK\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)EngineFLK\lib\GLFW\include;$(SolutionDir)EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\src;$(SolutionDir)EngineFLK\EngineFLK\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
