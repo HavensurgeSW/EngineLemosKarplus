@@ -10,6 +10,7 @@ uniform mat4 u_Transform;
 
 void main()
 {
+    gl_Position = position;
     gl_Position = u_Transform * vec4(aPos, 1.0f);
     TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }
