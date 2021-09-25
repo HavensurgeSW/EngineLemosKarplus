@@ -1,24 +1,109 @@
 #include "Shape.h"
 
-Shape::Shape()
+float vertexBufferTri[] = {
+    //X          Y         Z        R      G        B      A
+    -0.5f , -0.5f , 0.0f, 0.0f , 0.0f ,0.0f, 1.0f,
+     0.5f , -0.5f , 0.0f, 0.0f , 0.0f ,0.0f, 1.0f,
+     0.0f ,  0.5f , 0.0f, 0.0f , 0.0f, 0.0f, 1.0f
+};
+
+float vertexBufferQuad[] = {
+    //X          Y         Z        R      G        B      A
+    -0.5f ,  0.5f , 0.0f, 0.0f , 0.0f , 0.0f, 1.0f,
+    -0.5f , -0.5f , 0.0f, 0.0f , 0.0f , 0.0f, 1.0f, 
+     0.5f , -0.5f , 0.0f, 0.0f , 0.0f , 0.0f, 1.0f,
+     0.5f ,  0.5f , 0.0f, 0.0f , 0.0f , 0.0f, 1.0f
+};
+
+float ColorTri[]
 {
-	//positions = //Vertices
-	//{
-	//	-0.5f, -0.5f, //vertex 0
-	//	 0.5f, -0.5f, //vertex 1
-	//	 0.5f,  0.5f, //vertex 2
-	//	-0.5f,  0.5f  //vertex 3 for square
-	//};
+    1.0f,0.0f,0.0f,1.0f,
+    0.0f,1.0f,0.0f,1.0f,
+    0.0f,0.0f,1.0f,1.0f,
+};
+
+float ColorQuad[]
+{
+    1.0f,0.0f,0.0f,1.0f,
+    0.0f,1.0f,0.0f,1.0f,
+    0.0f,0.0f,1.0f,1.0f,
+    1.0f,0.0f,1.0f,1.0f,
+};
+
+Shape::Shape(Renderer* renderer) : Entity2D(renderer)
+{
+    this->renderer = renderer;
+}
+Shape::~Shape() {}
+
+void Shape::InitShape(unsigned int typeShape)
+{
+    //material->SetMaterialValue()
+    _currentShape = typeShape;
+    switch (typeShape)
+    {
+    case GL_TRIANGLES:
+        _vertexBuffer = vertexBufferTri;
+
+        //material->SetMaterialValue(0.5f, 0.3f, 0.2f, 1.0f);
+        //SetVertexMaterial(material->GetColorRGBA(), vertexBufferT
+
+        break;
+    case GL_QUADS:
+        _vertexBuffer = vertexBufferQuad;
+
+        break;
+    }
+    CreateVbo(_vertexBuffer);
 }
 
-Shape::~Shape()
-{
+void Shape::CreateVbo(float* vertexBuffer) {
 
+    int tam = 0;
+    while (vertexBuffer[tam] <= 1 && vertexBuffer[tam] >= -1) {
+        tam++;
+    }
+    glGenBuffers(1, &_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+    glBufferData(GL_ARRAY_BUFFER, tam * sizeof(float), vertexBuffer, GL_DYNAMIC_DRAW);
 }
 
-void Shape::SetPositions(float *arr)
+unsigned int Shape::GetVbo() {
+    return _vbo;
+}
+
+float* Shape::GetVertexBuffer()
 {
-	int size = *(&arr + 1) - arr;
-	int arrSize = sizeof(arr) / sizeof(arr[0]);
-	std::cout << arrSize << std::endl;
+    return _vertexBuffer;
+}
+
+void Shape::SetVertexsAttrib(unsigned int& shaderId) 
+{
+    _posAttrib = glGetAttribLocation(shaderId, "position");
+    glVertexAttribPointer(_posAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), 0);
+    glEnableVertexAttribArray(_posAttrib);
+    _colorAttrib = glGetAttribLocation(shaderId, "customColor");
+    glVertexAttribPointer(_colorAttrib, 4, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(_colorAttrib);
+}
+
+unsigned int Shape::GetPosAttrib() {
+    return _posAttrib;
+}
+
+unsigned int Shape::GetColAttrib() {
+    return _colorAttrib;
+}
+
+void Shape::Draw(unsigned int figura, int vertexs, unsigned int& shaderProg, Windows* refWindow, glm::mat4 model)
+{
+    if (renderer != NULL)
+    {
+        renderer->BeignDraw();
+
+        renderer->Draw(figura, vertexs, GetVbo(), shaderProg, GetPosAttrib(), GetColAttrib(), model);
+
+        renderer->EndDraw(refWindow);
+    }
+    _currentShape = figura;
 }
