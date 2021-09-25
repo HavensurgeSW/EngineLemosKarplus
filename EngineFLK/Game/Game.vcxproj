@@ -72,6 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)EngineFLK\lib\GLFW\include;$(SolutionDir)EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\src;$(SolutionDir)EngineFLK\EngineFLK\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)EngineFLK\lib\GLFW\include;$(SolutionDir)EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\res;$(SolutionDir)EngineFLK\src;$(ProjectDir)res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -97,6 +98,12 @@
       <AdditionalDependencies>EngineFLK.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>XCOPY "$(SolutionDir)EngineFLK\bin\Debug\EngineFLK.dll" "$(SolutionDir)Game"
+XCOPY "$(SolutionDir)EngineFLK\bin\Debug\EngineFLK.lib" "$(SolutionDir)Game"
+MKDIR "$(ProjectDir)\res"
+XCOPY "$(SolutionDir)EngineFLK\res" "$(ProjectDir)\res" /E /H /C /I</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
