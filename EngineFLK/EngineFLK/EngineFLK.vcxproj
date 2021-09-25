@@ -19,48 +19,47 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\base_game\BaseGame.cpp" />
-    <ClCompile Include="src\collision_manager\CollisionManager.cpp" />
-    <ClCompile Include="src\entities\animation\Animation.cpp" />
-    <ClCompile Include="src\entities\entity2d\Entity2D.cpp" />
-    <ClCompile Include="src\entities\entity\Entity.cpp" />
-    <ClCompile Include="src\entities\shape\Shape.cpp" />
-    <ClCompile Include="src\entities\sprite\Sprite.cpp" />
-    <ClCompile Include="src\entities\tilemap\Tilemap.cpp" />
-    <ClCompile Include="src\index_buffer\IndexBuffer.cpp" />
-    <ClCompile Include="src\input\Input.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\renderer\Renderer.cpp" />
-    <ClCompile Include="src\shader\Shader.cpp" />
-    <ClCompile Include="src\utility\color\Color.cpp" />
-    <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp" />
-    <ClCompile Include="src\utility\utils\Utils.cpp" />
-    <ClCompile Include="src\utility\vector2\Vector2.cpp" />
-    <ClCompile Include="src\utility\vector3\Vector3.cpp" />
-    <ClCompile Include="src\vertex_buffer\VertexBuffer.cpp" />
-    <ClCompile Include="src\window\Window.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\BaseGame.cpp" />
+    <ClCompile Include="src\CollisionManager.cpp" />
+    <ClCompile Include="src\Color.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Entity2D.cpp" />
+    <ClCompile Include="src\ErrorHandling.cpp" />
+    <ClCompile Include="src\IndexBuffer.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\Shape.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
+    <ClCompile Include="src\Tilemap.cpp" />
+    <ClCompile Include="src\Utils.cpp" />
+    <ClCompile Include="src\Vector2.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
+    <ClCompile Include="src\VertexBuffer.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\base_game\BaseGame.h" />
-    <ClInclude Include="src\collision_manager\CollisionManager.h" />
-    <ClInclude Include="src\entities\animation\Animation.h" />
-    <ClInclude Include="src\entities\entity2d\Entity2D.h" />
-    <ClInclude Include="src\entities\entity\Entity.h" />
-    <ClInclude Include="src\entities\shape\Shape.h" />
-    <ClInclude Include="src\entities\sprite\Sprite.h" />
-    <ClInclude Include="src\entities\tilemap\Tilemap.h" />
+    <ClInclude Include="src\Animation.h" />
+    <ClInclude Include="src\BaseGame.h" />
+    <ClInclude Include="src\CollisionManager.h" />
+    <ClInclude Include="src\Color.h" />
+    <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\Entity2D.h" />
+    <ClInclude Include="src\ErrorHandling.h" />
     <ClInclude Include="src\Exports.h" />
-    <ClInclude Include="src\index_buffer\IndexBuffer.h" />
-    <ClInclude Include="src\input\Input.h" />
-    <ClInclude Include="src\renderer\Renderer.h" />
-    <ClInclude Include="src\shader\Shader.h" />
-    <ClInclude Include="src\utility\color\Color.h" />
-    <ClInclude Include="src\utility\error_handling\ErrorHandling.h" />
-    <ClInclude Include="src\utility\utils\Utils.h" />
-    <ClInclude Include="src\utility\vector2\Vector2.h" />
-    <ClInclude Include="src\utility\vector3\Vector3.h" />
-    <ClInclude Include="src\vertex_buffer\VertexBuffer.h" />
-    <ClInclude Include="src\window\Window.h" />
+    <ClInclude Include="src\IndexBuffer.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\Shape.h" />
+    <ClInclude Include="src\Sprite.h" />
+    <ClInclude Include="src\Tilemap.h" />
+    <ClInclude Include="src\Utils.h" />
+    <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\Vector3.h" />
+    <ClInclude Include="src\VertexBuffer.h" />
+    <ClInclude Include="src\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />
@@ -73,13 +72,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -142,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include\GL;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\GLEW\include;$(ProjectDir)lib\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

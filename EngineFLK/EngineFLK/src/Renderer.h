@@ -1,0 +1,26 @@
+#pragma once
+
+#include "Window.h"
+#include "Color.h"
+#include "Exports.h"
+
+class FLK_API Renderer
+{
+private:
+	Window* window;
+
+public:
+	Renderer();
+	~Renderer();
+
+	void InitGlew();
+	void SwapBuffer();
+	void SetClearColor(Color color);
+	void ClearScreen();
+	void SetWindow(Window* window);
+	void GenerateBuffers(); //genBuffers
+	void MakeContextCurrent(Window* window);
+	void Unbind();
+	void DrawTriangle();
+	void DrawElement(int indices);
+};
