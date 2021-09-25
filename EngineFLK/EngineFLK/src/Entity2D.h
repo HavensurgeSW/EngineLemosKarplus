@@ -6,9 +6,13 @@
 class FLK_API Entity2D : public Entity
 {
 private:
-	
+
+protected:
+	Renderer* renderer;
+
 public:
 	Entity2D();
+	Entity2D(Renderer* renderer);
 	~Entity2D();
 };
 

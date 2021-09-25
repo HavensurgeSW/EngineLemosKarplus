@@ -95,15 +95,15 @@ unsigned int Shape::GetColAttrib() {
     return _colorAttrib;
 }
 
-void Shape::Draw(unsigned int figura, int vertexs, unsigned int& shaderProg, Windows* refWindow, glm::mat4 model)
-{
-    if (renderer != NULL)
-    {
-        renderer->BeignDraw();
-
-        renderer->Draw(figura, vertexs, GetVbo(), shaderProg, GetPosAttrib(), GetColAttrib(), model);
-
-        renderer->EndDraw(refWindow);
-    }
-    _currentShape = figura;
-}
+//void Shape::Draw(unsigned int figura, int vertexs, unsigned int& shaderProg, Windows* refWindow, glm::mat4 model)
+//{
+//    if (renderer != NULL)
+//    {
+//        renderer->BeignDraw();
+//
+//        renderer->Draw(figura, vertexs, GetVbo(), shaderProg, GetPosAttrib(), GetColAttrib(), model);
+//
+//        renderer->EndDraw(refWindow);
+//    }
+//    _currentShape = figura;
+//}
