@@ -12,6 +12,9 @@ struct Vector3
 	Vector3(float x, float y, float z);
 
 	void SetValues(float x, float y, float z);
+	Vector3 Cross(Vector3 otherVector);
+	float Dot(Vector3 otherVector);
+	Vector3 Normalize();
 
 	static Vector3 Zero();
 	static Vector3 One();
@@ -30,5 +33,6 @@ struct Vector3
 	Vector3 operator *(const float scalar) const;
 	Vector3 operator /(const float scalar) const;
 	bool operator ==(const Vector3& otherVector) const;
+	Vector3 operator +=(const Vector3& otherVector);
 	std::string ToString() const;
 };
