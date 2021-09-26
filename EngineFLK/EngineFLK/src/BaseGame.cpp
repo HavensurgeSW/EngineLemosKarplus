@@ -29,23 +29,22 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
+	delete entity;
 }
 
-void BaseGame::LaunchGod()
+void BaseGame::Init()
 {
 	srand(time(0));
 
-	/* Initialize the library */
 	if (!glfwInit())
 	{
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
 
-	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
+	window->CreateWindow(800, 600, "Init window.", NULL, NULL);
+	if (!window->GetGLFWWindow()) {
 
-	if (!window->GetWindow()) {
-
-		std::cout << "Error. Window is null, terminating." << std::endl;
+		std::cout << "Init Error. Window is null, terminating program." << std::endl;
 		Terminate();
 	}
 
@@ -55,18 +54,20 @@ void BaseGame::LaunchGod()
 	renderer->InitGlew();
 
 	renderer->GenerateBuffers();
+}
 
+void BaseGame::LaunchGod()
+{
+	Color shaderColor = Color::RandomColor();
 	Shader shader("res/shaders/Basic.shader");
 	shader.Bind();
 
-	Color shaderColor = Color::RandomColor();
 	shader.SetColorUniform("u_Color", shaderColor);
 	shader.Unbind();
 
 	//renderer->Unbind(); ????
 	renderer->SetClearColor(Color::RandomColor());
 
-	float rValue = shaderColor.r;
 	float increment = 0.05f;
 
 	while (!window->ShouldClose())
@@ -74,22 +75,19 @@ void BaseGame::LaunchGod()
 		renderer->ClearScreen();
 		shader.Bind();
 
-		Color color(rValue, shaderColor.g, shaderColor.b, shaderColor.a);
-		shader.SetColorUniform("u_Color", color);
+		shader.SetColorUniform("u_Color", shaderColor);
 
-		if (rValue > 1.0f || rValue < 0.0f)
+		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
 		{
 			increment *= -1;
 		}
-		rValue += increment;
+		shaderColor.r += increment;
 
 		//renderer->DrawTriangle();
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
 	}
-
-	Terminate();
 }
 
 void BaseGame::Terminate()

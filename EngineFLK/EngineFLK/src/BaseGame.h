@@ -20,6 +20,7 @@ public:
 	BaseGame();
 	~BaseGame();
 
+	void Init();
 	void LaunchGod();
 	void Terminate();
 };

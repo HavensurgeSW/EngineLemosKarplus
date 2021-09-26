@@ -2,7 +2,12 @@
 
 Window::Window()
 {
+	glfwWindow = glfwCreateWindow(800, 600, "Fallback Window Text", NULL, NULL);
+}
 
+Window::Window(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share)
+{
+	glfwWindow = glfwCreateWindow(width, height, title, monitor, share);
 }
 
 Window::~Window()
@@ -10,22 +15,22 @@ Window::~Window()
 
 }
 
-GLFWwindow* Window::CreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share)
+void Window::CreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share)
 {
-	return glfwCreateWindow(width, height, title, monitor, share);
+	glfwWindow = glfwCreateWindow(width, height, title, monitor, share);
 }
 
-void Window::SetWindow(GLFWwindow* window)
+void Window::SetWindow(GLFWwindow* glfwWindow)
 {
-	this->window = window;
+	this->glfwWindow = glfwWindow;
 }
 
-GLFWwindow* Window::GetWindow()
+GLFWwindow* Window::GetGLFWWindow()
 {
-	return window;
+	return glfwWindow;
 }
 
 int Window::ShouldClose()
 {
-	return glfwWindowShouldClose(window);
+	return glfwWindowShouldClose(glfwWindow);
 }

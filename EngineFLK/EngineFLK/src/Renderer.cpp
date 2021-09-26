@@ -31,7 +31,7 @@ void Renderer::InitGlew()
 
 void Renderer::SwapBuffer()
 {
-	glfwSwapBuffers(window->GetWindow());
+	glfwSwapBuffers(window->GetGLFWWindow());
 }
 
 void Renderer::SetClearColor(Color color)
@@ -79,7 +79,7 @@ void Renderer::GenerateBuffers()
 
 void Renderer::MakeContextCurrent(Window* window)
 {
-	glfwMakeContextCurrent(window->GetWindow());
+	glfwMakeContextCurrent(window->GetGLFWWindow());
 	glfwSwapInterval(1); //synchrinizes with our vSync
 }
 
