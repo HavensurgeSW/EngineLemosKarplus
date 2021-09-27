@@ -1,11 +1,11 @@
-#include "BaseGame.h"
+#include "Game.h"
 
 void main() 
 {
-	BaseGame* game = new BaseGame();
+	Game* game = new Game();
 
-	game->Init();
-	game->LaunchGod();
+	game->InitEngine();
+	game->LaunchGodEngine();
 	game->Terminate();
 
 	delete game;

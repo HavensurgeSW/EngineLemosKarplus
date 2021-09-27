@@ -5,6 +5,7 @@
 #include "Input.h"
 #include "CollisionManager.h"
 #include "Entity.h"
+#include "Shape.h"
 #include "Exports.h"
 
 class FLK_API BaseGame
@@ -20,7 +21,11 @@ public:
 	BaseGame();
 	~BaseGame();
 
-	void Init();
-	void LaunchGod();
+	void InitEngine();
+	void LaunchGodEngine();
 	void Terminate();
+
+	virtual void Init() = 0;
+	virtual void Update() = 0;
+	virtual void DeInit() = 0;
 };

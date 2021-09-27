@@ -1,32 +1,44 @@
 #pragma once
+#include "Exports.h"
+#include "Renderer.h"
+#include "Shader.h"
+#include "Entity2D.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 #include <iostream>
 #include <iterator>
 #include <vector>
-#include "Exports.h"
-#include "Entity2D.h"
-#include "Window.h"
+
+enum class FLK_API ShapeType //Primitive?
+{
+	TRIANGLE,
+	QUAD
+};
 
 class FLK_API Shape : public Entity2D
 {
 private:
-    float* _vertexBuffer;
-    unsigned int _vbo;
-    unsigned int _currentShape;
-    unsigned int _posAttrib;
-    unsigned int _colorAttrib;
+	VertexBuffer vertexBuffer;
+	IndexBuffer indexBuffer;
+
+	ShapeType type;
+	Shader shader;
+	float positions[8];
 
 public:
-    Shape(Renderer* _renderer);
-    Shape(Renderer _renderer);
-    ~Shape();
-    void InitShape(unsigned int typeShape);
-    void CreateVbo(float* vertexBuffer);
-    unsigned int GetVbo();
-    float* GetVertexBuffer();
-    void SetVertexsAttrib(unsigned int& shaderId);
-    unsigned int GetPosAttrib();
-    unsigned int GetColAttrib();
-    void Draw(unsigned int figura, int vertexs, unsigned int& shaderProg, Window* refWindow, glm::mat4 model);
+	Shape();
+	Shape(Renderer* renderer, Shader shader);
+	Shape(Renderer* renderer, Shader shader, ShapeType type);
+	~Shape();
+
+	void SetRenderer(Renderer* renderer);
+	void SetShader(Shader shader);
+	void SetShapeType(ShapeType type);
+	void Draw();
+
+	void SetPositions(float* arr);
 };
+
+
 // Las matrices copadas son: Model, View, Projection

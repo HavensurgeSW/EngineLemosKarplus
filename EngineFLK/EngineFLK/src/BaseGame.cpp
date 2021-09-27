@@ -32,7 +32,7 @@ BaseGame::~BaseGame()
 	delete entity;
 }
 
-void BaseGame::Init()
+void BaseGame::InitEngine()
 {
 	srand(time(0));
 
@@ -56,7 +56,7 @@ void BaseGame::Init()
 	renderer->GenerateBuffers();
 }
 
-void BaseGame::LaunchGod()
+void BaseGame::LaunchGodEngine()
 {
 	Color shaderColor = Color::RandomColor();
 	Shader shader("res/shaders/Basic.shader");

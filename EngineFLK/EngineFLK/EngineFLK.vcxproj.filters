@@ -81,7 +81,7 @@
     <ClCompile Include="src\Transform.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
+    <ClCompile Include="src\Shape.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="src\Transform.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
+    <ClInclude Include="src\Shape.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
