@@ -86,11 +86,34 @@ void BaseGame::LaunchGodEngine()
 		//renderer->DrawTriangle();
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
-		input->PollEvents();
+		TempInputs(window);
 	}
 }
 
 void BaseGame::Terminate()
 {
 	glfwTerminate();
+}
+
+void BaseGame::TempInputs(Window* window)
+{
+	//INPUT DE MOVIMIENTO
+	if (input->GetKey(window->GetGLFWWindow(), KeyBoard::KEY_W))
+	{
+		std::cout << "W" << std::endl;
+	}
+	if (glfwGetKey(window->GetGLFWWindow(), KeyBoard::KEY_S))
+	{
+		std::cout << "S" << std::endl;
+	}
+	if (glfwGetKey(window->GetGLFWWindow(), KeyBoard::KEY_D))
+	{
+		std::cout << "D" << std::endl;
+	}
+	if (glfwGetKey(window->GetGLFWWindow(), KeyBoard::KEY_A))
+	{
+		std::cout << "A" << std::endl;
+	}
+	
+
 }

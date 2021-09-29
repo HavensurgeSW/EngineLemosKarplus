@@ -24,6 +24,7 @@ public:
 	void InitEngine();
 	void LaunchGodEngine();
 	void Terminate();
+	void TempInputs(Window* window);
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;
