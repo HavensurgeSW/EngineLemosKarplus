@@ -15,11 +15,13 @@ private:
 	Input* input;
 	CollisionManager* collisionManager;
 	Entity* entity;
+	Shader shader;
 
 public:
 	BaseGame();
 	~BaseGame();
 
+	void TempInputs(Window* window);
 	void LaunchGod();
 	void Terminate();
 };

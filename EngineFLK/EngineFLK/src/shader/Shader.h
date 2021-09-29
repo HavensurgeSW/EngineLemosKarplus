@@ -33,6 +33,7 @@ public:
 
 	void SetColorUniform(Color color); //will need to expand
 	void SetTransformUniform(glm::mat4 trans);
+	void CreateShader(const std::string& filePath);
 
 private:
 

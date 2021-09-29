@@ -16,6 +16,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <utility/vector2/Vector2.h>
 
 BaseGame::BaseGame()
 {
@@ -34,6 +35,40 @@ BaseGame::~BaseGame()
 	delete collisionManager;
 }
 
+void BaseGame::TempInputs(Window* window)
+{
+	glm::mat4 transform = glm::mat4(1.0f);
+	float rotationAngle = 0.0f;
+	float scale = 1.0f;
+	Vector2 vec(0.0f, 0.0f);
+
+	transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 1));
+	transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, rotationAngle));
+	transform = glm::scale(transform, glm::vec3(scale, scale, scale));
+
+	shader.SetTransformUniform(transform);
+
+	if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
+	{
+		vec.y += 20.0f;
+		std::cout << "W" << std::endl;
+	}
+	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_S))
+	{
+		std::cout << "S" << std::endl;
+	}
+	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_D))
+	{
+		std::cout << "D" << std::endl;
+	}
+	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_A))
+	{
+		std::cout << "A" << std::endl;
+	}
+}
+
+
+	
 void BaseGame::LaunchGod()
 {
 	srand(time(0));
@@ -58,7 +93,8 @@ void BaseGame::LaunchGod()
 
 	renderer->GenerateBuffers();
 
-	Shader shader("res/shaders/Basic.shader");
+	//Shader shader("res/shaders/Basic.shader");
+	shader.CreateShader("res/shaders/Basic.shader");
 	shader.Bind();
 
 	Color shaderColor = Color::RandomColor();
@@ -68,6 +104,10 @@ void BaseGame::LaunchGod()
 	renderer->SetClearColor(Color::RandomColor());
 
 	float increment = 0.05f;
+	float rotationAngle = 0.0f;
+	float scale = 1.0f;
+	Vector2 vec(-0.5f, -0.5f);
+
 	
 	while (!window->ShouldClose())
 	{
@@ -75,12 +115,32 @@ void BaseGame::LaunchGod()
 		shader.Bind();
 
 		shader.SetColorUniform(shaderColor);
-
 		glm::mat4 transform = glm::mat4(1.0f);
 
-		transform = glm::translate(transform, glm::vec3(-0.5f, -0.5f, 0.0f));                       //
+		transform = glm::translate(transform, glm::vec3(vec.x,vec.y ,0.0f));                       //
 		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));		// MAGIK
-		transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, 1.0f));								//
+		transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, 1.0f));			
+
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
+		{
+			vec.y += 0.01f;
+			std::cout << "W" << std::endl;
+		}
+		if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_S))
+		{
+			vec.y -= 0.01f;
+			std::cout << "S" << std::endl;
+		}
+		if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_D))
+		{
+			vec.x += 0.01f;
+			std::cout << "D" << std::endl;
+		}
+		if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_A))
+		{
+			vec.x -= 0.01f;
+			std::cout << "A" << std::endl;
+		}
 		
 		shader.SetTransformUniform(transform);
 
@@ -93,6 +153,8 @@ void BaseGame::LaunchGod()
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
+		TempInputs(window);
+
 	}
 
 	Terminate();

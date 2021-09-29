@@ -42,6 +42,12 @@ void Shader::SetTransformUniform(glm::mat4 trans)
 	glUniformMatrix4fv(GetUniformLocation("u_Transform"), 1, GL_FALSE, glm::value_ptr(trans));
 }
 
+void Shader::CreateShader(const std::string& filePath)
+{
+	ShaderPaths shaderPaths = ParseShader(filePath);
+	rendererId = CreateShader(shaderPaths.vertexSource, shaderPaths.fragmentSource);
+}
+
 
 int Shader::GetUniformLocation(const std::string& uniformName)
 {
