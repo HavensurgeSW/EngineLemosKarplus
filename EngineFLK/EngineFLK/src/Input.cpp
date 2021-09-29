@@ -26,3 +26,8 @@ bool Input::GetKeyUp(GLFWwindow* contextWindow, KeyBoard _keyBoard)
 {
 	return CheckKeyPress(contextWindow, _keyBoard, GLFW_RELEASE);
 }
+
+void Input::PollEvents() 
+{
+	glfwPollEvents();
+}

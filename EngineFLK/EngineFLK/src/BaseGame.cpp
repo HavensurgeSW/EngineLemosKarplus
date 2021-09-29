@@ -84,6 +84,8 @@ void BaseGame::LaunchGodEngine()
 		shaderColor.r += increment;
 
 		//renderer->DrawTriangle();
+		
+		input->PollEvents();
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		TempInputs(window);

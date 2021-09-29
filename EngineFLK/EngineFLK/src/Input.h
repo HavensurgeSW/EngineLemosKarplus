@@ -1,6 +1,7 @@
 #pragma once
 #include "Exports.h"
-
+#include "glew.h"
+#include "glfw3.h"
 static enum KeyBoard
 {
 	KEY_SPACE = 32,
@@ -125,7 +126,7 @@ static enum KeyBoard
 	KEY_RIGHT_SUPER = 347,
 	KEY_MENU = 348,
 };
-struct GLFWwindow;
+
 class FLK_API Input
 {
 private:
@@ -134,6 +135,7 @@ public:
 
 	Input();
 	~Input();
+	void PollEvents();
 	bool GetKeyDown(GLFWwindow* contextWindow, KeyBoard _keyBoard);
 	bool GetKey(GLFWwindow* contextWindow, KeyBoard _keyBoard);
 	bool GetKeyUp(GLFWwindow* contextWindow, KeyBoard _keyBoard);
