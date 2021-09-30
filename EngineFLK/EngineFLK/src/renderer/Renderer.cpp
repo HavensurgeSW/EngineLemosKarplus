@@ -70,8 +70,9 @@ void Renderer::GenerateBuffers()
 
 	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
+	glEnableVertexAttribArray(0); //enables or "turns on" the specified attribute
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
+	//float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
 
 	IndexBuffer indexBuffer(indices, maxIndices);
 	indexBuffer.Bind();
