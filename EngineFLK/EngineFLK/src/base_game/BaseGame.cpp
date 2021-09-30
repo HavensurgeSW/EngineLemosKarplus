@@ -151,28 +151,48 @@ void BaseGame::LaunchGod()
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_Q))
 		{
 			rotationSpeed += 0.01f;
-			std::cout << "Rotation Speed: " << rotationSpeed << std::endl;
 		}
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_E))
 		{
 			rotationSpeed -= 0.01f;
-			std::cout << "Rotation Speed: " << rotationSpeed << std::endl;
 		}
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_J))
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_I))
 		{
 			rotation.x += 0.1f;
 			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_K))
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_O))
 		{
 			rotation.y += 0.1f;
 			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_L))
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_P))
 		{
 			rotation.z += 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
+		}
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_J))
+		{
+			rotation.x -= 0.1f;
+			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
+		}
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_K))
+		{
+			rotation.y -= 0.1f;
+			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
+		}
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_L))
+		{
+			rotation.z -= 0.1f;
+			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
+		}
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_R))
+		{
+			vec = Vector2::Zero();
+			rotationSpeed = 0;
+			rotation = Vector3::One();
+			scale = 1.0f;
 		}
 		shader.SetTransformUniform(transform);
 
