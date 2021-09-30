@@ -69,7 +69,7 @@ void BaseGame::TempInputs(Window* window)
 }
 
 
-	
+
 void BaseGame::LaunchGod()
 {
 	srand(time(0));
@@ -108,21 +108,19 @@ void BaseGame::LaunchGod()
 	float rotationAngle = 15.0f;
 	float rotationSpeed = 0.0f;
 	float scale = 1.0f;
-	Vector2 vec(-0.5f, -0.5f);
-	Vector3 rotation(1.0f, 1.0f, 1.0f);
+	Vector2 vec(0.0f, 0.0f);
+	Vector3 rotation(0.0f, 0.0f, 1.0f);
 
-	
 	while (!window->ShouldClose())
 	{
 		renderer->ClearScreen();
 		shader.Bind();
 
-		shader.SetColorUniform(shaderColor);
 		glm::mat4 transform = glm::mat4(1.0f);
 
-		transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                        //
+		transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
 		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK
-		transform = glm::scale(transform, glm::vec3(scale, scale, scale));
+		transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
 
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
 		{
@@ -141,7 +139,7 @@ void BaseGame::LaunchGod()
 			vec.x -= 0.01f;
 		}
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_SPACE))
+		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_ENTER))
 		{
 			scale += 0.01f;
 		}
@@ -152,12 +150,12 @@ void BaseGame::LaunchGod()
 
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_Q))
 		{
-			rotationSpeed -= 0.1f;
+			rotationSpeed += 0.01f;
 			std::cout << "Rotation Speed: " << rotationSpeed << std::endl;
 		}
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_E))
 		{
-			rotationSpeed += 0.1f;
+			rotationSpeed -= 0.01f;
 			std::cout << "Rotation Speed: " << rotationSpeed << std::endl;
 		}
 
@@ -176,8 +174,6 @@ void BaseGame::LaunchGod()
 			rotation.z += 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
 		}
-		
-		
 		shader.SetTransformUniform(transform);
 
 		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
@@ -185,12 +181,12 @@ void BaseGame::LaunchGod()
 			increment *= -1;
 		}
 		shaderColor.r += increment;
+		shader.SetColorUniform(shaderColor);
 
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
 		TempInputs(window);
-
 	}
 
 	Terminate();
