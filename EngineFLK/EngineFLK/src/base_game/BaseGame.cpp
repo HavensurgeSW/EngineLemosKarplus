@@ -150,11 +150,11 @@ void BaseGame::LaunchGod()
 
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_Q))
 		{
-			rotationSpeed += 0.01f;
+			rotationSpeed += 0.1f;
 		}
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_E))
 		{
-			rotationSpeed -= 0.01f;
+			rotationSpeed -= 0.1f;
 		}
 
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_I))
