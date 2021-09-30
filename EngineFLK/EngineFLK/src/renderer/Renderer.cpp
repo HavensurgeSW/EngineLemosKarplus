@@ -71,7 +71,7 @@ void Renderer::GenerateBuffers()
 	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implica que cada seccion de memoria del vertice tiene el tama�o de 2 floats. X e Y
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0); //float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
 
 	IndexBuffer indexBuffer(indices, maxIndices);
 	indexBuffer.Bind();

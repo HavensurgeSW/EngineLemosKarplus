@@ -18,7 +18,7 @@ IndexBuffer::~IndexBuffer()
 
 void IndexBuffer::Bind()
 {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId); //saves a segment of memory to the specified buffer
 }
 
 void IndexBuffer::Unbind()
