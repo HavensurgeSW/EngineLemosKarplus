@@ -16,12 +16,12 @@ private:
 	CollisionManager* collisionManager;
 	Entity* entity;
 	Shader shader;
+	void TempInputs(Window* window);
 
 public:
 	BaseGame();
 	~BaseGame();
 
-	void TempInputs(Window* window);
 	void LaunchGod();
 	void Terminate();
 };

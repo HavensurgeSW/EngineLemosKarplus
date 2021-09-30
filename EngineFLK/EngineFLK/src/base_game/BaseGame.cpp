@@ -19,6 +19,7 @@
 #include <utility/vector2/Vector2.h>
 #include <utility/vector3/Vector3.h>
 
+
 BaseGame::BaseGame()
 {
 	window = new Window();
@@ -105,6 +106,7 @@ void BaseGame::LaunchGod()
 	renderer->SetClearColor(Color::RandomColor());
 
 	float increment = 0.05f;
+	float incrementb = 0.05f;
 	float rotationAngle = 15.0f;
 	float rotationSpeed = 0.0f;
 	float scale = 1.0f;
@@ -119,7 +121,7 @@ void BaseGame::LaunchGod()
 		glm::mat4 transform = glm::mat4(1.0f);
 
 		transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
-		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK
+		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
 		transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
 
 		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
@@ -200,7 +202,12 @@ void BaseGame::LaunchGod()
 		{
 			increment *= -1;
 		}
+		if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
+		{
+			incrementb *= -1;
+		}
 		shaderColor.r += increment;
+		shaderColor.b += incrementb;
 		shader.SetColorUniform(shaderColor);
 
 		renderer->DrawElement(6); //6 is the size of the indices array
