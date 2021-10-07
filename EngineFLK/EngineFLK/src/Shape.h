@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Exports.h"
-#include "renderer/Renderer.h"
-#include "shader/Shader.h"
+#include "Renderer.h"
+#include "Shader.h"
+#include "Entity2D.h"
 
 #include <iostream>
 #include <iterator>
@@ -14,7 +15,7 @@ enum class FLK_API ShapeType //Primitive?
 	QUAD
 };
 
-class FLK_API Shape
+class FLK_API Shape : public Entity2D
 {
 private:
 	Renderer* renderer;

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Exports.h"
-#include "window/Window.h"
-#include "renderer/Renderer.h"
-#include "input/Input.h"
-#include "collision_manager/CollisionManager.h"
-#include "entities/entity/Entity.h"
+#include "Window.h"
+#include "Renderer.h"
+#include "Input.h"
+#include "CollisionManager.h"
+#include "Entity.h"
 
 class FLK_API BaseGame
 {
@@ -22,6 +22,7 @@ public:
 	BaseGame();
 	~BaseGame();
 
+	void InitEngine();
 	void LaunchGod();
 	void Terminate();
 };

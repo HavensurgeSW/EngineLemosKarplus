@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "utility/vector2/Vector2.h"
+#include "Vector2.h"
 
 struct FLK_API Vector3
 {

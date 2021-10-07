@@ -5,7 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "utility/vector3/Vector3.h"
+#include "Vector3.h"
 
 class FLK_API Transform {
 private:

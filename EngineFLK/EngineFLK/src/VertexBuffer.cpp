@@ -1,6 +1,6 @@
 #include "VertexBuffer.h"
 #include "glew.h"
-#include "utility/error_handling/ErrorHandling.h"
+#include "ErrorHandling.h"
 
 VertexBuffer::VertexBuffer(const void* data, unsigned int byteSize)
 {

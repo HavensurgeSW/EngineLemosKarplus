@@ -2,22 +2,22 @@
 
 #include "glfw3.h"
 
-#include "utility/error_handling/ErrorHandling.h"
-#include "utility/utils/Utils.h"
-#include "utility/color/Color.h"
-#include "shader/Shader.h"
+#include "ErrorHandling.h"
+#include "Utils.h"
+#include "Color.h"
+#include "Shader.h"
 
 #include <time.h>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <vertex_buffer/VertexBuffer.h>
-#include <index_buffer/IndexBuffer.h>
+#include <VertexBuffer.h>
+#include <IndexBuffer.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <utility/vector2/Vector2.h>
-#include <utility/vector3/Vector3.h>
+#include <Vector2.h>
+#include <Vector3.h>
 
 
 BaseGame::BaseGame()
@@ -71,7 +71,7 @@ void BaseGame::TempInputs(Window* window)
 
 
 
-void BaseGame::LaunchGod()
+void BaseGame::InitEngine()
 {
 	srand(time(0));
 
@@ -92,7 +92,10 @@ void BaseGame::LaunchGod()
 
 	renderer->MakeContextCurrent(window);
 	renderer->InitGlew();
+}
 
+void BaseGame::LaunchGod()
+{
 	renderer->GenerateBuffers();
 
 	//Shader shader("res/shaders/Basic.shader");

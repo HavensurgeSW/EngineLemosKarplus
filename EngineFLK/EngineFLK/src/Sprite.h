@@ -1,8 +1,9 @@
 #pragma once
 #include "Exports.h"
-#include "entities/animation/Animation.h"
+#include "Entity2D.h"
+#include "Animation.h"
 
-class FLK_API Sprite
+class FLK_API Sprite : public Entity2D
 {
 private:
 	Animation animation;

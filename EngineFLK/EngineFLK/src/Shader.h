@@ -7,7 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "utility/color/Color.h"
+#include "Color.h"
 
 struct FLK_API ShaderPaths {
 	std::string vertexSource;

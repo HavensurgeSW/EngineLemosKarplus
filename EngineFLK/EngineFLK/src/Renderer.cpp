@@ -3,9 +3,9 @@
 #include "glew.h"
 #include "glfw3.h"
 
-#include "vertex_buffer/VertexBuffer.h"
-#include "index_buffer/IndexBuffer.h"
-#include "utility/error_handling/ErrorHandling.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "ErrorHandling.h"
 
 #include <iostream>
 #include <vector>

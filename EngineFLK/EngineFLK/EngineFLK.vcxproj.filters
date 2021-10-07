@@ -90,133 +90,133 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\entities\animation\Animation.cpp">
-      <Filter>src\entities\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entities\entity\Entity.cpp">
-      <Filter>src\entities\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entities\entity2d\Entity2D.cpp">
-      <Filter>src\entities\entity2d</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entities\tilemap\Tilemap.cpp">
-      <Filter>src\entities\tilemap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entities\sprite\Sprite.cpp">
-      <Filter>src\entities\sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entities\shape\Shape.cpp">
-      <Filter>src\entities\shape</Filter>
-    </ClCompile>
-    <ClCompile Include="src\input\Input.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collision_manager\CollisionManager.cpp">
-      <Filter>src\collision_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base_game\BaseGame.cpp">
-      <Filter>src\base_game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\window\Window.cpp">
-      <Filter>src\window</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\Renderer.cpp">
-      <Filter>src\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\error_handling\ErrorHandling.cpp">
-      <Filter>src\utility\error_handling</Filter>
+    <ClCompile Include="src\BaseGame.cpp">
+      <Filter>src\base_game</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\color\Color.cpp">
-      <Filter>src\utility\color</Filter>
+    <ClCompile Include="src\CollisionManager.cpp">
+      <Filter>src\collision_manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\utils\Utils.cpp">
-      <Filter>src\utility\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\vector3\Vector3.cpp">
-      <Filter>src\utility\vector3</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\vector2\Vector2.cpp">
-      <Filter>src\utility\vector2</Filter>
-    </ClCompile>
-    <ClCompile Include="src\index_buffer\IndexBuffer.cpp">
+    <ClCompile Include="src\IndexBuffer.cpp">
       <Filter>src\index_buffer</Filter>
     </ClCompile>
-    <ClCompile Include="src\vertex_buffer\VertexBuffer.cpp">
-      <Filter>src\vertex_buffer</Filter>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="src\shader\Shader.cpp">
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shader.cpp">
       <Filter>src\shader</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\transform\Transform.cpp">
+    <ClCompile Include="src\Color.cpp">
+      <Filter>src\utility\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ErrorHandling.cpp">
+      <Filter>src\utility\error_handling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
       <Filter>src\utility\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils.cpp">
+      <Filter>src\utility\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector2.cpp">
+      <Filter>src\utility\vector2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector3.cpp">
+      <Filter>src\utility\vector3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VertexBuffer.cpp">
+      <Filter>src\vertex_buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>src\window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>src\entities\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>src\entities\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity2D.cpp">
+      <Filter>src\entities\entity2d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shape.cpp">
+      <Filter>src\entities\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
+      <Filter>src\entities\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tilemap.cpp">
+      <Filter>src\entities\tilemap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\entities\animation\Animation.h">
-      <Filter>src\entities\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\entity\Entity.h">
-      <Filter>src\entities\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\entity2d\Entity2D.h">
-      <Filter>src\entities\entity2d</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\tilemap\Tilemap.h">
-      <Filter>src\entities\tilemap</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\sprite\Sprite.h">
-      <Filter>src\entities\sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\shape\Shape.h">
-      <Filter>src\entities\shape</Filter>
-    </ClInclude>
-    <ClInclude Include="src\input\Input.h">
-      <Filter>src\input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collision_manager\CollisionManager.h">
-      <Filter>src\collision_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="src\base_game\BaseGame.h">
-      <Filter>src\base_game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\window\Window.h">
-      <Filter>src\window</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\Renderer.h">
-      <Filter>src\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\Exports.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\error_handling\ErrorHandling.h">
-      <Filter>src\utility\error_handling</Filter>
+    <ClInclude Include="src\BaseGame.h">
+      <Filter>src\base_game</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\color\Color.h">
-      <Filter>src\utility\color</Filter>
+    <ClInclude Include="src\CollisionManager.h">
+      <Filter>src\collision_manager</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\utils\Utils.h">
-      <Filter>src\utility\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\vector3\Vector3.h">
-      <Filter>src\utility\vector3</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\vector2\Vector2.h">
-      <Filter>src\utility\vector2</Filter>
-    </ClInclude>
-    <ClInclude Include="src\index_buffer\IndexBuffer.h">
+    <ClInclude Include="src\IndexBuffer.h">
       <Filter>src\index_buffer</Filter>
     </ClInclude>
-    <ClInclude Include="src\vertex_buffer\VertexBuffer.h">
-      <Filter>src\vertex_buffer</Filter>
+    <ClInclude Include="src\Input.h">
+      <Filter>src\input</Filter>
     </ClInclude>
-    <ClInclude Include="src\shader\Shader.h">
+    <ClInclude Include="src\Renderer.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shader.h">
       <Filter>src\shader</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\transform\Transform.h">
+    <ClInclude Include="src\Color.h">
+      <Filter>src\utility\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ErrorHandling.h">
+      <Filter>src\utility\error_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.h">
       <Filter>src\utility\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils.h">
+      <Filter>src\utility\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector2.h">
+      <Filter>src\utility\vector2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector3.h">
+      <Filter>src\utility\vector3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VertexBuffer.h">
+      <Filter>src\vertex_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>src\window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity.h">
+      <Filter>src\entities\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation.h">
+      <Filter>src\entities\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity2D.h">
+      <Filter>src\entities\entity2d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shape.h">
+      <Filter>src\entities\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite.h">
+      <Filter>src\entities\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilemap.h">
+      <Filter>src\entities\tilemap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

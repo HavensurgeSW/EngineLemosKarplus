@@ -2,10 +2,10 @@
 
 #include "Exports.h"
 
-#include "window/Window.h"
-#include "shader/Shader.h"
+#include "Window.h"
+#include "Shader.h"
 
-#include "utility/color/Color.h"
+#include "Color.h"
 
 class FLK_API Renderer
 {
