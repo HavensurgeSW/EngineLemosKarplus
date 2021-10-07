@@ -69,10 +69,9 @@ void BaseGame::TempInputs(Window* window)
 	}
 }
 
-
-
 void BaseGame::InitEngine()
 {
+	Init();
 	srand(time(0));
 
 	if (!glfwInit())
@@ -118,6 +117,8 @@ void BaseGame::LaunchGod()
 
 	while (!window->ShouldClose())
 	{
+		Update();
+
 		renderer->ClearScreen();
 		shader.Bind();
 
@@ -224,5 +225,6 @@ void BaseGame::LaunchGod()
 
 void BaseGame::Terminate()
 {
+	DeInit();
 	glfwTerminate();
 }
