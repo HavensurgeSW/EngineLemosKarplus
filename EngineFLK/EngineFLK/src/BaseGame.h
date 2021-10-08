@@ -16,7 +16,6 @@ private:
 	CollisionManager* collisionManager;
 	Entity* entity;
 	Shader shader;
-	void TempInputs(Window* window);
 
 public:
 	BaseGame();
@@ -29,4 +28,9 @@ public:
 	void InitEngine();
 	void LaunchGod();
 	void Terminate();
+
+private:
+	void TempInputs(Window* window);
+	void InitGlew();
+
 };

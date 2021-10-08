@@ -23,12 +23,6 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::InitGlew()
-{
-	glewInit();
-	InitErrorHandling();
-}
-
 void Renderer::SwapBuffer()
 {
 	glfwSwapBuffers(window->GetWindow());

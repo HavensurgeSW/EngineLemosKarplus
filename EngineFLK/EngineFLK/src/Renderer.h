@@ -16,7 +16,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	void InitGlew();
 	void SwapBuffer();
 	void SetClearColor(Color color);
 	void ClearScreen();

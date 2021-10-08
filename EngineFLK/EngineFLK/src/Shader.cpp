@@ -52,9 +52,9 @@ void Shader::CreateShader(const std::string& filePath)
 
 int Shader::GetUniformLocation(const std::string& uniformName)
 {
-	if (uniformLocationsSaved.find(uniformName) != uniformLocationsSaved.end())
+	if (cachedUniformLocations.find(uniformName) != cachedUniformLocations.end())
 	{
-		return uniformLocationsSaved[uniformName];
+		return cachedUniformLocations[uniformName];
 	}
 
 	int location = glGetUniformLocation(rendererId, uniformName.c_str()); //glGetUniformLocation searches for the id/location of the "uniform" (shader variable) inside the .shader file
@@ -64,7 +64,7 @@ int Shader::GetUniformLocation(const std::string& uniformName)
 		std::cout << "Shader.cpp error" << std::endl << "Uniform " << uniformName << " doesnt exist." << std::endl;
 	}
 
-	uniformLocationsSaved[uniformName] = location;
+	cachedUniformLocations[uniformName] = location;
 	return location;
 }
 

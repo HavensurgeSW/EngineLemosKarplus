@@ -11,10 +11,11 @@ private:
 
 public:
 	Window();
+	Window(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share);
 	~Window();
 
 	GLFWwindow* CreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share);
 	void SetWindow(GLFWwindow* window);
 	GLFWwindow* GetWindow();
-	int ShouldClose();
+	bool ShouldClose();
 };

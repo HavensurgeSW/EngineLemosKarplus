@@ -69,12 +69,18 @@ void BaseGame::TempInputs(Window* window)
 	}
 }
 
+void BaseGame::InitGlew()
+{
+	glewInit();
+	InitErrorHandling();
+}
+
 void BaseGame::InitEngine()
 {
 	Init();
 	srand(time(0));
-
-	if (!glfwInit())
+	bool result = glfwInit();
+	if (!result)
 	{
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
@@ -90,7 +96,8 @@ void BaseGame::InitEngine()
 	renderer->SetWindow(window);
 
 	renderer->MakeContextCurrent(window);
-	renderer->InitGlew();
+
+	InitGlew();
 }
 
 void BaseGame::LaunchGod()

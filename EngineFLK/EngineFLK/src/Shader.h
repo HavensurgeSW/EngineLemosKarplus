@@ -9,7 +9,8 @@
 
 #include "Color.h"
 
-struct FLK_API ShaderPaths {
+struct FLK_API ShaderPaths 
+{
 	std::string vertexSource;
 	std::string fragmentSource;
 };
@@ -20,7 +21,7 @@ private:
 
 	unsigned int rendererId;
 	std::string filePath;
-	std::unordered_map<std::string, int> uniformLocationsSaved; //kinda cool
+	std::unordered_map<std::string, int> cachedUniformLocations; //kinda cool
 
 public:
 
