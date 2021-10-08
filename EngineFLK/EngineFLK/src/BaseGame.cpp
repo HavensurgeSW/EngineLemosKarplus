@@ -39,34 +39,7 @@ BaseGame::~BaseGame()
 
 void BaseGame::TempInputs(Window* window)
 {
-	glm::mat4 transform = glm::mat4(1.0f);
-	float rotationAngle = 0.0f;
-	float scale = 1.0f;
-	Vector2 vec(0.0f, 0.0f);
 
-	transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 1));
-	transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, rotationAngle));
-	transform = glm::scale(transform, glm::vec3(scale, scale, scale));
-
-	shader.SetTransformUniform(transform);
-
-	if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
-	{
-		vec.y += 20.0f;
-		std::cout << "W" << std::endl;
-	}
-	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_S))
-	{
-		std::cout << "S" << std::endl;
-	}
-	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_D))
-	{
-		std::cout << "D" << std::endl;
-	}
-	if (glfwGetKey(window->GetWindow(), KeyBoard::KEY_A))
-	{
-		std::cout << "A" << std::endl;
-	}
 }
 
 void BaseGame::InitGlew()
@@ -85,6 +58,7 @@ void BaseGame::InitEngine()
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
 
+	input->SetContextWindow(window);
 	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
 
 	if (!window->GetWindow()) {
@@ -96,7 +70,6 @@ void BaseGame::InitEngine()
 	renderer->SetWindow(window);
 
 	renderer->MakeContextCurrent(window);
-
 	InitGlew();
 }
 
@@ -114,8 +87,9 @@ void BaseGame::LaunchGod()
 
 	renderer->SetClearColor(Color::RandomColor());
 
-	float increment = 0.05f;
-	float incrementb = 0.05f;
+	float incrementRed = 0.05f;
+	float incrementBlue = 0.05f;
+
 	float rotationAngle = 15.0f;
 	float rotationSpeed = 0.0f;
 	float scale = 1.0f;
@@ -135,96 +109,97 @@ void BaseGame::LaunchGod()
 		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
 		transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_W))
+		if (input->GetKey(KeyCode::W))
 		{
 			vec.y += 0.01f;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_S))
+		if (input->GetKey(KeyCode::S))
 		{
 			vec.y -= 0.01f;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_D))
+		if (input->GetKey(KeyCode::D))
 		{
 			vec.x += 0.01f;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_A))
+		if (input->GetKey(KeyCode::A))
 		{
 			vec.x -= 0.01f;
 		}
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_ENTER))
+		if (input->GetKey(KeyCode::ENTER))
 		{
 			scale += 0.01f;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_BACKSPACE))
+		if (input->GetKey(KeyCode::BACKSPACE))
 		{
 			scale -= 0.01f;
 		}
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_Q))
+		if (input->GetKey(KeyCode::Q))
 		{
 			rotationSpeed += 0.1f;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_E))
+		if (input->GetKey(KeyCode::E))
 		{
 			rotationSpeed -= 0.1f;
 		}
 
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_I))
+		if (input->GetKey(KeyCode::I))
 		{
 			rotation.x += 0.1f;
 			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_O))
+		if (input->GetKey(KeyCode::O))
 		{
 			rotation.y += 0.1f;
 			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_P))
+		if (input->GetKey(KeyCode::P))
 		{
 			rotation.z += 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_J))
+		if (input->GetKey(KeyCode::J))
 		{
 			rotation.x -= 0.1f;
 			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_K))
+		if (input->GetKey(KeyCode::K))
 		{
 			rotation.y -= 0.1f;
 			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_L))
+		if (input->GetKey(KeyCode::L))
 		{
 			rotation.z -= 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
 		}
-		if (input->GetKey(window->GetWindow(), KeyBoard::KEY_R))
+		if (input->GetKey(KeyCode::R))
 		{
 			vec = Vector2::Zero();
 			rotationSpeed = 0;
 			rotation = Vector3::One();
 			scale = 1.0f;
 		}
+
 		shader.SetTransformUniform(transform);
 
 		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
 		{
-			increment *= -1;
+			incrementRed *= -1;
 		}
 		if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
 		{
-			incrementb *= -1;
+			incrementBlue *= -1;
 		}
-		shaderColor.r += increment;
-		shaderColor.b += incrementb;
+		shaderColor.r += incrementRed;
+		shaderColor.b += incrementBlue;
 		shader.SetColorUniform(shaderColor);
 
 		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
-		TempInputs(window);
+		//TempInputs(window);
 	}
 
 	Terminate();

@@ -2,34 +2,55 @@
 
 #include "glfw3.h"
 
-bool Input::CheckKeyPress(GLFWwindow* contextWindow, KeyBoard _keyBoard, unsigned int type)
+Input::Input() 
 {
-	return (glfwGetKey(contextWindow, _keyBoard) == type);
+	window = new Window();
 }
 
-Input::Input() {}
-
-
-Input::~Input() {}
-
-bool Input::GetKeyDown(GLFWwindow* contextWindow, KeyBoard _keyBoard)
+Input::~Input() 
 {
-	return CheckKeyPress(contextWindow, _keyBoard, GLFW_REPEAT);
-}
 
-bool Input::GetKey(GLFWwindow* contextWindow, KeyBoard _keyBoard)
-{
-	return CheckKeyPress(contextWindow, _keyBoard, GLFW_PRESS);
-}
-
-bool Input::GetKeyUp(GLFWwindow* contextWindow, KeyBoard _keyBoard)
-{
-	return CheckKeyPress(contextWindow, _keyBoard, GLFW_RELEASE);
 }
 
 
+bool Input::CheckKeyPress(KeyCode keycode, int type)
+{
+	return (glfwGetKey(window->GetWindow(), keycode) == type);
+}
 
-void Input::PollEvents() 
+bool Input::CheckMouseButtonPress(MouseButton mouseButton, int type)
+{
+	return glfwGetMouseButton(window->GetWindow(), mouseButton) == GET_KEY_DOWN;
+}
+
+
+bool Input::GetMouseButtonPressed(MouseButton button)
+{
+	return glfwGetMouseButton(window->GetWindow(), button) == GET_KEY_DOWN;
+}
+
+bool Input::GetKeyDown(KeyCode keycode)
+{
+	return CheckKeyPress(keycode, GET_KEY_DOWN);
+}
+
+bool Input::GetKey(KeyCode keycode)
+{
+	return CheckKeyPress(keycode, GET_KEY);
+}
+
+bool Input::GetKeyUp(KeyCode keycode)
+{
+	return CheckKeyPress(keycode, GET_KEY_UP);
+}
+
+
+void Input::SetContextWindow(Window* window)
+{
+	this->window = window;
+}
+
+void Input::PollEvents()
 {
 	glfwPollEvents();
 }
