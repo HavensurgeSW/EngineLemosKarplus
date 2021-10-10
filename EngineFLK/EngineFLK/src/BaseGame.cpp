@@ -3,7 +3,6 @@
 #include "glfw3.h"
 
 #include "ErrorHandling.h"
-#include "Utils.h"
 #include "Color.h"
 #include "Shader.h"
 
@@ -11,13 +10,15 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <VertexBuffer.h>
-#include <IndexBuffer.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <Vector2.h>
-#include <Vector3.h>
+
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "Vector2.h"
+#include "Vector3.h"
+#include "Transform.h"
 
 
 BaseGame::BaseGame()
@@ -96,7 +97,7 @@ void BaseGame::LaunchGod()
 	float scale = 1.0f;
 	Vector2 vec(0.0f, 0.0f);
 	Vector3 rotation(0.0f, 0.0f, 1.0f);
-
+	Transform transform;
 	while (!window->ShouldClose())
 	{
 		Update();
@@ -104,11 +105,15 @@ void BaseGame::LaunchGod()
 		renderer->ClearScreen();
 		shader.Bind();
 
-		glm::mat4 transform = glm::mat4(1.0f);
+		transform.SetPosition(vec);
+		transform.SetRotation(rotationSpeed, rotation);
+		transform.SetScale(scale);
 
-		transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
-		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
-		transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
+		//glm::mat4 transform = glm::mat4(1.0f);
+		//
+		//transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
+		//transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
+		//transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
 
 		if (Input::GetKey(KeyCode::W))
 		{

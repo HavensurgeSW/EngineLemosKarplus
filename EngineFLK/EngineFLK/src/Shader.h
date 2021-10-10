@@ -3,10 +3,8 @@
 
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
+#include "Transform.h"
 #include "Color.h"
 
 struct FLK_API ShaderPaths 
@@ -33,7 +31,7 @@ public:
 	void Unbind() const;
 
 	void SetColorUniform(Color color); //will need to expand
-	void SetTransformUniform(glm::mat4 trans);
+	void SetTransformUniform(Transform transform);
 	void CreateShader(const std::string& filePath);
 
 private:

@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Vector2.h"
 #include "Vector3.h"
 
 class FLK_API Transform {
@@ -23,24 +24,29 @@ private:
 	glm::mat4 rotationMatrix;
 	glm::mat4 scaleMatrix;
 
-	bool canScale = true;
-
 public:
 	Transform();
 	~Transform();
 
+	void SetPosition(float x, float y, float z);
+	void SetPosition(Vector2 position);
 	void SetPosition(Vector3 position);
-	void Translate(Vector3 position);
-	void SetScale(Vector3 scale);
+
 	void SetRotation(float angle, Vector3 axis);
-	void SetEulerAngles(Vector3 eulerAngles);
-	void RotateX(float angle);
-	void RotateY(float angle);
-	void RotateZ(float angle);
+	void SetEulerAngles(Vector3 eulerAngles);	
+	void RotateXAxis(float angle);
+	void RotateYAxis(float angle);
+	void RotateZAxis(float angle);
+
+	void SetScale(float scale);
+	void SetScale(Vector3 scale);
+
+	void Translate(Vector3 position);
+	
 	void LookAt(Vector3 target);
 	void LookAt(Vector3 target, Vector3 upVector);
 	void LookAt(Vector3 position, Vector3 target, Vector3 upVector);
-	void SetCanScale(bool state);
+	
 	glm::mat4 GetTransform() const;
 
 	Vector3 GetFoward() const;

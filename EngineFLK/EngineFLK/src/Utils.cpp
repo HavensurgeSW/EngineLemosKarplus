@@ -19,3 +19,8 @@ int Utils::RandomRange(int min, int max)
 {
 	return std::rand() % (max - min + 1) + min;
 }
+
+float Utils::DegreesToRadians(float degrees)
+{
+	return degrees * 0.01745329251994329576923690768489f;
+}

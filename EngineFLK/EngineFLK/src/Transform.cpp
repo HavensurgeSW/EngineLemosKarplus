@@ -1,10 +1,11 @@
 #include "Transform.h"
+#include "Utils.h"
 
 Transform::Transform()
 {
-	position = Vector3().Zero();
-	rotation = Vector3().Zero();
-	localScale = Vector3().One();
+	position = Vector3::Zero();
+	rotation = Vector3::Zero();
+	localScale = Vector3::One();
 
 	right = Vector3::Right();
 	up = Vector3::Up();
@@ -24,102 +25,108 @@ Transform::~Transform()
 
 }
 
-void Transform::UpdateUnitVectors() 
-{
-	const glm::vec3 newFoward = normalize(glm::vec3(transform[2]));
-	foward = Vector3(newFoward.x, newFoward.y, newFoward.z);
-	right = foward.Cross(Vector3().Up()).Normalize();
-	up = right.Cross(foward).Normalize();
-}
-
-void Transform::SetPosition(Vector3 position) 
+void Transform::SetPosition(float x, float y, float z)
 {
 	this->position = position;
-	translationMatrix = glm::translate(glm::mat4(1.0f), 
-									   glm::vec3(position.x, position.y, position.z));
+	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
 
 	UpdateTransform();
 }
 
-void Transform::Translate(Vector3 position) 
+void Transform::SetPosition(Vector2 position)
 {
-	this->position += position;
-	translationMatrix = glm::translate(glm::mat4(1.0f), 
-									   glm::vec3(position.x, position.y, position.z));
-
-	UpdateTransform();
+	SetPosition(position.x, position.y, 0.0f);
 }
 
-void Transform::SetScale(Vector3 scale) 
+void Transform::SetPosition(Vector3 position)
 {
-	localScale = scale;
-	scaleMatrix = glm::scale(glm::mat4(1.0f), 
-							 glm::vec3(localScale.x, localScale.y, localScale.z));
-	UpdateTransform();
+	SetPosition(position.x, position.y, position.z);
 }
 
-void Transform::SetRotation(float angle, Vector3 axis) 
+
+void Transform::SetRotation(float angle, Vector3 axis)
 {
 	rotation.x = angle * axis.x;
 	rotation.y = angle * axis.y;
 	rotation.z = angle * axis.z;
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), 
-								 glm::radians(angle), 
-							     glm::vec3(axis.x, axis.y, axis.z));
+	//rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(axis.x, axis.y, axis.z));
+	//rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(angle), glm::vec3(axis.x, axis.y, axis.z));
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
+
 	UpdateUnitVectors();
 	UpdateTransform();
 }
 
-void Transform::UpdateTransform() 
+void Transform::SetEulerAngles(Vector3 eulerAngles)
 {
-	transform = translationMatrix * rotationMatrix * scaleMatrix;
+	rotation.x = eulerAngles.x;
+	rotation.y = eulerAngles.y;
+	rotation.z = eulerAngles.z;
+
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(rotation.x), glm::vec3(1.0, 0.0, 0.0));
+	rotationMatrix = glm::rotate(rotationMatrix, Utils::DegreesToRadians(rotation.y), glm::vec3(0.0, 1.0, 0.0));
+	rotationMatrix = glm::rotate(rotationMatrix, Utils::DegreesToRadians(rotation.z), glm::vec3(0.0, 0.0, 1.0));
+
+	UpdateTransform();
+	UpdateUnitVectors();
 }
 
-void Transform::RotateX(float angle) 
+
+void Transform::RotateXAxis(float angle)
 {
 	rotation.x += angle;
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), 
-								 glm::radians(rotation.x), 
-								 glm::vec3(1, 0, 0));
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(rotation.x), glm::vec3(1, 0, 0));
+
 	UpdateUnitVectors();
 	UpdateTransform();
 }
 
-void Transform::RotateY(float angle) 
+void Transform::RotateYAxis(float angle)
 {
 	rotation.y += angle;
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), 
-								 glm::radians(rotation.y),	
-								 glm::vec3(0, 1, 0));
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(rotation.y), glm::vec3(0, 1, 0));
 
 	UpdateTransform();
 	UpdateUnitVectors();
 }
 
-void Transform::RotateZ(float angle) 
+void Transform::RotateZAxis(float angle)
 {
 	rotation.z += angle;
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), 
-								 glm::radians(rotation.z), 
-								 glm::vec3(0, 0, 1));
-	
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(rotation.z), glm::vec3(0, 0, 1));
+
 	UpdateTransform();
 	UpdateUnitVectors();
 }
 
-void Transform::SetEulerAngles(Vector3 _eulerAngles) 
+
+void Transform::SetScale(float scale)
 {
-	rotation.x = _eulerAngles.x;
-	rotation.y = _eulerAngles.y;
-	rotation.z = _eulerAngles.z;
+	localScale.x = scale;
+	localScale.y = scale;
+	localScale.z = scale;
+	scaleMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(localScale.x, localScale.y, localScale.z));
 
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1.0, 0.0, 0.0));
-	rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.y), glm::vec3(0.0, 1.0, 0.0));
-	rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0));
-	
 	UpdateTransform();
-	UpdateUnitVectors();
 }
+
+void Transform::SetScale(Vector3 scale)
+{
+	localScale = scale;
+	scaleMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(localScale.x, localScale.y, localScale.z));
+
+	UpdateTransform();
+}
+
+
+void Transform::Translate(Vector3 position) 
+{
+	this->position += position;
+	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, position.z));
+
+	UpdateTransform();
+}
+
 
 void Transform::LookAt(Vector3 target) 
 {
@@ -140,11 +147,6 @@ void Transform::LookAt(Vector3 position, Vector3 target, Vector3 upVector)
 							glm::vec3(upVector.x, upVector.y, upVector.z));
 
 	UpdateUnitVectors();
-}
-
-void Transform::SetCanScale(bool state) 
-{
-	canScale = state;
 }
 
 Vector3 Transform::GetFoward() const 
@@ -200,4 +202,18 @@ Vector3 Transform::operator *(const Vector3& otherVector) const
 glm::mat4 Transform::GetTransform() const 
 {
 	return transform;
+}
+
+
+void Transform::UpdateUnitVectors()
+{
+	const glm::vec3 newFoward = normalize(glm::vec3(transform[2]));
+	foward = Vector3(newFoward.x, newFoward.y, newFoward.z);
+	right = foward.Cross(Vector3::Up()).Normalize();
+	up = right.Cross(foward).Normalize();
+}
+
+void Transform::UpdateTransform()
+{
+	transform = translationMatrix * rotationMatrix * scaleMatrix;
 }

@@ -5,6 +5,7 @@
 #include "glfw3.h"
 
 #include "Window.h"
+#include <Vector2.h>
 
 enum KeyState
 {
@@ -161,6 +162,7 @@ public:
 	static bool GetMouseButtonDown(MouseButton mouseButton); //LITERALLY WONT WORK
 	static bool GetMouseButton(MouseButton mouseButton);
 	static bool GetMouseButtonUp(MouseButton mouseButton); //LITERALLY WONT WORK
+	static Vector2 GetMousePosition();
 
 	static bool GetKeyDown(KeyCode keycode); //LITERALLY WONT WORK
 	static bool GetKey(KeyCode keycode);

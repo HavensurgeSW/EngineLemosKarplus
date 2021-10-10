@@ -38,9 +38,9 @@ void Shader::SetColorUniform(Color color)
 	glUniform4f(GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a); //finds the "location" index and sets the vec4 Color
 }
 
-void Shader::SetTransformUniform(glm::mat4 trans)
+void Shader::SetTransformUniform(Transform transform)
 {
-	glUniformMatrix4fv(GetUniformLocation("u_Transform"), 1, GL_FALSE, glm::value_ptr(trans));
+	glUniformMatrix4fv(GetUniformLocation("u_Transform"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform()));
 }
 
 void Shader::CreateShader(const std::string& filePath)
@@ -61,7 +61,7 @@ int Shader::GetUniformLocation(const std::string& uniformName)
 	
 	if (location == -1)
 	{
-		std::cout << "Shader.cpp error" << std::endl << "Uniform " << uniformName << " doesnt exist." << std::endl;
+		std::cout << "Shader unifrom " << uniformName << " not located or doesnt exist." << std::endl;
 	}
 
 	cachedUniformLocations[uniformName] = location;
