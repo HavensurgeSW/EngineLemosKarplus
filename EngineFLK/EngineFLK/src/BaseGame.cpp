@@ -35,6 +35,7 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
+	delete entity;
 }
 
 void BaseGame::TempInputs(Window* window)
@@ -52,14 +53,14 @@ void BaseGame::InitEngine()
 {
 	Init();
 	srand(time(0));
-	bool result = glfwInit();
-	if (!result)
+	bool initResult = glfwInit();
+	if (!initResult)
 	{
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
 
-	input->SetContextWindow(window);
 	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
+	input->SetContextWindow(window);
 
 	if (!window->GetWindow()) {
 
@@ -109,72 +110,72 @@ void BaseGame::LaunchGod()
 		transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
 		transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
 
-		if (input->GetKey(KeyCode::W))
+		if (Input::GetKey(KeyCode::W))
 		{
 			vec.y += 0.01f;
 		}
-		if (input->GetKey(KeyCode::S))
+		if (Input::GetKey(KeyCode::S))
 		{
 			vec.y -= 0.01f;
 		}
-		if (input->GetKey(KeyCode::D))
+		if (Input::GetKey(KeyCode::D))
 		{
 			vec.x += 0.01f;
 		}
-		if (input->GetKey(KeyCode::A))
+		if (Input::GetKey(KeyCode::A))
 		{
 			vec.x -= 0.01f;
 		}
 
-		if (input->GetKey(KeyCode::ENTER))
+		if (Input::GetKey(KeyCode::ENTER))
 		{
 			scale += 0.01f;
 		}
-		if (input->GetKey(KeyCode::BACKSPACE))
+		if (Input::GetKey(KeyCode::BACKSPACE))
 		{
 			scale -= 0.01f;
 		}
 
-		if (input->GetKey(KeyCode::Q))
+		if (Input::GetKey(KeyCode::Q))
 		{
 			rotationSpeed += 0.1f;
 		}
-		if (input->GetKey(KeyCode::E))
+		if (Input::GetKey(KeyCode::E))
 		{
 			rotationSpeed -= 0.1f;
 		}
 
-		if (input->GetKey(KeyCode::I))
+		if (Input::GetKey(KeyCode::I))
 		{
 			rotation.x += 0.1f;
 			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
 		}
-		if (input->GetKey(KeyCode::O))
+		if (Input::GetKey(KeyCode::O))
 		{
 			rotation.y += 0.1f;
 			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
 		}
-		if (input->GetKey(KeyCode::P))
+		if (Input::GetKey(KeyCode::P))
 		{
 			rotation.z += 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
 		}
-		if (input->GetKey(KeyCode::J))
+		if (Input::GetKey(KeyCode::J))
 		{
 			rotation.x -= 0.1f;
 			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
 		}
-		if (input->GetKey(KeyCode::K))
+		if (Input::GetKey(KeyCode::K))
 		{
 			rotation.y -= 0.1f;
 			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
 		}
-		if (input->GetKey(KeyCode::L))
+		if (Input::GetKey(KeyCode::L))
 		{
 			rotation.z -= 0.1f;
 			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
 		}
-		if (input->GetKey(KeyCode::R))
+		if (Input::GetKey(KeyCode::R))
 		{
 			vec = Vector2::Zero();
 			rotationSpeed = 0;

@@ -1,10 +1,14 @@
 #include "Input.h"
 
+#include <iostream>
+
 #include "glfw3.h"
+
+Window* Input::window = NULL;
 
 Input::Input() 
 {
-	window = new Window();
+
 }
 
 Input::~Input() 
@@ -13,23 +17,23 @@ Input::~Input()
 }
 
 
-bool Input::CheckKeyPress(KeyCode keycode, int type)
+bool Input::GetMouseButtonDown(MouseButton mouseButton)  //LITERALLY WONT WORK
 {
-	return (glfwGetKey(window->GetWindow(), keycode) == type);
+	return CheckMouseButtonPress(mouseButton, KeyState::GET_KEY_DOWN);
 }
 
-bool Input::CheckMouseButtonPress(MouseButton mouseButton, int type)
+bool Input::GetMouseButton(MouseButton mouseButton)
 {
-	return glfwGetMouseButton(window->GetWindow(), mouseButton) == GET_KEY_DOWN;
+	return CheckMouseButtonPress(mouseButton, KeyState::GET_KEY);
+}
+
+bool Input::GetMouseButtonUp(MouseButton mouseButton) //LITERALLY WONT WORK
+{
+	return CheckMouseButtonPress(mouseButton, KeyState::GET_KEY_UP);
 }
 
 
-bool Input::GetMouseButtonPressed(MouseButton button)
-{
-	return glfwGetMouseButton(window->GetWindow(), button) == GET_KEY_DOWN;
-}
-
-bool Input::GetKeyDown(KeyCode keycode)
+bool Input::GetKeyDown(KeyCode keycode) //LITERALLY WONT WORK
 {
 	return CheckKeyPress(keycode, GET_KEY_DOWN);
 }
@@ -39,18 +43,39 @@ bool Input::GetKey(KeyCode keycode)
 	return CheckKeyPress(keycode, GET_KEY);
 }
 
-bool Input::GetKeyUp(KeyCode keycode)
+bool Input::GetKeyUp(KeyCode keycode) //LITERALLY WONT WORK
 {
 	return CheckKeyPress(keycode, GET_KEY_UP);
 }
 
 
-void Input::SetContextWindow(Window* window)
+void Input::SetContextWindow(Window* contextWindow)
 {
-	this->window = window;
+	window = contextWindow;
+	if (window != NULL) 
+	{
+		glfwSetKeyCallback(window->GetWindow(), KeyInputCallback); //a method KeyInputCallback is called on key input
+	}
 }
 
 void Input::PollEvents()
 {
 	glfwPollEvents();
+}
+
+
+bool Input::CheckKeyPress(KeyCode keycode, int type)
+{
+	return glfwGetKey(window->GetWindow(), keycode) == type;
+}
+
+bool Input::CheckMouseButtonPress(MouseButton mouseButton, int type)
+{
+	return glfwGetMouseButton(window->GetWindow(), mouseButton) == type;
+}
+
+
+void Input::KeyInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	std::cout <<"Key " << key << " pressed." << std::endl;
 }

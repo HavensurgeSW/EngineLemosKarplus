@@ -144,29 +144,33 @@ enum KeyCode
 
 enum MouseButton
 {
-	MOUSE_BUTTON_1 = 0,
-	MOUSE_BUTTON_2 = 1,
-	MOUSE_BUTTON_3 = 2
+	LEFT_MOUSE_BUTTON = 0,
+	RIGHT_MOUSE_BUTTON = 1,
+	MOUSE_WHEEL = 2
 };
 
 class FLK_API Input
 {
 private:
-	Window* window;
+	static Window* window;
 
 public:
 	Input();
 	~Input();
 
-	bool GetMouseButtonPressed(MouseButton button);
-	bool GetKeyDown(KeyCode keyBoard);
-	bool GetKey(KeyCode keyBoard);
-	bool GetKeyUp(KeyCode keyBoard);
+	static bool GetMouseButtonDown(MouseButton mouseButton); //LITERALLY WONT WORK
+	static bool GetMouseButton(MouseButton mouseButton);
+	static bool GetMouseButtonUp(MouseButton mouseButton); //LITERALLY WONT WORK
 
-	void SetContextWindow(Window* window);
-	void PollEvents();
+	static bool GetKeyDown(KeyCode keycode); //LITERALLY WONT WORK
+	static bool GetKey(KeyCode keycode);
+	static bool GetKeyUp(KeyCode keycode); //LITERALLY WONT WORK
+	
+	static void SetContextWindow(Window* contextWindow);
+	static void PollEvents();
 
 private:
-	bool CheckKeyPress(KeyCode keycode, int type);
-	bool CheckMouseButtonPress(MouseButton keyBoard, int type);
+	static bool CheckKeyPress(KeyCode keycode, int type);
+	static bool CheckMouseButtonPress(MouseButton mouseButton, int type);
+	static void KeyInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
