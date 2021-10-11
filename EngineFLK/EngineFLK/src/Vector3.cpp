@@ -41,7 +41,7 @@ float Vector3::Dot(Vector3 otherVector)
 Vector3 Vector3::Normalize()
 {
 	float sqRoot = sqrt(x * x + y * y + z * z);
-	if (sqRoot != 0) 
+	if (sqRoot != 0)
 	{
 		x /= sqRoot;
 		y /= sqRoot;

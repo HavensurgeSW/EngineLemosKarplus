@@ -10,6 +10,7 @@ uniform mat4 u_Transform;
 
 void main()
 {
+    gl_Position = position;
     gl_Position = u_Transform * vec4(aPos, 1.0f);
     TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }
@@ -24,5 +25,5 @@ uniform vec4 u_Color; //basically a variable
 
 void main()
 {
-	color = u_Color;
+	color = vec4(0.9, 0.4, 0.9, 1.0);
 };

@@ -1,8 +1,8 @@
 #pragma once
-#include "Exports.h"
+
 //#define Red Color(1, 0, 0) define colors like this?
 
-struct FLK_API Color
+struct Color
 {
 	float r;
 	float g;

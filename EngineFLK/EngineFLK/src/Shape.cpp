@@ -49,7 +49,7 @@ void Shape::Draw()
 	//renderer->DrawElement();
 }
 
-void Shape::SetPositions(float *arr)
+void Shape::SetPositions(float* arr)
 {
 	int size = *(&arr + 1) - arr;
 	int arrSize = sizeof(arr) / sizeof(arr[0]);
