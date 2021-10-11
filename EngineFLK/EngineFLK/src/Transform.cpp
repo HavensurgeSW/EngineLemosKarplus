@@ -50,8 +50,8 @@ void Transform::SetRotation(float angle, Vector3 axis)
 	rotation.y = angle * axis.y;
 	rotation.z = angle * axis.z;
 	//rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(axis.x, axis.y, axis.z));
-	//rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(angle), glm::vec3(axis.x, axis.y, axis.z));
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
+	//rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(angle), glm::vec3(axis.x, axis.y, axis.z));
 
 	UpdateUnitVectors();
 	UpdateTransform();
@@ -196,6 +196,7 @@ Vector3 Transform::operator *(const Vector3& otherVector) const
 {
 	glm::vec4 vec4 = glm::vec4(otherVector.x, otherVector.y, otherVector.z, 1.0f);
 	glm::vec4 newVec4 = transform * vec4;
+
 	return Vector3(newVec4.x, newVec4.y, newVec4.z);
 }
 

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#define PI 3,14159265358979323846
+
 float Utils::RandomRange(float min, float max)
 {
 	float valueToReturn;
@@ -20,7 +22,13 @@ int Utils::RandomRange(int min, int max)
 	return std::rand() % (max - min + 1) + min;
 }
 
-float Utils::DegreesToRadians(float degrees)
+
+float Utils::RadiansToDegrees(float value) 
 {
-	return degrees * 0.01745329251994329576923690768489f;
+	return value * (180.0f / PI);
+}
+
+float Utils::DegreesToRadians(float value) 
+{
+	return value * (PI / 180.0f);
 }

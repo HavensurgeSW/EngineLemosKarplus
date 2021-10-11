@@ -6,16 +6,16 @@
 #include "Color.h"
 #include "Shader.h"
 
-#include <time.h>
+#include <ctime>
 #include <fstream>
 #include <sstream>
 #include <string>
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
+//#include "glm/glm.hpp"
+//#include "glm/gtc/matrix_transform.hpp"
+//#include "glm/gtc/type_ptr.hpp"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Transform.h"
@@ -37,11 +37,6 @@ BaseGame::~BaseGame()
 	delete input;
 	delete collisionManager;
 	delete entity;
-}
-
-void BaseGame::TempInputs(Window* window)
-{
-
 }
 
 void BaseGame::InitGlew()
@@ -104,7 +99,7 @@ void BaseGame::LaunchGod()
 
 		renderer->ClearScreen();
 		shader.Bind();
-
+		
 		transform.SetPosition(vec);
 		transform.SetRotation(rotationSpeed, rotation);
 		transform.SetScale(scale);

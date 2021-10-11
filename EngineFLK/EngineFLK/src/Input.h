@@ -5,14 +5,7 @@
 #include "glfw3.h"
 
 #include "Window.h"
-#include <Vector2.h>
-
-enum KeyState
-{
-	GET_KEY_UP = 0,
-	GET_KEY = 1,
-	GET_KEY_DOWN = 2,
-};
+#include "Vector2.h"
 
 enum KeyCode
 {
@@ -140,7 +133,8 @@ enum KeyCode
 	RIGHT_CONTROL = 345,
 	RIGHT_ALT = 346,
 	RIGHT_SUPER = 347,
-	MENU = 348,
+
+	MENU = 348
 };
 
 enum MouseButton
@@ -150,10 +144,19 @@ enum MouseButton
 	MOUSE_WHEEL = 2
 };
 
+enum KeyState
+{
+	GET_KEY_UP = 0,
+	GET_KEY = 1,
+	GET_KEY_DOWN = 2,
+};
+
 class FLK_API Input
 {
 private:
 	static Window* window;
+
+	
 
 public:
 	Input();

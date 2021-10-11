@@ -30,12 +30,12 @@ void Renderer::SwapBuffer()
 
 void Renderer::SetClearColor(Color color)
 {
-	glClearColor(color.r, color.g, color.b, color.a);
+	GLCheck(glClearColor(color.r, color.g, color.b, color.a));
 }
 
 void Renderer::ClearScreen()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	GLCheck(glClear(GL_COLOR_BUFFER_BIT));
 }
 
 void Renderer::SetWindow(Window* window)
@@ -64,8 +64,8 @@ void Renderer::GenerateBuffers()
 
 	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
 
-	glEnableVertexAttribArray(0); //enables or "turns on" the specified attribute
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
+	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
+	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
 	//float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
 
 	IndexBuffer indexBuffer(indices, maxIndices);
@@ -80,14 +80,14 @@ void Renderer::MakeContextCurrent(Window* window)
 
 void Renderer::Unbind()
 {
-	glUseProgram(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	GLCheck(glUseProgram(0));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }
 
 void Renderer::DrawTriangle()
 {
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
 
 // Used to draw an element utilizing indices

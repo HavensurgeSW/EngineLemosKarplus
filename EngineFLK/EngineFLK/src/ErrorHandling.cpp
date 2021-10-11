@@ -36,16 +36,16 @@ void GLAPIENTRY GLLogMessage(GLenum source, GLenum type, GLuint id, GLenum sever
 		break;
 
 	case GL_DEBUG_SEVERITY_LOW:
-		std::cout << "Severity: LOW" << std::endl;
 		std::cout << "Error Flag: " << id << std::endl;
 		std::cout << "Error: " << message << std::endl;
+		std::cout << "Severity: LOW" << std::endl;
 		break;
 	}
 }
 
 void InitErrorHandling()
 {
-	glDebugMessageCallback(GLLogMessage, nullptr);
-	glEnable(GL_DEBUG_OUTPUT);
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	GLCheck(glDebugMessageCallback(GLLogMessage, nullptr));
+	GLCheck(glEnable(GL_DEBUG_OUTPUT));
+	GLCheck(glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS));
 }

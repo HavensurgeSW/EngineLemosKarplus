@@ -10,7 +10,7 @@
 class FLK_API BaseGame
 {
 private:
-	Window* window; //Mover GLFWWindow a constructor
+	Window* window;
 	Renderer* renderer;
 	Input* input;
 	CollisionManager* collisionManager;
@@ -30,7 +30,6 @@ public:
 	void Terminate();
 
 private:
-	void TempInputs(Window* window);
-	void InitGlew();
 
+	void InitGlew();
 };
