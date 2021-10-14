@@ -55,6 +55,12 @@ void Renderer::GenerateBuffers()
 		-0.5f,  0.5f  //vertex 3 for square
 	};
 
+	float texCoords[] = {
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		0.5f, 1.0f
+	};
+
 	const int maxIndices = 6;
 	unsigned int indices[maxIndices] = //Triangle connections
 	{
