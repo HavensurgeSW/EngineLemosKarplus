@@ -41,7 +41,7 @@ void Shader::SetColorUniform(Color color)
 
 void Shader::SetTransformUniform(Transform transform)
 {
-	GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Transform"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
+	GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Model"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
 }
 
 void Shader::CreateShader(const std::string& filePath)

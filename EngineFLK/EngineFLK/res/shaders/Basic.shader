@@ -6,12 +6,13 @@ layout(location = 1) in vec2 aTexCoord;
 
 out vec2 TexCoord;
 
-uniform mat4 u_Transform;
+uniform mat4 u_Model = mat4(1.0);
+uniform mat4 u_View = mat4(1.0);
+uniform mat4 u_Projection = mat4(1.0);
 
 void main()
 {
-    gl_Position = position;
-    gl_Position = u_Transform * vec4(aPos, 1.0f);
+    gl_Position = u_Model * u_View * u_Projection * vec4(aPos, 1.0f);
     TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }
 
@@ -25,5 +26,5 @@ uniform vec4 u_Color; //basically a variable
 
 void main()
 {
-	color = vec4(0.9, 0.4, 0.9, 1.0);
+    color = u_Color;
 };

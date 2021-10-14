@@ -51,7 +51,7 @@ void Transform::SetRotation(float angle, Vector3 axis)
 	rotation.z = angle * axis.z;
 	//rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(axis.x, axis.y, axis.z));
 	//rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
-	rotationMatrix = glm::rotate(glm::mat4(1.0f), Utils::DegreesToRadians(angle), glm::vec3(axis.x, axis.y, axis.z));
+	rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
 
 	UpdateUnitVectors();
 	UpdateTransform();

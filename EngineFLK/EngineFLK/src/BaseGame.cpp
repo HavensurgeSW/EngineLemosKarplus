@@ -13,9 +13,6 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-//#include "glm/glm.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
-//#include "glm/gtc/type_ptr.hpp"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Transform.h"
@@ -102,13 +99,7 @@ void BaseGame::LaunchGod()
 
 		transform.SetPosition(vec);
 		transform.SetRotation(rotationSpeed, rotation);
-		transform.SetScale(scale);
-
-		//glm::mat4 transform = glm::mat4(1.0f);
-		//
-		//transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
-		//transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
-		//transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
+		transform.SetScale(scale);										//
 
 		if (Input::GetKey(KeyCode::W))
 		{

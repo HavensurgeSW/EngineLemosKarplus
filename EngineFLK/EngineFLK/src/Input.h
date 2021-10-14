@@ -154,9 +154,7 @@ enum KeyState
 class FLK_API Input
 {
 private:
-	static Window* window;
-
-	
+	static Window* window;	
 
 public:
 	Input();
