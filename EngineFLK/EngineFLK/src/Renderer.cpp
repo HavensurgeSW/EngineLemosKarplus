@@ -55,11 +55,17 @@ void Renderer::GenerateBuffers()
 		-0.5f,  0.5f  //vertex 3 for square
 	};
 
-	float texCoords[] = {
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		0.5f, 1.0f
-	};
+	//float texCoords[] = {
+	//	-0.5f, -0.5f,
+	//	 0.5f, -0.5f,
+	//	 0.5f,  0.5f,
+	//	-0.5f,  0.5f
+	//};
+
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	//float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
 	const int maxIndices = 6;
 	unsigned int indices[maxIndices] = //Triangle connections

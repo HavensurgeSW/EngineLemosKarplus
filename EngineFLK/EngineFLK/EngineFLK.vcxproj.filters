@@ -76,6 +76,9 @@
     <Filter Include="src\transform">
       <UniqueIdentifier>{4622eaf2-e83c-467b-89d0-561ece932c02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\stb_image">
+      <UniqueIdentifier>{71903ca3-dd82-42f4-abc2-81e9225a9c62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="src\Tilemap.cpp">
       <Filter>src\entities\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_image\stb_image.cpp">
+      <Filter>src\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="src\Tilemap.h">
       <Filter>src\entities\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image\stb_image.h">
+      <Filter>src\stb_image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
