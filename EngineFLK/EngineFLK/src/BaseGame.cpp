@@ -90,6 +90,7 @@ void BaseGame::LaunchGod()
 	Vector2 vec(0.0f, 0.0f);
 	Vector3 rotation(0.0f, 0.0f, 1.0f);
 	Transform transform;
+
 	while (!window->ShouldClose())
 	{
 		Update();
@@ -99,7 +100,7 @@ void BaseGame::LaunchGod()
 
 		transform.SetPosition(vec);
 		transform.SetRotation(rotationSpeed, rotation);
-		transform.SetScale(scale);										//
+		transform.SetScale(scale);
 
 		if (Input::GetKey(KeyCode::W))
 		{

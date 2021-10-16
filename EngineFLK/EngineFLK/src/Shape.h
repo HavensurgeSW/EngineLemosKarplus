@@ -9,7 +9,7 @@
 #include <iterator>
 #include <vector>
 
-enum class FLK_API ShapeType //Primitive?
+enum FLK_API ShapeType //Primitive?
 {
 	TRIANGLE,
 	QUAD
@@ -21,7 +21,6 @@ private:
 	Renderer* renderer;
 	ShapeType type;
 	Shader shader;
-	float positions[8];
 
 public:
 	Shape();
@@ -33,9 +32,4 @@ public:
 	void SetShader(Shader shader);
 	void SetShapeType(ShapeType type);
 	void Draw();
-
-	void SetPositions(float *arr);
 };
-
-
-// Las matrices copadas son: Model, View, Projection

@@ -62,7 +62,7 @@ void Renderer::GenerateBuffers()
 		2, 3, 0  //triangle 2 
 	};
 
-	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
+	VertexBuffer vertexBuffer(maxPositions, positions);
 
 	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
 	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)

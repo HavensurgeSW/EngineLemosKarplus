@@ -9,10 +9,11 @@ private:
 public:
 
 	VertexBuffer();
-	VertexBuffer(const void* data, unsigned int byteSize);
+	VertexBuffer(int verticesAmount, float vertices[]);
 	~VertexBuffer();
+
+	void GenerateBuffer(int verticesAmount, float vertices[]);
 
 	void Bind();
 	void Unbind();
-	//void SetData(const void* data, unsigned int size); //might need it?
 };
