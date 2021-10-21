@@ -6,10 +6,10 @@ VertexBuffer::VertexBuffer()
 {
 }
 
-VertexBuffer::VertexBuffer(int verticesAmount, float vertices[]) //byteSize should be something like (amountOfVertices * sizeof(float in this case)
+VertexBuffer::VertexBuffer(float vertices[], int verticesAmount) //byteSize should be something like (amountOfVertices * sizeof(float in this case)
 {
-	GLCheck(glGenBuffers(1, &rendererId));
-	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, rendererId));
+	GLCheck(glGenBuffers(1, &bufferId));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, bufferId));
 	GLCheck(glBufferData(GL_ARRAY_BUFFER, verticesAmount * sizeof(vertices), vertices, GL_STATIC_DRAW));
 }
 
@@ -21,16 +21,16 @@ VertexBuffer::~VertexBuffer()
 	//ends, making the program break when trying to DrawElement()
 }
 
-void VertexBuffer::GenerateBuffer(int verticesAmount, float vertices[])
+void VertexBuffer::SetData(float vertices[], int verticesAmount)
 {
-	GLCheck(glGenBuffers(1, &rendererId));
-	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, rendererId));
+	GLCheck(glGenBuffers(1, &bufferId));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, bufferId));
 	GLCheck(glBufferData(GL_ARRAY_BUFFER, verticesAmount * sizeof(vertices), vertices, GL_STATIC_DRAW));
 }
 
 void VertexBuffer::Bind()
 {
-	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, rendererId));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, bufferId));
 }
 
 void VertexBuffer::Unbind()
@@ -38,9 +38,7 @@ void VertexBuffer::Unbind()
 	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-//void VertexBuffer::SetData(const void* data, unsigned int size)
-//{
-//	glGenBuffers(1, &rendererId);
-//	glBindBuffer(GL_ARRAY_BUFFER, rendererId);
-//	glBufferData(GL_ARRAY_BUFFER, size * sizeof(float), data, GL_STATIC_DRAW);
-//}
+void VertexBuffer::Delete()
+{
+	GLCheck(glDeleteBuffers(1, &bufferId));
+}

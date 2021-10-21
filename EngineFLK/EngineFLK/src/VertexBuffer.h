@@ -4,16 +4,17 @@
 class FLK_API VertexBuffer
 {
 private:
-	unsigned int rendererId;
+	unsigned int bufferId;
 
 public:
 
 	VertexBuffer();
-	VertexBuffer(int verticesAmount, float vertices[]);
+	VertexBuffer(float vertices[], int verticesAmount);
 	~VertexBuffer();
 
-	void GenerateBuffer(int verticesAmount, float vertices[]);
+	void SetData(float vertices[], int verticesAmount);
 
 	void Bind();
 	void Unbind();
+	void Delete();
 };

@@ -76,6 +76,9 @@
     <Filter Include="src\transform">
       <UniqueIdentifier>{4622eaf2-e83c-467b-89d0-561ece932c02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\vertex_array">
+      <UniqueIdentifier>{4a692e9e-48ba-46c4-bc28-b7d204e921df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -129,14 +132,17 @@
     <ClCompile Include="src\Entity2D.cpp">
       <Filter>src\entities\entity2d</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shape.cpp">
-      <Filter>src\entities\shape</Filter>
-    </ClCompile>
     <ClCompile Include="src\Sprite.cpp">
       <Filter>src\entities\sprite</Filter>
     </ClCompile>
     <ClCompile Include="src\Tilemap.cpp">
       <Filter>src\entities\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VertexArray.cpp">
+      <Filter>src\vertex_array</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shape.cpp">
+      <Filter>src\entities\shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,14 +200,17 @@
     <ClInclude Include="src\Entity2D.h">
       <Filter>src\entities\entity2d</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shape.h">
-      <Filter>src\entities\shape</Filter>
-    </ClInclude>
     <ClInclude Include="src\Sprite.h">
       <Filter>src\entities\sprite</Filter>
     </ClInclude>
     <ClInclude Include="src\Tilemap.h">
       <Filter>src\entities\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VertexArray.h">
+      <Filter>src\vertex_array</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shape.h">
+      <Filter>src\entities\shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

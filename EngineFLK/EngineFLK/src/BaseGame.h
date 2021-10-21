@@ -5,7 +5,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "CollisionManager.h"
-#include "Entity.h"
+#include "Shape.h"
 
 class FLK_API BaseGame
 {
@@ -14,8 +14,8 @@ private:
 	Renderer* renderer;
 	Input* input;
 	CollisionManager* collisionManager;
-	Entity* entity;
 	Shader shader;
+	Shape* shape;
 
 public:
 	BaseGame();

@@ -5,7 +5,7 @@
 class FLK_API Entity
 {
 private:
-	Renderer* renderer;
+
 public:
 
 };

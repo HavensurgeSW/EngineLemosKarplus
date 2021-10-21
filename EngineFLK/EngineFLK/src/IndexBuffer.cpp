@@ -2,11 +2,15 @@
 #include "glew.h"
 #include "ErrorHandling.h"
 
-IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int indexCount) : indexCount(indexCount)
+IndexBuffer::IndexBuffer()
 {
-	GLCheck(glGenBuffers(1, &rendererId));
-	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId));
-	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), data, GL_STATIC_DRAW));
+}
+
+IndexBuffer::IndexBuffer(const unsigned int indices[], unsigned int indexCount) : indexCount(indexCount)
+{
+	GLCheck(glGenBuffers(1, &bufferId));
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId));
+	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW));
 }
 
 IndexBuffer::~IndexBuffer()
@@ -17,9 +21,16 @@ IndexBuffer::~IndexBuffer()
 	//making the program break when trying to DrawElement()
 }
 
+void IndexBuffer::SetData(const unsigned int indices[], unsigned int indexCount)
+{
+	GLCheck(glGenBuffers(1, &bufferId));
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId));
+	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW));
+}
+
 void IndexBuffer::Bind()
 {
-	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererId)); //saves a segment of memory to the specified buffer
+	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId)); //saves a segment of memory to the specified buffer
 }
 
 void IndexBuffer::Unbind()
@@ -27,7 +38,12 @@ void IndexBuffer::Unbind()
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }
 
-inline unsigned int IndexBuffer::GetIndexCount() const
+void IndexBuffer::Delete()
+{
+	GLCheck(glDeleteBuffers(1, &bufferId));
+}
+
+unsigned int IndexBuffer::GetIndexCount() const
 {
 	return indexCount;
 }

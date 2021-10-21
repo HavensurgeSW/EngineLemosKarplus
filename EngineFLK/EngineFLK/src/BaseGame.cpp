@@ -24,7 +24,6 @@ BaseGame::BaseGame()
 	renderer = new Renderer();
 	input = new Input();
 	collisionManager = new CollisionManager();
-	entity = new Entity();
 }
 
 BaseGame::~BaseGame()
@@ -33,7 +32,7 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
-	delete entity;
+	delete shape;
 }
 
 void BaseGame::InitGlew()
@@ -69,15 +68,18 @@ void BaseGame::InitEngine()
 
 void BaseGame::LaunchGod()
 {
-	renderer->GenerateBuffers();
+	//renderer->GenerateBuffers();
 
 	//Shader shader("res/shaders/Basic.shader");
 	shader.CreateShader("res/shaders/Basic.shader");
-	shader.Bind();
 
+	shape = new Shape(renderer, shader, ShapeType::TRIANGLE);
+	//shader.Bind();
 	Color shaderColor = Color::RandomColor();
-	shader.SetColorUniform(shaderColor);
-	shader.Unbind();
+	shape->Init();
+	shape->SetColor(shaderColor);
+	//shader.SetColorUniform(shaderColor);
+	//shader.Unbind();
 
 	renderer->SetClearColor(Color::RandomColor());
 
@@ -89,18 +91,17 @@ void BaseGame::LaunchGod()
 	float scale = 1.0f;
 	Vector2 vec(0.0f, 0.0f);
 	Vector3 rotation(0.0f, 0.0f, 1.0f);
-	Transform transform;
 
 	while (!window->ShouldClose())
 	{
 		Update();
-
+		shape->Draw();
 		renderer->ClearScreen();
 		shader.Bind();
 
-		transform.SetPosition(vec);
-		transform.SetRotation(rotationSpeed, rotation);
-		transform.SetScale(scale);
+		shape->transform.SetPosition(vec);
+		shape->transform.SetRotation(rotationSpeed, rotation);
+		shape->transform.SetScale(scale);
 
 		if (Input::GetKey(KeyCode::W))
 		{
@@ -175,7 +176,7 @@ void BaseGame::LaunchGod()
 			scale = 1.0f;
 		}
 
-		shader.SetTransformUniform(transform);
+		shader.SetTransformUniform(shape->transform);
 
 		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
 		{
