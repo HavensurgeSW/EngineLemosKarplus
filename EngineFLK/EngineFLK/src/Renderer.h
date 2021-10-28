@@ -15,10 +15,6 @@ class FLK_API Renderer
 private:
 	Window* window;
 
-	VertexBuffer vertexBuffer;
-	VertexArray vertexArray;
-	IndexBuffer indexBuffer;
-
 public:
 	Renderer();
 	~Renderer();
@@ -32,7 +28,7 @@ public:
 	void GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices);
 	void DrawTriangle();
 	void DrawElement(int indices);
-	void Draw(Shader& shader);
+	void Draw(Shader& shader, int indexCount);
 	void UnbindBuffers();
 };
 

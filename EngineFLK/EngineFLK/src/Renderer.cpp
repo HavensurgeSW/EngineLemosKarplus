@@ -80,9 +80,9 @@ void Renderer::MakeContextCurrent(Window* window)
 
 void Renderer::GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices)
 {
-	vertexArray.GenerateVertexArray();
-	vertexBuffer.SetData(vertices, maxVertices);
-	indexBuffer.SetData(indices, maxIndices);
+	//vertexArray.GenerateVertexArray();
+	//vertexBuffer.SetData(vertices, maxVertices);
+	//indexBuffer.SetData(indices, maxIndices);
 }
 
 void Renderer::DrawTriangle()
@@ -96,13 +96,13 @@ void Renderer::DrawElement(int indices)
 	//GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 }
 
-void Renderer::Draw(Shader& shader)
+void Renderer::Draw(Shader& shader, int indexCount)
 {
 	//shader.SetVertexAttributes("position");
 	shader.SetVertexAttributes("position");
 	shader.SetColorAttributes("color");
 
-	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
+	GLCheck(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
 	//vertexArray.Unbind();
 	//vertexBuffer.Unbind();
@@ -112,8 +112,8 @@ void Renderer::Draw(Shader& shader)
 
 void Renderer::UnbindBuffers()
 {
-	vertexArray.Unbind();
-	vertexBuffer.Unbind();
-	indexBuffer.Unbind();
-	GLCheck(glUseProgram(0));
+	//vertexArray.Unbind();
+	//vertexBuffer.Unbind();
+	//indexBuffer.Unbind();
+	//GLCheck(glUseProgram(0));
 }

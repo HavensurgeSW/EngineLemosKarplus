@@ -33,47 +33,44 @@ private:
 	};
 	unsigned int triangleIndices[3] =
 	{
-		0,1,2
+		0, 1, 2
 	};
 
 	float quadVertices[8] =
 	{
-		0.5f,  0.5f,
-		0.5f, -0.5f,
-	   -0.5f, -0.5f,
-	   -0.5f,  0.5f 
+		 0.5f,  0.5f,
+		 0.5f, -0.5f,
+	    -0.5f, -0.5f,
+	    -0.5f,  0.5f
 	};
 	unsigned int quadIndices[6] =
 	{
-		0,1,3,
-		1,2,3
+		0, 1, 3,
+		1, 2, 3
 	};
+
+	VertexBuffer vertexBuffer;
+	VertexArray vertexArray;
+	IndexBuffer indexBuffer;
+
 
 public:
 	Transform transform;
 
 	Shape();
-	Shape(Renderer* renderer, Shader& shader);
-	Shape(Renderer* renderer, Shader& shader, ShapeType type);
+	Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize);
 	~Shape();
 
 	void Init();
-
-	void SetPosition(Vector2 position);
-	void SetPosition(Vector3 position);
-
-	void SetRotation(float angle);
-	void SetRotation(Vector3 rotation);
-
-	void SetScale(float scalar);
-	void SetScale(Vector2 scale);
-	void SetScale(Vector3 scale);
 	
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
-	void SetShapeType(ShapeType type);
+	//void SetShapeType(ShapeType type);   //why tf would you change this in runtime
 	void SetColor(Color color);
 	void Draw();
+
+	void BindBuffers();
+	void UnbindBuffers();
 };
 
 #endif

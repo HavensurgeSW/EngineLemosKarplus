@@ -70,10 +70,9 @@ void BaseGame::LaunchGod()
 {
 	shader.CreateShader("res/shaders/Basic.shader");
 
-	shape = new Shape(renderer, shader, ShapeType::TRIANGLE);
+	shape = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
 	Color shaderColor = Color::RandomColor();
 
-	shape->Init();
 	shape->SetColor(shaderColor);
 
 	renderer->SetClearColor(Color::RandomColor());
@@ -85,7 +84,7 @@ void BaseGame::LaunchGod()
 	float rotationSpeed = 0.0f;
 	float scale = 1.0f;
 	Vector2 vec(0.0f, 0.0f);
-	Vector3 rotation(0.0f, 0.0f, 1.0f);
+	Vector3 rotationAxis(0.0f, 0.0f, 1.0f);
 
 	while (!window->ShouldClose())
 	{
@@ -94,7 +93,7 @@ void BaseGame::LaunchGod()
 		shape->Draw();
 
 		shape->transform.SetPosition(vec);
-		shape->transform.SetRotation(rotationSpeed, rotation);
+		shape->transform.SetRotation(rotationSpeed, rotationAxis);
 		shape->transform.SetScale(scale);
 
 		if (Input::GetKey(KeyCode::W))
@@ -134,43 +133,41 @@ void BaseGame::LaunchGod()
 
 		if (Input::GetKey(KeyCode::I))
 		{
-			rotation.x += 0.1f;
-			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
+			rotationAxis.x += 0.1f;
+			std::cout << "Rotation Angle X: " << rotationAxis.x << std::endl;
 		}
 		if (Input::GetKey(KeyCode::O))
 		{
-			rotation.y += 0.1f;
-			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
+			rotationAxis.y += 0.1f;
+			std::cout << "Rotation Angle Y: " << rotationAxis.y << std::endl;
 		}
 		if (Input::GetKey(KeyCode::P))
 		{
-			rotation.z += 0.1f;
-			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
+			rotationAxis.z += 0.1f;
+			std::cout << "Rotation Angle Z: " << rotationAxis.z << std::endl;
 		}
 		if (Input::GetKey(KeyCode::J))
 		{
-			rotation.x -= 0.1f;
-			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
+			rotationAxis.x -= 0.1f;
+			std::cout << "Rotation Angle X: " << rotationAxis.x << std::endl;
 		}
 		if (Input::GetKey(KeyCode::K))
 		{
-			rotation.y -= 0.1f;
-			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
+			rotationAxis.y -= 0.1f;
+			std::cout << "Rotation Angle Y: " << rotationAxis.y << std::endl;
 		}
 		if (Input::GetKey(KeyCode::L))
 		{
-			rotation.z -= 0.1f;
-			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
+			rotationAxis.z -= 0.1f;
+			std::cout << "Rotation Angle Z: " << rotationAxis.z << std::endl;
 		}
 		if (Input::GetKey(KeyCode::R))
 		{
 			vec = Vector2::Zero();
 			rotationSpeed = 0;
-			rotation = Vector3::One();
+			rotationAxis = Vector3::One();
 			scale = 1.0f;
 		}
-
-		shader.SetTransformUniform(shape->transform);
 
 		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
 		{
