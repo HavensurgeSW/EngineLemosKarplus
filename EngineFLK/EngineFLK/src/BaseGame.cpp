@@ -68,9 +68,6 @@ void BaseGame::InitEngine()
 
 void BaseGame::LaunchGod()
 {
-	//renderer->GenerateBuffers();
-
-	//Shader shader("res/shaders/Basic.shader");
 	shader.CreateShader("res/shaders/Basic.shader");
 
 	shape = new Shape(renderer, shader, ShapeType::TRIANGLE);
@@ -78,8 +75,6 @@ void BaseGame::LaunchGod()
 
 	shape->Init();
 	shape->SetColor(shaderColor);
-	//shader.SetColorUniform(shaderColor);
-	//shader.Unbind();
 
 	renderer->SetClearColor(Color::RandomColor());
 
@@ -175,24 +170,22 @@ void BaseGame::LaunchGod()
 			scale = 1.0f;
 		}
 
-		//shader.SetTransformUniform(shape->transform);
+		shader.SetTransformUniform(shape->transform);
 
-		//if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
-		//{
-		//	incrementRed *= -1;
-		//}
-		//if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
-		//{
-		//	incrementBlue *= -1;
-		//}
-		//shaderColor.r += incrementRed;
-		//shaderColor.b += incrementBlue;
-		//shader.SetColorUniform(shaderColor);
+		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
+		{
+			incrementRed *= -1;
+		}
+		if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
+		{
+			incrementBlue *= -1;
+		}
+		shaderColor.r += incrementRed;
+		shaderColor.b += incrementBlue;
+		shape->SetColor(shaderColor);
 
-		//renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
-		//TempInputs(window);
 	}
 
 	Terminate();

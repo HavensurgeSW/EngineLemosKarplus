@@ -51,6 +51,7 @@ void Shape::Init() {
 		break;
 	}
 
+	shader.Bind();
 	//shader.SetColorUniform(Color::White());
 	//shader.SetTransformUniform(transform);
 }
@@ -63,11 +64,4 @@ void Shape::SetColor(Color color)
 void Shape::Draw() 
 {
 	renderer->Draw(shader);
-	//shader.Unbind();
-}
-
-void Shape::Bind()
-{
-	shader.SetTransformUniform(transform);
-	shader.Bind();
 }

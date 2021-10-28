@@ -101,14 +101,13 @@ void Renderer::Draw(Shader& shader)
 	//shader.SetVertexAttributes("position");
 	shader.SetVertexAttributes("position");
 	shader.SetColorAttributes("color");
-	shader.Bind();
 
 	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
 
 	//vertexArray.Unbind();
 	//vertexBuffer.Unbind();
 	//indexBuffer.Unbind();
-	shader.Unbind();
+	//shader.Unbind();
 }
 
 void Renderer::UnbindBuffers()

@@ -59,13 +59,21 @@ public:
 
 	void Init();
 
+	void SetPosition(Vector2 position);
+	void SetPosition(Vector3 position);
+
+	void SetRotation(float angle);
+	void SetRotation(Vector3 rotation);
+
+	void SetScale(float scalar);
+	void SetScale(Vector2 scale);
+	void SetScale(Vector3 scale);
+	
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
 	void SetShapeType(ShapeType type);
 	void SetColor(Color color);
 	void Draw();
-
-	void Bind();
 };
 
 #endif
