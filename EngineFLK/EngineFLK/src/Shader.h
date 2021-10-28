@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHADER_H
+#define SHADER_H
 #include "Exports.h"
 
 #include <iostream>
@@ -34,6 +35,10 @@ public:
 	void SetTransformUniform(Transform transform);
 	void CreateShader(const std::string& filePath);
 
+	void SetVertexAttributes(const char* name);
+	void SetColorAttributes(const char* name);
+	void EnableAttributePointer(unsigned int shaderAttribIndex, int dataAmmount, int dataSize, int dataPosition);
+
 private:
 
 	int GetUniformLocation(const std::string& uniformName);
@@ -42,3 +47,4 @@ private:
 	ShaderPaths ParseShader(const std::string& filepath);
 };
 
+#endif

@@ -11,6 +11,7 @@ IndexBuffer::IndexBuffer(const unsigned int indices[], unsigned int indexCount) 
 	GLCheck(glGenBuffers(1, &bufferId));
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId));
 	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW));
+	this->indexCount = indexCount;
 }
 
 IndexBuffer::~IndexBuffer()
@@ -26,6 +27,7 @@ void IndexBuffer::SetData(const unsigned int indices[], unsigned int indexCount)
 	GLCheck(glGenBuffers(1, &bufferId));
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId));
 	GLCheck(glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW));
+	this->indexCount = indexCount;
 }
 
 void IndexBuffer::Bind()

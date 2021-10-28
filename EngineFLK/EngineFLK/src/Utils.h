@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_H
+#define UTILS_H
 #include "Exports.h"
 
 struct FLK_API Utils
@@ -9,3 +10,5 @@ struct FLK_API Utils
 	static float DegreesToRadians(float value);
 	static float RadiansToDegrees(float value);
 };
+
+#endif

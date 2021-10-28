@@ -78,22 +78,43 @@ void Renderer::MakeContextCurrent(Window* window)
 	glfwSwapInterval(1); //synchrinizes with our vSync
 }
 
+void Renderer::GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices)
+{
+	vertexArray.GenerateVertexArray();
+	vertexBuffer.SetData(vertices, maxVertices);
+	indexBuffer.SetData(indices, maxIndices);
+}
+
 void Renderer::DrawTriangle()
 {
-	GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
+	//GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
 
 // Used to draw an element utilizing indices
 void Renderer::DrawElement(int indices)
 {
-	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
+	//GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 }
 
-void Renderer::Draw(Shape& shape)
+void Renderer::Draw(Shader& shader)
 {
-	shape.Bind();
-	
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	//shader.SetVertexAttributes("position");
+	shader.SetVertexAttributes("position");
+	shader.SetColorAttributes("color");
+	shader.Bind();
 
-	shape.UnbindBuffers();
+	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
+
+	//vertexArray.Unbind();
+	//vertexBuffer.Unbind();
+	//indexBuffer.Unbind();
+	shader.Unbind();
+}
+
+void Renderer::UnbindBuffers()
+{
+	vertexArray.Unbind();
+	vertexBuffer.Unbind();
+	indexBuffer.Unbind();
+	GLCheck(glUseProgram(0));
 }

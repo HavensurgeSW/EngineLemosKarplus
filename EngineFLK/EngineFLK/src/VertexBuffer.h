@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VERTEX_BUFFER_H
+#define VERTEX_BUFFER_H
 #include "Exports.h"
 
 class FLK_API VertexBuffer
@@ -18,3 +19,5 @@ public:
 	void Unbind();
 	void Delete();
 };
+
+#endif

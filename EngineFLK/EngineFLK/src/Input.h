@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INPUT_H
+#define INPUT_H
 #include "Exports.h"
 
 #include "glew.h"
@@ -178,3 +179,5 @@ private:
 	static bool CheckMouseButtonPress(MouseButton mouseButton, int type);
 	static void KeyInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
+
+#endif

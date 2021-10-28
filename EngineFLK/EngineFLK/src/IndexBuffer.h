@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INDEX_BUFFER_H
+#define INDEX_BUFFER_H
 #include "Exports.h"
 #include "ErrorHandling.h"
 
@@ -22,3 +23,5 @@ public:
 
 	unsigned int GetIndexCount() const;
 };
+
+#endif

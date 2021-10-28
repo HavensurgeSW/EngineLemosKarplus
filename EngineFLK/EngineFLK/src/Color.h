@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COLOR_H
+#define COLOR_H
 
 #include "Exports.h"
 //#define Red Color(1, 0, 0) define colors like this?
@@ -28,3 +29,5 @@ struct FLK_API Color
 	static Color RandomBlueShade();
 	static Color RandomColor();
 };
+
+#endif

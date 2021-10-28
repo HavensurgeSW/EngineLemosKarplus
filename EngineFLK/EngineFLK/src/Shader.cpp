@@ -41,7 +41,7 @@ void Shader::SetColorUniform(Color color)
 
 void Shader::SetTransformUniform(Transform transform)
 {
-	//GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Model"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
+	GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Model"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
 }
 
 void Shader::CreateShader(const std::string& filePath)
@@ -152,4 +152,22 @@ ShaderPaths Shader::ParseShader(const std::string& filepath)
 	}
 
 	return { stringStreams[0].str(), stringStreams[1].str() };
+}
+
+void Shader::SetVertexAttributes(const char* name) 
+{
+	unsigned int attribute = glGetAttribLocation(rendererId, name);
+	EnableAttributePointer(attribute, 3, 6, 0);
+}
+
+void Shader::SetColorAttributes(const char* name) 
+{
+	unsigned int attribute = glGetAttribLocation(rendererId, name);
+	EnableAttributePointer(attribute, 3, 6, 3);
+}
+
+void Shader::EnableAttributePointer(unsigned int shaderAttribIndex, int dataAmmount, int dataSize, int dataPosition)
+{
+	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
+	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 }

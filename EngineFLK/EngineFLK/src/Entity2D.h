@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENTITY2D_H
+#define ENTITY2D_H
 #include "Exports.h"
 #include "Entity.h"
 
@@ -9,3 +10,4 @@ private:
 public:
 };
 
+#endif

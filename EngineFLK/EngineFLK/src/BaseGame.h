@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BASE_GAME_H
+#define BASE_GAME_H
 
 #include "Exports.h"
 #include "Window.h"
@@ -33,3 +34,5 @@ private:
 
 	void InitGlew();
 };
+
+#endif

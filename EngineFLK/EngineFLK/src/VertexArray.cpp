@@ -19,6 +19,12 @@ void VertexArray::GenerateVertexArray()
 	GLCheck(glBindVertexArray(arrayId));
 }
 
+void VertexArray::SetVertexAttribute(const char* name)
+{
+	//unsigned int attribute = glGetAttribLocation(_id, name);
+	//CreateAttribute(attribute, 3, 6, 0);
+}
+
 void VertexArray::Bind()
 {
 	GLCheck(glBindVertexArray(arrayId));

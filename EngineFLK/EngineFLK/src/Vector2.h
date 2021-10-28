@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR2_H
+#define VECTOR2_H
 
 #include "Exports.h"
 
@@ -31,3 +32,5 @@ struct FLK_API Vector2
 	Vector2 operator /(const float scalar) const;
 	std::string ToString() const;
 };
+
+#endif
