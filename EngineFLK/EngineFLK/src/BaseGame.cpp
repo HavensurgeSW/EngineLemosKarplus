@@ -32,7 +32,7 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
-	delete shape;
+	delete triangle;
 }
 
 void BaseGame::InitGlew()
@@ -63,123 +63,65 @@ void BaseGame::InitEngine()
 	renderer->SetWindow(window);
 
 	renderer->MakeContextCurrent(window);
+
 	InitGlew();
+	
+	renderer->SetClearColor(Color::RandomColor());
 }
 
 void BaseGame::LaunchGod()
 {
 	shader.CreateShader("res/shaders/Basic.shader");
 
-	shape = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
-	Color shaderColor = Color::RandomColor();
+	triangle = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
+	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
+	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
 
-	shape->SetColor(shaderColor);
+	triangle->SetColor(Color::RandomColor());
+	quad->SetColor(Color::RandomColor());
+	otherQuad->SetColor(Color::RandomColor());
 
-	renderer->SetClearColor(Color::RandomColor());
+	Vector2 trianglePosition(0.0f, 0.0f);
+	Vector2 quadPosition(0.5f, 0.5f);
+	Vector2 otherQuadPosition(-0.5f, 0.5f);
+	
+	float triangleScale = 0.8f;
+	float otherQuadScale = 0.3f;
 
-	float incrementRed = 0.05f;
-	float incrementBlue = 0.05f;
+	triangle->transform.SetPosition(trianglePosition);
 
-	float rotationAngle = 15.0f;
-	float rotationSpeed = 0.0f;
-	float scale = 1.0f;
-	Vector2 vec(0.0f, 0.0f);
-	Vector3 rotationAxis(0.0f, 0.0f, 1.0f);
+	quad->transform.SetPosition(quadPosition);
+	quad->transform.SetScale(triangleScale);
+	
+	otherQuad->transform.SetPosition(otherQuadPosition);
+	otherQuad->transform.SetScale(otherQuadScale);
 
 	while (!window->ShouldClose())
 	{
 		Update();
 		renderer->ClearScreen();
-		shape->Draw();
+		triangle->Draw();
+		quad->Draw();
+		otherQuad->Draw();
 
-		shape->transform.SetPosition(vec);
-		shape->transform.SetRotation(rotationSpeed, rotationAxis);
-		shape->transform.SetScale(scale);
-
+		triangle->transform.SetPosition(trianglePosition);
+		
 		if (Input::GetKey(KeyCode::W))
 		{
-			vec.y += 0.01f;
+			trianglePosition.y += 0.01f;
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			vec.y -= 0.01f;
+			trianglePosition.y -= 0.01f;
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
-			vec.x += 0.01f;
+			trianglePosition.x += 0.01f;
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			vec.x -= 0.01f;
+			trianglePosition.x -= 0.01f;
 		}
-
-		if (Input::GetKey(KeyCode::ENTER))
-		{
-			scale += 0.01f;
-		}
-		if (Input::GetKey(KeyCode::BACKSPACE))
-		{
-			scale -= 0.01f;
-		}
-
-		if (Input::GetKey(KeyCode::Q))
-		{
-			rotationSpeed += 0.1f;
-		}
-		if (Input::GetKey(KeyCode::E))
-		{
-			rotationSpeed -= 0.1f;
-		}
-
-		if (Input::GetKey(KeyCode::I))
-		{
-			rotationAxis.x += 0.1f;
-			std::cout << "Rotation Angle X: " << rotationAxis.x << std::endl;
-		}
-		if (Input::GetKey(KeyCode::O))
-		{
-			rotationAxis.y += 0.1f;
-			std::cout << "Rotation Angle Y: " << rotationAxis.y << std::endl;
-		}
-		if (Input::GetKey(KeyCode::P))
-		{
-			rotationAxis.z += 0.1f;
-			std::cout << "Rotation Angle Z: " << rotationAxis.z << std::endl;
-		}
-		if (Input::GetKey(KeyCode::J))
-		{
-			rotationAxis.x -= 0.1f;
-			std::cout << "Rotation Angle X: " << rotationAxis.x << std::endl;
-		}
-		if (Input::GetKey(KeyCode::K))
-		{
-			rotationAxis.y -= 0.1f;
-			std::cout << "Rotation Angle Y: " << rotationAxis.y << std::endl;
-		}
-		if (Input::GetKey(KeyCode::L))
-		{
-			rotationAxis.z -= 0.1f;
-			std::cout << "Rotation Angle Z: " << rotationAxis.z << std::endl;
-		}
-		if (Input::GetKey(KeyCode::R))
-		{
-			vec = Vector2::Zero();
-			rotationSpeed = 0;
-			rotationAxis = Vector3::One();
-			scale = 1.0f;
-		}
-
-		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
-		{
-			incrementRed *= -1;
-		}
-		if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
-		{
-			incrementBlue *= -1;
-		}
-		shaderColor.r += incrementRed;
-		shaderColor.b += incrementBlue;
-		shape->SetColor(shaderColor);
 
 		renderer->SwapBuffer();
 		input->PollEvents();

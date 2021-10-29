@@ -62,7 +62,7 @@ void Renderer::Draw(Shader& shader, int indexCount)
 	shader.SetVertexAttributes("position");
 	shader.SetColorAttributes("color");
 
-	GLCheck(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+	GLCheck(glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr));
 
 	//vertexArray.Unbind();
 	//vertexBuffer.Unbind();

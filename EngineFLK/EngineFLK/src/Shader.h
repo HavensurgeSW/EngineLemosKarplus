@@ -31,8 +31,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 
-	void SetColorUniform(Color color); //will need to expand
-	void SetTransformUniform(Transform transform);
+	void SetColorUniform(const Color color); //will need to expand
+	void SetTransformUniform(const Transform transform);
 	void CreateShader(const std::string& filePath);
 
 	void SetVertexAttributes(const char* name);

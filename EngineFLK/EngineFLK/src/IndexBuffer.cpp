@@ -16,10 +16,7 @@ IndexBuffer::IndexBuffer(const unsigned int indices[], unsigned int indexCount) 
 
 IndexBuffer::~IndexBuffer()
 {
-	//glDeleteBuffers(1, &rendererId); 
-	//ERROR: Since in this case its allocated in heap, the destructor gets called as soon as 
-	//the method where the index buffer is, ends, 
-	//making the program break when trying to DrawElement()
+	glDeleteBuffers(1, &bufferId);
 }
 
 void IndexBuffer::SetData(const unsigned int indices[], unsigned int indexCount)

@@ -34,12 +34,12 @@ void Shader::Unbind() const
 	GLCheck(glUseProgram(0));
 }
 
-void Shader::SetColorUniform(Color color)
+void Shader::SetColorUniform(const Color color)
 {
 	GLCheck(glUniform4f(GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a)); //finds the "location" index and sets the vec4 Color
 }
 
-void Shader::SetTransformUniform(Transform transform)
+void Shader::SetTransformUniform(const Transform transform)
 {
 	GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Model"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
 }

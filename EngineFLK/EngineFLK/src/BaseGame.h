@@ -16,7 +16,9 @@ private:
 	Input* input;
 	CollisionManager* collisionManager;
 	Shader shader;
-	Shape* shape;
+	Shape* triangle;
+	Shape* quad;
+	Shape* otherQuad;
 
 public:
 	BaseGame();
