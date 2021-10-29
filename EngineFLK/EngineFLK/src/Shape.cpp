@@ -5,7 +5,7 @@ Shape::Shape()
 
 }
 
-Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize)
+Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize) : Entity2D()
 {
 	this->renderer = renderer;
 	this->shader = shader;

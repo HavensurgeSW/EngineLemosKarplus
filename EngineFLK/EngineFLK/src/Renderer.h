@@ -23,11 +23,8 @@ public:
 	void SetClearColor(Color color);
 	void ClearScreen();
 	void SetWindow(Window* window);
-	void GenerateBuffers(); //genBuffers
 	void MakeContextCurrent(Window* window);
 	void GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices);
-	void DrawTriangle();
-	void DrawElement(int indices);
 	void Draw(Shader& shader, int indexCount);
 	void UnbindBuffers();
 };

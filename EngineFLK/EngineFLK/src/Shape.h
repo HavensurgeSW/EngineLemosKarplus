@@ -2,9 +2,8 @@
 #define SHAPE_H
 
 #include "Exports.h"
-#include "Renderer.h"
 #include "Shader.h"
-//#include "Entity2D.h"
+#include "Entity2D.h"
 #include "Transform.h"
 
 #include "VertexBuffer.h"
@@ -18,10 +17,9 @@ enum FLK_API ShapeType //Primitive?
 	QUAD
 };
 
-class FLK_API Shape //: public Entity2D
+class FLK_API Shape : public Entity2D
 {
-private:
-	Renderer* renderer;
+private:	
 	ShapeType type;
 	Shader shader;
 
@@ -52,7 +50,6 @@ private:
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
-
 
 public:
 	Transform transform;

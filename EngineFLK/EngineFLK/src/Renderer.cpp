@@ -43,35 +43,6 @@ void Renderer::SetWindow(Window* window)
 	this->window = window;
 }
 
-void Renderer::GenerateBuffers()
-{
-	/*const int maxPositions = 8;
-
-	float positions[maxPositions] = //Vertices
-	{
-		-0.5f, -0.5f, //vertex 0
-		 0.5f, -0.5f, //vertex 1
-		 0.5f,  0.5f, //vertex 2
-		-0.5f,  0.5f  //vertex 3 for square
-	};
-
-	const int maxIndices = 6;
-	unsigned int indices[maxIndices] = //Triangle connections
-	{
-		0, 1, 2, //triangle 1
-		2, 3, 0  //triangle 2 
-	};
-
-	VertexBuffer vertexBuffer(positions, maxPositions);
-
-	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
-	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
-	//float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
-
-	IndexBuffer indexBuffer(indices, maxIndices);
-	indexBuffer.Bind();*/
-}
-
 void Renderer::MakeContextCurrent(Window* window)
 {
 	glfwMakeContextCurrent(window->GetWindow());
@@ -83,17 +54,6 @@ void Renderer::GenerateBuffers(float vertices[], int maxVertices, unsigned int i
 	//vertexArray.GenerateVertexArray();
 	//vertexBuffer.SetData(vertices, maxVertices);
 	//indexBuffer.SetData(indices, maxIndices);
-}
-
-void Renderer::DrawTriangle()
-{
-	//GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
-}
-
-// Used to draw an element utilizing indices
-void Renderer::DrawElement(int indices)
-{
-	//GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
 }
 
 void Renderer::Draw(Shader& shader, int indexCount)
