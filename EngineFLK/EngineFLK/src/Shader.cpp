@@ -34,6 +34,11 @@ void Shader::Unbind() const
 	GLCheck(glUseProgram(0));
 }
 
+void Shader::Delete() const
+{
+	GLCheck(glDeleteProgram(rendererId));
+}
+
 void Shader::SetColorUniform(const Color color)
 {
 	GLCheck(glUniform4f(GetUniformLocation("u_Color"), color.r, color.g, color.b, color.a)); //finds the "location" index and sets the vec4 Color
@@ -154,19 +159,7 @@ ShaderPaths Shader::ParseShader(const std::string& filepath)
 	return { stringStreams[0].str(), stringStreams[1].str() };
 }
 
-void Shader::SetVertexAttributes(const char* name) 
-{
-	unsigned int attribute = glGetAttribLocation(rendererId, name);
-	EnableAttributePointer(attribute, 3, 6, 0);
-}
-
-void Shader::SetColorAttributes(const char* name) 
-{
-	unsigned int attribute = glGetAttribLocation(rendererId, name);
-	EnableAttributePointer(attribute, 3, 6, 3);
-}
-
-void Shader::EnableAttributePointer(unsigned int shaderAttribIndex, int dataAmmount, int dataSize, int dataPosition)
+void Shader::EnableAttributePointer(/*fill with parameters*/)
 {
 	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
 	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));

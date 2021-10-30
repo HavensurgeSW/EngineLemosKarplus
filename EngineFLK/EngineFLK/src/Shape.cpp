@@ -20,6 +20,7 @@ Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize)
 Shape::~Shape()
 {
 	UnbindBuffers();
+	DeleteBuffers();
 }
 
 void Shape::SetRenderer(Renderer* renderer)
@@ -31,11 +32,6 @@ void Shape::SetShader(Shader& shader)
 {
 	this->shader = shader;
 }
-
-//void Shape::SetShapeType(ShapeType type)
-//{
-//	this->type = type;
-//}
 
 void Shape::Init() 
 {
@@ -63,17 +59,7 @@ void Shape::SetColor(Color color)
 
 void Shape::Draw() 
 {
-	//BindBuffers();
-	shader.SetTransformUniform(transform);
-	renderer->Draw(shader, indexBuffer.GetIndexCount());
-	//UnbindBuffers();
-}
-
-void Shape::BindBuffers()
-{
-	vertexArray.Bind();
-	vertexBuffer.Bind();
-	indexBuffer.Bind();
+	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
 }
 
 void Shape::UnbindBuffers()
@@ -82,4 +68,12 @@ void Shape::UnbindBuffers()
 	vertexBuffer.Unbind();
 	indexBuffer.Unbind();
 	shader.Unbind();
+}
+
+void Shape::DeleteBuffers()
+{
+	vertexArray.Delete();
+	vertexBuffer.Delete();
+	indexBuffer.Delete();
+	shader.Delete();
 }

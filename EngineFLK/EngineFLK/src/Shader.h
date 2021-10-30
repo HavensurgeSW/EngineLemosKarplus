@@ -30,14 +30,13 @@ public:
 
 	void Bind() const;
 	void Unbind() const;
+	void Delete() const;
 
 	void SetColorUniform(const Color color); //will need to expand
 	void SetTransformUniform(const Transform transform);
 	void CreateShader(const std::string& filePath);
 
-	void SetVertexAttributes(const char* name);
-	void SetColorAttributes(const char* name);
-	void EnableAttributePointer(unsigned int shaderAttribIndex, int dataAmmount, int dataSize, int dataPosition);
+	void EnableAttributePointer(/*fill with parameters*/);
 
 private:
 

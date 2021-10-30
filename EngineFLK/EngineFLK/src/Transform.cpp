@@ -46,9 +46,8 @@ void Transform::SetPosition(Vector3 position)
 
 void Transform::SetRotation(float angle, Vector3 axis)
 {
-	rotation.x = angle * axis.x;
-	rotation.y = angle * axis.y;
-	rotation.z = angle * axis.z;
+	rotation = axis * angle;
+
 	//rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(axis.x, axis.y, axis.z));
 	//rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));
 	rotationMatrix = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis.x, axis.y, axis.z));

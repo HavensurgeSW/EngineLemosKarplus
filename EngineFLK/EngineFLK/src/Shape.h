@@ -66,8 +66,9 @@ public:
 	void SetColor(Color color);
 	void Draw();
 
-	void BindBuffers();
+private:
 	void UnbindBuffers();
+	void DeleteBuffers();
 };
 
 #endif

@@ -77,24 +77,18 @@ void BaseGame::LaunchGod()
 	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
 	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
 
-	triangle->SetColor(Color::RandomColor());
-	quad->SetColor(Color::RandomColor());
-	otherQuad->SetColor(Color::RandomColor());
+	triangle->SetColor(Color::RandomColor());  //
+	quad->SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
+	otherQuad->SetColor(Color::RandomColor()); //
 
 	Vector2 trianglePosition(0.0f, 0.0f);
+	float triangleRotationSpeed = 0.0f;
+	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
 	Vector2 quadPosition(0.5f, 0.5f);
-	Vector2 otherQuadPosition(-0.5f, 0.5f);
-	
-	float triangleScale = 0.8f;
-	float otherQuadScale = 0.3f;
+	float quadRotationSpeed = 0.0f;
+	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
 
-	triangle->transform.SetPosition(trianglePosition);
-
-	quad->transform.SetPosition(quadPosition);
-	quad->transform.SetScale(triangleScale);
-	
-	otherQuad->transform.SetPosition(otherQuadPosition);
-	otherQuad->transform.SetScale(otherQuadScale);
+	float scale = 0.3f;
 
 	while (!window->ShouldClose())
 	{
@@ -104,7 +98,14 @@ void BaseGame::LaunchGod()
 		quad->Draw();
 		otherQuad->Draw();
 
+		triangle->transform.SetRotation(triangleRotationSpeed, triangleRotation);
+		quad->transform.SetRotation(quadRotationSpeed, quadRotation);
 		triangle->transform.SetPosition(trianglePosition);
+		quad->transform.SetPosition(quadPosition);
+
+		triangle->transform.SetScale(scale);
+		quad->transform.SetScale(scale);
+		otherQuad->transform.SetScale(scale);
 		
 		if (Input::GetKey(KeyCode::W))
 		{
@@ -121,6 +122,39 @@ void BaseGame::LaunchGod()
 		if (Input::GetKey(KeyCode::A))
 		{
 			trianglePosition.x -= 0.01f;
+		}
+		if (Input::GetKey(KeyCode::Q))
+		{
+			triangleRotationSpeed += 0.01f;
+		}
+		if (Input::GetKey(KeyCode::E))
+		{
+			triangleRotationSpeed -= 0.01f;
+		}
+
+		if (Input::GetKey(KeyCode::UP))
+		{
+			quadPosition.y += 0.01f;
+		}
+		if (Input::GetKey(KeyCode::DOWN))
+		{
+			quadPosition.y -= 0.01f;
+		}
+		if (Input::GetKey(KeyCode::RIGHT))
+		{
+			quadPosition.x += 0.01f;
+		}
+		if (Input::GetKey(KeyCode::LEFT))
+		{
+			quadPosition.x -= 0.01f;
+		}
+		if (Input::GetKey(KeyCode::NUMPAD_1))
+		{
+			quadRotationSpeed += 0.01f;
+		}
+		if (Input::GetKey(KeyCode::NUMPAD_3))
+		{
+			quadRotationSpeed -= 0.01f;
 		}
 
 		renderer->SwapBuffer();

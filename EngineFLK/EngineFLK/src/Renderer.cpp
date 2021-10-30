@@ -56,18 +56,20 @@ void Renderer::GenerateBuffers(float vertices[], int maxVertices, unsigned int i
 	//indexBuffer.SetData(indices, maxIndices);
 }
 
-void Renderer::Draw(Shader& shader, int indexCount)
+void Renderer::Draw(Shader& shader, Transform transform, VertexArray& vertexArray, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer)
 {
-	//shader.SetVertexAttributes("position");
-	shader.SetVertexAttributes("position");
-	shader.SetColorAttributes("color");
+	shader.Bind();
+	vertexArray.Bind();
+	vertexBuffer.Bind();
+	indexBuffer.Bind();
 
-	GLCheck(glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr));
-
-	//vertexArray.Unbind();
-	//vertexBuffer.Unbind();
-	//indexBuffer.Unbind();
-	//shader.Unbind();
+	shader.SetTransformUniform(transform);
+	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
+	
+	vertexArray.Unbind();
+	vertexBuffer.Unbind();
+	indexBuffer.Unbind();
+	shader.Unbind();
 }
 
 void Renderer::UnbindBuffers()
@@ -76,4 +78,33 @@ void Renderer::UnbindBuffers()
 	//vertexBuffer.Unbind();
 	//indexBuffer.Unbind();
 	//GLCheck(glUseProgram(0));
+}
+
+void GenerateBuffers()
+{
+	const int maxPositions = 8;
+
+	float positions[maxPositions] = //Vertices
+	{
+		-0.5f, -0.5f, //vertex 0
+		 0.5f, -0.5f, //vertex 1
+		 0.5f,  0.5f, //vertex 2
+		-0.5f,  0.5f  //vertex 3 for square
+	};
+
+	const int maxIndices = 6;
+	unsigned int indices[maxIndices] = //Triangle connections
+	{
+		0, 1, 2, //triangle 1
+		2, 3, 0  //triangle 2 
+	};
+
+	VertexBuffer vertexBuffer(positions, maxPositions);
+
+	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
+	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
+	//float * 2 implies that each memory section of the vertex has the size of 2 floats (X and Y)
+
+	IndexBuffer indexBuffer(indices, maxIndices);
+	indexBuffer.Bind();
 }
