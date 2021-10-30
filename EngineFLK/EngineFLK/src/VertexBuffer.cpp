@@ -27,10 +27,8 @@ void VertexBuffer::SetData(float vertices[], int verticesAmount)
 	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, bufferId));
 	GLCheck(glBufferData(GL_ARRAY_BUFFER, verticesAmount * sizeof(vertices), vertices, GL_STATIC_DRAW));
 
-	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
-	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
-
-	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	//
+	//GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
 void VertexBuffer::Bind()

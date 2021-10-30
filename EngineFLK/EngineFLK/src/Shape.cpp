@@ -40,11 +40,15 @@ void Shape::Init()
 	{
 	case ShapeType::TRIANGLE:
 		vertexBuffer.SetData(triangleVertices, 6);
+		GLCheck(glEnableVertexAttribArray(0));
+		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 		indexBuffer.SetData(triangleIndices, 3);
 		break;
 
 	case ShapeType::QUAD:
 		vertexBuffer.SetData(quadVertices, 8);
+		GLCheck(glEnableVertexAttribArray(0));
+		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 		indexBuffer.SetData(quadIndices, 6);
 		break;
 	}
