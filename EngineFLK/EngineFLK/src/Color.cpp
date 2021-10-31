@@ -28,6 +28,13 @@ Color::Color(float r, float g, float b, float a)
 	this->a = a;
 }
 
+void Color::TurnNegative()
+{
+	r = 1.0f - r;
+	g = 1.0f - g;
+	b = 1.0f - b;
+}
+
 Color Color::Red()
 {
 	return Color(1.0f, 0.0f, 0.0f, 1.0f);
@@ -41,6 +48,11 @@ Color Color::Green()
 Color Color::Blue()
 {
 	return Color(0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+Color Color::Lime()
+{
+	return Color(0.0f, 1.0f, 0.0f, 1.0f);
 }
 
 Color Color::Yellow()
@@ -58,14 +70,60 @@ Color Color::White()
 	return Color(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
+Color Color::Maroon()
+{
+	return Color(0.5f, 0.0f, 0.0f, 1.0f);
+}
+
+Color Color::Cyan()
+{
+	return Color(0.0f, 1.0f, 1.0f, 1.0f);
+}
+
+Color Color::Teal()
+{
+	return Color(0.0f, 0.5f, 0.5f, 1.0f);
+}
+
 Color Color::Purple()
 {
 	return Color(0.4f, 0.0f, 0.4f, 1.0f);
 }
 
+Color Color::Gray()
+{
+	return Color(0.5f, 0.5f, 0.5f, 1.0f);
+}
+
+Color Color::Silver()
+{
+	return Color(0.75f, 0.75f, 0.75f, 1.0f);
+}
+
+Color Color::Fuchsia()
+{
+	return Color(1.0f, 0.0f, 1.0f, 1.0f);
+}
+
+Color Color::Pink()
+{
+	return Color(1.0f, 0.75f, 0.8f, 1.0f);
+}
+
+Color Color::OldPink()
+{
+	return Color(0.9f, 0.65f, 0.7f, 1.0f);
+}
+
 Color Color::Clear()
 {
 	return Color(1.0f, 1.0f, 1.0f, 0.0f);
+}
+
+Color Color::GetNegative(Color color)
+{
+	color.TurnNegative();
+	return color;
 }
 
 
