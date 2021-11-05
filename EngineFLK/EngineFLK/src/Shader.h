@@ -42,7 +42,7 @@ private:
 
 	int GetUniformLocation(const std::string& uniformName);
 	unsigned int CreateShader(const std::string& vertexShader, const std::string fragmentShader);
-	unsigned int CompileShader(const std::string& source, unsigned int type);
+	unsigned int CompileShader(const std::string& source, unsigned int type); //could be transformed into nested function within CreateShader()
 	ShaderPaths ParseShader(const std::string& filepath);
 };
 
