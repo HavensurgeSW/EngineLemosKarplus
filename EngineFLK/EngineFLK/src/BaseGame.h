@@ -1,11 +1,12 @@
-#pragma once
+#ifndef BASE_GAME_H
+#define BASE_GAME_H
 
 #include "Exports.h"
 #include "Window.h"
 #include "Renderer.h"
 #include "Input.h"
 #include "CollisionManager.h"
-#include "Entity.h"
+#include "Shape.h"
 
 class FLK_API BaseGame
 {
@@ -14,8 +15,11 @@ private:
 	Renderer* renderer;
 	Input* input;
 	CollisionManager* collisionManager;
-	Entity* entity;
 	Shader shader;
+
+	Shape* triangle;
+	Shape* quad;
+	Shape* otherQuad;
 
 public:
 	BaseGame();
@@ -33,3 +37,5 @@ private:
 
 	void InitGlew();
 };
+
+#endif

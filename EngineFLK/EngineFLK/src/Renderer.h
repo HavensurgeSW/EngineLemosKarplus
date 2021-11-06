@@ -1,11 +1,14 @@
-#pragma once
+#ifndef RENDERER_H
+#define RENDERER_H
 
 #include "Exports.h"
 
 #include "Window.h"
 #include "Shader.h"
-
 #include "Color.h"
+#include "VertexBuffer.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 
 class FLK_API Renderer
 {
@@ -20,10 +23,10 @@ public:
 	void SetClearColor(Color color);
 	void ClearScreen();
 	void SetWindow(Window* window);
-	void GenerateBuffers(); //genBuffers
 	void MakeContextCurrent(Window* window);
-	void Unbind();
-	void DrawTriangle();
-	void DrawElement(int indices);
-	void Draw(Shader shader); //agregar mas datos
+	void GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices);
+	void Draw(Shader& shader, Transform transform, VertexArray& vertexArray, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer);
+	void UnbindBuffers();
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRANSFORM_H
+#define TRANSFORM_H
 #include "Exports.h"
 
 #include <glm/glm.hpp>
@@ -66,3 +67,4 @@ private:
 	void UpdateTransform();
 };
 
+#endif

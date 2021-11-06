@@ -25,9 +25,6 @@
     <Filter Include="src\entities\animation">
       <UniqueIdentifier>{c4cb04d7-90cb-4bc6-8668-d90178ba6506}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\entities\entity">
-      <UniqueIdentifier>{6e0f13ed-8feb-4a6e-882e-29bf409e5453}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\entities\entity2d">
       <UniqueIdentifier>{c09ccb8a-98a3-4090-ae1d-0233dbba0034}</UniqueIdentifier>
     </Filter>
@@ -76,8 +73,8 @@
     <Filter Include="src\transform">
       <UniqueIdentifier>{4622eaf2-e83c-467b-89d0-561ece932c02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\stb_image">
-      <UniqueIdentifier>{71903ca3-dd82-42f4-abc2-81e9225a9c62}</UniqueIdentifier>
+    <Filter Include="src\vertex_array">
+      <UniqueIdentifier>{4a692e9e-48ba-46c4-bc28-b7d204e921df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,17 +120,11 @@
     <ClCompile Include="src\Window.cpp">
       <Filter>src\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entity.cpp">
-      <Filter>src\entities\entity</Filter>
-    </ClCompile>
     <ClCompile Include="src\Animation.cpp">
       <Filter>src\entities\animation</Filter>
     </ClCompile>
     <ClCompile Include="src\Entity2D.cpp">
       <Filter>src\entities\entity2d</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Shape.cpp">
-      <Filter>src\entities\shape</Filter>
     </ClCompile>
     <ClCompile Include="src\Sprite.cpp">
       <Filter>src\entities\sprite</Filter>
@@ -141,8 +132,11 @@
     <ClCompile Include="src\Tilemap.cpp">
       <Filter>src\entities\tilemap</Filter>
     </ClCompile>
-    <ClCompile Include="src\stb_image\stb_image.cpp">
-      <Filter>src\stb_image</Filter>
+    <ClCompile Include="src\VertexArray.cpp">
+      <Filter>src\vertex_array</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shape.cpp">
+      <Filter>src\entities\shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,17 +185,11 @@
     <ClInclude Include="src\Window.h">
       <Filter>src\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity.h">
-      <Filter>src\entities\entity</Filter>
-    </ClInclude>
     <ClInclude Include="src\Animation.h">
       <Filter>src\entities\animation</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity2D.h">
       <Filter>src\entities\entity2d</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Shape.h">
-      <Filter>src\entities\shape</Filter>
     </ClInclude>
     <ClInclude Include="src\Sprite.h">
       <Filter>src\entities\sprite</Filter>
@@ -209,8 +197,11 @@
     <ClInclude Include="src\Tilemap.h">
       <Filter>src\entities\tilemap</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image\stb_image.h">
-      <Filter>src\stb_image</Filter>
+    <ClInclude Include="src\VertexArray.h">
+      <Filter>src\vertex_array</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shape.h">
+      <Filter>src\entities\shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,12 +32,15 @@ bool Input::GetMouseButtonUp(MouseButton mouseButton) //LITERALLY WONT WORK
 	return CheckMouseButtonPress(mouseButton, KeyState::GET_KEY_UP);
 }
 
+
 Vector2 Input::GetMousePosition()
 {
 	double xPos;
 	double yPos;
+
 	glfwGetCursorPos(window->GetWindow(), &xPos, &yPos);
-	return Vector2(xPos, yPos);
+
+	return Vector2(static_cast<float>(xPos), static_cast<float>(yPos));
 }
 
 

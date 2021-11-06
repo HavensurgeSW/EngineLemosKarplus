@@ -13,9 +13,6 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-//#include "glm/glm.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
-//#include "glm/gtc/type_ptr.hpp"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Transform.h"
@@ -27,7 +24,6 @@ BaseGame::BaseGame()
 	renderer = new Renderer();
 	input = new Input();
 	collisionManager = new CollisionManager();
-	entity = new Entity();
 }
 
 BaseGame::~BaseGame()
@@ -36,7 +32,7 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
-	delete entity;
+	delete triangle;
 }
 
 void BaseGame::InitGlew()
@@ -67,140 +63,102 @@ void BaseGame::InitEngine()
 	renderer->SetWindow(window);
 
 	renderer->MakeContextCurrent(window);
+
 	InitGlew();
+	
+	renderer->SetClearColor(Color::RandomColor());
 }
 
 void BaseGame::LaunchGod()
 {
-	renderer->GenerateBuffers();
-
-	//Shader shader("res/shaders/Basic.shader");
 	shader.CreateShader("res/shaders/Basic.shader");
-	shader.Bind();
 
-	Color shaderColor = Color::RandomColor();
-	shader.SetColorUniform(shaderColor);
-	shader.Unbind();
+	triangle = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
+	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
+	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
 
-	renderer->SetClearColor(Color::RandomColor());
+	triangle->SetColor(Color::RandomColor());  //
+	quad->SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
+	otherQuad->SetColor(Color::RandomColor()); //
 
-	float incrementRed = 0.05f;
-	float incrementBlue = 0.05f;
+	Vector2 trianglePosition(0.0f, 0.0f);
+	float triangleRotationSpeed = 0.0f;
+	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
+	Vector2 quadPosition(0.5f, 0.5f);
+	float quadRotationSpeed = 0.0f;
+	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
 
-	float rotationAngle = 15.0f;
-	float rotationSpeed = 0.0f;
-	float scale = 1.0f;
-	Vector2 vec(0.0f, 0.0f);
-	Vector3 rotation(0.0f, 0.0f, 1.0f);
-	Transform transform;
+	float scale = 0.3f;
+
 	while (!window->ShouldClose())
 	{
 		Update();
-
 		renderer->ClearScreen();
-		shader.Bind();
+		triangle->Draw();
+		quad->Draw();
+		otherQuad->Draw();
 
-		transform.SetPosition(vec);
-		transform.SetRotation(rotationSpeed, rotation);
-		transform.SetScale(scale);
+		triangle->transform.SetRotation(triangleRotationSpeed, triangleRotation);
+		quad->transform.SetRotation(quadRotationSpeed, quadRotation);
+		triangle->transform.SetPosition(trianglePosition);
+		quad->transform.SetPosition(quadPosition);
 
-		//glm::mat4 transform = glm::mat4(1.0f);
-		//
-		//transform = glm::translate(transform, glm::vec3(vec.x, vec.y, 0.0f));                                   //
-		//transform = glm::rotate(transform, rotationSpeed, glm::vec3(rotation.x, rotation.y, rotation.z));		// MAGIK?
-		//transform = glm::scale(transform, glm::vec3(scale, scale, scale));										//
-
+		triangle->transform.SetScale(scale);
+		quad->transform.SetScale(scale);
+		otherQuad->transform.SetScale(scale);
+		
 		if (Input::GetKey(KeyCode::W))
 		{
-			vec.y += 0.01f;
+			trianglePosition.y += 0.01f;
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			vec.y -= 0.01f;
+			trianglePosition.y -= 0.01f;
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
-			vec.x += 0.01f;
+			trianglePosition.x += 0.01f;
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			vec.x -= 0.01f;
+			trianglePosition.x -= 0.01f;
 		}
-
-		if (Input::GetKey(KeyCode::ENTER))
-		{
-			scale += 0.01f;
-		}
-		if (Input::GetKey(KeyCode::BACKSPACE))
-		{
-			scale -= 0.01f;
-		}
-
 		if (Input::GetKey(KeyCode::Q))
 		{
-			rotationSpeed += 0.1f;
+			triangleRotationSpeed += 0.01f;
 		}
 		if (Input::GetKey(KeyCode::E))
 		{
-			rotationSpeed -= 0.1f;
+			triangleRotationSpeed -= 0.01f;
 		}
 
-		if (Input::GetKey(KeyCode::I))
+		if (Input::GetKey(KeyCode::UP))
 		{
-			rotation.x += 0.1f;
-			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
+			quadPosition.y += 0.01f;
 		}
-		if (Input::GetKey(KeyCode::O))
+		if (Input::GetKey(KeyCode::DOWN))
 		{
-			rotation.y += 0.1f;
-			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
+			quadPosition.y -= 0.01f;
 		}
-		if (Input::GetKey(KeyCode::P))
+		if (Input::GetKey(KeyCode::RIGHT))
 		{
-			rotation.z += 0.1f;
-			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
+			quadPosition.x += 0.01f;
 		}
-		if (Input::GetKey(KeyCode::J))
+		if (Input::GetKey(KeyCode::LEFT))
 		{
-			rotation.x -= 0.1f;
-			std::cout << "Rotation Angle X: " << rotation.x << std::endl;
+			quadPosition.x -= 0.01f;
 		}
-		if (Input::GetKey(KeyCode::K))
+		if (Input::GetKey(KeyCode::NUMPAD_1))
 		{
-			rotation.y -= 0.1f;
-			std::cout << "Rotation Angle Y: " << rotation.y << std::endl;
+			quadRotationSpeed += 0.01f;
 		}
-		if (Input::GetKey(KeyCode::L))
+		if (Input::GetKey(KeyCode::NUMPAD_3))
 		{
-			rotation.z -= 0.1f;
-			std::cout << "Rotation Angle Z: " << rotation.z << std::endl;
-		}
-		if (Input::GetKey(KeyCode::R))
-		{
-			vec = Vector2::Zero();
-			rotationSpeed = 0;
-			rotation = Vector3::One();
-			scale = 1.0f;
+			quadRotationSpeed -= 0.01f;
 		}
 
-		shader.SetTransformUniform(transform);
-
-		if (shaderColor.r > 1.0f || shaderColor.r < 0.0f)
-		{
-			incrementRed *= -1;
-		}
-		if (shaderColor.b > 1.0f || shaderColor.b < 0.0f)
-		{
-			incrementBlue *= -1;
-		}
-		shaderColor.r += incrementRed;
-		shaderColor.b += incrementBlue;
-		shader.SetColorUniform(shaderColor);
-
-		renderer->DrawElement(6); //6 is the size of the indices array
 		renderer->SwapBuffer();
 		input->PollEvents();
-		//TempInputs(window);
 	}
 
 	Terminate();

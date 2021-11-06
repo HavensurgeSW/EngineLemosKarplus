@@ -134,12 +134,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)EngineFLK\lib\GLFW\include;$(SolutionDir)EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\lib\glm;$(SolutionDir)EngineFLK\lib\GLEW\include;$(SolutionDir)EngineFLK\res;$(SolutionDir)EngineFLK\src;$(ProjectDir)res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>EngineFLK.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

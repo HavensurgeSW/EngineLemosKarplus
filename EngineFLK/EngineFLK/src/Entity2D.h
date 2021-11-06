@@ -1,11 +1,15 @@
-#pragma once
-#include "Exports.h"
-#include "Entity.h"
+#ifndef ENTITY2D_H
+#define ENTITY2D_H
 
-class FLK_API Entity2D : public Entity
+#include "Exports.h"
+#include "Renderer.h"
+
+class FLK_API Entity2D
 {
-private:
+protected:	
+	Renderer* renderer;
 
 public:
 };
 
+#endif

@@ -43,7 +43,44 @@ void Renderer::SetWindow(Window* window)
 	this->window = window;
 }
 
-void Renderer::GenerateBuffers()
+void Renderer::MakeContextCurrent(Window* window)
+{
+	glfwMakeContextCurrent(window->GetWindow());
+	glfwSwapInterval(1); //synchrinizes with our vSync
+}
+
+void Renderer::GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices)
+{
+	//vertexArray.GenerateVertexArray();
+	//vertexBuffer.SetData(vertices, maxVertices);
+	//indexBuffer.SetData(indices, maxIndices);
+}
+
+void Renderer::Draw(Shader& shader, Transform transform, VertexArray& vertexArray, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer)
+{
+	shader.Bind();
+	vertexArray.Bind();
+	vertexBuffer.Bind();
+	indexBuffer.Bind();
+
+	shader.SetTransformUniform(transform);
+	GLCheck(glDrawElements(GL_TRIANGLES, indexBuffer.GetIndexCount(), GL_UNSIGNED_INT, nullptr));
+	
+	vertexArray.Unbind();
+	vertexBuffer.Unbind();
+	indexBuffer.Unbind();
+	shader.Unbind();
+}
+
+void Renderer::UnbindBuffers()
+{
+	//vertexArray.Unbind();
+	//vertexBuffer.Unbind();
+	//indexBuffer.Unbind();
+	//GLCheck(glUseProgram(0));
+}
+
+void GenerateBuffers()
 {
 	const int maxPositions = 8;
 
@@ -74,7 +111,7 @@ void Renderer::GenerateBuffers()
 		2, 3, 0  //triangle 2 
 	};
 
-	VertexBuffer vertexBuffer(positions, maxPositions * sizeof(float));
+	VertexBuffer vertexBuffer(positions, maxPositions);
 
 	GLCheck(glEnableVertexAttribArray(0)); //enables or "turns on" the specified attribute
 	GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));  //specifies the location of the attribute of the vertex and its format (stride, offset, amount of values dpending on the atribute, etc)
@@ -82,34 +119,4 @@ void Renderer::GenerateBuffers()
 
 	IndexBuffer indexBuffer(indices, maxIndices);
 	indexBuffer.Bind();
-}
-
-void Renderer::MakeContextCurrent(Window* window)
-{
-	glfwMakeContextCurrent(window->GetWindow());
-	glfwSwapInterval(1); //synchrinizes with our vSync
-}
-
-void Renderer::Unbind()
-{
-	GLCheck(glUseProgram(0));
-	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
-	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
-}
-
-void Renderer::DrawTriangle()
-{
-	GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
-}
-
-// Used to draw an element utilizing indices
-void Renderer::DrawElement(int indices)
-{
-	GLCheck(glDrawElements(GL_TRIANGLES, indices, GL_UNSIGNED_INT, nullptr));
-	//To test the error handling, just change the GL_UNSIGNED_INT to GL_INT and watch the magic
-}
-
-void Renderer::Draw(Shader shader)
-{
-
 }

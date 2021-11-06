@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHADER_H
+#define SHADER_H
 #include "Exports.h"
 
 #include <iostream>
@@ -29,16 +30,20 @@ public:
 
 	void Bind() const;
 	void Unbind() const;
+	void Delete() const;
 
-	void SetColorUniform(Color color); //will need to expand
-	void SetTransformUniform(Transform transform);
+	void SetColorUniform(const Color color); //will need to expand
+	void SetTransformUniform(const Transform transform);
 	void CreateShader(const std::string& filePath);
+
+	void EnableAttributePointer(/*fill with parameters*/);
 
 private:
 
 	int GetUniformLocation(const std::string& uniformName);
 	unsigned int CreateShader(const std::string& vertexShader, const std::string fragmentShader);
-	unsigned int CompileShader(const std::string& source, unsigned int type);
+	unsigned int CompileShader(const std::string& source, unsigned int type); //could be transformed into nested function within CreateShader()
 	ShaderPaths ParseShader(const std::string& filepath);
 };
 
+#endif

@@ -1,8 +1,11 @@
-#pragma once
+#ifndef VECTOR2_H
+#define VECTOR2_H
+
+#include "Exports.h"
 
 #include <iostream>
 
-struct Vector2
+struct FLK_API Vector2
 {
 	float x = 0;
 	float y = 0;
@@ -29,3 +32,5 @@ struct Vector2
 	Vector2 operator /(const float scalar) const;
 	std::string ToString() const;
 };
+
+#endif

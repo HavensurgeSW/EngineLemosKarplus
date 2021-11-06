@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ERROR_HANDLING_H
+#define ERROR_HANDLING_H
 #include "glew.h"
 #include "glfw3.h"
 
@@ -32,3 +33,5 @@ void InitErrorHandling();
 void GLClearError();
 bool GLCheckError(const char* sourceFile, const char* functionName, int errorLine);
 static void GLAPIENTRY GLLogMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParameters);
+
+#endif

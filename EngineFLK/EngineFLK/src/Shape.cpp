@@ -2,31 +2,25 @@
 
 Shape::Shape()
 {
-	//positions = //Vertices
-	//{
-	//	-0.5f, -0.5f, //vertex 0
-	//	 0.5f, -0.5f, //vertex 1
-	//	 0.5f,  0.5f, //vertex 2
-	//	-0.5f,  0.5f  //vertex 3 for square
-	//};
+
 }
 
-Shape::Shape(Renderer* renderer, Shader shader)
-{
-	this->renderer = renderer;
-	this->shader = shader;
-}
-
-Shape::Shape(Renderer* renderer, Shader shader, ShapeType type)
+Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize) : Entity2D()
 {
 	this->renderer = renderer;
 	this->shader = shader;
 	this->type = type;
+
+	if (initalize)
+	{
+		Init();
+	}
 }
 
 Shape::~Shape()
 {
-
+	UnbindBuffers();
+	DeleteBuffers();
 }
 
 void Shape::SetRenderer(Renderer* renderer)
@@ -34,24 +28,56 @@ void Shape::SetRenderer(Renderer* renderer)
 	this->renderer = renderer;
 }
 
-void Shape::SetShader(Shader shader)
+void Shape::SetShader(Shader& shader)
 {
 	this->shader = shader;
 }
 
-void Shape::SetShapeType(ShapeType type)
+void Shape::Init() 
 {
+	vertexArray.GenerateVertexArray();
+	switch (type)
+	{
+	case ShapeType::TRIANGLE:
+		vertexBuffer.SetData(triangleVertices, 6);
+		GLCheck(glEnableVertexAttribArray(0));
+		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		indexBuffer.SetData(triangleIndices, 3);
+		break;
 
+	case ShapeType::QUAD:
+		vertexBuffer.SetData(quadVertices, 8);
+		GLCheck(glEnableVertexAttribArray(0));
+		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		indexBuffer.SetData(quadIndices, 6);
+		break;
+	}
+
+	shader.Bind();
 }
 
-void Shape::Draw()
+void Shape::SetColor(Color color)
 {
-	//renderer->DrawElement();
+	shader.SetColorUniform(color);
 }
 
-void Shape::SetPositions(float* arr)
+void Shape::Draw() 
 {
-	int size = *(&arr + 1) - arr;
-	int arrSize = sizeof(arr) / sizeof(arr[0]);
-	std::cout << arrSize << std::endl;
+	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
+}
+
+void Shape::UnbindBuffers()
+{
+	vertexArray.Unbind();
+	vertexBuffer.Unbind();
+	indexBuffer.Unbind();
+	shader.Unbind();
+}
+
+void Shape::DeleteBuffers()
+{
+	vertexArray.Delete();
+	vertexBuffer.Delete();
+	indexBuffer.Delete();
+	shader.Delete();
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include "Exports.h"
 #include "glew.h"
@@ -19,3 +20,5 @@ public:
 	GLFWwindow* GetWindow();
 	bool ShouldClose();
 };
+
+#endif

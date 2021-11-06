@@ -23,7 +23,6 @@
     <ClCompile Include="src\BaseGame.cpp" />
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\Color.cpp" />
-    <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Entity2D.cpp" />
     <ClCompile Include="src\ErrorHandling.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
@@ -38,6 +37,7 @@
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
+    <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\VertexBuffer.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
@@ -46,7 +46,6 @@
     <ClInclude Include="src\BaseGame.h" />
     <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\Color.h" />
-    <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Entity2D.h" />
     <ClInclude Include="src\ErrorHandling.h" />
     <ClInclude Include="src\Exports.h" />
@@ -62,6 +61,7 @@
     <ClInclude Include="src\Utils.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Vector3.h" />
+    <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\Window.h" />
   </ItemGroup>
@@ -159,8 +159,7 @@ copy "$(OutDir)EngineFLK.lib" "$(SolutionDir)Game"
 copy "$(SolutionDir)EngineFLK\lib\GLEW\lib\glew32.dll" "$(SolutionDir)Game"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -203,8 +202,7 @@ copy "$(OutDir)EngineFLK.lib" "$(SolutionDir)Game"
 copy "$(SolutionDir)EngineFLK\lib\GLEW\lib\glew32.dll" "$(SolutionDir)Game"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

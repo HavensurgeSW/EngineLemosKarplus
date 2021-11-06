@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR3_H
+#define VECTOR3_H
 
 #include "Exports.h"
 
@@ -41,3 +42,5 @@ struct FLK_API Vector3
 
 	std::string ToString() const;
 };
+
+#endif

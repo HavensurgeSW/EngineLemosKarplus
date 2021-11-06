@@ -1,18 +1,23 @@
-#pragma once
+#ifndef VERTEX_BUFFER_H
+#define VERTEX_BUFFER_H
 #include "Exports.h"
 
 class FLK_API VertexBuffer
 {
 private:
-	unsigned int rendererId;
+	unsigned int bufferId;
 
 public:
 
 	VertexBuffer();
-	VertexBuffer(const void* data, unsigned int byteSize);
+	VertexBuffer(float vertices[], int verticesAmount);
 	~VertexBuffer();
+
+	void SetData(float vertices[], int verticesAmount);
 
 	void Bind();
 	void Unbind();
-	//void SetData(const void* data, unsigned int size); //might need it?
+	void Delete();
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INPUT_H
+#define INPUT_H
 #include "Exports.h"
 
 #include "glew.h"
@@ -154,9 +155,7 @@ enum KeyState
 class FLK_API Input
 {
 private:
-	static Window* window;
-
-	
+	static Window* window;	
 
 public:
 	Input();
@@ -165,6 +164,7 @@ public:
 	static bool GetMouseButtonDown(MouseButton mouseButton); //LITERALLY WONT WORK
 	static bool GetMouseButton(MouseButton mouseButton);
 	static bool GetMouseButtonUp(MouseButton mouseButton); //LITERALLY WONT WORK
+
 	static Vector2 GetMousePosition();
 
 	static bool GetKeyDown(KeyCode keycode); //LITERALLY WONT WORK
@@ -179,3 +179,5 @@ private:
 	static bool CheckMouseButtonPress(MouseButton mouseButton, int type);
 	static void KeyInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
+
+#endif
