@@ -46,14 +46,15 @@ void Shape::Init()
 		break;
 
 	case ShapeType::QUAD:
-		vertexBuffer.SetData(quadVertices, 8);
+		vertexBuffer.SetData(quadVertices, 16);
 		GLCheck(glEnableVertexAttribArray(0));
-		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		GLCheck(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0));
 		indexBuffer.SetData(quadIndices, 6);
 		break;
 	}
 
 	shader.Bind();
+	shader.SetTextureUniform(0);
 }
 
 void Shape::SetColor(Color color)

@@ -34,6 +34,7 @@ public:
 
 	void SetColorUniform(const Color color); //will need to expand
 	void SetTransformUniform(const Transform transform);
+	void SetTextureUniform(const int slot);
 	void CreateShader(const std::string& filePath);
 
 	void EnableAttributePointer(/*fill with parameters*/);

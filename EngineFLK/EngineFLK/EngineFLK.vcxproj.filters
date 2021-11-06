@@ -76,6 +76,9 @@
     <Filter Include="src\vertex_array">
       <UniqueIdentifier>{4a692e9e-48ba-46c4-bc28-b7d204e921df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Texture">
+      <UniqueIdentifier>{daa83b37-db9e-41be-bad5-fe66ac85e7d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="src\Shape.cpp">
       <Filter>src\entities\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>src\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +208,10 @@
     </ClInclude>
     <ClInclude Include="src\Shape.h">
       <Filter>src\entities\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image\stb_image.h" />
+    <ClInclude Include="src\Texture.h">
+      <Filter>src\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include "ErrorHandling.h"
+#include "Texture.h"
 
 
 Shader::Shader()
@@ -16,6 +17,8 @@ Shader::Shader(const std::string& filePath) : filePath(filePath)
 {
 	ShaderPaths shaderPaths = ParseShader(filePath);
 	rendererId = CreateShader(shaderPaths.vertexSource, shaderPaths.fragmentSource);
+	Texture texture("res/textures/EnanoBostero.png");
+	texture.Bind();
 }
 
 Shader::~Shader()
@@ -47,6 +50,11 @@ void Shader::SetColorUniform(const Color color)
 void Shader::SetTransformUniform(const Transform transform)
 {
 	GLCheck(glUniformMatrix4fv(GetUniformLocation("u_Model"), 1, GL_FALSE, glm::value_ptr(transform.GetTransform())));
+}
+
+void Shader::SetTextureUniform(const int slot)
+{
+	GLCheck(glUniform1i(GetUniformLocation("u_Texture"), slot));
 }
 
 void Shader::CreateShader(const std::string& filePath)
