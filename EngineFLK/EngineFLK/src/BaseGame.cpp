@@ -73,6 +73,7 @@ void BaseGame::LaunchGod()
 {
 	shader.CreateShader("res/shaders/Basic.shader");
 
+	std::cout << "Textures cringe" << std::endl;
 	triangle = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
 	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
 	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
@@ -90,6 +91,7 @@ void BaseGame::LaunchGod()
 
 	float scale = 0.3f;
 
+	std::cout << "Please work" << std::endl;
 	while (!window->ShouldClose())
 	{
 		Update();
