@@ -13,12 +13,6 @@ VertexArray::~VertexArray()
 	glDeleteVertexArrays(1, &arrayId);
 }
 
-void VertexArray::GenerateVertexArray()
-{
-	GLCheck(glGenVertexArrays(1, &arrayId));
-	GLCheck(glBindVertexArray(arrayId));
-}
-
 void VertexArray::SetVertexAttribute(const char* name)
 {
 	//unsigned int attribute = glGetAttribLocation(_id, name);
@@ -35,7 +29,7 @@ void VertexArray::Unbind() const
 	GLCheck(glBindVertexArray(0));
 }
 
-void VertexArray::AddBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout)
+void VertexArray::SetVertexArrayData(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout)
 {
 	Bind();
 	vertexBuffer.Bind();
@@ -49,7 +43,6 @@ void VertexArray::AddBuffer(const VertexBuffer& vertexBuffer, const VertexBuffer
 		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized , vertexBufferLayout.GetStride(), (const void*)offset));
 		offset += element.count * VertexBufferLayoutElement::GetSizeOfType(element.type);
 	}
-
 }
 
 void VertexArray::Delete()

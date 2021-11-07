@@ -13,9 +13,8 @@ public:
 	VertexArray();
 	~VertexArray();
 
-	void AddBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout);
+	void SetVertexArrayData(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout);
 
-	void GenerateVertexArray();
 	void SetVertexAttribute(const char* name);
 	void Bind() const;
 	void Unbind() const;
