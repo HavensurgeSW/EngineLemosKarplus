@@ -1,5 +1,6 @@
 #ifndef INDEX_BUFFER_H
 #define INDEX_BUFFER_H
+
 #include "Exports.h"
 #include "ErrorHandling.h"
 

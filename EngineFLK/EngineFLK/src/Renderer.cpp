@@ -1,15 +1,12 @@
 ﻿#include "Renderer.h"
 
-#include "glew.h"
-#include "glfw3.h"
+#include "LibIncludes.h"
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ErrorHandling.h"
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
 

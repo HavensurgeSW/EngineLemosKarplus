@@ -2,8 +2,7 @@
 #define WINDOW_H
 
 #include "Exports.h"
-#include "glew.h"
-#include "glfw3.h"
+#include "LibIncludes.h"
 
 class FLK_API Window
 {

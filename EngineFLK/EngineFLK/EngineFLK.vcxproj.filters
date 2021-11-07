@@ -213,6 +213,9 @@
     <ClInclude Include="src\Texture.h">
       <Filter>src\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="src\LibIncludes.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader">

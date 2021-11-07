@@ -1,4 +1,5 @@
 #include "IndexBuffer.h"
+
 #include "glew.h"
 #include "ErrorHandling.h"
 

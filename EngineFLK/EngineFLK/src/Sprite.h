@@ -1,5 +1,6 @@
 #ifndef SPRITE_H
 #define SPRITE_H
+
 #include "Exports.h"
 #include "Entity2D.h"
 #include "Animation.h"
