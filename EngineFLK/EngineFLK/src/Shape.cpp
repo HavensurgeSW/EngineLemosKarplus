@@ -49,6 +49,8 @@ void Shape::Init()
 		vertexBuffer.SetData(quadVertices, 16);
 		GLCheck(glEnableVertexAttribArray(0));
 		GLCheck(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0));
+		//glEnableVertexAttribArray(1);
+		//glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)2);
 		indexBuffer.SetData(quadIndices, 6);
 		break;
 	}
