@@ -36,19 +36,20 @@ void Shape::SetShader(Shader& shader)
 void Shape::Init() 
 {
 	vertexArray.GenerateVertexArray();
+	VertexBufferLayout layout;
 	switch (type)
 	{
 	case ShapeType::TRIANGLE:
 		vertexBuffer.SetData(triangleVertices, 6);
-		GLCheck(glEnableVertexAttribArray(0));
-		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		layout.Push<float>(2);
+		vertexArray.AddBuffer(vertexBuffer, layout);
 		indexBuffer.SetData(triangleIndices, 3);
 		break;
 
 	case ShapeType::QUAD:
 		vertexBuffer.SetData(quadVertices, 8);
-		GLCheck(glEnableVertexAttribArray(0));
-		GLCheck(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		layout.Push<float>(2);
+		vertexArray.AddBuffer(vertexBuffer, layout);
 		indexBuffer.SetData(quadIndices, 6);
 		break;
 	}
