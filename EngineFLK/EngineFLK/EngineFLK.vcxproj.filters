@@ -138,6 +138,9 @@
     <ClCompile Include="src\Shape.cpp">
       <Filter>src\entities\shape</Filter>
     </ClCompile>
+    <ClCompile Include="src\VertexBufferLayout.cpp">
+      <Filter>src\vertex_array</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exports.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="src\Shape.h">
       <Filter>src\entities\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VertexBufferLayout.h">
+      <Filter>src\vertex_array</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

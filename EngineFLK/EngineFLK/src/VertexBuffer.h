@@ -15,9 +15,9 @@ public:
 
 	void SetData(float vertices[], int verticesAmount);
 
-	void Bind();
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete() const;
 };
 
 #endif

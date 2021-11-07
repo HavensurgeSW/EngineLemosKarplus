@@ -5,12 +5,12 @@
 
 VertexArray::VertexArray()
 {
-
+	GLCheck(glGenVertexArrays(1, &arrayId));
 }
 
 VertexArray::~VertexArray()
 {
-
+	glDeleteVertexArrays(1, &arrayId);
 }
 
 void VertexArray::GenerateVertexArray()
@@ -25,14 +25,31 @@ void VertexArray::SetVertexAttribute(const char* name)
 	//CreateAttribute(attribute, 3, 6, 0);
 }
 
-void VertexArray::Bind()
+void VertexArray::Bind() const
 {
 	GLCheck(glBindVertexArray(arrayId));
 }
 
-void VertexArray::Unbind()
+void VertexArray::Unbind() const
 {
 	GLCheck(glBindVertexArray(0));
+}
+
+void VertexArray::AddBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout)
+{
+	Bind();
+	vertexBuffer.Bind();
+	const std::vector<VertexBufferLayoutElement>& elements = vertexBufferLayout.GetElements();
+
+	unsigned int offset = 0;
+	for (int i = 0; i < elements.size(); i++)
+	{
+		VertexBufferLayoutElement element = elements[i];
+		GLCheck(glEnableVertexAttribArray(i));
+		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized , vertexBufferLayout.GetStride(), (const void*)offset));
+		offset += element.count * VertexBufferLayoutElement::GetSizeOfType(element.type);
+	}
+
 }
 
 void VertexArray::Delete()
