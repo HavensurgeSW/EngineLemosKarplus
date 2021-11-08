@@ -76,6 +76,15 @@
     <Filter Include="src\vertex_array">
       <UniqueIdentifier>{4a692e9e-48ba-46c4-bc28-b7d204e921df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{e5d0b66a-db66-49ba-9722-a9a4b3d17868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\texture">
+      <UniqueIdentifier>{6ffdf2b8-3400-4e86-b27f-9e5b329feef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\textures">
+      <UniqueIdentifier>{feaa547d-3fa5-4239-9247-fd62011c41cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -140,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="src\VertexBufferLayout.cpp">
       <Filter>src\vertex_array</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>src\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,10 +221,27 @@
     <ClInclude Include="src\VertexBufferLayout.h">
       <Filter>src\vertex_array</Filter>
     </ClInclude>
+    <ClInclude Include="src\LibIncludes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image\stb_image.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>src\texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader">
       <Filter>res\shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\EnanoBostero.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\Illuminati.png">
+      <Filter>res\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

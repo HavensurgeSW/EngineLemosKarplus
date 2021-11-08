@@ -1,12 +1,13 @@
 #ifndef VERTEX_BUFFER_LAYOUT_H
 #define VERTEX_BUFFER_LAYOUT_H
 
-#include "glew.h"
-#include "glfw3.h"
+#include "Exports.h"
+
+#include "LibIncludes.h"
 
 #include <vector>
 
-struct VertexBufferLayoutElement
+struct FLK_API VertexBufferLayoutElement
 {
 	unsigned int type;
 	int count;

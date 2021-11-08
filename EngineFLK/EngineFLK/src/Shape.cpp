@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Texture.h"
 
 Shape::Shape()
 {
@@ -23,6 +24,12 @@ Shape::~Shape()
 	DeleteBuffers();
 }
 
+void Shape::SetTexture(const std::string& path)
+{
+	texture.LoadTexture(path);
+	texture.Bind();
+}
+
 void Shape::SetRenderer(Renderer* renderer)
 {
 	this->renderer = renderer;
@@ -39,14 +46,18 @@ void Shape::Init()
 	switch (type)
 	{
 	case ShapeType::TRIANGLE:
-		vertexBuffer.SetData(triangleVertices, 6);
+		vertexBuffer.SetData(triangleVertices, 12);
 		layout.Push<float>(2);
+		layout.Push<float>(2);		
 		vertexArray.SetVertexArrayData(vertexBuffer, layout);
 		indexBuffer.SetData(triangleIndices, 3);
 		break;
 
 	case ShapeType::QUAD:
-		vertexBuffer.SetData(quadVertices, 8);
+		vertexBuffer.SetData(quadVertices, 16);
+		layout.Push<float>(2);
+
+
 		layout.Push<float>(2);
 		vertexArray.SetVertexArrayData(vertexBuffer, layout);
 		indexBuffer.SetData(quadIndices, 6);
@@ -55,6 +66,7 @@ void Shape::Init()
 
 	shader.Bind();
 	shader.SetTextureUniform(0);
+	texture.Unbind();
 }
 
 void Shape::SetColor(Color color)

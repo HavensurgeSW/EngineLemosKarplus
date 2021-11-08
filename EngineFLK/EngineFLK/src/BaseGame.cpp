@@ -32,7 +32,7 @@ BaseGame::~BaseGame()
 	delete renderer;
 	delete input;
 	delete collisionManager;
-	delete triangle;
+	//delete triangle;
 }
 
 void BaseGame::InitGlew()
@@ -73,13 +73,15 @@ void BaseGame::LaunchGod()
 {
 	shader.CreateShader("res/shaders/Basic.shader");
 
-	triangle = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
-	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
-	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
+	Shape triangle(renderer, shader, ShapeType::TRIANGLE, true);
+	Shape quad(renderer, shader, ShapeType::QUAD, true);
+	quad.SetTexture("res/textures/EnanoBostero.png");
+	Shape otherQuad(renderer, shader, ShapeType::QUAD, true);
+	otherQuad.SetTexture("res/textures/EnanoBostero.png");
 
-	triangle->SetColor(Color::RandomColor());  //
-	quad->SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
-	otherQuad->SetColor(Color::RandomColor()); //
+	triangle.SetColor(Color::RandomColor());  //
+	quad.SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
+	otherQuad.SetColor(Color::RandomColor()); //
 
 	Vector2 trianglePosition(0.0f, 0.0f);
 	float triangleRotationSpeed = 0.0f;
@@ -88,25 +90,25 @@ void BaseGame::LaunchGod()
 	float quadRotationSpeed = 0.0f;
 	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
 
-	float scale = 0.3f;
+	float scale = 0.6f;
 
 	while (!window->ShouldClose())
 	{
 		Update();
 		renderer->ClearScreen();
-		triangle->Draw();
-		quad->Draw();
-		otherQuad->Draw();
+		triangle.Draw();
+		quad.Draw();
+		otherQuad.Draw();
 
-		triangle->transform.SetRotation(triangleRotationSpeed, triangleRotation);
-		quad->transform.SetRotation(quadRotationSpeed, quadRotation);
-		triangle->transform.SetPosition(trianglePosition);
-		quad->transform.SetPosition(quadPosition);
+		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
+		quad.transform.SetRotation(quadRotationSpeed, quadRotation);
+		triangle.transform.SetPosition(trianglePosition);
+		quad.transform.SetPosition(quadPosition);
 
-		triangle->transform.SetScale(scale);
-		quad->transform.SetScale(scale);
-		otherQuad->transform.SetScale(scale);
-		
+		triangle.transform.SetScale(scale);
+		quad.transform.SetScale(scale);
+		otherQuad.transform.SetScale(scale);
+
 		if (Input::GetKey(KeyCode::W))
 		{
 			trianglePosition.y += 0.01f;

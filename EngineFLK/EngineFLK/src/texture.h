@@ -1,6 +1,6 @@
 #ifndef TEXTURE_H
-
 #define TEXTURE_H
+
 #include "Exports.h"
 
 #include <string>
@@ -20,11 +20,13 @@ private:
 	int bytesPerPixel;
 
 public:
+	Texture();
 	Texture(const std::string& path);
 	~Texture();
 
 	void Bind(unsigned int slot = 0) const;
 	void Unbind() const;
+	void LoadTexture(const std::string& path);
 
 	/*inline*/ int GetWidth() const;
 	/*inline*/ int GetHeight() const;

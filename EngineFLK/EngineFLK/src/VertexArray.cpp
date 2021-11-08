@@ -40,7 +40,7 @@ void VertexArray::SetVertexArrayData(const VertexBuffer& vertexBuffer, const Ver
 	{
 		VertexBufferLayoutElement element = elements[i];
 		GLCheck(glEnableVertexAttribArray(i));
-		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized , vertexBufferLayout.GetStride(), (const void*)offset));
+		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized, vertexBufferLayout.GetStride(), (const void*)offset));
 		offset += element.count * VertexBufferLayoutElement::GetSizeOfType(element.type);
 	}
 }
