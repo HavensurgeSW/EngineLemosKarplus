@@ -2,8 +2,7 @@
 #define INPUT_H
 #include "Exports.h"
 
-#include "glew.h"
-#include "glfw3.h"
+#include "LibIncludes.h"
 
 #include "Window.h"
 #include "Vector2.h"

@@ -1,15 +1,12 @@
 ﻿#include "Renderer.h"
 
-#include "glew.h"
-#include "glfw3.h"
+#include "LibIncludes.h"
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ErrorHandling.h"
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -91,6 +88,18 @@ void GenerateBuffers()
 		 0.5f,  0.5f, //vertex 2
 		-0.5f,  0.5f  //vertex 3 for square
 	};
+
+	//float texCoords[] = {
+	//	-0.5f, -0.5f,
+	//	 0.5f, -0.5f,
+	//	 0.5f,  0.5f,
+	//	-0.5f,  0.5f
+	//};
+
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	//float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
 	const int maxIndices = 6;
 	unsigned int indices[maxIndices] = //Triangle connections

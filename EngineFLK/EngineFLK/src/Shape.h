@@ -34,12 +34,12 @@ private:
 		0, 1, 2
 	};
 
-	float quadVertices[8] =
+	float quadVertices[16] =
 	{
-		 0.5f,  0.5f,
-		 0.5f, -0.5f,
-	    -0.5f, -0.5f,
-	    -0.5f,  0.5f
+		 0.5f,  0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f, 
+	    -0.5f, -0.5f, 1.0f, 1.0f,
+	    -0.5f,  0.5f, 0.0f, 1.0f
 	};
 	unsigned int quadIndices[6] =
 	{
@@ -55,7 +55,7 @@ public:
 	Transform transform;
 
 	Shape();
-	Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize);
+	Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize = true);
 	~Shape();
 
 	void Init();

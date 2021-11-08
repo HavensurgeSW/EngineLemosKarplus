@@ -54,6 +54,7 @@ void Shape::Init()
 	}
 
 	shader.Bind();
+	shader.SetTextureUniform(0);
 }
 
 void Shape::SetColor(Color color)

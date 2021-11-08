@@ -1,7 +1,7 @@
 #ifndef ERROR_HANDLING_H
 #define ERROR_HANDLING_H
-#include "glew.h"
-#include "glfw3.h"
+
+#include "LibIncludes.h"
 
 #include <iostream>
 

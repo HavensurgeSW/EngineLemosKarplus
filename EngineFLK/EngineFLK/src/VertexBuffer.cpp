@@ -1,4 +1,5 @@
 #include "VertexBuffer.h"
+
 #include "glew.h"
 #include "ErrorHandling.h"
 
