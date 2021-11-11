@@ -1,7 +1,12 @@
 #ifndef VERTEX_ARRAY_H
 #define VERTEX_ARRAY_H
 
-class VertexArray
+#include "Exports.h"
+
+#include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
+
+class FLK_API VertexArray
 {
 private:
 	unsigned int arrayId;
@@ -10,11 +15,12 @@ public:
 	VertexArray();
 	~VertexArray();
 
-	void GenerateVertexArray();
+	void SetVertexArrayData(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout);
+
 	void SetVertexAttribute(const char* name);
-	void Bind();
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete(); 
 };
 
 #endif

@@ -11,7 +11,12 @@ Window::Window(int width, int height, const char* title, GLFWmonitor* monitor, G
 {
 	//This constructor wont work unless GLFW is initialized BEFORE calling it, since
 	//it uses a glfw method
-	window = glfwCreateWindow(width, height, title, monitor, share);	
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+
+	window = glfwCreateWindow(width, height, title, monitor, share);
 }
 
 Window::~Window()

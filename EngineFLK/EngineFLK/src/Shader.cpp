@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include "ErrorHandling.h"
-#include "Texture.h"
 
 
 Shader::Shader()
@@ -17,8 +16,6 @@ Shader::Shader(const std::string& filePath) : filePath(filePath)
 {
 	ShaderPaths shaderPaths = ParseShader(filePath);
 	rendererId = CreateShader(shaderPaths.vertexSource, shaderPaths.fragmentSource);
-	Texture texture("res/textures/EnanoBostero.png");
-	texture.Bind();
 }
 
 Shader::~Shader()

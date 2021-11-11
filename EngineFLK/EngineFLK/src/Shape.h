@@ -9,7 +9,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
-
+#include "Texture.h"
 
 enum FLK_API ShapeType //Primitive?
 {
@@ -19,15 +19,15 @@ enum FLK_API ShapeType //Primitive?
 
 class FLK_API Shape : public Entity2D
 {
-private:	
+private:
 	ShapeType type;
 	Shader shader;
 
-	float triangleVertices[6] =
-	{
-		-0.5f, -0.5f,
-		 0.5f, -0.5f,
-		 0.0f,  0.5f 
+	float triangleVertices[12] =
+	{    //position     //texture position
+		-0.5f, -0.5f,      0.0f, 0.0f,
+		 0.5f, -0.5f,      1.0f, 0.0f,
+		 0.0f,  0.5f,      0.5f, 1.0f
 	};
 	unsigned int triangleIndices[3] =
 	{
@@ -35,11 +35,11 @@ private:
 	};
 
 	float quadVertices[16] =
-	{
-		 0.5f,  0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f, 
-	    -0.5f, -0.5f, 1.0f, 1.0f,
-	    -0.5f,  0.5f, 0.0f, 1.0f
+	{	 //position     //texture position
+		 0.5f,  0.5f,      1.0f, 1.0f,
+		 0.5f, -0.5f,      1.0f, 0.0f,
+	    -0.5f, -0.5f,      0.0f, 0.0f,
+	    -0.5f,  0.5f,      0.0f, 1.0f
 	};
 	unsigned int quadIndices[6] =
 	{
@@ -50,6 +50,7 @@ private:
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
+	Texture texture;
 
 public:
 	Transform transform;
@@ -60,6 +61,7 @@ public:
 
 	void Init();
 	
+	void SetTexture(const std::string& path);
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
 	//void SetShapeType(ShapeType type);   //why tf would you change this in runtime

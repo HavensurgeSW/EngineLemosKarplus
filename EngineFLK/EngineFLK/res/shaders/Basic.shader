@@ -29,13 +29,7 @@ uniform sampler2D u_Texture;
 
 void main()
 {
-<<<<<<< Updated upstream
-    //vec4 textureColor = texture(u_Texture, v_TexCoord);
-    color = u_Color;
-    //color = textureColor;
-=======
-   vec4 textureColor = texture(u_Texture, v_TexCoord);
-   //color = u_Color;
-   color = textureColor * u_Color;
->>>>>>> Stashed changes
+    vec4 textureColor = texture(u_Texture, v_TexCoord);
+    //color = u_Color;
+    color = textureColor * u_Color;
 };

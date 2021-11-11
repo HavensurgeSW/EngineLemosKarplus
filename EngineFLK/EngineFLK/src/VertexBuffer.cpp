@@ -32,17 +32,17 @@ void VertexBuffer::SetData(float vertices[], int verticesAmount)
 	//GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-void VertexBuffer::Bind()
+void VertexBuffer::Bind() const
 {
 	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, bufferId));
 }
 
-void VertexBuffer::Unbind()
+void VertexBuffer::Unbind() const
 {
 	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-void VertexBuffer::Delete()
+void VertexBuffer::Delete() const
 {
 	GLCheck(glDeleteBuffers(1, &bufferId));
 }
