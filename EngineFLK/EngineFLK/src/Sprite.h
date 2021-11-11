@@ -46,6 +46,7 @@ public:
 
 	void Draw();
 
+private:
 	void UnbindBuffers();
 	void DeleteBuffers();
 };

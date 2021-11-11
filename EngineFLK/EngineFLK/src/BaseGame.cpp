@@ -75,17 +75,22 @@ void BaseGame::LaunchGod()
 
 	shapeShader.CreateShader("res/shaders/Shape.shader");
 	Shape triangle(renderer, shapeShader, ShapeType::TRIANGLE);
+	triangle.SetColor(Color::Red());
 
 	spriteShader.CreateShader("res/shaders/Sprite.shader");
+	Sprite enano(renderer, spriteShader, ShapeType::QUAD);
+	enano.SetTexture("res/textures/EnanoBostero.png");
+	enano.SetColor(Color::White());
+
 	Sprite quad(renderer, spriteShader, ShapeType::QUAD);
-	quad.SetTexture("res/textures/TheRock.png");
+	quad.SetTexture("res/textures/Illuminati.png");
 	quad.SetColor(Color::Green());
-	triangle.SetColor(Color::Red());
+
+
 
 	//Sprite sprite(renderer, spriteShader);
 	//sprite.SetTexture("res/textures/TheRock.png");
 	//sprite.SetColor(Color::RandomColor());
-
 
 	Vector2 trianglePosition(0.0f, 0.0f);
 	float triangleRotationSpeed = 0.0f;
@@ -102,6 +107,7 @@ void BaseGame::LaunchGod()
 		renderer->ClearScreen();
 		triangle.Draw();
 		quad.Draw();
+		enano.Draw();
 		//sprite.Draw();
 
 		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
