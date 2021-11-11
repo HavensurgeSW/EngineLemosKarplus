@@ -78,7 +78,7 @@ void BaseGame::LaunchGod()
 	Shape quad(renderer, shader, ShapeType::QUAD, true);
 	quad.SetTexture("res/textures/TheRock.png");
 	Shape otherQuad(renderer, shader, ShapeType::QUAD, true);
-	otherQuad.SetTexture("res/textures/TheRock.png");
+	otherQuad.SetTexture("res/textures/Illuminati.png");
 
 	triangle.SetColor(Color::RandomColor());  //
 	quad.SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
