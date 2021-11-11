@@ -73,9 +73,17 @@ void BaseGame::LaunchGod()
 {
 	shader.CreateShader("res/shaders/Basic.shader");
 
+<<<<<<< Updated upstream
 	triangle = new Shape(renderer, shader, ShapeType::TRIANGLE, true);
 	quad = new Shape(renderer, shader, ShapeType::QUAD, true);
 	otherQuad = new Shape(renderer, shader, ShapeType::QUAD, true);
+=======
+	Shape triangle(renderer, shader, ShapeType::TRIANGLE, true);
+	Shape quad(renderer, shader, ShapeType::QUAD, true);
+	quad.SetTexture("res/textures/TheRock.png");
+	Shape otherQuad(renderer, shader, ShapeType::QUAD, true);
+	otherQuad.SetTexture("res/textures/TheRock.png");
+>>>>>>> Stashed changes
 
 	triangle->SetColor(Color::RandomColor());  //
 	quad->SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
