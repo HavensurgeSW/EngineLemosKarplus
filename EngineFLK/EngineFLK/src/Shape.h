@@ -19,15 +19,15 @@ enum FLK_API ShapeType //Primitive?
 
 class FLK_API Shape : public Entity2D
 {
-private:	
+private:
 	ShapeType type;
 	Shader shader;
 
 	float triangleVertices[12] =
-	{
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f,
-		 0.0f,  0.5f, 0.5f, 1.0f
+	{    //position     //texture position
+		-0.5f, -0.5f,      0.0f, 0.0f,
+		 0.5f, -0.5f,      1.0f, 0.0f,
+		 0.0f,  0.5f,      0.5f, 1.0f
 	};
 	unsigned int triangleIndices[3] =
 	{
@@ -35,11 +35,11 @@ private:
 	};
 
 	float quadVertices[16] =
-	{
-		 0.5f,  0.5f, 1.0f, 1.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f, 
-	    -0.5f, -0.5f, 0.0f, 0.0f,
-	    -0.5f,  0.5f, 0.0f, 1.0f
+	{	 //position     //texture position
+		 0.5f,  0.5f,      1.0f, 1.0f,
+		 0.5f, -0.5f,      1.0f, 0.0f,
+	    -0.5f, -0.5f,      0.0f, 0.0f,
+	    -0.5f,  0.5f,      0.0f, 1.0f
 	};
 	unsigned int quadIndices[6] =
 	{

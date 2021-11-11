@@ -167,7 +167,8 @@ copy "$(OutDir)EngineFLK.lib" "$(SolutionDir)Game"
 copy "$(SolutionDir)EngineFLK\lib\GLEW\lib\glew32.dll" "$(SolutionDir)Game"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"</Command>
+      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"
+xcopy /y "$(SolutionDir)EngineFLK\res\textures" "$(SolutionDir)Game\res\textures"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -210,7 +211,8 @@ copy "$(OutDir)EngineFLK.lib" "$(SolutionDir)Game"
 copy "$(SolutionDir)EngineFLK\lib\GLEW\lib\glew32.dll" "$(SolutionDir)Game"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"</Command>
+      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"
+xcopy /y "$(SolutionDir)EngineFLK\res\textures" "$(SolutionDir)Game\res\textures"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

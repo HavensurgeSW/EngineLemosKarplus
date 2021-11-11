@@ -74,10 +74,11 @@ void BaseGame::LaunchGod()
 	shader.CreateShader("res/shaders/Basic.shader");
 
 	Shape triangle(renderer, shader, ShapeType::TRIANGLE, true);
+	triangle.SetTexture("res/textures/TheRock.png");
 	Shape quad(renderer, shader, ShapeType::QUAD, true);
-	quad.SetTexture("res/textures/EnanoBostero.png");
+	quad.SetTexture("res/textures/TheRock.png");
 	Shape otherQuad(renderer, shader, ShapeType::QUAD, true);
-	otherQuad.SetTexture("res/textures/EnanoBostero.png");
+	otherQuad.SetTexture("res/textures/TheRock.png");
 
 	triangle.SetColor(Color::RandomColor());  //
 	quad.SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?

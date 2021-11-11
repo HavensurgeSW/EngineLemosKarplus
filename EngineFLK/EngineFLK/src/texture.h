@@ -10,6 +10,7 @@
 class FLK_API Texture
 {
 private:
+	
 	unsigned int textureID;
 	std::string filePath;
 	unsigned char* localBuffer;
