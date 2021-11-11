@@ -50,7 +50,6 @@ private:
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
-	Texture texture;
 
 public:
 	Transform transform;
@@ -61,10 +60,8 @@ public:
 
 	void Init();
 	
-	void SetTexture(const std::string& path);
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
-	//void SetShapeType(ShapeType type);   //why tf would you change this in runtime
 	void SetColor(Color color);
 	void Draw();
 

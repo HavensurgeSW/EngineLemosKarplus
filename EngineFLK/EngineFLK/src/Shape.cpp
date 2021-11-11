@@ -8,7 +8,6 @@ Shape::Shape()
 
 Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize) : Entity2D()
 {
-
 	this->renderer = renderer;
 	this->shader = shader;
 	this->type = type;
@@ -23,12 +22,6 @@ Shape::~Shape()
 {
 	UnbindBuffers();
 	DeleteBuffers();
-}
-
-void Shape::SetTexture(const std::string& path)
-{
-	texture.LoadTexture(path);
-	texture.Bind();
 }
 
 void Shape::SetRenderer(Renderer* renderer)
@@ -65,7 +58,6 @@ void Shape::Init()
 
 	shader.Bind();
 	shader.SetTextureUniform(0);
-	texture.Unbind();
 }
 
 void Shape::SetColor(Color color)
