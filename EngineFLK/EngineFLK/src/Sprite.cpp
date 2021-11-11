@@ -52,9 +52,10 @@ void Sprite::SetColor(Color color)
 	shader.SetColorUniform(color);
 }
 
-void Sprite::SetTexture()
+void Sprite::SetTexture(const std::string& path)
 {
-
+	texture.LoadTexture(path);
+	texture.Bind();
 }
 
 void Sprite::Draw()

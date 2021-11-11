@@ -4,12 +4,14 @@
 #include "Exports.h"
 #include "Entity2D.h"
 #include "Animation.h"
+#include "Texture.h"
 
 class FLK_API Sprite : public Entity2D
 {
 private:
 	Animation animation;
 	Shader shader;
+	Texture texture;
 
 	float quadVertices[16] =
 	{	 //position     //texture position
@@ -40,7 +42,8 @@ public:
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
 	void SetColor(Color color);
-	void SetTexture();
+	void SetTexture(const std::string& path);
+
 	void Draw();
 
 	void UnbindBuffers();

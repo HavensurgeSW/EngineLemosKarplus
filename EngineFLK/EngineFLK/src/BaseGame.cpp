@@ -65,24 +65,27 @@ void BaseGame::InitEngine()
 	renderer->MakeContextCurrent(window);
 
 	InitGlew();
-	
+
 	renderer->SetClearColor(Color::RandomColor());
 }
 
 void BaseGame::LaunchGod()
 {
-	shader.CreateShader("res/shaders/Basic.shader");
+	//spriteShader.CreateShader("res/shaders/Sprite.shader");
 
-	Shape triangle(renderer, shader, ShapeType::TRIANGLE, true);
-	triangle.SetTexture("res/textures/TheRock.png");
-	Shape quad(renderer, shader, ShapeType::QUAD, true);
+	shapeShader.CreateShader("res/shaders/Shape.shader");
+	Shape triangle(renderer, shapeShader, ShapeType::TRIANGLE);
+
+	spriteShader.CreateShader("res/shaders/Sprite.shader");
+	Sprite quad(renderer, spriteShader, ShapeType::QUAD);
 	quad.SetTexture("res/textures/TheRock.png");
-	Shape otherQuad(renderer, shader, ShapeType::QUAD, true);
-	otherQuad.SetTexture("res/textures/Illuminati.png");
+	quad.SetColor(Color::Green());
+	triangle.SetColor(Color::Red());
 
-	triangle.SetColor(Color::RandomColor());  //
-	quad.SetColor(Color::RandomColor());	   //Not working correctly, shader reference error?
-	otherQuad.SetColor(Color::RandomColor()); //
+	//Sprite sprite(renderer, spriteShader);
+	//sprite.SetTexture("res/textures/TheRock.png");
+	//sprite.SetColor(Color::RandomColor());
+
 
 	Vector2 trianglePosition(0.0f, 0.0f);
 	float triangleRotationSpeed = 0.0f;
@@ -99,7 +102,7 @@ void BaseGame::LaunchGod()
 		renderer->ClearScreen();
 		triangle.Draw();
 		quad.Draw();
-		otherQuad.Draw();
+		//sprite.Draw();
 
 		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
 		quad.transform.SetRotation(quadRotationSpeed, quadRotation);
@@ -108,7 +111,6 @@ void BaseGame::LaunchGod()
 
 		triangle.transform.SetScale(scale);
 		quad.transform.SetScale(scale);
-		otherQuad.transform.SetScale(scale);
 
 		if (Input::GetKey(KeyCode::W))
 		{

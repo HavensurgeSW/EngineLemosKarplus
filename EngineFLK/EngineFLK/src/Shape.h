@@ -55,7 +55,7 @@ public:
 	Transform transform;
 
 	Shape();
-	Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize = true);
+	Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize = true);
 	~Shape();
 
 	void Init();

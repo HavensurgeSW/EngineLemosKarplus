@@ -20,7 +20,7 @@ Shader::Shader(const std::string& filePath) : filePath(filePath)
 
 Shader::~Shader()
 {
-	GLCheck(glDeleteProgram(rendererId)); //similar to delete shader, (did this one delete the source code for the shader?)
+	//GLCheck(glDeleteProgram(rendererId)); //similar to delete shader, (did this one delete the source code for the shader?)
 										  //Code reminder: in this case, it should not be glDeleteShader() (Cherno "How I Deal with Shaders in OpenGL" 17:00)
 }
 

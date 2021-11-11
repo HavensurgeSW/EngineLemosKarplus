@@ -6,7 +6,7 @@ Shape::Shape()
 
 }
 
-Shape::Shape(Renderer* renderer, Shader& shader, ShapeType type, bool initalize) : Entity2D()
+Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) : Entity2D()
 {
 	this->renderer = renderer;
 	this->shader = shader;
@@ -57,12 +57,13 @@ void Shape::Init()
 	}
 
 	shader.Bind();
-	shader.SetTextureUniform(0);
 }
 
 void Shape::SetColor(Color color)
 {
+	shader.Bind();
 	shader.SetColorUniform(color);
+	shader.Unbind();
 }
 
 void Shape::Draw() 
