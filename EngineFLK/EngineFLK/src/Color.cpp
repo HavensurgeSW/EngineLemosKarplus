@@ -35,6 +35,14 @@ void Color::TurnNegative()
 	b = 1.0f - b;
 }
 
+Color Color::GetNegative()
+{
+	r = 1.0f - r;
+	g = 1.0f - g;
+	b = 1.0f - b;
+	return Color(r, g, b, a);
+}
+
 Color Color::Red()
 {
 	return Color(1.0f, 0.0f, 0.0f, 1.0f);
@@ -78,6 +86,11 @@ Color Color::Maroon()
 Color Color::Cyan()
 {
 	return Color(0.0f, 1.0f, 1.0f, 1.0f);
+}
+
+Color Color::Orange()
+{
+	return Color(1.0f, 0.5f, 0.3f, 1.0f);
 }
 
 Color Color::Teal()

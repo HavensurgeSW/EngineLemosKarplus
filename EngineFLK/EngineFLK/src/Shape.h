@@ -23,23 +23,23 @@ private:
 	ShapeType type;
 	Shader shader;
 
-	float triangleVertices[12] =
-	{    //position     //texture position
-		-0.5f, -0.5f,      0.0f, 0.0f,
-		 0.5f, -0.5f,      1.0f, 0.0f,
-		 0.0f,  0.5f,      0.5f, 1.0f
+	float triangleVertices[18] =
+	{    //position           //Colors         
+		-0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
+		 0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
+		 0.0f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f
 	};
 	unsigned int triangleIndices[3] =
 	{
 		0, 1, 2
 	};
 
-	float quadVertices[16] =
-	{	 //position     //texture position
-		 0.5f,  0.5f,      1.0f, 1.0f,
-		 0.5f, -0.5f,      1.0f, 0.0f,
-	    -0.5f, -0.5f,      0.0f, 0.0f,
-	    -0.5f,  0.5f,      0.0f, 1.0f
+	float quadVertices[24] =
+	{	 //position           //colors         
+		 0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
+		 0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
+		-0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
+	    -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f
 	};
 	unsigned int quadIndices[6] =
 	{
@@ -50,6 +50,7 @@ private:
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
+	VertexBufferLayout layout;
 
 public:
 	Shape();
@@ -60,7 +61,10 @@ public:
 	
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
-	void SetColor(Color color);
+	void SetShaderColor(Color color);
+	void SetVertexColor(Color color);
+	void SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color);
+	
 	void Draw();
 
 private:

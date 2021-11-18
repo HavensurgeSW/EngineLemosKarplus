@@ -15,6 +15,7 @@ struct FLK_API Color
 	Color(float r, float g, float b, float a);
 
 	void TurnNegative();
+	Color GetNegative();
 
 	static Color Red();
 	static Color Green();
@@ -26,6 +27,7 @@ struct FLK_API Color
 	static Color White();
 	static Color Maroon();
 	static Color Cyan();
+	static Color Orange();
 	static Color Teal();
 	static Color Purple();
 	static Color Gray();
