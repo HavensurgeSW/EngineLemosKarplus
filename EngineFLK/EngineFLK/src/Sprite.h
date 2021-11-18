@@ -32,8 +32,6 @@ private:
 	IndexBuffer indexBuffer;
 
 public:
-	Transform transform;
-
 	Sprite();
 	Sprite(Renderer* renderer, Shader& shader, bool initalize = true);
 	~Sprite();

@@ -102,78 +102,92 @@ void BaseGame::LaunchGod()
 
 	float scale = 0.6f;
 
+	triangle.transform.SetPosition(trianglePosition);
+	triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
+	triangle.transform.SetScale(scale);
+	
+	illuminati.transform.SetPosition(quadPosition);
+	illuminati.transform.SetRotation(quadRotationSpeed, quadRotation);
+	illuminati.transform.SetScale(scale);
+	
+	enano.transform.SetPosition(0.7f, 0, 0);
+	enano.transform.SetScale(scale);
+	
+	rock.transform.SetPosition(-0.7f, 0, 0);
+	rock.transform.SetScale(scale);
+	
+
 	while (!window->ShouldClose())
 	{
 		Update();
 		renderer->ClearScreen();
 		
-		triangle.transform.SetPosition(trianglePosition);
-		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
-		triangle.transform.SetScale(scale);
 		triangle.Draw();
-
-		illuminati.transform.SetPosition(quadPosition);
-		illuminati.transform.SetRotation(quadRotationSpeed, quadRotation);
-		illuminati.transform.SetScale(scale);
 		illuminati.Draw();
-		
-		enano.transform.SetPosition(0.7f, 0, 0);
-		enano.transform.SetScale(scale);
 		enano.Draw();
-		
-		rock.transform.SetPosition(-0.7f, 0, 0);
-		rock.transform.SetScale(scale);
 		rock.Draw();
+		
 
 		if (Input::GetKey(KeyCode::W))
 		{
-			trianglePosition.y += 0.01f;
+			//trianglePosition.y += 0.01f;
+			triangle.transform.Translate({0,0.01f,0});
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			trianglePosition.y -= 0.01f;
+			triangle.transform.Translate({ 0,-0.01f,0 });
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
-			trianglePosition.x += 0.01f;
+			//trianglePosition.x += 0.01f;
+			triangle.transform.Translate({ 0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			trianglePosition.x -= 0.01f;
+			triangle.transform.Translate({ -0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::Q))
 		{
-			triangleRotationSpeed += 0.01f;
+			triangle.transform.RotateZAxis(1.0f);
 		}
 		if (Input::GetKey(KeyCode::E))
 		{
-			triangleRotationSpeed -= 0.01f;
-			std::cout << triangleRotationSpeed << std::endl;
+			triangle.transform.RotateZAxis(-1.0f);
 		}
 
 		if (Input::GetKey(KeyCode::UP))
 		{
-			quadPosition.y += 0.01f;
+			//quadPosition.y += 0.01f;
+			illuminati.transform.Translate({ 0,0.01f,0 });
 		}
 		if (Input::GetKey(KeyCode::DOWN))
 		{
-			quadPosition.y -= 0.01f;
+			illuminati.transform.Translate({ 0,-0.01f,0 });
 		}
 		if (Input::GetKey(KeyCode::RIGHT))
 		{
-			quadPosition.x += 0.01f;
+			illuminati.transform.Translate({ 0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::LEFT))
 		{
-			quadPosition.x -= 0.01f;
+			illuminati.transform.Translate({ -0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::NUMPAD_1))
 		{
-			quadRotationSpeed += 0.01f;
+			//quadRotationSpeed += 0.01f;
+			illuminati.transform.RotateZAxis(1.0f);
 		}
 		if (Input::GetKey(KeyCode::NUMPAD_3))
 		{
-			quadRotationSpeed -= 0.01f;
+			illuminati.transform.RotateZAxis(-1.0f);
+		}
+
+		if (collisionManager->CheckCollision(illuminati, enano)){
+			std::cout << "Ah re loco" << std::endl;
+		}
+
+		if (collisionManager->CheckCollision(triangle, enano)) {
+			std::cout << "Harry esta mas turbado que nunca" << std::endl;
 		}
 
 		renderer->SwapBuffer();

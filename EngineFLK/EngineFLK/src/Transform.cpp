@@ -28,7 +28,7 @@ Transform::~Transform()
 
 void Transform::SetPosition(float x, float y, float z)
 {
-	this->position = position;
+	this->position = {x,y,z};
 	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
 
 	UpdateTransform();
@@ -122,7 +122,7 @@ void Transform::SetScale(Vector3 scale)
 void Transform::Translate(Vector3 position) 
 {
 	this->position += position;
-	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, position.z));
+	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(this->position.x, this->position.y, this->position.z));
 
 	UpdateTransform();
 }

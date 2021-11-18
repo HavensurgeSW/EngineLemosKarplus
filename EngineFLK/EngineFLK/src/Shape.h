@@ -52,8 +52,6 @@ private:
 	IndexBuffer indexBuffer;
 
 public:
-	Transform transform;
-
 	Shape();
 	Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize = true);
 	~Shape();
