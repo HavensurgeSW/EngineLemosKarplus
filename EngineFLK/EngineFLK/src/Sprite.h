@@ -9,6 +9,7 @@
 class FLK_API Sprite : public Entity2D
 {
 private:
+	static int num;
 	Animation animation;
 	Shader shader;
 	Texture texture;

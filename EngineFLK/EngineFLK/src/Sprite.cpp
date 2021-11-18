@@ -1,6 +1,8 @@
 #include "Sprite.h"
 #include "Texture.h"
 
+int Sprite::num = 0;
+
 Sprite::Sprite()
 {
 
@@ -55,12 +57,13 @@ void Sprite::SetColor(Color color)
 void Sprite::SetTexture(const std::string& path)
 {
 	texture.LoadTexture(path);
-	texture.Bind();
 }
 
 void Sprite::Draw()
 {
+	texture.Bind();
 	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
+	texture.Unbind();
 }
 
 void Sprite::UnbindBuffers()

@@ -110,3 +110,8 @@ int Texture::GetHeight() const
 {
 	return height;
 }
+
+int Texture::GetId() const
+{
+	return textureID;
+}
