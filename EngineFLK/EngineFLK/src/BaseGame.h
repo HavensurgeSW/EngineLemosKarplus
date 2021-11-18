@@ -16,8 +16,6 @@ private:
 	Renderer* renderer;
 	Input* input;
 	CollisionManager* collisionManager;
-	Shader spriteShader;
-	Shader shapeShader;
 
 	//Shape* triangle;
 	//Shape* quad;

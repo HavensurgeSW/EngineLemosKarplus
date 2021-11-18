@@ -31,6 +31,7 @@ public:
 
 	/*inline*/ int GetWidth() const;
 	/*inline*/ int GetHeight() const;
+	/*inline*/ int GetId() const;
 };
 
 #endif

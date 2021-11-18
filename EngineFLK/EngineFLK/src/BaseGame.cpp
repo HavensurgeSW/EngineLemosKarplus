@@ -73,29 +73,30 @@ void BaseGame::LaunchGod()
 {
 	//spriteShader.CreateShader("res/shaders/Sprite.shader");
 
-	shapeShader.CreateShader("res/shaders/Shape.shader");
-	Shape triangle(renderer, shapeShader, ShapeType::TRIANGLE);
+	Shader triangleShader("res/shaders/Shape.shader");
+
+	Shape triangle(renderer, triangleShader, ShapeType::TRIANGLE);
 	triangle.SetColor(Color::Red());
 
-	spriteShader.CreateShader("res/shaders/Sprite.shader");
-	Sprite enano(renderer, spriteShader, ShapeType::QUAD);
+	Shader enanoShader("res/shaders/Sprite.shader");
+	Sprite enano(renderer, enanoShader, ShapeType::QUAD);
 	enano.SetTexture("res/textures/EnanoBostero.png");
 	enano.SetColor(Color::White());
 
-	Sprite quad(renderer, spriteShader, ShapeType::QUAD);
-	quad.SetTexture("res/textures/Illuminati.png");
-	quad.SetColor(Color::Green());
+	Shader illuminatiShader("res/shaders/Sprite.shader");
+	Sprite illuminati(renderer, illuminatiShader, ShapeType::QUAD);
+	illuminati.SetTexture("res/textures/Illuminati.png");
+	illuminati.SetColor(Color::Green());
 
+	Shader rockShader("res/shaders/Sprite.shader");
+	Sprite rock(renderer, rockShader, ShapeType::QUAD);
+	rock.SetTexture("res/textures/TheRock.png");
+	rock.SetColor(Color::Red());
 
-
-	//Sprite sprite(renderer, spriteShader);
-	//sprite.SetTexture("res/textures/TheRock.png");
-	//sprite.SetColor(Color::RandomColor());
-
-	Vector2 trianglePosition(0.0f, 0.0f);
-	float triangleRotationSpeed = 0.0f;
+	Vector2 trianglePosition(0.0f, -0.5f);
+	float triangleRotationSpeed = -3.14f;
 	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
-	Vector2 quadPosition(0.5f, 0.5f);
+	Vector2 quadPosition(0.0f, 0.5f);
 	float quadRotationSpeed = 0.0f;
 	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
 
@@ -105,18 +106,24 @@ void BaseGame::LaunchGod()
 	{
 		Update();
 		renderer->ClearScreen();
-		triangle.Draw();
-		quad.Draw();
-		enano.Draw();
-		//sprite.Draw();
-
-		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
-		quad.transform.SetRotation(quadRotationSpeed, quadRotation);
+		
 		triangle.transform.SetPosition(trianglePosition);
-		quad.transform.SetPosition(quadPosition);
-
+		triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
 		triangle.transform.SetScale(scale);
-		quad.transform.SetScale(scale);
+		triangle.Draw();
+
+		illuminati.transform.SetPosition(quadPosition);
+		illuminati.transform.SetRotation(quadRotationSpeed, quadRotation);
+		illuminati.transform.SetScale(scale);
+		illuminati.Draw();
+		
+		enano.transform.SetPosition(0.7f, 0, 0);
+		enano.transform.SetScale(scale);
+		enano.Draw();
+		
+		rock.transform.SetPosition(-0.7f, 0, 0);
+		rock.transform.SetScale(scale);
+		rock.Draw();
 
 		if (Input::GetKey(KeyCode::W))
 		{
@@ -141,6 +148,7 @@ void BaseGame::LaunchGod()
 		if (Input::GetKey(KeyCode::E))
 		{
 			triangleRotationSpeed -= 0.01f;
+			std::cout << triangleRotationSpeed << std::endl;
 		}
 
 		if (Input::GetKey(KeyCode::UP))
