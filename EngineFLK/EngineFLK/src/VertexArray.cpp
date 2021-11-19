@@ -33,7 +33,6 @@ void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 {
 	Bind();
 	vertexBuffer.Bind();
-	const std::vector<VertexBufferLayoutElement>& elements = GetElements();
 
 	unsigned int offset = 0;
 	for (int i = 0; i < elements.size(); i++)
@@ -50,17 +49,6 @@ void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 void VertexArray::Delete()
 {
 	GLCheck(glDeleteVertexArrays(1, &arrayId));
-}
-
-
-const std::vector<VertexBufferLayoutElement> VertexArray::GetElements() const&
-{
-	return elements;
-}
-
-unsigned int VertexArray::GetStride() const
-{
-	return stride;
 }
 
 template<typename T>

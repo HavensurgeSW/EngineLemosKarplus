@@ -7,7 +7,7 @@ IndexBuffer::IndexBuffer()
 {
 }
 
-IndexBuffer::IndexBuffer(const unsigned int indices[], unsigned int indexCount) : indexCount(indexCount)
+IndexBuffer::IndexBuffer(const unsigned int indices[], unsigned int indexCount)
 {
 	GLCheck(glGenBuffers(1, &bufferId));
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId));

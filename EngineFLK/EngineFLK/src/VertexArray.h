@@ -19,7 +19,6 @@ class FLK_API VertexArray
 {
 private:
 	unsigned int arrayId;
-
 	std::vector<VertexBufferLayoutElement> elements;
 	unsigned int stride;
 
@@ -33,9 +32,6 @@ public:
 	void Bind() const;
 	void Unbind() const;
 	void Delete();
-
-	const std::vector<VertexBufferLayoutElement> GetElements() const&;
-	unsigned int GetStride() const;
 
 	template<typename T>
 	void Push(int count);
