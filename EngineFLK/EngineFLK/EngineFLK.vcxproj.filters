@@ -150,9 +150,6 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>src\texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\VertexBufferLayout.cpp">
-      <Filter>src\vertex_buffer</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exports.h">
@@ -226,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>src\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="src\VertexBufferLayout.h">
-      <Filter>src\vertex_buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

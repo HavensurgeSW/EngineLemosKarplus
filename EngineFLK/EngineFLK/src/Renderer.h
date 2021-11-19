@@ -24,9 +24,8 @@ public:
 	void ClearScreen();
 	void SetWindow(Window* window);
 	void MakeContextCurrent(Window* window);
-	void GenerateBuffers(float vertices[], int maxVertices, unsigned int indices[], int maxIndices);
-	void Draw(Shader& shader, Transform transform, VertexArray& vertexArray, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer);
-	void UnbindBuffers();
+
+	void Draw(Shader& shader, const Transform& transform, const VertexArray& vertexArray, const VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer);
 };
 
 #endif

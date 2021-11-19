@@ -40,17 +40,21 @@ void Shape::Init()
 	{
 	case ShapeType::TRIANGLE:
 		vertexBuffer.SetData(triangleVertices, 18);
-		layout.Push<float>(2);
-		layout.Push<float>(4);
-		vertexArray.SetVertexArrayData(vertexBuffer, layout);
+		
+		vertexArray.Push<float>(2);
+		vertexArray.Push<float>(4);
+		vertexArray.SetData(vertexBuffer);
+
 		indexBuffer.SetData(triangleIndices, 3);
 		break;
 
 	case ShapeType::QUAD:
 		vertexBuffer.SetData(quadVertices, 24);
-		layout.Push<float>(2);
-		layout.Push<float>(4);
-		vertexArray.SetVertexArrayData(vertexBuffer, layout);
+
+		vertexArray.Push<float>(2);
+		vertexArray.Push<float>(4);
+		vertexArray.SetData(vertexBuffer);
+
 		indexBuffer.SetData(quadIndices, 6);
 		break;
 	}

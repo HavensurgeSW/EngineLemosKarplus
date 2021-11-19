@@ -4,12 +4,10 @@
 #include "Exports.h"
 #include "Shader.h"
 #include "Entity2D.h"
-#include "Transform.h"
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
-#include "Texture.h"
 
 enum FLK_API ShapeType //Primitive?
 {
@@ -50,7 +48,6 @@ private:
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
-	VertexBufferLayout layout;
 
 public:
 	Shape();

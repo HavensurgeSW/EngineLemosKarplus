@@ -1,8 +1,6 @@
 #include "Sprite.h"
 #include "Texture.h"
 
-int Sprite::num = 0;
-
 Sprite::Sprite()
 {
 
@@ -37,21 +35,24 @@ void Sprite::SetShader(Shader& shader)
 
 void Sprite::Init()
 {
-	VertexBufferLayout layout;
-
 	vertexBuffer.SetData(quadVertices, 16);
-	layout.Push<float>(2);
-	layout.Push<float>(2);
-	vertexArray.SetVertexArrayData(vertexBuffer, layout);
+
+	vertexArray.Push<float>(2);
+	vertexArray.Push<float>(2);
+	vertexArray.SetData(vertexBuffer);
+
 	indexBuffer.SetData(quadIndices, 6);
 
 	shader.Bind();
 	shader.SetTextureUniform(0);
+	shader.Unbind();
 }
 
 void Sprite::SetColor(Color color)
 {
+	shader.Bind();
 	shader.SetColorUniform(color);
+	shader.Unbind();
 }
 
 void Sprite::SetTexture(const std::string& path)
@@ -62,7 +63,7 @@ void Sprite::SetTexture(const std::string& path)
 void Sprite::Draw()
 {
 	texture.Bind();
-	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
+	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
 	texture.Unbind();
 }
 

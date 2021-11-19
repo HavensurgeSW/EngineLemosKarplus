@@ -5,11 +5,13 @@
 #include "Entity2D.h"
 #include "Animation.h"
 #include "Texture.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "VertexArray.h"
 
 class FLK_API Sprite : public Entity2D
 {
 private:
-	static int num;
 	Animation animation;
 	Shader shader;
 	Texture texture;

@@ -10,7 +10,7 @@ VertexArray::VertexArray()
 
 VertexArray::~VertexArray()
 {
-	glDeleteVertexArrays(1, &arrayId);
+	GLCheck(glDeleteVertexArrays(1, &arrayId));
 }
 
 void VertexArray::SetVertexAttribute(const char* name)
@@ -29,19 +29,19 @@ void VertexArray::Unbind() const
 	GLCheck(glBindVertexArray(0));
 }
 
-void VertexArray::SetVertexArrayData(const VertexBuffer& vertexBuffer, const VertexBufferLayout& vertexBufferLayout)
+void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 {
 	Bind();
 	vertexBuffer.Bind();
-	const std::vector<VertexBufferLayoutElement>& elements = vertexBufferLayout.GetElements();
+	const std::vector<VertexBufferLayoutElement>& elements = GetElements();
 
 	unsigned int offset = 0;
 	for (int i = 0; i < elements.size(); i++)
 	{
 		VertexBufferLayoutElement element = elements[i];
 		GLCheck(glEnableVertexAttribArray(i));
-		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized, vertexBufferLayout.GetStride(), (const void*)offset));
-		offset += element.count * VertexBufferLayoutElement::GetSizeOfType(element.type);
+		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized, stride, (const void*)offset));
+		offset += element.count * GetSizeOfType(element.type);
 	}
 	vertexBuffer.Unbind();
 	Unbind();
@@ -50,4 +50,60 @@ void VertexArray::SetVertexArrayData(const VertexBuffer& vertexBuffer, const Ver
 void VertexArray::Delete()
 {
 	GLCheck(glDeleteVertexArrays(1, &arrayId));
+}
+
+
+const std::vector<VertexBufferLayoutElement> VertexArray::GetElements() const&
+{
+	return elements;
+}
+
+unsigned int VertexArray::GetStride() const
+{
+	return stride;
+}
+
+template<typename T>
+void VertexArray::Push(int count)
+{
+	static_assert(false);
+}
+
+template<>
+void VertexArray::Push<float>(int count)
+{
+	elements.push_back({ GL_FLOAT, count, GL_FALSE });
+	stride += count * GetSizeOfType(GL_FLOAT);
+}
+
+template<>
+void VertexArray::Push<unsigned int>(int count)
+{
+	elements.push_back({ GL_UNSIGNED_INT, count, GL_FALSE });
+	stride += count * GetSizeOfType(GL_UNSIGNED_INT);
+}
+
+template<>
+void VertexArray::Push<unsigned char>(int count)
+{
+	elements.push_back({ GL_UNSIGNED_BYTE, count, GL_TRUE });
+	stride += count * GetSizeOfType(GL_UNSIGNED_BYTE);
+}
+
+
+unsigned int VertexArray::GetSizeOfType(unsigned int type)
+{
+	switch (type)
+	{
+	case GL_FLOAT:
+		return 4;
+
+	case GL_UNSIGNED_INT:
+		return 4;
+
+	case GL_UNSIGNED_BYTE:
+		return 1;
+	}
+
+	return 0;
 }

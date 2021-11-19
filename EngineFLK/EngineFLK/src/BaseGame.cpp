@@ -74,9 +74,9 @@ void BaseGame::LaunchGod()
 
 	Shader triangleShader("res/shaders/Shape.shader");
 
-	Shape triangle(renderer, triangleShader, ShapeType::QUAD, false);
-	triangle.SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
-	triangle.Init();
+	Shape quad(renderer, triangleShader, ShapeType::QUAD, false);
+	quad.SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
+	quad.Init();
 
 	Shader enanoShader("res/shaders/Sprite.shader");
 	Sprite enano(renderer, enanoShader, ShapeType::QUAD);
@@ -94,16 +94,16 @@ void BaseGame::LaunchGod()
 	rock.SetColor(Color::Red());
 
 	Vector2 trianglePosition(0.0f, -0.5f);
-	float triangleRotationSpeed = -3.14f;
+	float triangleRotationSpeed = -45.0f;
 	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
 	Vector2 quadPosition(0.0f, 0.5f);
 	float quadRotationSpeed = 0.0f;
 	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
 	float scale = 0.6f;
 
-	triangle.transform.SetPosition(trianglePosition);
-	triangle.transform.SetRotation(triangleRotationSpeed, triangleRotation);
-	triangle.transform.SetScale(scale);
+	quad.transform.SetPosition(trianglePosition);
+	quad.transform.SetRotation(triangleRotationSpeed, triangleRotation);
+	quad.transform.SetScale(scale);
 
 	illuminati.transform.SetPosition(quadPosition);
 	illuminati.transform.SetRotation(quadRotationSpeed, quadRotation);
@@ -120,7 +120,7 @@ void BaseGame::LaunchGod()
 		Update();
 		renderer->ClearScreen();
 
-		triangle.Draw();
+		quad.Draw();
 		illuminati.Draw();
 		enano.Draw();
 		rock.Draw();
@@ -128,28 +128,28 @@ void BaseGame::LaunchGod()
 		if (Input::GetKey(KeyCode::W))
 		{
 			//trianglePosition.y += 0.01f;
-			triangle.transform.Translate({ 0, 0.01f, 0 });
+			quad.transform.Translate({ 0, 0.01f, 0 });
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			triangle.transform.Translate({ 0, -0.01f, 0 });
+			quad.transform.Translate({ 0, -0.01f, 0 });
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
 			//trianglePosition.x += 0.01f;
-			triangle.transform.Translate({ 0.01f,0,0 });
+			quad.transform.Translate({ 0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			triangle.transform.Translate({ -0.01f,0,0 });
+			quad.transform.Translate({ -0.01f,0,0 });
 		}
 		if (Input::GetKey(KeyCode::Q))
 		{
-			triangle.transform.RotateZAxis(1.0f);
+			quad.transform.RotateZAxis(1.0f);
 		}
 		if (Input::GetKey(KeyCode::E))
 		{
-			triangle.transform.RotateZAxis(-1.0f);
+			quad.transform.RotateZAxis(-1.0f);
 		}
 
 		if (Input::GetKey(KeyCode::UP))
@@ -184,7 +184,7 @@ void BaseGame::LaunchGod()
 			std::cout << "Ah re loco" << std::endl;
 		}
 
-		if (collisionManager->CheckCollision(triangle, enano)) 
+		if (collisionManager->CheckCollision(quad, enano))
 		{
 			std::cout << "Harry esta mas turbado que nunca" << std::endl;
 		}
