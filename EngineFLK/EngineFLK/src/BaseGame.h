@@ -21,6 +21,10 @@ private:
 	//Shape* triangle;
 	//Shape* quad;
 	//Shape* otherQuad;
+protected:
+
+	Renderer* GetRenderer() const;
+	CollisionManager* GetCollisionManager() const;
 
 public:
 	BaseGame();

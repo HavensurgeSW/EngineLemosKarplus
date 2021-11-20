@@ -8,7 +8,7 @@ class FLK_API CollisionManager
 private:
 
 public:
-	bool CheckCollision(Entity2D &one, Entity2D &two);
+	bool CheckCollision(const Entity2D* one, const Entity2D* two);
 };
 
 #endif

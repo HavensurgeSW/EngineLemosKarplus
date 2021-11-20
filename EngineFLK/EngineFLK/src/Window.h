@@ -17,6 +17,7 @@ public:
 	GLFWwindow* CreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share);
 	void SetWindow(GLFWwindow* window);
 	GLFWwindow* GetWindow();
+	void DestroyWindow();
 	bool ShouldClose();
 };
 

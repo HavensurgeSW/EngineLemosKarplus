@@ -42,7 +42,6 @@ void BaseGame::InitGlew()
 
 void BaseGame::InitEngine()
 {
-	Init();
 	srand(time(0));
 	bool initResult = glfwInit();
 	if (!initResult)
@@ -66,134 +65,32 @@ void BaseGame::InitEngine()
 	InitGlew();
 
 	renderer->SetClearColor(Color::RandomColor());
+	Init();
 }
 
 void BaseGame::LaunchGod()
 {
-	//spriteShader.CreateShader("res/shaders/Sprite.shader");
-
-	Shader triangleShader("res/shaders/Shape.shader");
-
-	Shape quad(renderer, triangleShader, ShapeType::QUAD, false);
-	quad.SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
-	quad.Init();
-
-	Shader enanoShader("res/shaders/Sprite.shader");
-	Sprite enano(renderer, enanoShader, ShapeType::QUAD);
-	enano.SetTexture("res/textures/EnanoBostero.png");
-	enano.SetColor(Color::White());
-
-	Shader illuminatiShader("res/shaders/Sprite.shader");
-	Sprite illuminati(renderer, illuminatiShader, ShapeType::QUAD);
-	illuminati.SetTexture("res/textures/Illuminati.png");
-	illuminati.SetColor(Color::Green());
-
-	Shader rockShader("res/shaders/Sprite.shader");
-	Sprite rock(renderer, rockShader, ShapeType::QUAD);
-	rock.SetTexture("res/textures/TheRock.png");
-	rock.SetColor(Color::Red());
-
-	Vector2 trianglePosition(0.0f, -0.5f);
-	float triangleRotationSpeed = -45.0f;
-	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
-	Vector2 quadPosition(0.0f, 0.5f);
-	float quadRotationSpeed = 0.0f;
-	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
-	float scale = 0.6f;
-
-	quad.transform.SetPosition(trianglePosition);
-	quad.transform.SetRotation(triangleRotationSpeed, triangleRotation);
-	quad.transform.SetScale(scale);
-
-	illuminati.transform.SetPosition(quadPosition);
-	illuminati.transform.SetRotation(quadRotationSpeed, quadRotation);
-	illuminati.transform.SetScale(scale);
-
-	enano.transform.SetPosition(0.7f, 0, 0);
-	enano.transform.SetScale(scale);
-
-	rock.transform.SetPosition(-0.7f, 0, 0);
-	rock.transform.SetScale(scale);
-
 	while (!window->ShouldClose())
 	{
-		Update();
 		renderer->ClearScreen();
 
-		quad.Draw();
-		illuminati.Draw();
-		enano.Draw();
-		rock.Draw();
-
-		if (Input::GetKey(KeyCode::W))
-		{
-			//trianglePosition.y += 0.01f;
-			quad.transform.Translate({ 0, 0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::S))
-		{
-			quad.transform.Translate({ 0, -0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::D))
-		{
-			//trianglePosition.x += 0.01f;
-			quad.transform.Translate({ 0.01f,0,0 });
-		}
-		if (Input::GetKey(KeyCode::A))
-		{
-			quad.transform.Translate({ -0.01f,0,0 });
-		}
-		if (Input::GetKey(KeyCode::Q))
-		{
-			quad.transform.RotateZAxis(1.0f);
-		}
-		if (Input::GetKey(KeyCode::E))
-		{
-			quad.transform.RotateZAxis(-1.0f);
-		}
-
-		if (Input::GetKey(KeyCode::UP))
-		{
-			//quadPosition.y += 0.01f;
-			illuminati.transform.Translate({ 0, 0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::DOWN))
-		{
-			illuminati.transform.Translate({ 0, -0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::RIGHT))
-		{
-			illuminati.transform.Translate({ 0.01f, 0, 0 });
-		}
-		if (Input::GetKey(KeyCode::LEFT))
-		{
-			illuminati.transform.Translate({ -0.01f, 0, 0 });
-		}
-		if (Input::GetKey(KeyCode::NUMPAD_1))
-		{
-			//quadRotationSpeed += 0.01f;
-			illuminati.transform.RotateZAxis(1.0f);
-		}
-		if (Input::GetKey(KeyCode::NUMPAD_3))
-		{
-			illuminati.transform.RotateZAxis(-1.0f);
-		}
-
-		if (collisionManager->CheckCollision(illuminati, enano)) 
-		{
-			std::cout << "Ah re loco" << std::endl;
-		}
-
-		if (collisionManager->CheckCollision(quad, enano))
-		{
-			std::cout << "Harry esta mas turbado que nunca" << std::endl;
-		}
+		Update(); //FOR SOME REASON (check reason) the Update method MUST be below the ClearScreen() method AND above the SwapBuffers() method.
 
 		renderer->SwapBuffer();
 		input->PollEvents();
 	}
 
 	Terminate();
+}
+
+Renderer* BaseGame::GetRenderer() const
+{
+	return renderer;
+}
+
+CollisionManager* BaseGame::GetCollisionManager() const
+{
+	return collisionManager;
 }
 
 void BaseGame::Terminate()

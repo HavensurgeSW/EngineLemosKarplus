@@ -39,6 +39,11 @@ GLFWwindow* Window::GetWindow()
 	return window;
 }
 
+void Window::DestroyWindow()
+{
+	glfwDestroyWindow(window);
+}
+
 bool Window::ShouldClose()
 {
 	return glfwWindowShouldClose(window);
