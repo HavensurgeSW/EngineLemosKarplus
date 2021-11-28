@@ -85,9 +85,6 @@
     <Filter Include="res\textures">
       <UniqueIdentifier>{feaa547d-3fa5-4239-9247-fd62011c41cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\texture_importer">
-      <UniqueIdentifier>{9da12223-2612-4d02-8618-e32714929aa6}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -152,9 +149,6 @@
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
       <Filter>src\texture</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TextureImporter.cpp">
-      <Filter>src\texture_importer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>src\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TextureImporter.h">
-      <Filter>src\texture_importer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

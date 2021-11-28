@@ -36,7 +36,7 @@ void Transform::SetPosition(float x, float y, float z)
 
 void Transform::SetPosition(Vector2 position)
 {
-	SetPosition(position.x, position.y, this->position.z);
+	SetPosition(position.x, position.y, 0.0f);
 }
 
 void Transform::SetPosition(Vector3 position)
