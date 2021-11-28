@@ -12,8 +12,8 @@ class FLK_API Texture
 private:
 	
 	unsigned int textureID;
+	unsigned char* data;
 	std::string filePath;
-	unsigned char* localBuffer;
 
 	int width;
 	int height;
@@ -22,7 +22,7 @@ private:
 
 public:
 	Texture();
-	Texture(const std::string& path);
+	Texture(const std::string& path, const bool isTransparent = true);
 	~Texture();
 
 	void Bind(unsigned int slot = 0) const;
