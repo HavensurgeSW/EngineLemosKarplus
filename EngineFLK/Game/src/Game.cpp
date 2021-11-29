@@ -10,7 +10,6 @@ void Game::Init()
 	Shader enanoShader("res/shaders/Sprite.shader");
 	enano = new Sprite(GetRenderer(), enanoShader);
 	enano->SetTexture("res/textures/EnanoBostero.png");
-	enano->SetColor(Color::White());
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(GetRenderer(), illuminatiShader);
@@ -20,7 +19,6 @@ void Game::Init()
 	Shader rockShader("res/shaders/Sprite.shader");
 	rock = new Sprite(GetRenderer(), rockShader);
 	rock->SetTexture("res/textures/TheRock.png");
-	rock->SetColor(Color::Red());
 
 	Vector2 trianglePosition(0.0f, -0.5f);
 	float triangleRotationSpeed = -45.0f;
@@ -49,7 +47,6 @@ void Game::Update()
 {
 	if (Input::GetKey(KeyCode::W))
 	{
-		//trianglePosition.y += 0.01f;
 		shape->transform.Translate({ 0, 0.01f, 0 });
 	}
 	if (Input::GetKey(KeyCode::S))
@@ -58,8 +55,7 @@ void Game::Update()
 	}
 	if (Input::GetKey(KeyCode::D))
 	{
-		//trianglePosition.x += 0.01f;
-		shape->transform.Translate({ 0.01f,0,0 });
+		shape->transform.Translate({ 0.01f, 0, 0 });
 	}
 	if (Input::GetKey(KeyCode::A))
 	{
@@ -76,7 +72,6 @@ void Game::Update()
 
 	if (Input::GetKey(KeyCode::UP))
 	{
-		//quadPosition.y += 0.01f;
 		illuminati->transform.Translate({ 0, 0.01f, 0 });
 	}
 	if (Input::GetKey(KeyCode::DOWN))
@@ -93,7 +88,6 @@ void Game::Update()
 	}
 	if (Input::GetKey(KeyCode::NUMPAD_1))
 	{
-		//quadRotationSpeed += 0.01f;
 		illuminati->transform.RotateZAxis(1.0f);
 	}
 	if (Input::GetKey(KeyCode::NUMPAD_3))
@@ -105,7 +99,7 @@ void Game::Update()
 	{
 		std::cout << "Ah re loco" << std::endl;
 	}
-	
+
 	if (GetCollisionManager()->CheckCollision(shape, enano))
 	{
 		std::cout << "Harry esta mas turbado que nunca" << std::endl;

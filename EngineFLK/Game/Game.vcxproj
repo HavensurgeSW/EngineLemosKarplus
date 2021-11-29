@@ -25,6 +25,15 @@
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\Shape.shader" />
+    <None Include="res\shaders\Sprite.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\EnanoBostero.png" />
+    <Image Include="res\textures\Illuminati.png" />
+    <Image Include="res\textures\TheRock.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{19010DFD-E9BE-4DBC-8FA4-17001084F03E}</ProjectGuid>

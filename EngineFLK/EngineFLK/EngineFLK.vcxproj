@@ -67,10 +67,6 @@
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\Window.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="res\shaders\Shape.shader" />
-    <None Include="res\shaders\Sprite.shader" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{891E4201-1306-498C-ADBB-B725273F468C}</ProjectGuid>
@@ -162,8 +158,8 @@ copy "$(OutDir)EngineFLK.lib" "$(SolutionDir)Game"
 copy "$(SolutionDir)EngineFLK\lib\GLEW\lib\glew32.dll" "$(SolutionDir)Game"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)EngineFLK\res\shaders" "$(SolutionDir)Game\res\shaders"
-xcopy /y "$(SolutionDir)EngineFLK/res/textures" "$(SolutionDir)Game\res\textures" /e /h /c /i</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

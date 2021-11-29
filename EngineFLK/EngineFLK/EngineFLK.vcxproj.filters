@@ -37,12 +37,6 @@
     <Filter Include="src\entities\tilemap">
       <UniqueIdentifier>{dd6ac629-8202-4985-bb3f-b265e949112f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{a1797995-231d-46a9-b54f-b0190cc1fb08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\shaders">
-      <UniqueIdentifier>{91d95d85-36e3-42b6-8e1f-2d102888eee8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\utility">
       <UniqueIdentifier>{8ac5e2d4-59f1-42c1-b599-43ea1f03a0da}</UniqueIdentifier>
     </Filter>
@@ -81,9 +75,6 @@
     </Filter>
     <Filter Include="src\texture">
       <UniqueIdentifier>{6ffdf2b8-3400-4e86-b27f-9e5b329feef5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\textures">
-      <UniqueIdentifier>{feaa547d-3fa5-4239-9247-fd62011c41cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -224,13 +215,5 @@
     <ClInclude Include="src\Texture.h">
       <Filter>src\texture</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\shaders\Sprite.shader">
-      <Filter>res\shaders</Filter>
-    </None>
-    <None Include="res\shaders\Shape.shader">
-      <Filter>res\shaders</Filter>
-    </None>
   </ItemGroup>
 </Project>

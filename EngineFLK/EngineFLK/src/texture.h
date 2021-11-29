@@ -18,7 +18,7 @@ private:
 	int width;
 	int height;
 	
-	int bytesPerPixel;
+	int amountOfChannels;
 
 public:
 	Texture();

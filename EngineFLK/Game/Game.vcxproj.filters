@@ -7,6 +7,15 @@
     <Filter Include="src\game">
       <UniqueIdentifier>{acda6358-573e-4332-b1b2-a4adec8671d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{6f6ce50e-4b98-4623-ba29-546a121e08b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\textures">
+      <UniqueIdentifier>{63daeffe-ba76-41f0-8ffc-350547851777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{22d54647-d6b6-48e0-843e-6c203b886261}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -20,5 +29,24 @@
     <ClInclude Include="src\Game.h">
       <Filter>src\game</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\Shape.shader">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\Sprite.shader">
+      <Filter>res\shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\EnanoBostero.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\Illuminati.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\TheRock.png">
+      <Filter>res\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
