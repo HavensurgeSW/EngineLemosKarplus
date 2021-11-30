@@ -76,6 +76,9 @@
     <Filter Include="src\texture">
       <UniqueIdentifier>{6ffdf2b8-3400-4e86-b27f-9e5b329feef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utility\time">
+      <UniqueIdentifier>{d750a6b0-f9e4-45ad-9eff-8020ed32bf3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
       <Filter>src\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimeManager.cpp">
+      <Filter>src\utility\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>src\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimeManager.h">
+      <Filter>src\utility\time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

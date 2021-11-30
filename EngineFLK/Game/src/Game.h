@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseGame.h"
 
+#include "Shape.h"
+#include "Sprite.h"
 class Game : public BaseGame
 {
 private:

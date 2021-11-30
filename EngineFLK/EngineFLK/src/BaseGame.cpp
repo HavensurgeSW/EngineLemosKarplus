@@ -3,19 +3,6 @@
 #include "glfw3.h"
 
 #include "ErrorHandling.h"
-#include "Color.h"
-#include "Shader.h"
-
-#include <ctime>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Transform.h"
 
 
 BaseGame::BaseGame()
@@ -42,7 +29,7 @@ void BaseGame::InitGlew()
 
 void BaseGame::InitEngine()
 {
-	srand(time(0));
+	srand(NULL);
 	bool initResult = glfwInit();
 	if (!initResult)
 	{
@@ -78,6 +65,9 @@ void BaseGame::LaunchGod()
 
 		renderer->SwapBuffer();
 		input->PollEvents();
+
+		time.UpdateTime();
+		time.UpdateFPS();
 	}
 
 	Terminate();

@@ -6,9 +6,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "CollisionManager.h"
-#include "Shape.h"
-#include "Sprite.h"
-
+#include "TimeManager.h"
 
 class FLK_API BaseGame
 {
@@ -18,9 +16,7 @@ private:
 	Input* input;
 	CollisionManager* collisionManager;
 
-	//Shape* triangle;
-	//Shape* quad;
-	//Shape* otherQuad;
+	TimeManager time;
 protected:
 
 	Renderer* GetRenderer() const;
