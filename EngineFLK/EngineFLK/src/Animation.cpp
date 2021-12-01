@@ -3,6 +3,7 @@
 
 Animation::Animation()
 {
+	uvs = vec4(0, 0, 0, 0);
 	dimensions.x = 0;
 	dimensions.y = 0;
 	currentFrame = 0;
@@ -27,21 +28,6 @@ void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
 	this->firstIndex = firstIndex;
 	this->lastIndex = lastIndex;
 	currentFrame = firstIndex;
-
-	for (int i = firstIndex; i <= lastIndex; i++)
-	{
-		Frame frame;
-		int xTile = i % dimensions.x;
-		int yTile = i / dimensions.x;
-
-		frame.uv.x = xTile / (float)dimensions.x;
-		frame.uv.y = yTile / (float)dimensions.y;
-		frame.uv.z = 1.0f / (float) dimensions.x;
-		frame.uv.w = 1.0f / (float) dimensions.y;
-
-		frame.framesCount = i;
-		frames.push_back(frame);
-	}
 }
 
 void Animation::UpdateFrame()

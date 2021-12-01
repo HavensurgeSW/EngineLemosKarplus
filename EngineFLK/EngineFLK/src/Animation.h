@@ -10,7 +10,7 @@
 
 using namespace glm;
 
-struct Frame
+struct FLK_API Frame
 {
 	vec4 uv;
 	int framesCount;
@@ -22,8 +22,9 @@ private:
 
 	std::string animationName;
 
-	vec4 uvs = vec4(0, 0, 0, 0);
+	vec4 uvs;
 	ivec2 dimensions;
+
 	std::vector<Frame> frames;
 
 	int currentFrame;
