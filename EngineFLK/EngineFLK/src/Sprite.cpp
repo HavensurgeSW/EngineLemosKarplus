@@ -55,6 +55,19 @@ void Sprite::SetColor(Color color)
 	shader.Unbind();
 }
 
+void Sprite::AddAnimation(std::string animationName)
+{
+	if (animations.find(animationName) != animations.end())
+	{
+		std::cout << "Animation with the name '" << animationName << "' has already been added" << std::endl;
+		return;
+	}
+
+	Animation animation;
+	animation.SetName(animationName);
+	animations[animation.GetName()] = animation;
+}
+
 void Sprite::SetTexture(const std::string& path)
 {
 	texture.LoadTexture(path);

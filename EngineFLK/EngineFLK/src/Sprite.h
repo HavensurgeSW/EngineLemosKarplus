@@ -2,6 +2,7 @@
 #define SPRITE_H
 
 #include "Exports.h"
+
 #include "Entity2D.h"
 #include "Animation.h"
 #include "Texture.h"
@@ -9,10 +10,11 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 
+#include <unordered_map>
+
 class FLK_API Sprite : public Entity2D
 {
 private:
-	Animation animation;
 	Shader shader;
 	Texture texture;
 
@@ -33,6 +35,8 @@ private:
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
 
+	std::unordered_map<std::string, Animation> animations;
+
 public:
 	Sprite();
 	Sprite(Renderer* renderer, Shader& shader, bool initalize = true);
@@ -44,6 +48,8 @@ public:
 	void SetShader(Shader& shader);
 	void SetColor(Color color);
 	void SetTexture(const std::string& path);
+
+	void AddAnimation(std::string animationName);
 
 	void Draw();
 
