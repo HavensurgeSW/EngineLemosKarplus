@@ -10,7 +10,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 
-#include <unordered_map>
+//#include <unordered_map>
 
 class FLK_API Sprite : public Entity2D
 {
@@ -35,7 +35,7 @@ private:
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
 
-	std::unordered_map<std::string, Animation> animations;
+	Animation animation;
 
 public:
 	Sprite();
