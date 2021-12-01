@@ -46,10 +46,10 @@ public:
 	std::string GetName() const;
 
 	void InitSpriteSheetDimensions(const glm::ivec2& tileDimensions);
-	void AddFrame(float durationInSec, int firstIndex, int lastIndex);
-	void UpdateFrame(float deltaTime);
+	void AddFrame(float durationInSeconds, int firstIndex, int lastIndex);
+	void UpdateFrame();
 	vec4 GetUVs(int index);
-	int GetCurrentFrame() const;
+	int GetCurrentFrame();
 };
 
 #endif

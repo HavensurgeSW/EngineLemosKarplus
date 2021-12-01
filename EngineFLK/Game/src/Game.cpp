@@ -18,7 +18,7 @@ void Game::Init()
 
 	Shader rockShader("res/shaders/Sprite.shader");
 	rock = new Sprite(GetRenderer(), rockShader, true, true);
-	//rock->SetTexture("res/spritesheets/character_robot_sheet.png");
+	rock->SetAnimationData(12, 1, 0.01f, 0, 11);
 	rock->SetTexture("res/spritesheets/RockSpritesheet.png");
 
 	Vector2 trianglePosition(0.0f, -0.5f);
@@ -112,8 +112,6 @@ void Game::Update()
 	illuminati->Draw();
 	enano->Draw();
 	rock->Draw();
-	x += TimeManager::GetDeltaTime();
-	rock->GetAnimation().UpdateFrame(x);
 }
 
 void Game::DeInit()

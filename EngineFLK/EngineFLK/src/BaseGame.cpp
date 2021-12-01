@@ -57,11 +57,8 @@ void BaseGame::InitEngine()
 
 void BaseGame::LaunchGod()
 {
-	float x = 0.0f;
 	while (!window->ShouldClose())
 	{
-		x += TimeManager::GetDeltaTime();
-		std::cout << x << std::endl;
 		renderer->ClearScreen();
 
 		Update(); //FOR SOME REASON (check reason) the Update method MUST be below the ClearScreen() method AND above the SwapBuffers() method.

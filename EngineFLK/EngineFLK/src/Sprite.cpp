@@ -3,14 +3,15 @@
 
 Sprite::Sprite()
 {
+	animation = NULL;
 	hasAnimation = false;
-
 }
 
 Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D()
 {
 	this->renderer = renderer;
 	this->shader = shader;
+	animation = NULL;
 	hasAnimation = false;
 	if (initialize)
 	{
@@ -26,8 +27,7 @@ Sprite::Sprite(Renderer* renderer, Shader& shader, bool useAnimation, bool initi
 	if (useAnimation) 
 	{
 		hasAnimation = useAnimation;
-		animation.InitSpriteSheetDimensions(glm::ivec2(12, 1));
-		animation.AddFrame(0.1f, 0, 11);
+		animation = new Animation();
 	}
 
 	if (initialize)
@@ -38,6 +38,7 @@ Sprite::Sprite(Renderer* renderer, Shader& shader, bool useAnimation, bool initi
 
 Sprite::~Sprite()
 {
+	delete animation;
 	UnbindBuffers();
 	DeleteBuffers();
 }
@@ -87,7 +88,7 @@ void Sprite::AddAnimation(std::string animationName)
 	//animations[animation.GetName()] = animation;
 }
 
-Animation Sprite::GetAnimation() const
+Animation* Sprite::GetAnimation() const
 {
 	return animation;
 }
@@ -128,12 +129,13 @@ void Sprite::Draw()
 {
 	if (hasAnimation)
 	{
-		DrawAnimation(GetAnimation().GetUVs(GetAnimation().GetCurrentFrame()));
+		DrawAnimation(GetAnimation()->GetUVs(GetAnimation()->GetCurrentFrame()));
 		vertexBuffer.SetData(quadVertices, 16);
 		vertexArray.SetData(vertexBuffer);
+		GetAnimation()->UpdateFrame();
 	}
-	texture.Bind();
-	
+
+	texture.Bind();	
 	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
 	texture.Unbind();
 }
@@ -152,4 +154,13 @@ void Sprite::DeleteBuffers()
 	vertexBuffer.Delete();
 	indexBuffer.Delete();
 	shader.Delete();
+}
+
+void Sprite::SetAnimationData(int framePerRow, int framePerCollumn, float durationInSeconds, int firstIndex, int lastIndex)
+{
+	if (animation != NULL) 
+	{
+		animation->InitSpriteSheetDimensions(glm::ivec2(framePerRow, framePerCollumn));
+		animation->AddFrame(durationInSeconds, firstIndex, lastIndex);
+	}
 }

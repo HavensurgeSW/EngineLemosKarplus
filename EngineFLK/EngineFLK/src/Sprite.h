@@ -41,7 +41,7 @@ private:
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
 
-	Animation animation;
+	Animation* animation;
 	UV uvs[4];
 
 	bool hasAnimation;
@@ -59,10 +59,11 @@ public:
 	void SetColor(Color color);
 	void SetTexture(const std::string& path);
 
+	void SetAnimationData(int framePerRow, int framePerCollumn, float durationInSeconds, int firstIndex, int lastIndex);
 	void DrawAnimation(glm::vec4 uvRect);
 
 	void AddAnimation(std::string animationName);
-	Animation GetAnimation() const;
+	Animation* GetAnimation() const;
 
 	void Draw();
 

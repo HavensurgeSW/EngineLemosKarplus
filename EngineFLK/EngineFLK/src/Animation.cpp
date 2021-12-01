@@ -21,11 +21,11 @@ void Animation::InitSpriteSheetDimensions(const glm::ivec2& tileDimensions)
 	dimensions = tileDimensions;
 }
 
-void Animation::AddFrame(float durationInSec, int firstIndex, int lastIndex)
+void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
 {
-	length = durationInSec;
-	firstIndex = firstIndex;
-	lastIndex = lastIndex;
+	length = durationInSeconds;
+	this->firstIndex = firstIndex;
+	this->lastIndex = lastIndex;
 	currentFrame = firstIndex;
 
 	for (int i = firstIndex; i <= lastIndex; i++)
@@ -44,17 +44,19 @@ void Animation::AddFrame(float durationInSec, int firstIndex, int lastIndex)
 	}
 }
 
-void Animation::UpdateFrame(float deltaTime)
+void Animation::UpdateFrame()
 {
-	time += deltaTime;// TimeManager::GetDeltaTime();
+	time += TimeManager::GetDeltaTime();
 	//std::cout << time << std::endl;
 	if (time >= length)
 	{
 		time -= length;
-	
 		currentFrame++;
+
 		if (currentFrame > lastIndex)
+		{
 			currentFrame = firstIndex;
+		}
 	
 		ChangeFrame();
 		time = TimeManager::GetDeltaTime();
@@ -79,7 +81,7 @@ vec4 Animation::GetUVs(int index)
 	return uvs;
 }
 
-int Animation::GetCurrentFrame() const
+int Animation::GetCurrentFrame()
 {
 	return currentFrame;
 }
