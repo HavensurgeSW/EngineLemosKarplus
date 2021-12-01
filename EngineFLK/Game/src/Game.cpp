@@ -17,8 +17,9 @@ void Game::Init()
 	illuminati->SetColor(Color::Green());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new Sprite(GetRenderer(), rockShader);
-	rock->SetTexture("res/textures/TheRock.png");
+	rock = new Sprite(GetRenderer(), rockShader, true, true);
+	//rock->SetTexture("res/spritesheets/character_robot_sheet.png");
+	rock->SetTexture("res/spritesheets/RockSpritesheet.png");
 
 	Vector2 trianglePosition(0.0f, -0.5f);
 	float triangleRotationSpeed = -45.0f;
@@ -41,6 +42,8 @@ void Game::Init()
 
 	rock->transform.SetPosition(-0.7f, 0, 0);
 	rock->transform.SetScale(scale);
+
+	x = 0.0f;
 }
 
 void Game::Update()
@@ -109,6 +112,8 @@ void Game::Update()
 	illuminati->Draw();
 	enano->Draw();
 	rock->Draw();
+	x += TimeManager::GetDeltaTime();
+	rock->GetAnimation().UpdateFrame(x);
 }
 
 void Game::DeInit()

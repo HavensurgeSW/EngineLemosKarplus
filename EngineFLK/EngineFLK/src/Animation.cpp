@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include <TimeManager.h>
 
 Animation::Animation()
 {
@@ -45,20 +46,18 @@ void Animation::AddFrame(float durationInSec, int firstIndex, int lastIndex)
 
 void Animation::UpdateFrame(float deltaTime)
 {
-	float t = 0;
-	t = deltaTime;
-	time += t;
-
+	time += deltaTime;// TimeManager::GetDeltaTime();
+	//std::cout << time << std::endl;
 	if (time >= length)
 	{
 		time -= length;
-
+	
 		currentFrame++;
 		if (currentFrame > lastIndex)
 			currentFrame = firstIndex;
-
+	
 		ChangeFrame();
-		time = t;
+		time = TimeManager::GetDeltaTime();
 	}
 }
 

@@ -12,6 +12,12 @@
 
 //#include <unordered_map>
 
+struct FLK_API UV
+{
+	float u;
+	float v;
+};
+
 class FLK_API Sprite : public Entity2D
 {
 private:
@@ -36,10 +42,14 @@ private:
 	IndexBuffer indexBuffer;
 
 	Animation animation;
+	UV uvs[4];
+
+	bool hasAnimation;
 
 public:
 	Sprite();
 	Sprite(Renderer* renderer, Shader& shader, bool initalize = true);
+	Sprite(Renderer* renderer, Shader& shader, bool initalize, bool useAnimation);
 	~Sprite();
 	
 	void Init();
@@ -49,7 +59,10 @@ public:
 	void SetColor(Color color);
 	void SetTexture(const std::string& path);
 
+	void DrawAnimation(glm::vec4 uvRect);
+
 	void AddAnimation(std::string animationName);
+	Animation GetAnimation() const;
 
 	void Draw();
 

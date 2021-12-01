@@ -11,6 +11,8 @@ private:
 	Sprite* enano;
 	Sprite* illuminati;
 
+	float x;
+
 public:
 	void Init() override;
 	void Update() override;

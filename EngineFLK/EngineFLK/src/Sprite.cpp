@@ -3,15 +3,34 @@
 
 Sprite::Sprite()
 {
+	hasAnimation = false;
 
 }
 
-Sprite::Sprite(Renderer* renderer, Shader& shader, bool initalize) : Entity2D()
+Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D()
+{
+	this->renderer = renderer;
+	this->shader = shader;
+	hasAnimation = false;
+	if (initialize)
+	{
+		Init();
+	}
+}
+
+Sprite::Sprite(Renderer* renderer, Shader& shader, bool useAnimation, bool initialize) : Entity2D()
 {
 	this->renderer = renderer;
 	this->shader = shader;
 
-	if (initalize)
+	if (useAnimation) 
+	{
+		hasAnimation = useAnimation;
+		animation.InitSpriteSheetDimensions(glm::ivec2(12, 1));
+		animation.AddFrame(0.1f, 0, 11);
+	}
+
+	if (initialize)
 	{
 		Init();
 	}
@@ -57,15 +76,20 @@ void Sprite::SetColor(Color color)
 
 void Sprite::AddAnimation(std::string animationName)
 {
-	if (animations.find(animationName) != animations.end())
-	{
-		std::cout << "Animation with the name '" << animationName << "' has already been added" << std::endl;
-		return;
-	}
+	//if (animations.find(animationName) != animations.end())
+	//{
+	//	std::cout << "Animation with the name '" << animationName << "' has already been added" << std::endl;
+	//	return;
+	//}
+	//
+	//Animation animation;
+	//animation.SetName(animationName);
+	//animations[animation.GetName()] = animation;
+}
 
-	Animation animation;
-	animation.SetName(animationName);
-	animations[animation.GetName()] = animation;
+Animation Sprite::GetAnimation() const
+{
+	return animation;
 }
 
 void Sprite::SetTexture(const std::string& path)
@@ -77,9 +101,39 @@ void Sprite::SetTexture(const std::string& path)
 	shader.Unbind();
 }
 
+void Sprite::DrawAnimation(glm::vec4 uvRect)
+{
+	//UpdateUVs
+	quadVertices[2] = uvs[0].u; 
+	quadVertices[3] =  uvs[0].v;
+
+	quadVertices[6] = uvs[1].u; 
+	quadVertices[7] = uvs[1].v;
+
+	quadVertices[10] = uvs[2].u; 
+	quadVertices[11] = uvs[2].v;
+
+	quadVertices[14] = uvs[3].u; 
+	quadVertices[15] = uvs[3].v;
+
+	//Set UV
+	uvs[0].u = uvRect.x + uvRect.z; uvs[0].v = uvRect.y + uvRect.w;
+	uvs[1].u = uvRect.x + uvRect.z; uvs[1].v = uvRect.y;
+	uvs[2].u = uvRect.x; uvs[2].v = uvRect.y;
+	uvs[3].u = uvRect.x; uvs[3].v = uvRect.y + uvRect.w;
+}
+
+
 void Sprite::Draw()
 {
+	if (hasAnimation)
+	{
+		DrawAnimation(GetAnimation().GetUVs(GetAnimation().GetCurrentFrame()));
+		vertexBuffer.SetData(quadVertices, 16);
+		vertexArray.SetData(vertexBuffer);
+	}
 	texture.Bind();
+	
 	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
 	texture.Unbind();
 }
