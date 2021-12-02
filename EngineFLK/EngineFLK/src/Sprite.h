@@ -60,7 +60,7 @@ public:
 	void SetTexture(const std::string& path);
 
 	void SetAnimationData(int framePerRow, int framePerCollumn, float durationInSeconds, int firstIndex, int lastIndex);
-	void DrawAnimation(glm::vec4 uvRect);
+	void DrawAnimation(Vector4 uvRect);
 
 	void AddAnimation(std::string animationName);
 	Animation* GetAnimation() const;

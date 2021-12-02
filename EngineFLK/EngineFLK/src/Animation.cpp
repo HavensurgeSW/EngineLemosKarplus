@@ -3,7 +3,7 @@
 
 Animation::Animation()
 {
-	uvs = vec4(0, 0, 0, 0);
+	uvs.SetValues(0.0f, 0.0f, 0.0f, 0.0f);
 	dimensions.x = 0;
 	dimensions.y = 0;
 	currentFrame = 0;
@@ -18,7 +18,7 @@ Animation::~Animation()
 
 }
 
-void Animation::InitSpriteSheetDimensions(const glm::ivec2& tileDimensions)
+void Animation::InitSpriteSheetDimensions(const Vector2& tileDimensions)
 {
 	dimensions = tileDimensions;
 }
@@ -55,15 +55,16 @@ void Animation::ChangeFrame()
 	uvs = GetUVs(currentFrame);
 }
 
-vec4 Animation::GetUVs(int index)
+Vector4 Animation::GetUVs(int index)
 {
-	int xTile = index % dimensions.x;
-	int yTile = index / dimensions.x;
+	// Might cause problems in the future, create Vector2Int struct?
+	int xTile = index % static_cast<int>(dimensions.x);
+	int yTile = index / static_cast<int>(dimensions.x);
 
-	uvs.x = xTile / (float)dimensions.x;
-	uvs.y = yTile / (float)dimensions.y;
-	uvs.z = 1.0f / (float) dimensions.x;
-	uvs.w = 1.0f / (float) dimensions.y;
+	uvs.x = xTile / dimensions.x;
+	uvs.y = yTile / dimensions.y;
+	uvs.z = 1.0f  / dimensions.x;
+	uvs.w = 1.0f  / dimensions.y;
 
 	return uvs;
 }
@@ -73,7 +74,7 @@ int Animation::GetCurrentFrame()
 	return currentFrame;
 }
 
-vec4 Animation::GetFrames()
+Vector4 Animation::GetFrames()
 {
 	return GetUVs(GetCurrentFrame());
 }

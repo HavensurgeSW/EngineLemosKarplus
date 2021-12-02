@@ -79,6 +79,9 @@
     <Filter Include="src\utility\time">
       <UniqueIdentifier>{d750a6b0-f9e4-45ad-9eff-8020ed32bf3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utility\vector4">
+      <UniqueIdentifier>{4fdf291d-35e0-40e0-b3bc-10a23cb93383}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -146,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="src\TimeManager.cpp">
       <Filter>src\utility\time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector4.cpp">
+      <Filter>src\utility\vector4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="src\TimeManager.h">
       <Filter>src\utility\time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector4.h">
+      <Filter>src\utility\vector4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

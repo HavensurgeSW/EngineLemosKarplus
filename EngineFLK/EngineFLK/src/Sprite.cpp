@@ -102,7 +102,7 @@ void Sprite::SetTexture(const std::string& path)
 	shader.Unbind();
 }
 
-void Sprite::DrawAnimation(glm::vec4 uvRect)
+void Sprite::DrawAnimation(Vector4 uvRect)
 {
 	//Update UV
 	quadVertices[2] = uvs[0].u; 
@@ -167,7 +167,7 @@ void Sprite::SetAnimationData(int framePerRow, int framePerCollumn, float durati
 {
 	if (animation != NULL) 
 	{
-		animation->InitSpriteSheetDimensions(glm::ivec2(framePerRow, framePerCollumn));
+		animation->InitSpriteSheetDimensions({ static_cast<float>(framePerRow), static_cast<float>(framePerCollumn) });
 		animation->AddFrame(durationInSeconds, firstIndex, lastIndex);
 	}
 }

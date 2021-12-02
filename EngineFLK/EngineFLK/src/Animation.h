@@ -3,12 +3,9 @@
 
 #include "Exports.h"
 
+#include "Vector4.h"
 #include <iostream>
 #include <vector>
-
-#include "glm/glm.hpp"
-
-using namespace glm;
 
 class FLK_API Animation
 {
@@ -16,8 +13,8 @@ private:
 
 	std::string animationName;
 
-	vec4 uvs;
-	ivec2 dimensions;
+	Vector4 uvs;
+	Vector2 dimensions;
 
 	int currentFrame;
 	int maxFrames;
@@ -29,7 +26,7 @@ private:
 	float time;
 
 	void ChangeFrame();
-	vec4 GetUVs(int index);
+	Vector4 GetUVs(int index);
 	int GetCurrentFrame();
 
 public:
@@ -42,10 +39,10 @@ public:
 	void SetName(std::string name);
 	std::string GetName() const;
 
-	void InitSpriteSheetDimensions(const glm::ivec2& tileDimensions);
+	void InitSpriteSheetDimensions(const Vector2& tileDimensions);
 	void AddFrame(float durationInSeconds, int firstIndex, int lastIndex);
 	void UpdateFrame();
-	vec4 GetFrames();
+	Vector4 GetFrames();
 };
 
 #endif
