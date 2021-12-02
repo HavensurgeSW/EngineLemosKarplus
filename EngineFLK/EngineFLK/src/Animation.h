@@ -10,12 +10,6 @@
 
 using namespace glm;
 
-struct FLK_API Frame
-{
-	vec4 uv;
-	int framesCount;
-};
-
 class FLK_API Animation
 {
 private:
@@ -24,8 +18,6 @@ private:
 
 	vec4 uvs;
 	ivec2 dimensions;
-
-	std::vector<Frame> frames;
 
 	int currentFrame;
 	int maxFrames;
@@ -37,7 +29,11 @@ private:
 	float time;
 
 	void ChangeFrame();
+	vec4 GetUVs(int index);
+	int GetCurrentFrame();
+
 public:
+
 	Animation();
 	~Animation();
 
@@ -49,8 +45,7 @@ public:
 	void InitSpriteSheetDimensions(const glm::ivec2& tileDimensions);
 	void AddFrame(float durationInSeconds, int firstIndex, int lastIndex);
 	void UpdateFrame();
-	vec4 GetUVs(int index);
-	int GetCurrentFrame();
+	vec4 GetFrames();
 };
 
 #endif

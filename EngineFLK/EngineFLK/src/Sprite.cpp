@@ -104,7 +104,7 @@ void Sprite::SetTexture(const std::string& path)
 
 void Sprite::DrawAnimation(glm::vec4 uvRect)
 {
-	//UpdateUVs
+	//Update UV
 	quadVertices[2] = uvs[0].u; 
 	quadVertices[3] =  uvs[0].v;
 
@@ -118,10 +118,17 @@ void Sprite::DrawAnimation(glm::vec4 uvRect)
 	quadVertices[15] = uvs[3].v;
 
 	//Set UV
-	uvs[0].u = uvRect.x + uvRect.z; uvs[0].v = uvRect.y + uvRect.w;
-	uvs[1].u = uvRect.x + uvRect.z; uvs[1].v = uvRect.y;
-	uvs[2].u = uvRect.x; uvs[2].v = uvRect.y;
-	uvs[3].u = uvRect.x; uvs[3].v = uvRect.y + uvRect.w;
+	uvs[0].u = uvRect.x + uvRect.z; 
+	uvs[0].v = uvRect.y + uvRect.w;
+
+	uvs[1].u = uvRect.x + uvRect.z; 
+	uvs[1].v = uvRect.y;
+
+	uvs[2].u = uvRect.x; 
+	uvs[2].v = uvRect.y;
+
+	uvs[3].u = uvRect.x; 
+	uvs[3].v = uvRect.y + uvRect.w;
 }
 
 
@@ -129,7 +136,7 @@ void Sprite::Draw()
 {
 	if (hasAnimation)
 	{
-		DrawAnimation(GetAnimation()->GetUVs(GetAnimation()->GetCurrentFrame()));
+		DrawAnimation(GetAnimation()->GetFrames());
 		vertexBuffer.SetData(quadVertices, 16);
 		vertexArray.SetData(vertexBuffer);
 		GetAnimation()->UpdateFrame();

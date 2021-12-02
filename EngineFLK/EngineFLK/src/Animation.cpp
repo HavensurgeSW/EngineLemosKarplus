@@ -10,6 +10,7 @@ Animation::Animation()
 
 	firstIndex = 0;
 	lastIndex = 0;
+	time = 0;
 }
 
 Animation::~Animation()
@@ -33,7 +34,7 @@ void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
 void Animation::UpdateFrame()
 {
 	time += TimeManager::GetDeltaTime();
-	//std::cout << time << std::endl;
+
 	if (time >= length)
 	{
 		time -= length;
@@ -70,6 +71,11 @@ vec4 Animation::GetUVs(int index)
 int Animation::GetCurrentFrame()
 {
 	return currentFrame;
+}
+
+vec4 Animation::GetFrames()
+{
+	return GetUVs(GetCurrentFrame());
 }
 
 

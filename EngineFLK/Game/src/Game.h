@@ -3,6 +3,7 @@
 
 #include "Shape.h"
 #include "Sprite.h"
+
 class Game : public BaseGame
 {
 private:
@@ -11,7 +12,6 @@ private:
 	Sprite* enano;
 	Sprite* illuminati;
 
-	float x;
 
 public:
 	void Init() override;

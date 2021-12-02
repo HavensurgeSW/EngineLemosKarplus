@@ -51,7 +51,7 @@ void BaseGame::InitEngine()
 
 	InitGlew();
 
-	renderer->SetClearColor(Color::RandomColor());
+	renderer->SetClearColor(Color::Black());
 	Init();
 }
 
