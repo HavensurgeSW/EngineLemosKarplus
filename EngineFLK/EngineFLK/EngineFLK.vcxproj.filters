@@ -82,6 +82,9 @@
     <Filter Include="src\utility\vector4">
       <UniqueIdentifier>{4fdf291d-35e0-40e0-b3bc-10a23cb93383}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entities\animated_sprite">
+      <UniqueIdentifier>{6eccf64e-c0d8-492a-8ab8-8410dfa2d2e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -152,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="src\Vector4.cpp">
       <Filter>src\utility\vector4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimatedSprite.cpp">
+      <Filter>src\entities\animated_sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="src\Vector4.h">
       <Filter>src\utility\vector4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AnimatedSprite.h">
+      <Filter>src\entities\animated_sprite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,7 +16,7 @@ VertexBuffer::VertexBuffer(float vertices[], int verticesAmount) //byteSize shou
 
 VertexBuffer::~VertexBuffer()
 {
-	//GLCheck(glDeleteBuffers(1, &rendererId));
+	GLCheck(glDeleteBuffers(1, &bufferId));
 	//ERROR: Since in this case the buffer its allocated in heap (renderer.cpp GenerateBuffers method)
 	//the destructor gets called as soon as the method where the index buffer is,
 	//ends, making the program break when trying to DrawElement()
