@@ -3,7 +3,9 @@
 
 #include "Exports.h"
 
+#include "Vector2.h"
 #include "Vector4.h"
+
 #include <iostream>
 #include <vector>
 
@@ -11,23 +13,24 @@ class FLK_API Animation
 {
 private:
 
+	struct Frame 
+	{
+		Vector4 uvs;
+	};
+
 	std::string animationName;
 
-	Vector4 uvs;
 	Vector2 dimensions;
 
-	int currentFrame;
-	int maxFrames;
-
+	int currentFrameIndex;
 	int firstIndex;
 	int lastIndex;
 
-	float length;
+	float frameDuration;
 	float time;
 
-	void ChangeFrame();
-	Vector4 GetUVs(int index);
-	int GetCurrentFrame();
+	std::vector<Frame> frames;
+	Frame currentFrame;
 
 public:
 
@@ -41,8 +44,12 @@ public:
 
 	void InitSpriteSheetDimensions(const Vector2& tileDimensions);
 	void AddFrame(float durationInSeconds, int firstIndex, int lastIndex);
+
 	void UpdateFrame();
-	Vector4 GetFrames();
+	Vector4 GetFrames() const;
+
+private:
+	void SetCurrentFrame(int index);
 };
 
 #endif

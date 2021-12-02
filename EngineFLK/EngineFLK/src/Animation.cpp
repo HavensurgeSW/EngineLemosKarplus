@@ -3,10 +3,9 @@
 
 Animation::Animation()
 {
-	uvs.SetValues(0.0f, 0.0f, 0.0f, 0.0f);
 	dimensions.x = 0;
 	dimensions.y = 0;
-	currentFrame = 0;
+	currentFrameIndex = 0;
 
 	firstIndex = 0;
 	lastIndex = 0;
@@ -25,60 +24,55 @@ void Animation::InitSpriteSheetDimensions(const Vector2& tileDimensions)
 
 void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
 {
-	length = durationInSeconds;
+	frameDuration = durationInSeconds;
 	this->firstIndex = firstIndex;
 	this->lastIndex = lastIndex;
-	currentFrame = firstIndex;
+	currentFrameIndex = firstIndex;
+
+	for (int i = firstIndex; i < lastIndex; i++)
+	{
+		Frame frame;
+
+		int xTile = i % static_cast<int>(dimensions.x);
+		int yTile = i / static_cast<int>(dimensions.x);
+
+		frame.uvs.x = xTile / dimensions.x;
+		frame.uvs.y = yTile / dimensions.y;
+		frame.uvs.z = 1.0f / dimensions.x;
+		frame.uvs.w = 1.0f / dimensions.y;
+
+		frames.push_back(frame);
+	}
 }
 
 void Animation::UpdateFrame()
 {
 	time += TimeManager::GetDeltaTime();
 
-	if (time >= length)
+	if (time >= frameDuration)
 	{
-		time -= length;
-		currentFrame++;
+		time -= frameDuration;
+		currentFrameIndex++;
 
-		if (currentFrame > lastIndex)
+		if (currentFrameIndex >= lastIndex)
 		{
-			currentFrame = firstIndex;
+			currentFrameIndex = firstIndex;
 		}
-	
-		ChangeFrame();
+		
+		SetCurrentFrame(currentFrameIndex);
 		time = TimeManager::GetDeltaTime();
 	}
 }
 
-void Animation::ChangeFrame()
+Vector4 Animation::GetFrames() const
 {
-	uvs = GetUVs(currentFrame);
+	return currentFrame.uvs;
 }
 
-Vector4 Animation::GetUVs(int index)
+void Animation::SetCurrentFrame(int index)
 {
-	// Might cause problems in the future, create Vector2Int struct?
-	int xTile = index % static_cast<int>(dimensions.x);
-	int yTile = index / static_cast<int>(dimensions.x);
-
-	uvs.x = xTile / dimensions.x;
-	uvs.y = yTile / dimensions.y;
-	uvs.z = 1.0f  / dimensions.x;
-	uvs.w = 1.0f  / dimensions.y;
-
-	return uvs;
+	currentFrame = frames[index];
 }
-
-int Animation::GetCurrentFrame()
-{
-	return currentFrame;
-}
-
-Vector4 Animation::GetFrames()
-{
-	return GetUVs(GetCurrentFrame());
-}
-
 
 
 void Animation::SetName(std::string name)

@@ -1,5 +1,7 @@
 #include "Vector3.h"
 
+#include "Vector2.h"
+
 #include <string>
 
 Vector3::Vector3()

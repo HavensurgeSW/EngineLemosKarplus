@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-#include "Vector2.h"
-#include "Vector3.h"
+class Vector2;
+class Vector3;
 
 struct FLK_API Vector4
 {
