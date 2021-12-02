@@ -163,11 +163,11 @@ void Sprite::DeleteBuffers()
 	shader.Delete();
 }
 
-void Sprite::SetAnimationData(int framePerRow, int framePerCollumn, float durationInSeconds, int firstIndex, int lastIndex)
+void Sprite::SetAnimationData(int framePerRow, int framePerCollumn, float animationDuration, int firstIndex, int lastIndex)
 {
 	if (animation != NULL) 
 	{
 		animation->InitSpriteSheetDimensions({ static_cast<float>(framePerRow), static_cast<float>(framePerCollumn) });
-		animation->AddFrame(durationInSeconds, firstIndex, lastIndex);
+		animation->AddFrame(animationDuration, firstIndex, lastIndex);
 	}
 }

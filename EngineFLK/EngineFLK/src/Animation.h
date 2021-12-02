@@ -43,7 +43,7 @@ public:
 	std::string GetName() const;
 
 	void InitSpriteSheetDimensions(const Vector2& tileDimensions);
-	void AddFrame(float durationInSeconds, int firstIndex, int lastIndex);
+	void AddFrame(float animationDuration, int firstIndex, int lastIndex);
 
 	void UpdateFrame();
 	Vector4 GetFrames() const;

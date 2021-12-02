@@ -59,7 +59,7 @@ public:
 	void SetColor(Color color);
 	void SetTexture(const std::string& path);
 
-	void SetAnimationData(int framePerRow, int framePerCollumn, float durationInSeconds, int firstIndex, int lastIndex);
+	void SetAnimationData(int framePerRow, int framePerCollumn, float animationDuration, int firstIndex, int lastIndex);
 	void DrawAnimation(Vector4 uvRect);
 
 	void AddAnimation(std::string animationName);

@@ -18,7 +18,7 @@ void Game::Init()
 
 	Shader rockShader("res/shaders/Sprite.shader");
 	rock = new Sprite(GetRenderer(), rockShader, true, true);
-	rock->SetAnimationData(12, 1, 0.1f, 0, 11);
+	rock->SetAnimationData(12, 1, 1.0f, 0, 11);
 	rock->SetTexture("res/spritesheets/RockSpritesheet.png");
 
 	Vector2 trianglePosition(-0.7f, 0.0f);

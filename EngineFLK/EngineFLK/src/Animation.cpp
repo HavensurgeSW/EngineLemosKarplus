@@ -22,9 +22,8 @@ void Animation::InitSpriteSheetDimensions(const Vector2& tileDimensions)
 	dimensions = tileDimensions;
 }
 
-void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
+void Animation::AddFrame(float animationDuration, int firstIndex, int lastIndex)
 {
-	frameDuration = durationInSeconds;
 	this->firstIndex = firstIndex;
 	this->lastIndex = lastIndex;
 	currentFrameIndex = firstIndex;
@@ -43,6 +42,8 @@ void Animation::AddFrame(float durationInSeconds, int firstIndex, int lastIndex)
 
 		frames.push_back(frame);
 	}
+
+	frameDuration = animationDuration / frames.size();
 }
 
 void Animation::UpdateFrame()
