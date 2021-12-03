@@ -22,9 +22,10 @@ Sprite::~Sprite()
 
 void Sprite::Init()
 {
-	vertexBuffer.SetData(spriteVertices, 16);
+	vertexBuffer.SetData(spriteVertices, 32);
 
 	vertexArray.Push<float>(2);
+	vertexArray.Push<float>(4);
 	vertexArray.Push<float>(2);
 	vertexArray.SetData(vertexBuffer);
 

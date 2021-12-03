@@ -4,7 +4,6 @@
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec4 aColor;
 
-out vec2 v_TexCoord;
 out vec4 v_Color;
 
 uniform mat4 u_Model = mat4(1.0);

@@ -55,17 +55,17 @@ void AnimatedSprite::DrawAnimation(Vector4 uvRect)
 	uvs[3].v = uvRect.y + uvRect.w;
 
 
-	spriteVertices[2] = uvs[0].u;
-	spriteVertices[3] = uvs[0].v;
+	spriteVertices[6] = uvs[0].u;
+	spriteVertices[7] = uvs[0].v;
 
-	spriteVertices[6] = uvs[1].u;
-	spriteVertices[7] = uvs[1].v;
+	spriteVertices[14] = uvs[1].u;
+	spriteVertices[15] = uvs[1].v;
 
-	spriteVertices[10] = uvs[2].u;
-	spriteVertices[11] = uvs[2].v;
+	spriteVertices[22] = uvs[2].u;
+	spriteVertices[23] = uvs[2].v;
 
-	spriteVertices[14] = uvs[3].u;
-	spriteVertices[15] = uvs[3].v;
+	spriteVertices[30] = uvs[3].u;
+	spriteVertices[31] = uvs[3].v;
 }
 
 void AnimatedSprite::Draw()
@@ -73,7 +73,7 @@ void AnimatedSprite::Draw()
 	if (hasAnimation)
 	{
 		DrawAnimation(animation->GetFrames());
-		vertexBuffer.SetData(spriteVertices, 16);
+		vertexBuffer.SetData(spriteVertices, 32);
 		vertexArray.SetData(vertexBuffer);
 		animation->UpdateFrame();
 	}

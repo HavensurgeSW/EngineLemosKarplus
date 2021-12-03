@@ -11,12 +11,12 @@ class FLK_API Sprite : public Entity2D
 protected:
 	Texture texture;
 
-	float spriteVertices[16] =
-	{	 //position      //texture coords
-		 0.5f,  0.5f,       1.0f, 1.0f,
-		 0.5f, -0.5f,       1.0f, 0.0f,
-		-0.5f, -0.5f,       0.0f, 0.0f,
-		-0.5f,  0.5f,       0.0f, 1.0f
+	float spriteVertices[32] =
+	{	 //position            //colors           //texture coords    
+		 0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 1.0f,
+		 0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 0.0f,
+		-0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 0.0f,
+		-0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 1.0f
 	};
 	unsigned int spriteIndices[6] =
 	{

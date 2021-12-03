@@ -37,10 +37,10 @@ void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 	unsigned int offset = 0;
 	for (int i = 0; i < elements.size(); i++)
 	{
-		VertexBufferLayoutElement element = elements[i];
+		const VertexBufferLayoutElement& element = elements[i];
 		GLCheck(glEnableVertexAttribArray(i));
 		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized, stride, (const void*)offset));
-		offset += element.count * GetSizeOfType(element.type);
+		offset += element.count * sizeof(element.type);
 	}
 	vertexBuffer.Unbind();
 	Unbind();
@@ -61,37 +61,19 @@ template<>
 void VertexArray::Push<float>(int count)
 {
 	elements.push_back({ GL_FLOAT, count, GL_FALSE });
-	stride += count * GetSizeOfType(GL_FLOAT);
+	stride += count * sizeof(GL_FLOAT);
 }
 
 template<>
 void VertexArray::Push<unsigned int>(int count)
 {
 	elements.push_back({ GL_UNSIGNED_INT, count, GL_FALSE });
-	stride += count * GetSizeOfType(GL_UNSIGNED_INT);
+	stride += count * sizeof(GL_UNSIGNED_INT);
 }
 
 template<>
 void VertexArray::Push<unsigned char>(int count)
 {
 	elements.push_back({ GL_UNSIGNED_BYTE, count, GL_TRUE });
-	stride += count * GetSizeOfType(GL_UNSIGNED_BYTE);
-}
-
-
-unsigned int VertexArray::GetSizeOfType(unsigned int type)
-{
-	switch (type)
-	{
-	case GL_FLOAT:
-		return 4;
-
-	case GL_UNSIGNED_INT:
-		return 4;
-
-	case GL_UNSIGNED_BYTE:
-		return 1;
-	}
-
-	return 0;
+	stride += count * sizeof(GL_UNSIGNED_BYTE);
 }

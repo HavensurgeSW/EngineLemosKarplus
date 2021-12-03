@@ -41,9 +41,6 @@ public:
 	void Push<unsigned int>(int count);
 	template<>
 	void Push<unsigned char>(int count); //Unsigned char is basically a byte
-
-private:
-	unsigned int GetSizeOfType(unsigned int type);
 };
 
 #endif
