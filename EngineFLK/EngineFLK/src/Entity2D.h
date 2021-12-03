@@ -27,6 +27,9 @@ public:
 	Entity2D(Renderer* renderer, Shader& shader);
 	~Entity2D();
 
+	void SetRenderer(Renderer* renderer);
+	void SetShader(Shader& shader);
+
 	Transform transform;
 };
 

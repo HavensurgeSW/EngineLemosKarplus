@@ -17,9 +17,9 @@ void Game::Init()
 	illuminati->SetColor(Color::Green());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new Sprite(GetRenderer(), rockShader, true, true);
-	rock->SetAnimationData(12, 1, 1.0f, 0, 11);
+	rock = new AnimatedSprite(GetRenderer(), rockShader);
 	rock->SetTexture("res/spritesheets/RockSpritesheet.png");
+	rock->SetAnimationData(12, 1, 1.0f, 0, 11);
 
 	Vector2 trianglePosition(-0.7f, 0.0f);
 	float triangleRotationSpeed = -45.0f;

@@ -22,16 +22,6 @@ Shape::~Shape()
 	DeleteBuffers();
 }
 
-void Shape::SetRenderer(Renderer* renderer)
-{
-	this->renderer = renderer;
-}
-
-void Shape::SetShader(Shader& shader)
-{
-	this->shader = shader;
-}
-
 void Shape::Init() 
 {
 	switch (type)

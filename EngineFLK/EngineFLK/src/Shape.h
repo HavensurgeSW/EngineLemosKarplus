@@ -46,8 +46,6 @@ public:
 
 	void Init();
 	
-	void SetRenderer(Renderer* renderer);
-	void SetShader(Shader& shader);
 	void SetShaderColor(Color color);
 	void SetVertexColor(Color color);
 	void SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color);

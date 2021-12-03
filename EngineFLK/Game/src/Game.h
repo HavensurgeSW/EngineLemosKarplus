@@ -3,12 +3,13 @@
 
 #include "Shape.h"
 #include "Sprite.h"
+#include "AnimatedSprite.h"
 
 class Game : public BaseGame
 {
 private:
+	AnimatedSprite* rock;
 	Shape* shape;
-	Sprite* rock;
 	Sprite* enano;
 	Sprite* illuminati;
 

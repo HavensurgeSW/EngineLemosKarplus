@@ -18,6 +18,17 @@ Entity2D::~Entity2D()
 }
 
 
+void Entity2D::SetRenderer(Renderer* renderer)
+{
+	this->renderer = renderer;
+}
+
+void Entity2D::SetShader(Shader& shader)
+{
+	this->shader = shader;
+}
+
+
 void Entity2D::UnbindBuffers()
 {
 	vertexArray.Unbind();
