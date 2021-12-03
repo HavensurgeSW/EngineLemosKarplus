@@ -22,18 +22,18 @@ Sprite::~Sprite()
 
 void Sprite::Init()
 {
-	vertexBuffer.SetData(spriteVertices, 32);
+	vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 
 	vertexArray.Push<float>(2);
 	vertexArray.Push<float>(4);
 	vertexArray.Push<float>(2);
 	vertexArray.SetData(vertexBuffer);
 
-	indexBuffer.SetData(spriteIndices, 6);
+	indexBuffer.SetData(quadIndices, quadIndicesAmount);
 
-	shader.Bind();
-	shader.SetTextureUniform(0);
-	shader.Unbind();
+	//shader.Bind();
+	//shader.SetTextureUniform(0);
+	//shader.Unbind();
 }
 
 void Sprite::SetColor(Color color)

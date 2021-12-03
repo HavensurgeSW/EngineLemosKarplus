@@ -11,19 +11,6 @@ class FLK_API Sprite : public Entity2D
 protected:
 	Texture texture;
 
-	float spriteVertices[32] =
-	{	 //position            //colors           //texture coords    
-		 0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 1.0f,
-		 0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 0.0f,
-		-0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 0.0f,
-		-0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 1.0f
-	};
-	unsigned int spriteIndices[6] =
-	{
-		0, 1, 3,
-		1, 2, 3
-	};
-
 public:
 	Sprite();
 	Sprite(Renderer* renderer, Shader& shader, bool initalize = true);

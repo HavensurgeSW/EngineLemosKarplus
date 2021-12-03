@@ -15,28 +15,18 @@ class FLK_API Shape : public Entity2D
 private:
 	ShapeType type;
 
-	float triangleVertices[18] =
+	static const int triangleVerticesAmount = 18;
+	float triangleVertices[triangleVerticesAmount] =
 	{    //position           //Colors         
 		-0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f, 
 		 0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
 		 0.0f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f
 	};
-	unsigned int triangleIndices[3] =
+
+	static const int triangleIndicesAmount = 3;
+	unsigned int triangleIndices[triangleIndicesAmount] =
 	{
 		0, 1, 2
-	};
-
-	float quadVertices[24] =
-	{	 //position           //colors         
-		 0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
-		 0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
-		-0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
-	    -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f 
-	};
-	unsigned int quadIndices[6] =
-	{
-		0, 1, 3,
-		1, 2, 3
 	};
 
 public:

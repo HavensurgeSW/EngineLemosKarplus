@@ -27,23 +27,26 @@ void Shape::Init()
 	switch (type)
 	{
 	case ShapeType::TRIANGLE:
-		vertexBuffer.SetData(triangleVertices, 18);
+		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		
 		vertexArray.Push<float>(2);
 		vertexArray.Push<float>(4);
+
 		vertexArray.SetData(vertexBuffer);
 
-		indexBuffer.SetData(triangleIndices, 3);
+		indexBuffer.SetData(triangleIndices, triangleIndicesAmount);
 		break;
 
 	case ShapeType::QUAD:
-		vertexBuffer.SetData(quadVertices, 24);
+		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 
 		vertexArray.Push<float>(2);
 		vertexArray.Push<float>(4);
+		vertexArray.Push<float>(2);
+
 		vertexArray.SetData(vertexBuffer);
 
-		indexBuffer.SetData(quadIndices, 6);
+		indexBuffer.SetData(quadIndices, quadIndicesAmount);
 		break;
 	}
 }
@@ -82,20 +85,20 @@ void Shape::SetVertexColor(Color color)
 		quadVertices[4] = color.b;
 		quadVertices[5] = color.a;
 
-		quadVertices[8] = color.r;
-		quadVertices[9] = color.g;
-		quadVertices[10] = color.b;
-		quadVertices[11] = color.a;
+		quadVertices[10] = color.r;
+		quadVertices[11] = color.g;
+		quadVertices[12] = color.b;
+		quadVertices[13] = color.a;
 
-		quadVertices[14] = color.r;
-		quadVertices[15] = color.g;
-		quadVertices[16] = color.b;
-		quadVertices[17] = color.a;
+		quadVertices[18] = color.r;
+		quadVertices[19] = color.g;
+		quadVertices[20] = color.b;
+		quadVertices[21] = color.a;
 
-		quadVertices[20] = color.r;
-		quadVertices[21] = color.g;
-		quadVertices[22] = color.b;
-		quadVertices[23] = color.a;
+		quadVertices[26] = color.r;
+		quadVertices[27] = color.g;
+		quadVertices[28] = color.b;
+		quadVertices[29] = color.a;
 		break;
 	}
 }
@@ -127,20 +130,20 @@ void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3
 		quadVertices[4] = vertex1Color.b;
 		quadVertices[5] = vertex1Color.a;
 
-		quadVertices[8] = vertex2Color.r;
-		quadVertices[9] = vertex2Color.g;
-		quadVertices[10] = vertex2Color.b;
-		quadVertices[11] = vertex2Color.a;
+		quadVertices[10] = vertex2Color.r;
+		quadVertices[11] = vertex2Color.g;
+		quadVertices[12] = vertex2Color.b;
+		quadVertices[13] = vertex2Color.a;
 
-		quadVertices[14] = vertex3Color.r;
-		quadVertices[15] = vertex3Color.g;
-		quadVertices[16] = vertex3Color.b;
-		quadVertices[17] = vertex3Color.a;
+		quadVertices[18] = vertex3Color.r;
+		quadVertices[19] = vertex3Color.g;
+		quadVertices[20] = vertex3Color.b;
+		quadVertices[21] = vertex3Color.a;
 
-		quadVertices[20] = vertex4Color.r;
-		quadVertices[21] = vertex4Color.g;
-		quadVertices[22] = vertex4Color.b;
-		quadVertices[23] = vertex4Color.a;
+		quadVertices[26] = vertex4Color.r;
+		quadVertices[27] = vertex4Color.g;
+		quadVertices[28] = vertex4Color.b;
+		quadVertices[29] = vertex4Color.a;
 		break;
 	}
 }

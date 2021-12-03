@@ -1,9 +1,9 @@
 #vertex_shader
 #version 330 core
 
-layout(location = 0) in vec3 position;
+layout(location = 0) in vec3 aPosition;
 layout(location = 1) in vec4 aColor;
-layout(location = 2) in vec2 texCoord;
+layout(location = 2) in vec2 aTexCoord;
 
 out vec4 v_Color;
 out vec2 v_TexCoord;
@@ -14,8 +14,8 @@ uniform mat4 u_Projection = mat4(1.0);
 
 void main()
 {
-    gl_Position = u_Model * u_View * u_Projection * vec4(position, 1.0f);
-    v_TexCoord = texCoord;
+    gl_Position = u_Model * u_View * u_Projection * vec4(aPosition, 1.0f);
+    v_TexCoord = aTexCoord;
     v_Color = aColor;
 }
 

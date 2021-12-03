@@ -15,6 +15,22 @@ protected:
 protected:
 	Shader shader;
 
+	static const int quadVerticesAmount = 32;
+	float quadVertices[quadVerticesAmount] =
+	{	 //position            //colors           //texture coords    
+		 0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 1.0f,
+		 0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     1.0f, 0.0f,
+		-0.5f, -0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 0.0f,
+		-0.5f,  0.5f,    1.0f, 1.0f, 1.0f, 1.0f,     0.0f, 1.0f
+	};
+
+	static const int quadIndicesAmount = 6;
+	unsigned int quadIndices[quadIndicesAmount] =
+	{
+		0, 1, 3,
+		1, 2, 3
+	};
+
 	VertexBuffer vertexBuffer;
 	VertexArray vertexArray;
 	IndexBuffer indexBuffer;
