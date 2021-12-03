@@ -6,10 +6,8 @@ Shape::Shape()
 
 }
 
-Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) : Entity2D()
+Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) : Entity2D(renderer, shader)
 {
-	this->renderer = renderer;
-	this->shader = shader;
 	this->type = type;
 
 	if (initalize)
@@ -160,20 +158,4 @@ void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3
 void Shape::Draw() 
 {
 	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
-}
-
-void Shape::UnbindBuffers()
-{
-	vertexArray.Unbind();
-	vertexBuffer.Unbind();
-	indexBuffer.Unbind();
-	shader.Unbind();
-}
-
-void Shape::DeleteBuffers()
-{
-	vertexArray.Delete();
-	vertexBuffer.Delete();
-	indexBuffer.Delete();
-	shader.Delete();
 }

@@ -7,10 +7,8 @@ Sprite::Sprite()
 	hasAnimation = false;
 }
 
-Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D()
+Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D(renderer, shader)
 {
-	this->renderer = renderer;
-	this->shader = shader;
 	animation = NULL;
 	hasAnimation = false;
 	if (initialize)
@@ -19,11 +17,8 @@ Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D()
 	}
 }
 
-Sprite::Sprite(Renderer* renderer, Shader& shader, bool useAnimation, bool initialize) : Entity2D()
+Sprite::Sprite(Renderer* renderer, Shader& shader, bool useAnimation, bool initialize) : Entity2D(renderer, shader)
 {
-	this->renderer = renderer;
-	this->shader = shader;
-
 	if (useAnimation) 
 	{
 		hasAnimation = useAnimation;
@@ -55,13 +50,13 @@ void Sprite::SetShader(Shader& shader)
 
 void Sprite::Init()
 {
-	vertexBuffer.SetData(quadVertices, 16);
+	vertexBuffer.SetData(spriteVertices, 16);
 
 	vertexArray.Push<float>(2);
 	vertexArray.Push<float>(2);
 	vertexArray.SetData(vertexBuffer);
 
-	indexBuffer.SetData(quadIndices, 6);
+	indexBuffer.SetData(spriteIndices, 6);
 
 	shader.Bind();
 	shader.SetTextureUniform(0);
@@ -105,17 +100,17 @@ void Sprite::SetTexture(const std::string& path)
 void Sprite::DrawAnimation(Vector4 uvRect)
 {
 	//Update UV
-	quadVertices[2] = uvs[0].u; 
-	quadVertices[3] =  uvs[0].v;
+	spriteVertices[2] = uvs[0].u;
+	spriteVertices[3] =  uvs[0].v;
 
-	quadVertices[6] = uvs[1].u; 
-	quadVertices[7] = uvs[1].v;
+	spriteVertices[6] = uvs[1].u;
+	spriteVertices[7] = uvs[1].v;
 
-	quadVertices[10] = uvs[2].u; 
-	quadVertices[11] = uvs[2].v;
+	spriteVertices[10] = uvs[2].u;
+	spriteVertices[11] = uvs[2].v;
 
-	quadVertices[14] = uvs[3].u; 
-	quadVertices[15] = uvs[3].v;
+	spriteVertices[14] = uvs[3].u;
+	spriteVertices[15] = uvs[3].v;
 
 	//Set UV
 	uvs[0].u = uvRect.x + uvRect.z; 
@@ -137,7 +132,7 @@ void Sprite::Draw()
 	if (hasAnimation)
 	{
 		DrawAnimation(GetAnimation()->GetFrames());
-		vertexBuffer.SetData(quadVertices, 16);
+		vertexBuffer.SetData(spriteVertices, 16);
 		vertexArray.SetData(vertexBuffer);
 		GetAnimation()->UpdateFrame();
 	}
@@ -145,22 +140,6 @@ void Sprite::Draw()
 	texture.Bind();	
 	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
 	texture.Unbind();
-}
-
-void Sprite::UnbindBuffers()
-{
-	vertexArray.Unbind();
-	vertexBuffer.Unbind();
-	indexBuffer.Unbind();
-	shader.Unbind();
-}
-
-void Sprite::DeleteBuffers()
-{
-	vertexArray.Delete();
-	vertexBuffer.Delete();
-	indexBuffer.Delete();
-	shader.Delete();
 }
 
 void Sprite::SetAnimationData(int framePerRow, int framePerCollumn, float animationDuration, int firstIndex, int lastIndex)

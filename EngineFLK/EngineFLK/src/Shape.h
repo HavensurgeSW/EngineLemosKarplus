@@ -2,12 +2,7 @@
 #define SHAPE_H
 
 #include "Exports.h"
-#include "Shader.h"
 #include "Entity2D.h"
-
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "VertexArray.h"
 
 enum FLK_API ShapeType //Primitive?
 {
@@ -19,7 +14,6 @@ class FLK_API Shape : public Entity2D
 {
 private:
 	ShapeType type;
-	Shader shader;
 
 	float triangleVertices[18] =
 	{    //position           //Colors         
@@ -37,17 +31,13 @@ private:
 		 0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,
-	    -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f
+	    -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f 
 	};
 	unsigned int quadIndices[6] =
 	{
 		0, 1, 3,
 		1, 2, 3
 	};
-
-	VertexBuffer vertexBuffer;
-	VertexArray vertexArray;
-	IndexBuffer indexBuffer;
 
 public:
 	Shape();
@@ -63,10 +53,6 @@ public:
 	void SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color);
 	
 	void Draw();
-
-private:
-	void UnbindBuffers();
-	void DeleteBuffers();
 };
 
 #endif
