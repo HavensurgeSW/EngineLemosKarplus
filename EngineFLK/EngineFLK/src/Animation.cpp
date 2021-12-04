@@ -9,7 +9,7 @@ Animation::Animation()
 
 	firstIndex = 0;
 	lastIndex = 0;
-	time = 0;
+	timer = 0;
 }
 
 Animation::~Animation()
@@ -46,23 +46,51 @@ void Animation::AddFrame(float animationDuration, int firstIndex, int lastIndex)
 	frameDuration = animationDuration / frames.size();
 }
 
-void Animation::UpdateFrame()
+void Animation::SetLoopStatus(bool loop)
 {
-	time += TimeManager::GetDeltaTime();
+	this->loop = loop;
+}
 
-	if (time >= frameDuration)
+void Animation::UpdateAnimation()
+{
+	if (stop)
 	{
-		time -= frameDuration;
+		return;
+	}
+
+	timer += TimeManager::GetDeltaTime();
+
+	if (timer >= frameDuration)
+	{
+		timer -= frameDuration;
 		currentFrameIndex++;
 
 		if (currentFrameIndex >= lastIndex)
 		{
+			if(!loop)
+			{
+				stop = true;
+				return;
+			}
+
 			currentFrameIndex = firstIndex;
 		}
 		
 		SetCurrentFrame(currentFrameIndex);
-		time = TimeManager::GetDeltaTime();
+		timer = TimeManager::GetDeltaTime();
 	}
+}
+
+void Animation::Reset()
+{
+	currentFrameIndex = firstIndex;
+	timer = frameDuration;
+	stop = false;
+}
+
+void Animation::Stop()
+{
+	stop = true;
 }
 
 Vector4 Animation::GetFrames() const

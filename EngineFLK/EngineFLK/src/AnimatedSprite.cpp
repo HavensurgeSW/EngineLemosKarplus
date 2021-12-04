@@ -2,57 +2,82 @@
 
 AnimatedSprite::AnimatedSprite()
 {
-	animation = NULL;
-	hasAnimation = false;
+
 }
 
 AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, bool initalize) : Sprite(renderer, shader, initalize)
 {
-	animation = new Animation();
-	hasAnimation = true;
+
 }
 
 AnimatedSprite::~AnimatedSprite()
 {
-	if (animation != NULL)
-	{
-		delete animation;
-	}
+
 }
 
+void AnimatedSprite::AddAnimation(AnimationData animationData)
+{
+	AddAnimation(animationData.animationName, 
+				 animationData.animationDuration,
+				 animationData.framesPerRow, animationData.framesPerCollumn, 
+				 animationData.startingFrame, animationData.finalFrame,
+			     animationData.loop);
+}
 
-void AnimatedSprite::AddAnimation(std::string animationName)
+void AnimatedSprite::AddAnimation(std::string animationName, float animationDuration, int framesPerRow, int framesPerCollumn, int startingFrame, int finalFrame, bool loop)
 {
 	if (animations.find(animationName) != animations.end())
 	{
-		std::cout << "Animation with the name '" << animationName << "' has already been added" << std::endl;
+		std::cout << "Animation with the name '" << animationName << "' has already been added." << std::endl;
 		return;
 	}
 	
 	Animation animation;
 	animation.SetName(animationName);
+	animation.InitSpriteSheetDimensions({ static_cast<float>(framesPerRow), static_cast<float>(framesPerCollumn) });
+	animation.AddFrame(animationDuration, startingFrame, finalFrame);
+	animation.SetLoopStatus(loop);
 	animations[animation.GetName()] = animation;
+
+	hasAnimations = !animations.empty();
 }
 
-Animation AnimatedSprite::GetAnimation(std::string animationName)
+void AnimatedSprite::RestartAnimation()
 {
-	return animations[animationName];
+	currentAnimation.Reset();
 }
 
-void AnimatedSprite::DrawAnimation(Vector4 uvRect)
+void AnimatedSprite::StopAnimation()
 {
-	//Set UV
-	uvs[0].u = uvRect.x + uvRect.z;
-	uvs[0].v = uvRect.y + uvRect.w;
+	currentAnimation.Stop();
+}
 
-	uvs[1].u = uvRect.x + uvRect.z;
-	uvs[1].v = uvRect.y;
+void AnimatedSprite::SetCurrentAnimation(std::string animationName)
+{
+	if (animations.find(animationName) == animations.end())
+	{
+		std::cout << "Animation with the name '" << animationName << "' doesnt exist" << std::endl;
+		return;
+	}
 
-	uvs[2].u = uvRect.x;
-	uvs[2].v = uvRect.y;
+	currentAnimation = animations[animationName];
+}
 
-	uvs[3].u = uvRect.x;
-	uvs[3].v = uvRect.y + uvRect.w;
+void AnimatedSprite::DrawAnimation()
+{
+	const Vector4& uv = currentAnimation.GetFrames();
+
+	uvs[0].u = uv.x + uv.z;
+	uvs[0].v = uv.y + uv.w;
+
+	uvs[1].u = uv.x + uv.z;
+	uvs[1].v = uv.y;
+
+	uvs[2].u = uv.x;
+	uvs[2].v = uv.y;
+
+	uvs[3].u = uv.x;
+	uvs[3].v = uv.y + uv.w;
 
 
 	quadVertices[6] = uvs[0].u;
@@ -70,22 +95,13 @@ void AnimatedSprite::DrawAnimation(Vector4 uvRect)
 
 void AnimatedSprite::Draw()
 {
-	if (hasAnimation)
+	if (hasAnimations)
 	{
-		DrawAnimation(animation->GetFrames());
+		DrawAnimation();
 		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 		vertexArray.SetData(vertexBuffer);
-		animation->UpdateFrame();
+		currentAnimation.UpdateAnimation();
 	}
 
 	Sprite::Draw();
-}
-
-void AnimatedSprite::SetAnimationData(int framePerRow, int framePerCollumn, float animationDuration, int firstIndex, int lastIndex)
-{
-	if (animation != NULL)
-	{
-		animation->InitSpriteSheetDimensions({ static_cast<float>(framePerRow), static_cast<float>(framePerCollumn) });
-		animation->AddFrame(animationDuration, firstIndex, lastIndex);
-	}
 }

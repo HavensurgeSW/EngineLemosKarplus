@@ -15,11 +15,12 @@ private:
 		float v;
 	};
 
-	std::map<std::string, Animation> animations; //might need to make it an Animation*
+	std::map<std::string, Animation> animations;
 
-	Animation* animation;
+	Animation currentAnimation;
+
 	UV uvs[4];
-	bool hasAnimation;
+	bool hasAnimations;
 
 public:
 
@@ -27,13 +28,17 @@ public:
 	AnimatedSprite(Renderer* renderer, Shader& shader, bool initalize = true);
 	~AnimatedSprite();
 
-	void SetAnimationData(int framePerRow, int framePerCollumn, float animationDuration, int firstIndex, int lastIndex);
-	void DrawAnimation(Vector4 uvRect);
-
-	void AddAnimation(std::string animationName);
-	Animation GetAnimation(std::string animationName);
+	void AddAnimation(AnimationData animationData);
+	void AddAnimation(std::string animationName, float animationDuration, int framesPerRow, int framesPerCollumn, int startingFrame, int finalFrame, bool loop);
+	
+	void SetCurrentAnimation(std::string animationName);
+	void RestartAnimation();
+	void StopAnimation();
 
 	void Draw() override;
+
+private:
+	void DrawAnimation();
 };
 
 #endif

@@ -9,6 +9,20 @@
 #include <iostream>
 #include <vector>
 
+struct FLK_API AnimationData
+{
+	std::string animationName;
+	float animationDuration;
+
+	int framesPerRow;
+	int framesPerCollumn;
+
+	int startingFrame;
+	int finalFrame;
+
+	bool loop;
+};
+
 class FLK_API Animation
 {
 private:
@@ -18,37 +32,45 @@ private:
 		Vector4 uvs;
 	};
 
+	friend class AnimatedSprite;
+	
 	std::string animationName;
 
 	Vector2 dimensions;
 
+	std::vector<Frame> frames;
+	Frame currentFrame;
+
 	int currentFrameIndex;
+
 	int firstIndex;
 	int lastIndex;
 
 	float frameDuration;
-	float time;
+	float timer;
 
-	std::vector<Frame> frames;
-	Frame currentFrame;
+	bool loop;
+	bool stop;
 
 public:
 
 	Animation();
 	~Animation();
 
-	void SetInfomation(/* EXPAND */);
-
 	void SetName(std::string name);
 	std::string GetName() const;
 
 	void InitSpriteSheetDimensions(const Vector2& tileDimensions);
 	void AddFrame(float animationDuration, int firstIndex, int lastIndex);
+	void SetLoopStatus(bool loop);
 
-	void UpdateFrame();
+	void Reset();
+	void Stop();
+
 	Vector4 GetFrames() const;
 
 private:
+	void UpdateAnimation();
 	void SetCurrentFrame(int index);
 };
 
