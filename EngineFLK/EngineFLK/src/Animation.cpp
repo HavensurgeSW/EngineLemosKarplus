@@ -17,16 +17,16 @@ Animation::~Animation()
 
 }
 
-void Animation::InitSpriteSheetDimensions(const Vector2& tileDimensions)
+void Animation::SetSpriteSheetDimensions(const Vector2& tileDimensions)
 {
 	dimensions = tileDimensions;
 }
 
-void Animation::AddFrame(float animationDuration, int firstIndex, int lastIndex)
+void Animation::AddFrames(float animationDuration, int firstIndex, int lastIndex)
 {
 	this->firstIndex = firstIndex;
 	this->lastIndex = lastIndex;
-	currentFrameIndex = firstIndex;
+	currentFrameIndex = 0;
 
 	for (int i = firstIndex; i < lastIndex; i++)
 	{

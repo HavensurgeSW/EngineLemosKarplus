@@ -2,12 +2,19 @@
 
 AnimatedSprite::AnimatedSprite()
 {
-
+	hasAnimations = false;
 }
 
-AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, bool initalize) : Sprite(renderer, shader, initalize)
+AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, Vector2 spriteSheetDimensions, bool initalize) : Sprite(renderer, shader, initalize)
 {
+	this->spriteSheetDimensions = spriteSheetDimensions;
+	hasAnimations = false;
+}
 
+AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize)
+{
+	spriteSheetDimensions = { static_cast<float>(framesPerRow), static_cast<float>(framesPerCollumn) };
+	hasAnimations = false;
 }
 
 AnimatedSprite::~AnimatedSprite()
@@ -19,12 +26,11 @@ void AnimatedSprite::AddAnimation(AnimationData animationData)
 {
 	AddAnimation(animationData.animationName, 
 				 animationData.animationDuration,
-				 animationData.framesPerRow, animationData.framesPerCollumn, 
 				 animationData.startingFrame, animationData.finalFrame,
 			     animationData.loop);
 }
 
-void AnimatedSprite::AddAnimation(std::string animationName, float animationDuration, int framesPerRow, int framesPerCollumn, int startingFrame, int finalFrame, bool loop)
+void AnimatedSprite::AddAnimation(std::string animationName, float animationDuration, int startingFrame, int finalFrame, bool loop)
 {
 	if (animations.find(animationName) != animations.end())
 	{
@@ -34,8 +40,8 @@ void AnimatedSprite::AddAnimation(std::string animationName, float animationDura
 	
 	Animation animation;
 	animation.SetName(animationName);
-	animation.InitSpriteSheetDimensions({ static_cast<float>(framesPerRow), static_cast<float>(framesPerCollumn) });
-	animation.AddFrame(animationDuration, startingFrame, finalFrame);
+	animation.SetSpriteSheetDimensions(spriteSheetDimensions);
+	animation.AddFrames(animationDuration, startingFrame, finalFrame);
 	animation.SetLoopStatus(loop);
 	animations[animation.GetName()] = animation;
 

@@ -47,10 +47,7 @@ void Sprite::SetColor(Color color)
 void Sprite::SetTexture(const std::string& path)
 {
 	texture.LoadTexture(path);
-
-	shader.Bind();
-	shader.SetColorUniform(Color::White());
-	shader.Unbind();
+	SetColor(Color::White());
 }
 
 

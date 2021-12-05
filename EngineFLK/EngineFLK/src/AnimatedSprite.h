@@ -19,17 +19,20 @@ private:
 
 	Animation currentAnimation;
 
+	Vector2 spriteSheetDimensions;
+
 	UV uvs[4];
 	bool hasAnimations;
 
 public:
 
 	AnimatedSprite();
-	AnimatedSprite(Renderer* renderer, Shader& shader, bool initalize = true);
+	AnimatedSprite(Renderer* renderer, Shader& shader, Vector2 spriteSheetDimensions, bool initalize = true);
+	AnimatedSprite(Renderer* renderer, Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize = true);
 	~AnimatedSprite();
 
 	void AddAnimation(AnimationData animationData);
-	void AddAnimation(std::string animationName, float animationDuration, int framesPerRow, int framesPerCollumn, int startingFrame, int finalFrame, bool loop);
+	void AddAnimation(std::string animationName, float animationDuration, int startingFrame, int finalFrame, bool loop);
 	
 	void SetCurrentAnimation(std::string animationName);
 	void RestartAnimation();

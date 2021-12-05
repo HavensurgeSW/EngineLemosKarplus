@@ -14,9 +14,6 @@ struct FLK_API AnimationData
 	std::string animationName;
 	float animationDuration;
 
-	int framesPerRow;
-	int framesPerCollumn;
-
 	int startingFrame;
 	int finalFrame;
 
@@ -60,8 +57,8 @@ public:
 	void SetName(std::string name);
 	std::string GetName() const;
 
-	void InitSpriteSheetDimensions(const Vector2& tileDimensions);
-	void AddFrame(float animationDuration, int firstIndex, int lastIndex);
+	void SetSpriteSheetDimensions(const Vector2& tileDimensions);
+	void AddFrames(float animationDuration, int firstIndex, int lastIndex);
 	void SetLoopStatus(bool loop);
 
 	void Reset();
