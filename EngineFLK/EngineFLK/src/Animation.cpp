@@ -7,9 +7,10 @@ Animation::Animation()
 	dimensions.y = 0;
 	currentFrameIndex = 0;
 
-	firstIndex = 0;
-	lastIndex = 0;
+	startingFrame = 0;
+	finalFrame = 0;
 	timer = 0;
+	maxFrames = 0;
 }
 
 Animation::~Animation()
@@ -22,13 +23,14 @@ void Animation::SetSpriteSheetDimensions(const Vector2& tileDimensions)
 	dimensions = tileDimensions;
 }
 
-void Animation::AddFrames(float animationDuration, int firstIndex, int lastIndex)
+void Animation::AddFrames(float animationDuration, int startingFrame, int finalFrame)
 {
-	this->firstIndex = firstIndex;
-	this->lastIndex = lastIndex;
+	this->startingFrame = startingFrame;
+	this->finalFrame = finalFrame;
 	currentFrameIndex = 0;
+	maxFrames = finalFrame - startingFrame;
 
-	for (int i = firstIndex; i < lastIndex; i++)
+	for (int i = startingFrame; i < finalFrame; i++)
 	{
 		Frame frame;
 
@@ -41,6 +43,7 @@ void Animation::AddFrames(float animationDuration, int firstIndex, int lastIndex
 		frame.uvs.w = 1.0f / dimensions.y;
 
 		frames.push_back(frame);
+		//maxFrames++;
 	}
 
 	frameDuration = animationDuration / frames.size();
@@ -65,7 +68,7 @@ void Animation::UpdateAnimation()
 		timer -= frameDuration;
 		currentFrameIndex++;
 
-		if (currentFrameIndex >= lastIndex)
+		if (currentFrameIndex >= maxFrames)
 		{
 			if(!loop)
 			{
@@ -73,7 +76,7 @@ void Animation::UpdateAnimation()
 				return;
 			}
 
-			currentFrameIndex = firstIndex;
+			currentFrameIndex = 0;
 		}
 		
 		SetCurrentFrame(currentFrameIndex);
@@ -83,7 +86,7 @@ void Animation::UpdateAnimation()
 
 void Animation::Reset()
 {
-	currentFrameIndex = firstIndex;
+	currentFrameIndex = 0;
 	timer = frameDuration;
 	stop = false;
 }

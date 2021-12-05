@@ -30,6 +30,8 @@
     <None Include="res\shaders\Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\spritesheets\RockSpritesheet.png" />
+    <Image Include="res\spritesheets\RockSpritesheet2.png" />
     <Image Include="res\textures\EnanoBostero.png" />
     <Image Include="res\textures\Illuminati.png" />
     <Image Include="res\textures\TheRock.png" />

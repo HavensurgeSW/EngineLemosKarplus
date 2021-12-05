@@ -39,9 +39,10 @@ private:
 	Frame currentFrame;
 
 	int currentFrameIndex;
+	int maxFrames;
 
-	int firstIndex;
-	int lastIndex;
+	int startingFrame;
+	int finalFrame;
 
 	float frameDuration;
 	float timer;
@@ -58,7 +59,7 @@ public:
 	std::string GetName() const;
 
 	void SetSpriteSheetDimensions(const Vector2& tileDimensions);
-	void AddFrames(float animationDuration, int firstIndex, int lastIndex);
+	void AddFrames(float animationDuration, int startingFrame, int finalFrame);
 	void SetLoopStatus(bool loop);
 
 	void Reset();

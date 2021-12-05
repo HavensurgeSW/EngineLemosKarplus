@@ -17,9 +17,10 @@ void Game::Init()
 	illuminati->SetColor(Color::Green());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new AnimatedSprite(GetRenderer(), rockShader, {12, 1});
-	rock->SetTexture("res/spritesheets/RockSpritesheet.png");
-	rock->AddAnimation("VibeCheck", 1.0f, 0, 11, true);
+	rock = new AnimatedSprite(GetRenderer(), rockShader, {12, 2});
+	rock->SetTexture("res/spritesheets/RockSpritesheet2.png");
+	rock->AddAnimation("VibeCheck", 1.0f, 0, 15, true);
+	rock->AddAnimation("BOOM", 1.0f, 12, 22, true);
 	rock->SetCurrentAnimation("VibeCheck");
 
 	Vector2 trianglePosition(-0.7f, 0.0f);
