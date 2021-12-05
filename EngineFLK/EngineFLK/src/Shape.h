@@ -35,11 +35,10 @@ public:
 	~Shape();
 
 	void Init();
-	
-	void SetShaderColor(Color color);
-	void SetVertexColor(Color color);
-	void SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color);
-	
+
+	void SetVertexColor(Color topRight, Color bottomRight, Color bottomLeft, Color topLeft) override;
+	void SetVertexColor(Color color) override;
+
 	void Draw();
 };
 

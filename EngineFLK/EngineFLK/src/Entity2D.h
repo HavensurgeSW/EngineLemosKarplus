@@ -41,10 +41,15 @@ protected:
 public:
 	Entity2D();
 	Entity2D(Renderer* renderer, Shader& shader);
-	~Entity2D();
+	virtual ~Entity2D();
 
 	void SetRenderer(Renderer* renderer);
 	void SetShader(Shader& shader);
+
+	void SetColorTint(Color color);
+
+	virtual void SetVertexColor(Color topRight, Color bottomRight, Color bottomLeft, Color topLeft);
+	virtual void SetVertexColor(Color color);
 
 	Transform transform;
 };

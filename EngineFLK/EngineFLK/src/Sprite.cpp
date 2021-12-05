@@ -16,8 +16,8 @@ Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D(r
 
 Sprite::~Sprite()
 {
-	UnbindBuffers();
-	DeleteBuffers();
+	//UnbindBuffers();
+	//DeleteBuffers();
 }
 
 void Sprite::Init()
@@ -36,20 +36,11 @@ void Sprite::Init()
 	//shader.Unbind();
 }
 
-void Sprite::SetColor(Color color)
-{
-	shader.Bind();
-	shader.SetColorUniform(color);
-	shader.Unbind();
-}
-
-
 void Sprite::SetTexture(const std::string& path)
 {
 	texture.LoadTexture(path);
-	SetColor(Color::White());
+	SetColorTint(Color::White());
 }
-
 
 void Sprite::Draw()
 {

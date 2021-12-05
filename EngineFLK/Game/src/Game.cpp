@@ -3,47 +3,39 @@
 void Game::Init()
 {
 	Shader shapeShader("res/shaders/Shape.shader");
-	shape = new Shape(GetRenderer(), shapeShader, ShapeType::QUAD, false);
+	shape = new Shape(GetRenderer(), shapeShader, ShapeType::QUAD);
 	shape->SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
-	shape->Init();
 
 	Shader enanoShader("res/shaders/Sprite.shader");
 	enano = new Sprite(GetRenderer(), enanoShader);
+	enano->SetVertexColor(Color::Green(), Color::Red(), Color::Blue(), Color::Yellow());
 	enano->SetTexture("res/textures/EnanoBostero.png");
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(GetRenderer(), illuminatiShader);
 	illuminati->SetTexture("res/textures/illuminati.png");
-	illuminati->SetColor(Color::Green());
+	illuminati->SetColorTint(Color::White());
 
 	Shader rockShader("res/shaders/Sprite.shader");
 	rock = new AnimatedSprite(GetRenderer(), rockShader, {12, 2});
 	rock->SetTexture("res/spritesheets/RockSpritesheet2.png");
-	rock->AddAnimation("VibeCheck", 1.0f, 0, 15, true);
+	rock->AddAnimation("VibeCheck", 1.0f, 0, 11, true);
 	rock->AddAnimation("BOOM", 1.0f, 12, 22, true);
-	rock->SetCurrentAnimation("VibeCheck");
+	rock->SetCurrentAnimation("BOOM");
 
-	Vector2 trianglePosition(-0.7f, 0.0f);
-	float triangleRotationSpeed = -45.0f;
-	Vector3 triangleRotation(0.0f, 0.0f, 1.0f);
-	Vector2 quadPosition(0.0f, 0.5f);
-	float quadRotationSpeed = 0.0f;
-	Vector3 quadRotation(0.0f, 0.0f, 1.0f);
-	float scale = 0.6f;
+	shape->transform.SetPosition({ -0.7f, 0.0f });
+	shape->transform.SetRotation(-45.0f, { 0.0f, 0.0f, 1.0f });
+	shape->transform.SetScale(0.3f);
 
-	shape->transform.SetPosition(trianglePosition);
-	shape->transform.SetRotation(triangleRotationSpeed, triangleRotation);
-	shape->transform.SetScale(scale - 0.3f);
-
-	illuminati->transform.SetPosition(quadPosition);
-	illuminati->transform.SetRotation(quadRotationSpeed, quadRotation);
-	illuminati->transform.SetScale(scale);
+	illuminati->transform.SetPosition({ 0.0f, 0.5f });
+	illuminati->transform.SetRotation(0.0f, { 0.0f, 0.0f, 1.0f });
+	illuminati->transform.SetScale(0.6f);
 
 	enano->transform.SetPosition(0.7f, 0.0f, 0.0f);
-	enano->transform.SetScale(scale);
+	enano->transform.SetScale(0.6f);
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
-	rock->transform.SetScale(scale + 0.3f);
+	rock->transform.SetScale(0.6f + 0.3f);
 }
 
 void Game::Update()

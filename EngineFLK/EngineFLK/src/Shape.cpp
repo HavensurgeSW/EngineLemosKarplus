@@ -18,8 +18,8 @@ Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) 
 
 Shape::~Shape()
 {
-	UnbindBuffers();
-	DeleteBuffers();
+	//UnbindBuffers();
+	//DeleteBuffers();
 }
 
 void Shape::Init() 
@@ -50,14 +50,6 @@ void Shape::Init()
 		break;
 	}
 }
-
-void Shape::SetShaderColor(Color color)
-{
-	shader.Bind();
-	shader.SetColorUniform(color);
-	shader.Unbind();
-}
-
 void Shape::SetVertexColor(Color color)
 {
 	switch (type)
@@ -77,6 +69,8 @@ void Shape::SetVertexColor(Color color)
 		triangleVertices[15]= color.g;
 		triangleVertices[16]= color.b;
 		triangleVertices[17]= color.a;
+
+		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		break;
 
 	case QUAD:
@@ -99,8 +93,12 @@ void Shape::SetVertexColor(Color color)
 		quadVertices[27] = color.g;
 		quadVertices[28] = color.b;
 		quadVertices[29] = color.a;
+
+		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 		break;
 	}
+
+	vertexArray.SetData(vertexBuffer);
 }
 
 void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color)
@@ -122,6 +120,8 @@ void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3
 		triangleVertices[15] = vertex3Color.g;
 		triangleVertices[16] = vertex3Color.b;
 		triangleVertices[17] = vertex3Color.a;
+
+		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		break;
 
 	case QUAD:
@@ -144,8 +144,12 @@ void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3
 		quadVertices[27] = vertex4Color.g;
 		quadVertices[28] = vertex4Color.b;
 		quadVertices[29] = vertex4Color.a;
+
+		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 		break;
 	}
+
+	vertexArray.SetData(vertexBuffer);
 }
 
 void Shape::Draw() 

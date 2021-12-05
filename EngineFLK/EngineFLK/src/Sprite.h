@@ -18,7 +18,6 @@ public:
 	
 	void Init();
 
-	void SetColor(Color color);
 	void SetTexture(const std::string& path);
 
 	virtual void Draw();
