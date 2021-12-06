@@ -5,13 +5,13 @@ AnimatedSprite::AnimatedSprite()
 	hasAnimations = false;
 }
 
-AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, Vector2 spriteSheetDimensions, bool initalize) : Sprite(renderer, shader, initalize)
+AnimatedSprite::AnimatedSprite(Shader& shader, Vector2 spriteSheetDimensions, bool initalize) : Sprite(shader, initalize)
 {
 	this->spriteSheetDimensions = spriteSheetDimensions;
 	hasAnimations = false;
 }
 
-AnimatedSprite::AnimatedSprite(Renderer* renderer, Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize)
+AnimatedSprite::AnimatedSprite(Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize)
 {
 	spriteSheetDimensions = { static_cast<float>(framesPerRow), static_cast<float>(framesPerCollumn) };
 	hasAnimations = false;

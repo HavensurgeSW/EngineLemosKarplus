@@ -3,21 +3,21 @@
 void Game::Init()
 {
 	Shader shapeShader("res/shaders/Shape.shader");
-	shape = new Shape(GetRenderer(), shapeShader, ShapeType::QUAD);
+	shape = new Shape(shapeShader, PrimitiveType::QUAD);
 	shape->SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
 
 	Shader enanoShader("res/shaders/Sprite.shader");
-	enano = new Sprite(GetRenderer(), enanoShader);
-	enano->SetVertexColor(Color::Green(), Color::Red(), Color::Blue(), Color::Yellow());
+	enano = new Sprite(enanoShader);
+	enano->SetVertexColor(Color::Blue(), Color::Yellow(), Color::Blue(), Color::Yellow());
 	enano->SetTexture("res/textures/EnanoBostero.png");
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
-	illuminati = new Sprite(GetRenderer(), illuminatiShader);
+	illuminati = new Sprite(illuminatiShader);
 	illuminati->SetTexture("res/textures/illuminati.png");
 	illuminati->SetColorTint(Color::White());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new AnimatedSprite(GetRenderer(), rockShader, {12, 2});
+	rock = new AnimatedSprite(rockShader, {12, 2});
 	rock->SetTexture("res/spritesheets/RockSpritesheet2.png");
 	rock->AddAnimation("VibeCheck", 1.0f, 0, 11, true);
 	rock->AddAnimation("BOOM", 1.0f, 12, 22, true);

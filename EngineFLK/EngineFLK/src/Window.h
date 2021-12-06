@@ -7,7 +7,7 @@
 class FLK_API Window
 {
 private:
-	GLFWwindow* window;
+	GLFWwindow* glfwWindow;
 
 public:
 	Window();
@@ -16,7 +16,7 @@ public:
 
 	GLFWwindow* CreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share);
 	void SetWindow(GLFWwindow* window);
-	GLFWwindow* GetWindow();
+	GLFWwindow* GetGLFWWindow();
 	void DestroyWindow();
 	bool ShouldClose();
 };

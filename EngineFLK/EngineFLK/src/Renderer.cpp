@@ -4,13 +4,11 @@
 
 #include "ErrorHandling.h"
 
-#include <iostream>
-
-using namespace std;
+Renderer Renderer::instance;
 
 Renderer::Renderer()
 {
-
+	//instance = *this;
 }
 
 Renderer::~Renderer()
@@ -20,7 +18,7 @@ Renderer::~Renderer()
 
 void Renderer::SwapBuffer()
 {
-	glfwSwapBuffers(window->GetWindow());
+	glfwSwapBuffers(window->GetGLFWWindow());
 }
 
 void Renderer::SetClearColor(Color color)
@@ -40,8 +38,13 @@ void Renderer::SetWindow(Window* window)
 
 void Renderer::MakeContextCurrent(Window* window)
 {
-	glfwMakeContextCurrent(window->GetWindow());
+	glfwMakeContextCurrent(window->GetGLFWWindow());
 	glfwSwapInterval(1); //synchrinizes with our vSync
+}
+
+Renderer& Renderer::GetInstance()
+{
+	return instance;
 }
 
 void Renderer::Draw(Shader& shader, const Transform& transform, const VertexArray& vertexArray, const VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer)

@@ -27,8 +27,8 @@ private:
 public:
 
 	AnimatedSprite();
-	AnimatedSprite(Renderer* renderer, Shader& shader, Vector2 spriteSheetDimensions, bool initalize = true);
-	AnimatedSprite(Renderer* renderer, Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize = true);
+	AnimatedSprite(Shader& shader, Vector2 spriteSheetDimensions, bool initalize = true);
+	AnimatedSprite(Shader& shader, int framesPerRow, int framesPerCollumn, bool initalize = true);
 	~AnimatedSprite();
 
 	void AddAnimation(AnimationData animationData);

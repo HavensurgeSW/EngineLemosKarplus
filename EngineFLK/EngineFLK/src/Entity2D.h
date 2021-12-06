@@ -10,7 +10,7 @@
 class FLK_API Entity2D
 {
 protected:	
-	Renderer* renderer;
+	Renderer& renderer = Renderer::GetInstance();  //not having this causes errors
 
 protected:
 	Shader shader;
@@ -40,16 +40,13 @@ protected:
 
 public:
 	Entity2D();
-	Entity2D(Renderer* renderer, Shader& shader);
+	Entity2D(Shader& shader);
 	virtual ~Entity2D();
-
-	void SetRenderer(Renderer* renderer);
-	void SetShader(Shader& shader);
 
 	void SetColorTint(Color color);
 
-	virtual void SetVertexColor(Color topRight, Color bottomRight, Color bottomLeft, Color topLeft);
-	virtual void SetVertexColor(Color color);
+	virtual void SetVertexColor(const Color& topRight, const Color& bottomRight, const Color& bottomLeft, const Color& topLeft);
+	virtual void SetVertexColor(const Color& color);
 
 	Transform transform;
 };

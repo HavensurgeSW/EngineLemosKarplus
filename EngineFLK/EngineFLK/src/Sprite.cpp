@@ -6,7 +6,7 @@ Sprite::Sprite()
 
 }
 
-Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D(renderer, shader)
+Sprite::Sprite(Shader& shader, bool initialize) : Entity2D(shader)
 {
 	if (initialize)
 	{
@@ -16,8 +16,7 @@ Sprite::Sprite(Renderer* renderer, Shader& shader, bool initialize) : Entity2D(r
 
 Sprite::~Sprite()
 {
-	//UnbindBuffers();
-	//DeleteBuffers();
+
 }
 
 void Sprite::Init()
@@ -45,6 +44,6 @@ void Sprite::SetTexture(const std::string& path)
 void Sprite::Draw()
 {
 	texture.Bind();	
-	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
+	renderer.Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
 	texture.Unbind();
 }

@@ -3,12 +3,12 @@
 
 Entity2D::Entity2D()
 {
-
+	renderer = Renderer::GetInstance();   //not having this causes errors
 }
 
-Entity2D::Entity2D(Renderer* renderer, Shader& shader)
+Entity2D::Entity2D(Shader& shader)
 {
-	this->renderer = renderer;
+	renderer = Renderer::GetInstance();   //not having this causes errors
 	this->shader = shader;
 }
 
@@ -18,17 +18,6 @@ Entity2D::~Entity2D()
 	DeleteBuffers();
 }
 
-
-void Entity2D::SetRenderer(Renderer* renderer)
-{
-	this->renderer = renderer;
-}
-
-void Entity2D::SetShader(Shader& shader)
-{
-	this->shader = shader;
-}
-
 void Entity2D::SetColorTint(Color color)
 {
 	shader.Bind();
@@ -36,7 +25,7 @@ void Entity2D::SetColorTint(Color color)
 	shader.Unbind();
 }
 
-void Entity2D::SetVertexColor(Color topRight, Color bottomRight, Color bottomLeft, Color topLeft)
+void Entity2D::SetVertexColor(const Color& topRight, const Color& bottomRight, const Color& bottomLeft, const Color& topLeft)
 {
 	quadVertices[2] = topRight.r;
 	quadVertices[3] = topRight.g;
@@ -62,9 +51,30 @@ void Entity2D::SetVertexColor(Color topRight, Color bottomRight, Color bottomLef
 	vertexArray.SetData(vertexBuffer);
 }
 
-void Entity2D::SetVertexColor(Color color)
+void Entity2D::SetVertexColor(const Color& color)
 {
+	quadVertices[2] = color.r;
+	quadVertices[3] = color.g;
+	quadVertices[4] = color.b;
+	quadVertices[5] = color.a;
 
+	quadVertices[10] = color.r;
+	quadVertices[11] = color.g;
+	quadVertices[12] = color.b;
+	quadVertices[13] = color.a;
+
+	quadVertices[18] = color.r;
+	quadVertices[19] = color.g;
+	quadVertices[20] = color.b;
+	quadVertices[21] = color.a;
+
+	quadVertices[26] = color.r;
+	quadVertices[27] = color.g;
+	quadVertices[28] = color.b;
+	quadVertices[29] = color.a;
+
+	vertexBuffer.SetData(quadVertices, quadVerticesAmount);
+	vertexArray.SetData(vertexBuffer);
 }
 
 

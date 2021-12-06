@@ -13,7 +13,7 @@ protected:
 
 public:
 	Sprite();
-	Sprite(Renderer* renderer, Shader& shader, bool initalize = true);
+	Sprite(Shader& shader, bool initalize = true);
 	~Sprite();
 	
 	void Init();

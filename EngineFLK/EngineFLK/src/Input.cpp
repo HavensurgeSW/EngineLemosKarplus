@@ -38,7 +38,7 @@ Vector2 Input::GetMousePosition()
 	double xPos;
 	double yPos;
 
-	glfwGetCursorPos(window->GetWindow(), &xPos, &yPos);
+	glfwGetCursorPos(window->GetGLFWWindow(), &xPos, &yPos);
 
 	return Vector2(static_cast<float>(xPos), static_cast<float>(yPos));
 }
@@ -65,7 +65,7 @@ void Input::SetContextWindow(Window* contextWindow)
 	window = contextWindow;
 	if (window != NULL) 
 	{
-		glfwSetKeyCallback(window->GetWindow(), KeyInputCallback); //a method KeyInputCallback is called on key input
+		glfwSetKeyCallback(window->GetGLFWWindow(), KeyInputCallback); //a method KeyInputCallback is called on key input
 	}
 }
 
@@ -77,12 +77,12 @@ void Input::PollEvents()
 
 bool Input::CheckKeyPress(KeyCode keycode, int type)
 {
-	return glfwGetKey(window->GetWindow(), keycode) == type;
+	return glfwGetKey(window->GetGLFWWindow(), keycode) == type;
 }
 
 bool Input::CheckMouseButtonPress(MouseButton mouseButton, int type)
 {
-	return glfwGetMouseButton(window->GetWindow(), mouseButton) == type;
+	return glfwGetMouseButton(window->GetGLFWWindow(), mouseButton) == type;
 }
 
 

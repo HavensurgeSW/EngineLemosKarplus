@@ -6,7 +6,7 @@ Shape::Shape()
 
 }
 
-Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) : Entity2D(renderer, shader)
+Shape::Shape(Shader shader, PrimitiveType type, bool initalize) : Entity2D(shader)
 {
 	this->type = type;
 
@@ -18,15 +18,14 @@ Shape::Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize) 
 
 Shape::~Shape()
 {
-	//UnbindBuffers();
-	//DeleteBuffers();
+
 }
 
 void Shape::Init() 
 {
 	switch (type)
 	{
-	case ShapeType::TRIANGLE:
+	case PrimitiveType::TRIANGLE:
 		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		
 		vertexArray.Push<float>(2);
@@ -37,7 +36,7 @@ void Shape::Init()
 		indexBuffer.SetData(triangleIndices, triangleIndicesAmount);
 		break;
 
-	case ShapeType::QUAD:
+	case PrimitiveType::QUAD:
 		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 
 		vertexArray.Push<float>(2);
@@ -50,11 +49,11 @@ void Shape::Init()
 		break;
 	}
 }
-void Shape::SetVertexColor(Color color)
+void Shape::SetVertexColor(const Color& color)
 {
 	switch (type)
 	{
-	case TRIANGLE:
+	case PrimitiveType::TRIANGLE:
 		triangleVertices[2] = color.r;
 		triangleVertices[3] = color.g;
 		triangleVertices[4]	= color.b;
@@ -73,7 +72,7 @@ void Shape::SetVertexColor(Color color)
 		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		break;
 
-	case QUAD:
+	case PrimitiveType::QUAD:
 		quadVertices[2] = color.r;
 		quadVertices[3] = color.g;
 		quadVertices[4] = color.b;
@@ -101,49 +100,49 @@ void Shape::SetVertexColor(Color color)
 	vertexArray.SetData(vertexBuffer);
 }
 
-void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3Color, Color vertex4Color)
+void Shape::SetVertexColor(const Color& topRight, const Color& bottomRight, const Color& bottomLeft, const Color& topLeft)
 {
 	switch (type)
 	{
-	case TRIANGLE:
-		triangleVertices[2] = vertex1Color.r;
-		triangleVertices[3] = vertex1Color.g;
-		triangleVertices[4] = vertex1Color.b;
-		triangleVertices[5] = vertex1Color.a;
+	case PrimitiveType::TRIANGLE:
+		triangleVertices[2] = topRight.r;
+		triangleVertices[3] = topRight.g;
+		triangleVertices[4] = topRight.b;
+		triangleVertices[5] = topRight.a;
 
-		triangleVertices[8] = vertex2Color.r;
-		triangleVertices[9] = vertex2Color.g;
-		triangleVertices[10] = vertex2Color.b;
-		triangleVertices[11] = vertex2Color.a;
+		triangleVertices[8] = bottomRight.r;
+		triangleVertices[9] = bottomRight.g;
+		triangleVertices[10] = bottomRight.b;
+		triangleVertices[11] = bottomRight.a;
 
-		triangleVertices[14] = vertex3Color.r;
-		triangleVertices[15] = vertex3Color.g;
-		triangleVertices[16] = vertex3Color.b;
-		triangleVertices[17] = vertex3Color.a;
+		triangleVertices[14] = bottomLeft.r;
+		triangleVertices[15] = bottomLeft.g;
+		triangleVertices[16] = bottomLeft.b;
+		triangleVertices[17] = bottomLeft.a;
 
 		vertexBuffer.SetData(triangleVertices, triangleVerticesAmount);
 		break;
 
-	case QUAD:
-		quadVertices[2] = vertex1Color.r;
-		quadVertices[3] = vertex1Color.g;
-		quadVertices[4] = vertex1Color.b;
-		quadVertices[5] = vertex1Color.a;
+	case PrimitiveType::QUAD:
+		quadVertices[2] = topRight.r;
+		quadVertices[3] = topRight.g;
+		quadVertices[4] = topRight.b;
+		quadVertices[5] = topRight.a;
 
-		quadVertices[10] = vertex2Color.r;
-		quadVertices[11] = vertex2Color.g;
-		quadVertices[12] = vertex2Color.b;
-		quadVertices[13] = vertex2Color.a;
+		quadVertices[10] = bottomRight.r;
+		quadVertices[11] = bottomRight.g;
+		quadVertices[12] = bottomRight.b;
+		quadVertices[13] = bottomRight.a;
 
-		quadVertices[18] = vertex3Color.r;
-		quadVertices[19] = vertex3Color.g;
-		quadVertices[20] = vertex3Color.b;
-		quadVertices[21] = vertex3Color.a;
+		quadVertices[18] = bottomLeft.r;
+		quadVertices[19] = bottomLeft.g;
+		quadVertices[20] = bottomLeft.b;
+		quadVertices[21] = bottomLeft.a;
 
-		quadVertices[26] = vertex4Color.r;
-		quadVertices[27] = vertex4Color.g;
-		quadVertices[28] = vertex4Color.b;
-		quadVertices[29] = vertex4Color.a;
+		quadVertices[26] = topLeft.r;
+		quadVertices[27] = topLeft.g;
+		quadVertices[28] = topLeft.b;
+		quadVertices[29] = topLeft.a;
 
 		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 		break;
@@ -154,5 +153,5 @@ void Shape::SetVertexColor(Color vertex1Color, Color vertex2Color, Color vertex3
 
 void Shape::Draw() 
 {
-	renderer->Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
+	renderer.Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
 }

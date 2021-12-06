@@ -16,7 +16,7 @@ Window::Window(int width, int height, const char* title, GLFWmonitor* monitor, G
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
-	window = glfwCreateWindow(width, height, title, monitor, share);
+	glfwWindow = glfwCreateWindow(width, height, title, monitor, share);
 }
 
 Window::~Window()
@@ -29,22 +29,22 @@ GLFWwindow* Window::CreateWindow(int width, int height, const char* title, GLFWm
 	return glfwCreateWindow(width, height, title, monitor, share);
 }
 
-void Window::SetWindow(GLFWwindow* window)
+void Window::SetWindow(GLFWwindow* glfwWindow)
 {
-	this->window = window;
+	this->glfwWindow = glfwWindow;
 }
 
-GLFWwindow* Window::GetWindow()
+GLFWwindow* Window::GetGLFWWindow()
 {
-	return window;
+	return glfwWindow;
 }
 
 void Window::DestroyWindow()
 {
-	glfwDestroyWindow(window);
+	glfwDestroyWindow(glfwWindow);
 }
 
 bool Window::ShouldClose()
 {
-	return glfwWindowShouldClose(window);
+	return glfwWindowShouldClose(glfwWindow);
 }

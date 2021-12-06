@@ -4,7 +4,7 @@
 #include "Exports.h"
 #include "Entity2D.h"
 
-enum FLK_API ShapeType //Primitive?
+enum class FLK_API PrimitiveType
 {
 	TRIANGLE,
 	QUAD
@@ -13,7 +13,7 @@ enum FLK_API ShapeType //Primitive?
 class FLK_API Shape : public Entity2D
 {
 private:
-	ShapeType type;
+	PrimitiveType type;
 
 	static const int triangleVerticesAmount = 18;
 	float triangleVertices[triangleVerticesAmount] =
@@ -31,13 +31,13 @@ private:
 
 public:
 	Shape();
-	Shape(Renderer* renderer, Shader shader, ShapeType type, bool initalize = true);
+	Shape(Shader shader, PrimitiveType type, bool initalize = true);
 	~Shape();
 
 	void Init();
 
-	void SetVertexColor(Color topRight, Color bottomRight, Color bottomLeft, Color topLeft) override;
-	void SetVertexColor(Color color) override;
+	void SetVertexColor(const Color& topRight, const Color& bottomRight, const Color& bottomLeft, const Color& topLeft) override;
+	void SetVertexColor(const Color& color) override;
 
 	void Draw();
 };

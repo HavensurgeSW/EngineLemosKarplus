@@ -7,16 +7,16 @@
 
 BaseGame::BaseGame()
 {
-	window = new Window();
 	renderer = new Renderer();
+	window = new Window();
 	input = new Input();
 	collisionManager = new CollisionManager();
 }
 
 BaseGame::~BaseGame()
 {
-	delete window;
 	delete renderer;
+	delete window;
 	delete input;
 	delete collisionManager;
 }
@@ -39,19 +39,19 @@ void BaseGame::InitEngine()
 	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
 	input->SetContextWindow(window);
 
-	if (!window->GetWindow()) {
+	if (!window->GetGLFWWindow()) {
 
 		std::cout << "Error. Window is null, terminating." << std::endl;
 		Terminate();
 	}
 
-	renderer->SetWindow(window);
+	Renderer::GetInstance().SetWindow(window);
 
-	renderer->MakeContextCurrent(window);
+	Renderer::GetInstance().MakeContextCurrent(window);
 
 	InitGlew();
 
-	renderer->SetClearColor(Color::Black());
+	Renderer::GetInstance().SetClearColor(Color::Black());
 	Init();
 }
 
@@ -59,11 +59,11 @@ void BaseGame::LaunchGod()
 {
 	while (!window->ShouldClose())
 	{
-		renderer->ClearScreen();
+		Renderer::GetInstance().ClearScreen();
 
 		Update(); //FOR SOME REASON (check reason) the Update method MUST be below the ClearScreen() method AND above the SwapBuffers() method.
 
-		renderer->SwapBuffer();
+		Renderer::GetInstance().SwapBuffer();
 		input->PollEvents();
 
 		time.UpdateTime();
