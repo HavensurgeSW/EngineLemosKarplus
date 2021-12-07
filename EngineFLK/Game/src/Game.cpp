@@ -17,11 +17,14 @@ void Game::Init()
 	illuminati->SetColorTint(Color::White());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new AnimatedSprite(rockShader, {12, 2});
-	rock->SetTexture("res/spritesheets/RockSpritesheet2.png");
-	rock->AddAnimation("VibeCheck", 1.0f, 0, 11, true);
-	rock->AddAnimation("BOOM", 1.0f, 12, 22, true);
-	rock->SetCurrentAnimation("BOOM");
+	rock = new AnimatedSprite(rockShader, {32, 5});
+	rock->SetTexture("res/spritesheets/rock.png");
+	rock->AddAnimation("JOHN_CHINA", 5.0f, 0, 31, true);   //
+	rock->AddAnimation("SUSSY_BOOM", 1.0f, 32, 41, true);  //
+	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet is not properly done
+	rock->AddAnimation("Eyebrow", 2.0f, 96, 113, true);	   //
+	rock->AddAnimation("Approve", 2.0f, 128, 151, true);   //
+	rock->SetCurrentAnimation("SUSSY_BOOM");
 
 	shape->transform.SetPosition({ -0.7f, 0.0f });
 	shape->transform.SetRotation(-45.0f, { 0.0f, 0.0f, 1.0f });
