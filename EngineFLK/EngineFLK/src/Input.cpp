@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "glfw3.h"
+#include "Vector2.h"
 
 Window* Input::window = NULL;
 

@@ -3,14 +3,18 @@
 
 #include "Exports.h"
 
-#include "Renderer.h"
+#include "Shader.h"
+#include "VertexBuffer.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
+#include "Transform.h"
 
 #include <iostream>
 
 class FLK_API Entity2D
 {
 protected:	
-	Renderer& renderer = Renderer::GetInstance();  //not having this causes errors
+	//Renderer& renderer = Renderer::GetInstance();  //not having this causes errors
 
 protected:
 	Shader shader;

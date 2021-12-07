@@ -1,6 +1,7 @@
 #include "Shape.h"
 #include "Texture.h"
-
+#include "Color.h"
+#include "Renderer.h"
 Shape::Shape()
 {
 
@@ -153,5 +154,5 @@ void Shape::SetVertexColor(const Color& topRight, const Color& bottomRight, cons
 
 void Shape::Draw() 
 {
-	renderer.Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
+	Renderer::GetInstance().Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
 }

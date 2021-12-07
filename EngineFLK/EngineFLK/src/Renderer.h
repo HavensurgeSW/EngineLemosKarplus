@@ -4,11 +4,14 @@
 #include "Exports.h"
 
 #include "Window.h"
-#include "Shader.h"
-#include "Color.h"
-#include "VertexBuffer.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
+
+class Shader;
+class VertexArray;
+class VertexBuffer;
+class IndexBuffer;
+class Transform;
+
+struct Color;
 
 class FLK_API Renderer
 {

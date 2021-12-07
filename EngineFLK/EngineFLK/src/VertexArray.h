@@ -3,9 +3,9 @@
 
 #include "Exports.h"
 
-#include "VertexBuffer.h"
-
 #include <vector>
+
+class VertexBuffer;
 
 struct FLK_API VertexBufferLayoutElement
 {

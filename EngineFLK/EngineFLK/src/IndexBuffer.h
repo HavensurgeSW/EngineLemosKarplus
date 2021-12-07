@@ -2,7 +2,6 @@
 #define INDEX_BUFFER_H
 
 #include "Exports.h"
-#include "ErrorHandling.h"
 
 class FLK_API IndexBuffer
 {

@@ -2,6 +2,12 @@
 
 #include "LibIncludes.h"
 
+#include "Transform.h"
+#include "Shader.h"
+#include "Color.h"
+#include "VertexBuffer.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 #include "ErrorHandling.h"
 
 Renderer Renderer::instance;

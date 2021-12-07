@@ -5,7 +5,7 @@
 #include "LibIncludes.h"
 
 #include "Window.h"
-#include "Vector2.h"
+struct Vector2;
 
 enum KeyCode
 {

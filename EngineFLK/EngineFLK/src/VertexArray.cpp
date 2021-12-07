@@ -1,6 +1,7 @@
 #include "VertexArray.h"
 
 #include "glew.h"
+#include "VertexBuffer.h"
 #include "ErrorHandling.h"
 
 VertexArray::VertexArray()

@@ -1,7 +1,8 @@
 #ifndef COLLISION_MANAGER_H
 #define COLLISION_MANAGER_H
 #include "Exports.h"
-#include "Entity2D.h"
+
+class Entity2D;
 
 class FLK_API CollisionManager
 {

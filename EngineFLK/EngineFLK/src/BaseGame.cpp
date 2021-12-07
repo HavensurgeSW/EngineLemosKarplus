@@ -73,10 +73,10 @@ void BaseGame::LaunchGod()
 	Terminate();
 }
 
-Renderer* BaseGame::GetRenderer() const
-{
-	return renderer;
-}
+//Renderer* BaseGame::GetRenderer() const
+//{
+//	return renderer;
+//}
 
 CollisionManager* BaseGame::GetCollisionManager() const
 {

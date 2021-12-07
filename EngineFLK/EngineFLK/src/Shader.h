@@ -5,8 +5,8 @@
 #include <iostream>
 #include <unordered_map> //a hash map/hash table (is it a dictionary?)
 
-#include "Transform.h"
-#include "Color.h"
+class Transform;
+struct Color;
 
 struct FLK_API ShaderPaths 
 {
@@ -32,7 +32,7 @@ public:
 	void Unbind() const;
 	void Delete() const;
 
-	void SetColorUniform(const Color color); //will need to expand
+	void SetColorUniform(const Color color);
 	void SetTransformUniform(const Transform transform);
 	void SetTextureUniform(const int slot);
 	void CreateShader(const std::string& filePath);

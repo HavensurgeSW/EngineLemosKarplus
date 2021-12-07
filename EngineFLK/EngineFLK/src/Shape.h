@@ -1,7 +1,6 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "Exports.h"
 #include "Entity2D.h"
 
 enum class FLK_API PrimitiveType

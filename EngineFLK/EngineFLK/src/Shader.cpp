@@ -4,6 +4,9 @@
 
 #include <fstream>
 #include <sstream>
+
+#include "Color.h"
+#include "Transform.h"
 #include "ErrorHandling.h"
 
 

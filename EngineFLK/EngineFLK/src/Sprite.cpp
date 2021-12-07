@@ -1,5 +1,7 @@
 #include "Sprite.h"
+#include "Color.h"
 #include "Texture.h"
+#include "Renderer.h"
 
 Sprite::Sprite()
 {
@@ -44,6 +46,6 @@ void Sprite::SetTexture(const std::string& path)
 void Sprite::Draw()
 {
 	texture.Bind();	
-	renderer.Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);	
+	Renderer::GetInstance().Draw(shader, transform, vertexArray, vertexBuffer, indexBuffer);
 	texture.Unbind();
 }

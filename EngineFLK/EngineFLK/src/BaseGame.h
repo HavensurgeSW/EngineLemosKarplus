@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "CollisionManager.h"
 #include "TimeManager.h"
+#include "Color.h"
 
 class FLK_API BaseGame
 {
@@ -19,7 +20,7 @@ private:
 	TimeManager time;
 protected:
 
-	Renderer* GetRenderer() const;
+	//Renderer* GetRenderer() const;
 	CollisionManager* GetCollisionManager() const;
 
 public:

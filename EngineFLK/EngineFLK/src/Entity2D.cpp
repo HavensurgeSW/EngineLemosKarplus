@@ -1,14 +1,14 @@
 #include "Entity2D.h"
 
-
+#include "Color.h"
 Entity2D::Entity2D()
 {
-	renderer = Renderer::GetInstance();   //not having this causes errors
+	//renderer = Renderer::GetInstance();   //not having this causes errors
 }
 
 Entity2D::Entity2D(Shader& shader)
 {
-	renderer = Renderer::GetInstance();   //not having this causes errors
+	//renderer = Renderer::GetInstance();   //not having this causes errors
 	this->shader = shader;
 }
 
