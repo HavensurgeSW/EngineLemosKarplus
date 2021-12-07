@@ -28,17 +28,17 @@ void IndexBuffer::SetData(const unsigned int indices[], unsigned int indexCount)
 	this->indexCount = indexCount;
 }
 
-void IndexBuffer::Bind()
+void IndexBuffer::Bind() const
 {
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId)); //saves a segment of memory to the specified buffer
 }
 
-void IndexBuffer::Unbind()
+void IndexBuffer::Unbind() const
 {
 	GLCheck(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }
 
-void IndexBuffer::Delete()
+void IndexBuffer::Delete() const
 {
 	GLCheck(glDeleteBuffers(1, &bufferId));
 }

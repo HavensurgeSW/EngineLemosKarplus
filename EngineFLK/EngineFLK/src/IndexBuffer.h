@@ -17,9 +17,9 @@ public:
 
 	void SetData(const unsigned int indices[], unsigned int indexCount);
 	
-	void Bind();  //both could be const
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete() const;
 
 	unsigned int GetIndexCount() const;
 };

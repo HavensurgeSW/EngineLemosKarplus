@@ -47,7 +47,7 @@ void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 	Unbind();
 }
 
-void VertexArray::Delete()
+void VertexArray::Delete() const
 {
 	GLCheck(glDeleteVertexArrays(1, &arrayId));
 }

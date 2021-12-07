@@ -31,7 +31,7 @@ public:
 
 	void Bind() const;
 	void Unbind() const;
-	void Delete();
+	void Delete() const;
 
 	template<typename T>
 	void Push(int count);
