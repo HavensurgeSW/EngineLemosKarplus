@@ -103,7 +103,7 @@ bool Tilemap::ImportTileMap(std::string filePath)
 
 	_imagePath = "Assets/";																//
 	_imagePath += pTileset->FirstChildElement("image")->Attribute("source");			// Loading Textures
-	SetTexture(rkRenderer.loadTexture(_imagePath.c_str(), D3DCOLOR_XRGB(255, 255, 255))); //
+	// SetTexture(rkRenderer.loadTexture(_imagePath.c_str(), D3DCOLOR_XRGB(255, 255, 255))); //
 
 	// Save the Tiles in the TileMap
 	_imageWidth = pTileset->FirstChildElement("image")->IntAttribute("width");
@@ -120,10 +120,10 @@ bool Tilemap::ImportTileMap(std::string filePath)
 			newTile.SetTexture(_texture);
 			newTile.transform.SetScale({ _tileWidth, _tileHeight, 1 });
 
-			newTile.SetTextureCoordinates(tileX / _imageWidth, tileY / _imageHeight,
-				(tileX + _tileWidth) / _imageWidth, tileY / _imageHeight,
-				tileX / _imageWidth, (tileY + _tileHeight) / _imageHeight,
-				(tileX + _tileWidth) / _imageWidth, (tileY + _tileHeight) / _imageHeight);
+			newTile.SetTextureCoordinates({ tileX / _imageWidth, tileY / _imageHeight },
+										  { (tileX + _tileWidth) / _imageWidth, tileY / _imageHeight },
+										  { tileX / _imageWidth, (tileY + _tileHeight) / _imageHeight },
+										  { (tileX + _tileWidth) / _imageWidth, (tileY + _tileHeight) / _imageHeight });
 
 			tileX += _tileWidth;
 			SetTile(newTile);

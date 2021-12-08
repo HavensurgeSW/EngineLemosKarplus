@@ -17,6 +17,7 @@ public:
 	void Init();
 
 	void SetTexture(const std::string& path);
+	void SetTexture(const Texture& texture);
 
 	virtual void Draw();
 };

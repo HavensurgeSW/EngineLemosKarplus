@@ -3,6 +3,8 @@
 
 #include "Sprite.h"
 
+class Vector2;
+
 class Tile : public Sprite
 {
 private:
@@ -18,6 +20,8 @@ public:
 
 	void SetId(unsigned int id);
 	unsigned int GetId() const;
+
+	void SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft);
 };
 
 #endif

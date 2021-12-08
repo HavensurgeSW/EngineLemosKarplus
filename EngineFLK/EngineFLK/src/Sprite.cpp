@@ -43,6 +43,12 @@ void Sprite::SetTexture(const std::string& path)
 	SetColorTint(Color::White());
 }
 
+void Sprite::SetTexture(const Texture& texture)
+{
+	this->texture = texture;
+	SetColorTint(Color::White());
+}
+
 void Sprite::Draw()
 {
 	texture.Bind();	
