@@ -4,49 +4,32 @@
 #include "Texture.h"
 #include <vector>
 #include <string>
+#include "Vector2.h"
+#include "Sprite.h"
 
-class Tile;
+struct FLK_API Tile 
+{
+	unsigned int id;
+	Vector2 pos;
+	Vector2 convertedPos;
+
+	Sprite* sprite;
+};
 
 class FLK_API Tilemap 
 {
 private:
-	//std::vector<Tile> tiles;
-	//std::vector<Tile**> _tileMapGrid;
-
-	unsigned int _width;
-	unsigned int _height;
-
-	float _tileWidth;
-	float _tileHeight;
-
-	Texture _texture;
-
-	float _imageWidth;
-	float _imageHeight;
-
-	float convertedPosX;
-	float convertedPosY;
-
-	std::string _imagePath;
+	static const int maxTLX = 2;
+	static const int maxTLY = 2;
+	static const int tileSize = 80;
 
 public:
+	Tile board[maxTLY][maxTLX];
 	Tilemap();
-	Tilemap(int tileCount, int columns, float width, float height);
 	~Tilemap();
-
-	bool ImportTileMap(std::string filePath, int tileCount, int columns, float width, float height);
+	void initMap();
+	Vector2 getPos(int x, int y);
+	Vector2 getConvertedPos(int x, int y);
 	
-	void AddTile(const Tile& tile);
-	//void SetMapTileId(int layer, unsigned int uiCol, unsigned int uiRow, unsigned int uiId);
-	//const Tile& GetTile(unsigned int uiId);
-
-	void SetDimensions(float width, float heigth);
-	void SetTileDimensions(float tileWidth, float tileHeigth);
-
-	void SetTexture(const Texture& texture);
-	void SetTexture(const std::string& path);
-	void Draw();
-
-	//void checkCollision(Entity2D& object);
 };
 #endif

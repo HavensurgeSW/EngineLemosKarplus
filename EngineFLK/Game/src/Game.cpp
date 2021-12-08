@@ -2,6 +2,8 @@
 
 void Game::Init()
 {
+	tilemap = new Tilemap;
+
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
 	shape->SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
@@ -17,19 +19,16 @@ void Game::Init()
 	illuminati->SetColorTint(Color::White());
 
 	Shader rockShader("res/shaders/Sprite.shader");
-	rock = new AnimatedSprite(rockShader, {32, 5});
-	
-	//rock->SetTexture("res/spritesheets/rock-min.png");
-	rock->SetTexture("res/spritesheets/rock.png");
+	rock = new AnimatedSprite(rockShader, { 32, 5 });
+
+	rock->SetTexture("res/spritesheets/rock-min.png");
+	//rock->SetTexture("res/spritesheets/rock.png");
 	rock->AddAnimation("JOHN_CHINA", 4.0f, 0, 31, true);   //
 	rock->AddAnimation("SUSSY_BOOM", 1.0f, 32, 41, true);  //
 	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet 
 	rock->AddAnimation("Eyebrow", 1.5f, 96, 113, true);	   // is not properly done(idk why photoshop played me)
 	rock->AddAnimation("Approve", 2.0f, 128, 151, true);   //
 	rock->SetCurrentAnimation("JOHN_CHINA");                  //
-
-	tilemap = new Tilemap(33, 5, 1, 1);
-	tilemap->SetTexture("res/spritesheets/rock.png");
 
 	shape->transform.SetPosition({ -0.7f, 0.0f });
 	shape->transform.SetRotation(-45.0f, { 0.0f, 0.0f, 1.0f });
@@ -44,6 +43,8 @@ void Game::Init()
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
+
+	enano->transform.SetPosition({tilemap->getConvertedPos(0,1).x, tilemap->getConvertedPos(0,1).y, 0.0f});
 }
 
 void Game::Update()
