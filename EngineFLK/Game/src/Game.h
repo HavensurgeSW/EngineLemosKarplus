@@ -16,6 +16,8 @@ private:
 	Sprite* illuminati;
 	Tilemap* tilemap;
 
+	bool showTilemap;
+
 public:
 	void Init() override;
 	void Update() override;

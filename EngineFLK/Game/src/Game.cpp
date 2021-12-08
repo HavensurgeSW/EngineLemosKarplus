@@ -2,7 +2,8 @@
 
 void Game::Init()
 {
-	tilemap = new Tilemap;
+	showTilemap = false;
+	tilemap = new Tilemap();
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -28,7 +29,7 @@ void Game::Init()
 	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet 
 	rock->AddAnimation("Eyebrow", 1.5f, 96, 113, true);	   // is not properly done(idk why photoshop played me)
 	rock->AddAnimation("Approve", 2.0f, 128, 151, true);   //
-	rock->SetCurrentAnimation("JOHN_CHINA");                  //
+	rock->SetCurrentAnimation("JOHN_CHINA");               //
 
 	shape->transform.SetPosition({ -0.7f, 0.0f });
 	shape->transform.SetRotation(-45.0f, { 0.0f, 0.0f, 1.0f });
@@ -49,56 +50,6 @@ void Game::Init()
 
 void Game::Update()
 {
-	if (Input::GetKey(KeyCode::W))
-	{
-		rock->transform.Translate({ 0, 0.01f, 0 });
-	}
-	if (Input::GetKey(KeyCode::S))
-	{
-		rock->transform.Translate({ 0, -0.01f, 0 });
-	}
-	if (Input::GetKey(KeyCode::D))
-	{
-		rock->transform.Translate({ 0.01f, 0, 0 });
-	}
-	if (Input::GetKey(KeyCode::A))
-	{
-		rock->transform.Translate({ -0.01f,0,0 });
-	}
-	if (Input::GetKey(KeyCode::Q))
-	{
-		rock->transform.RotateZAxis(1.0f);
-	}
-	if (Input::GetKey(KeyCode::E))
-	{
-		rock->transform.RotateZAxis(-1.0f);
-	}
-
-	if (Input::GetKey(KeyCode::UP))
-	{
-		enano->transform.Translate({ 0, 0.01f, 0 });
-	}
-	if (Input::GetKey(KeyCode::DOWN))
-	{
-		enano->transform.Translate({ 0, -0.01f, 0 });
-	}
-	if (Input::GetKey(KeyCode::RIGHT))
-	{
-		enano->transform.Translate({ 0.01f, 0, 0 });
-	}
-	if (Input::GetKey(KeyCode::LEFT))
-	{
-		enano->transform.Translate({ -0.01f, 0, 0 });
-	}
-	if (Input::GetKey(KeyCode::NUMPAD_1))
-	{
-		enano->transform.RotateZAxis(1.0f);
-	}
-	if (Input::GetKey(KeyCode::NUMPAD_3))
-	{
-		enano->transform.RotateZAxis(-1.0f);
-	}
-
 	if (GetCollisionManager()->CheckCollision(illuminati, enano))
 	{
 		std::cout << "Ah re loco" << std::endl;
@@ -109,10 +60,77 @@ void Game::Update()
 		std::cout << "Harry esta mas turbado que nunca" << std::endl;
 	}
 
-	illuminati->Draw();
-	shape->Draw();
-	rock->Draw();
-	enano->Draw();
+	if (Input::GetKey(KeyCode::NUMPAD_1)) 
+	{
+		showTilemap = true;
+	}
+
+	if (Input::GetKey(KeyCode::NUMPAD_2))
+	{
+		showTilemap = false;
+	}
+
+	if (!showTilemap) 
+	{
+		if (Input::GetKey(KeyCode::W))
+		{
+			rock->transform.Translate({ 0, 0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::S))
+		{
+			rock->transform.Translate({ 0, -0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::D))
+		{
+			rock->transform.Translate({ 0.01f, 0, 0 });
+		}
+		if (Input::GetKey(KeyCode::A))
+		{
+			rock->transform.Translate({ -0.01f,0,0 });
+		}
+		if (Input::GetKey(KeyCode::Q))
+		{
+			rock->transform.RotateZAxis(1.0f);
+		}
+		if (Input::GetKey(KeyCode::E))
+		{
+			rock->transform.RotateZAxis(-1.0f);
+		}
+
+		if (Input::GetKey(KeyCode::UP))
+		{
+			enano->transform.Translate({ 0, 0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::DOWN))
+		{
+			enano->transform.Translate({ 0, -0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::RIGHT))
+		{
+			enano->transform.Translate({ 0.01f, 0, 0 });
+		}
+		if (Input::GetKey(KeyCode::LEFT))
+		{
+			enano->transform.Translate({ -0.01f, 0, 0 });
+		}
+		if (Input::GetKey(KeyCode::NUMPAD_1))
+		{
+			enano->transform.RotateZAxis(1.0f);
+		}
+		if (Input::GetKey(KeyCode::NUMPAD_3))
+		{
+			enano->transform.RotateZAxis(-1.0f);
+		}
+
+		illuminati->Draw();
+		shape->Draw();
+		rock->Draw();
+		enano->Draw();
+	}
+	else
+	{
+		tilemap->Draw();
+	}	
 }
 
 void Game::DeInit()
