@@ -1,4 +1,5 @@
 #include "Tilemap.h"
+#include "Color.h";
 
 Tilemap::Tilemap()
 {
@@ -21,25 +22,23 @@ void Tilemap::initMap()
 	for (int i = 0; i < maxTLY; i++) {
 		for (int j = 0; j < maxTLX; j++) {
 			
-			Tile tile;
 			Shader shader("res/shaders/Sprite.shader");
-			tile.sprite = new Sprite(shader);
-			tile.sprite->SetTexture("res/textures/CG2f1.png");
+			board[i][j].sprite = new Sprite(shader);
+			board[i][j].sprite->SetTexture("res/textures/center.png");
 			board[i][j].pos.x = j;
 			board[i][j].pos.y = i;
-			tile.pos = board[i][j].pos;
+			board[i][j].isWalkable = true;
 
 			//SHAMELESSLY PULLED FROM MY OTHER PROJECT
-			board[i][j].convertedPos = {static_cast<float>(j+aux), static_cast<float>(i+aux2)};
-			tile.convertedPos = board[i][j].convertedPos;
+			board[i][j].convertedPos = {static_cast<float>(aux), static_cast<float>(aux2)};
 			aux += 0.5f;
-			tile.sprite->transform.SetScale(0.1f);
-			tile.sprite->transform.SetPosition(tile.convertedPos);
+			board[i][j].sprite->transform.SetScale(0.5f);
+			board[i][j].sprite->transform.SetPosition(board[i][j].convertedPos);
 
 			board[i][j].id = 10; //10 is well outside any of the IDs used for the game.
-			tile.id = board[i][j].id;
-			tiles.push_back(tile);
+			tiles.push_back(board[i][j]);
 		}
+		aux = -0.5f;
 		aux2 += 0.5f;
 	}
 }
@@ -54,11 +53,45 @@ Vector2 Tilemap::getConvertedPos(int x, int y)
 	return board[y][x].convertedPos;
 }
 
+Tile Tilemap::GetTile(int x, int y) const
+{
+	return board[y][x];
+}
+
+void Tilemap::SetTileID(int x, int y, int id)
+{
+	board[y][x].id = id;
+
+	switch (id)
+	{
+	case 1:
+		//board[y][x].sprite->SetColorTint(Color::Red());
+		board[y][x].isWalkable = false;
+		break;
+
+	case 2:
+		//board[y][x].sprite->SetColorTint(Color::Green());
+		board[y][x].isWalkable = true;
+		break;
+
+	default:
+		//board[y][x].sprite->SetColorTint(Color::White());
+		board[y][x].isWalkable = true;
+		break;
+	}
+}
+
 void Tilemap::Draw()
 {
-	for (int i = 0; i < tiles.size(); i++)
+	for (int i = 0; i < maxTLY; i++)
 	{
-		tiles[i].sprite->Draw();
+		for (int j = 0; j < maxTLX; j++)
+		{
+			if (board[i][j].isWalkable)
+			{
+				board[i][j].sprite->Draw();
+			}
+		}
 	}
 }
 

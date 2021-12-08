@@ -14,6 +14,7 @@ private:
 	Shape* shape;
 	Sprite* enano;
 	Sprite* illuminati;
+	Sprite* player;
 	Tilemap* tilemap;
 
 	bool showTilemap;

@@ -21,7 +21,6 @@ private:
 	unsigned int rendererId;
 	std::string filePath;
 	std::unordered_map<std::string, int> cachedUniformLocations; //kinda cool
-
 public:
 
 	Shader();

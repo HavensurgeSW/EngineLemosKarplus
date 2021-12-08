@@ -4,6 +4,15 @@ void Game::Init()
 {
 	showTilemap = false;
 	tilemap = new Tilemap();
+	tilemap->SetTileID(0, 0, 1);
+	tilemap->SetTileID(1, 0, 1);
+	tilemap->SetTileID(2, 0, -1);
+	tilemap->SetTileID(0, 1, -1);
+	tilemap->SetTileID(1, 1, 1);
+	tilemap->SetTileID(2, 1, 1);
+	tilemap->SetTileID(0, 2, 1);
+	tilemap->SetTileID(1, 2, 1);
+	tilemap->SetTileID(2, 2, -1);
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -13,6 +22,10 @@ void Game::Init()
 	enano = new Sprite(enanoShader);
 	enano->SetVertexColor(Color::Blue(), Color::Yellow(), Color::Blue(), Color::Yellow());
 	enano->SetTexture("res/textures/EnanoBostero.png");
+
+	Shader playerShader("res/shaders/Sprite.shader");
+	player = new Sprite(playerShader);
+	player->SetTexture("res/textures/amogus.png");
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(illuminatiShader);
@@ -42,24 +55,15 @@ void Game::Init()
 	enano->transform.SetPosition(0.7f, 0.0f, 0.0f);
 	enano->transform.SetScale(0.6f);
 
+	player->transform.SetPosition({ 0.0f, 0.0f, 0.0f });
+	player->transform.SetScale(0.45f);
+
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
-
-	enano->transform.SetPosition({tilemap->getConvertedPos(0,1).x, tilemap->getConvertedPos(0,1).y, 0.0f});
 }
 
 void Game::Update()
 {
-	if (GetCollisionManager()->CheckCollision(illuminati, enano))
-	{
-		std::cout << "Ah re loco" << std::endl;
-	}
-
-	if (GetCollisionManager()->CheckCollision(shape, enano))
-	{
-		std::cout << "Harry esta mas turbado que nunca" << std::endl;
-	}
-
 	if (Input::GetKey(KeyCode::NUMPAD_1)) 
 	{
 		showTilemap = true;
@@ -72,6 +76,16 @@ void Game::Update()
 
 	if (!showTilemap) 
 	{
+		if (GetCollisionManager()->CheckCollision(illuminati, enano))
+		{
+			std::cout << "Ah re loco" << std::endl;
+		}
+
+		if (GetCollisionManager()->CheckCollision(shape, enano))
+		{
+			std::cout << "Harry esta mas turbado que nunca" << std::endl;
+		}
+
 		if (Input::GetKey(KeyCode::W))
 		{
 			rock->transform.Translate({ 0, 0.01f, 0 });
@@ -129,7 +143,30 @@ void Game::Update()
 	}
 	else
 	{
+		//if (GetCollisionManager()->CheckCollision(player, enano))
+		//{
+		//	std::cout << "Harry esta mas turbado que nunca" << std::endl;
+		//}
+
+		if (Input::GetKey(KeyCode::W))
+		{
+			player->transform.Translate({ 0, 0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::S))
+		{
+			player->transform.Translate({ 0, -0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::D))
+		{
+			player->transform.Translate({ 0.01f, 0, 0 });
+		}
+		if (Input::GetKey(KeyCode::A))
+		{
+			player->transform.Translate({ -0.01f,0,0 });
+		}
+
 		tilemap->Draw();
+		player->Draw();
 	}	
 }
 
