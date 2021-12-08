@@ -2,34 +2,41 @@
 
 #include "Tile.h"
 
-#include "xml_lib/tinyxml2.h"
 #include <iostream>
 
 Tilemap::Tilemap() {}
 
+Tilemap::Tilemap(int tileCount, int columns, float width, float height)
+{
+	SetDimensions(width, height);                 // Get width and heigth for
+	SetTileDimensions(_tileWidth, _tileHeight);	  // the map and the tiles
+}
+
 Tilemap::~Tilemap() {}
 
-const Tile& Tilemap::tile(unsigned int uiId) 
+//const Tile& Tilemap::GetTile(unsigned int uiId)
+//{
+//	Tile* nullTile = nullptr;
+//	//
+//	//for (int i = 0; i < tiles.size(); i++) 
+//	//{
+//	//	if (uiId == tiles[i].GetId()) 
+//	//	{
+//	//		return tiles[i];
+//	//	}
+//	//}
+//	//
+//	return *nullTile;
+//}
+
+//void Tilemap::SetMapTileId(int layer, unsigned int uiCol, unsigned int uiRow, unsigned int uiId)
+//{
+//	_tileMapGrid[layer][uiCol][uiRow] = GetTile(uiId);
+//}
+
+void Tilemap::AddTile(const Tile& tile)
 {
-	Tile* NoTile = nullptr;
-
-	for (int i = 0; i < tiles.size(); i++) {
-		if (uiId == tiles[i].GetId()) {
-			return tiles[i];
-		}
-	}
-
-	return *NoTile;
-}
-
-void Tilemap::SetMapTileId(int layer, unsigned int uiCol, unsigned int uiRow, unsigned int uiId)
-{
-	_tileMapGrid[layer][uiCol][uiRow] = tile(uiId);
-}
-
-void Tilemap::SetTile(const Tile& rkTile) 
-{
-	tiles.push_back(rkTile);
+	//tiles.push_back(tile);
 }
 
 void Tilemap::SetTileDimensions(float tileWidth, float tileHeight) 
@@ -46,69 +53,52 @@ void Tilemap::SetDimensions(float width, float height)
 	//creo la grilla bidimensional para guardar la posicion de cada tile igual que en el editor
 	Tile** tileMap;
 	tileMap = new Tile * [_height];
-	for (int i = 0; i < _height; i++) {
+	for (int i = 0; i < _height; i++) 
+	{
 		tileMap[i] = new Tile[_width];
 	}
-	_tileMapGrid.push_back(tileMap);
+	//_tileMapGrid.push_back(tileMap);
 }
 
-void Tilemap::SetTexture(const Texture& rkTexture) 
+void Tilemap::SetTexture(const Texture& texture) 
 {
-	_texture = rkTexture;
+	_texture = texture;
+}
+
+void Tilemap::SetTexture(const std::string& path)
+{
+	_texture.LoadTexture(path);
 }
 
 void Tilemap::Draw() 
 {
-	//rkRenderer.setCurrentTexture(_texture);
-
 	float mapWidth = -(_width * _tileWidth) / 2;
 	float mapHeight = (_height * _tileHeight) / 2;
 
-	for (int i = 0; i < _tileMapGrid.size(); i++) {
-		for (int y = 0; y < _height; y++) {
-			for (int x = 0; x < _width; x++) {
-				if (_tileMapGrid[i][y][x].GetId() != NULL) {
-					_tileMapGrid[i][y][x].transform.SetPosition({ mapWidth + (_tileWidth * x), mapHeight - (_tileHeight * y) });
-					_tileMapGrid[i][y][x].Draw();
-				}
-			}
-		}
-	}
-
+	//for (int i = 0; i < _tileMapGrid.size(); i++) 
+	//{
+	//	for (int y = 0; y < _height; y++) 
+	//	{
+	//		for (int x = 0; x < _width; x++) 
+	//		{
+	//			if (_tileMapGrid[i][y][x].GetId() != NULL) 
+	//			{
+	//				_tileMapGrid[i][y][x].transform.SetPosition({ mapWidth + (_tileWidth * x), mapHeight - (_tileHeight * y) });
+	//				_tileMapGrid[i][y][x].Draw();
+	//			}
+	//		}
+	//	}
+	//}
 }
 
-bool Tilemap::ImportTileMap(std::string filePath) 
+bool Tilemap::ImportTileMap(std::string filePath, int tileCount, int columns, float width, float height)
 {
-	tinyxml2::XMLDocument doc; //guarda el documento
-	tinyxml2::XMLError errorHandler; //guarda el resultado de las funciones
-
-	errorHandler = doc.LoadFile(filePath.c_str()); //carga el archivo XML
-	if (errorHandler == tinyxml2::XML_ERROR_FILE_NOT_FOUND || errorHandler == tinyxml2::XML_ERROR_FILE_COULD_NOT_BE_OPENED) return false;
-
-	// Loading Map element and save Map width, heigth in tiles and width, heigth of Tiles in pixels
-	tinyxml2::XMLElement* mapNode = doc.FirstChildElement("map");
-	if (mapNode == nullptr)
-		return false;
-	SetDimensions(mapNode->FloatAttribute("width"), mapNode->FloatAttribute("height"));				// Get width and heigth for
-	SetTileDimensions(mapNode->FloatAttribute("tilewidth"), mapNode->FloatAttribute("tileheight")); // the map and the tiles
-
-	// Loading Tilset element
-	tinyxml2::XMLElement* pTileset = mapNode->FirstChildElement("tileset");
-	if (pTileset == NULL)
-		return false;
-
-	int tileCount = pTileset->IntAttribute("tilecount"); // Number of Tiles in the Tileset
-	int columns = pTileset->IntAttribute("columns");  // Columns of Tiles in the Tileset
 	int rows = tileCount / columns;
 
-	_imagePath = "Assets/";																//
-	_imagePath += pTileset->FirstChildElement("image")->Attribute("source");			// Loading Textures
-	// SetTexture(rkRenderer.loadTexture(_imagePath.c_str(), D3DCOLOR_XRGB(255, 255, 255))); //
-
 	// Save the Tiles in the TileMap
-	_imageWidth = pTileset->FirstChildElement("image")->IntAttribute("width");
-	_imageHeight = pTileset->FirstChildElement("image")->IntAttribute("height");
-	float tileX = 0.0f, tileY = 0.0f;
+	float tileX = 0.0f;
+	float tileY = 0.0f;
+
 	int _id = 1;
 	for (int i = 0; i < rows; i++) 
 	{
@@ -126,74 +116,13 @@ bool Tilemap::ImportTileMap(std::string filePath)
 										  { (tileX + _tileWidth) / _imageWidth, (tileY + _tileHeight) / _imageHeight });
 
 			tileX += _tileWidth;
-			SetTile(newTile);
+			AddTile(newTile);
 			_id++;
 		}
 
 		tileX = 0;
 		tileY += _tileHeight;
 	}
-
-	tinyxml2::XMLElement* pTile = pTileset->FirstChildElement("tile");
-
-	while (pTile) {
-		unsigned int id = pTile->IntAttribute("id");
-		tinyxml2::XMLElement* pProperty = pTile->FirstChildElement("properties")->FirstChildElement("property");
-		std::string propertyName = pProperty->Attribute("value");
-		//if (propertyName == "false")
-		//	tiles[id].walkability(false);
-		//else
-		//	tiles[id].walkability(true);
-
-		pTile = pTile->NextSiblingElement("tile");
-	}
-
-	// Loading Layer element
-	tinyxml2::XMLElement* pLayer = mapNode->FirstChildElement("layer");
-	if (pLayer == NULL)
-		return false;
-
-	int layerCount = 0;
-	while (pLayer) {
-		// Loading Data element
-		tinyxml2::XMLElement* pData = pLayer->FirstChildElement("data");
-		if (pData == NULL)
-			return false;
-
-		if (layerCount > 0) {
-			Tile** tileMap;
-			tileMap = new Tile * [_height];
-			for (int i = 0; i < _height; i++) {
-				tileMap[i] = new Tile[_width];
-			}
-			_tileMapGrid.push_back(tileMap);
-		}
-
-		while (pData) {
-			std::vector<int> tileGids;
-			for (tinyxml2::XMLElement* pTile = pData->FirstChildElement("tile");
-				pTile != NULL;
-				pTile = pTile->NextSiblingElement("tile"))
-			{
-				unsigned int gid = std::atoi(pTile->Attribute("gid")); // tile's id is saved
-				tileGids.push_back(gid);
-			}
-
-			int gid = 0;
-			for (int y = 0; y < _height; y++) {
-				for (int x = 0; x < _width; x++) {
-					if (tileGids[gid] != 0)
-						SetMapTileId(layerCount, y, x, tileGids[gid]);
-					gid++;
-				}
-			}
-
-			pData = pData->NextSiblingElement("data");
-		}
-		layerCount++;
-		pLayer = pLayer->NextSiblingElement("layer");
-	}
-
 	return true;
 }
 

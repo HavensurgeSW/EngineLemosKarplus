@@ -19,6 +19,9 @@ public:
 	void SetTexture(const std::string& path);
 	void SetTexture(const Texture& texture);
 
+
+	void SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft);
+
 	virtual void Draw();
 };
 

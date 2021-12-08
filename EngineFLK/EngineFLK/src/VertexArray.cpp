@@ -43,6 +43,7 @@ void VertexArray::SetData(const VertexBuffer& vertexBuffer)
 		GLCheck(glVertexAttribPointer(i, element.count, element.type, element.isNormalized, stride, (const void*)offset));
 		offset += element.count * sizeof(element.type);
 	}
+
 	vertexBuffer.Unbind();
 	Unbind();
 }

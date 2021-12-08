@@ -21,13 +21,15 @@ void Game::Init()
 	
 	//rock->SetTexture("res/spritesheets/rock-min.png");
 	rock->SetTexture("res/spritesheets/rock.png");
-
 	rock->AddAnimation("JOHN_CHINA", 4.0f, 0, 31, true);   //
 	rock->AddAnimation("SUSSY_BOOM", 1.0f, 32, 41, true);  //
-	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet is not properly done
-	rock->AddAnimation("Eyebrow", 2.0f, 96, 113, true);	   //
+	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet 
+	rock->AddAnimation("Eyebrow", 1.5f, 96, 113, true);	   // is not properly done(idk why photoshop played me)
 	rock->AddAnimation("Approve", 2.0f, 128, 151, true);   //
-	rock->SetCurrentAnimation("JOHN_CHINA");
+	rock->SetCurrentAnimation("JOHN_CHINA");                  //
+
+	tilemap = new Tilemap(33, 5, 1, 1);
+	tilemap->SetTexture("res/spritesheets/rock.png");
 
 	shape->transform.SetPosition({ -0.7f, 0.0f });
 	shape->transform.SetRotation(-45.0f, { 0.0f, 0.0f, 1.0f });

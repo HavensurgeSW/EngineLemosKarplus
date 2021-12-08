@@ -5,7 +5,7 @@
 
 class Vector2;
 
-class Tile : public Sprite
+class FLK_API Tile : public Sprite
 {
 private:
 	unsigned int id;
@@ -15,13 +15,11 @@ public:
 	Tile();
 	~Tile();
 
-	bool GetIsWalkable() const;
-	void SetIsWalkable(bool isWalkable);
-
 	void SetId(unsigned int id);
 	unsigned int GetId() const;
 
-	void SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft);
+	void SetIsWalkable(bool isWalkable);
+	bool GetIsWalkable() const;
 };
 
 #endif

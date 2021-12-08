@@ -159,6 +159,9 @@
     <ClCompile Include="src\AnimatedSprite.cpp">
       <Filter>src\entities\animated_sprite</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tile.cpp">
+      <Filter>src\entities\tilemap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exports.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="src\AnimatedSprite.h">
       <Filter>src\entities\animated_sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tile.h">
+      <Filter>src\entities\tilemap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

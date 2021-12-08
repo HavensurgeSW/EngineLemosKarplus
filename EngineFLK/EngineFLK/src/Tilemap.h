@@ -7,11 +7,11 @@
 
 class Tile;
 
-class Tilemap 
+class FLK_API Tilemap 
 {
 private:
-	std::vector<Tile> tiles;
-	std::vector<Tile**> _tileMapGrid;
+	//std::vector<Tile> tiles;
+	//std::vector<Tile**> _tileMapGrid;
 
 	unsigned int _width;
 	unsigned int _height;
@@ -31,19 +31,22 @@ private:
 
 public:
 	Tilemap();
+	Tilemap(int tileCount, int columns, float width, float height);
 	~Tilemap();
 
-	const Tile& tile(unsigned int uiId);
-	void SetTile(const Tile& rkTile);
-	void SetMapTileId(int layer, unsigned int uiCol, unsigned int uiRow, unsigned int uiId);
+	bool ImportTileMap(std::string filePath, int tileCount, int columns, float width, float height);
+	
+	void AddTile(const Tile& tile);
+	//void SetMapTileId(int layer, unsigned int uiCol, unsigned int uiRow, unsigned int uiId);
+	//const Tile& GetTile(unsigned int uiId);
 
 	void SetDimensions(float width, float heigth);
 	void SetTileDimensions(float tileWidth, float tileHeigth);
 
-	void SetTexture(const Texture& rkTexture);
+	void SetTexture(const Texture& texture);
+	void SetTexture(const std::string& path);
 	void Draw();
 
-	bool ImportTileMap(std::string filePath);
 	//void checkCollision(Entity2D& object);
 };
 #endif

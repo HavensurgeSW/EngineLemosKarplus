@@ -65,7 +65,7 @@ public:
 	void Reset();
 	void Stop();
 
-	Vector4 GetFrames() const;
+	Vector4 GetFrameUVs() const;
 
 private:
 	void UpdateAnimation();

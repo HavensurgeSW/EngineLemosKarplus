@@ -96,7 +96,7 @@ void Animation::Stop()
 	stop = true;
 }
 
-Vector4 Animation::GetFrames() const
+Vector4 Animation::GetFrameUVs() const
 {
 	return currentFrame.uvs;
 }
