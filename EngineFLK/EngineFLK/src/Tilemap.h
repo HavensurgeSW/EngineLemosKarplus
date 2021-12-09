@@ -7,7 +7,7 @@
 #include "Vector2.h"
 #include "Sprite.h"
 
-struct FLK_API Tile 
+struct FLK_API Tile
 {
 	unsigned int id;
 	Sprite* sprite;
@@ -17,13 +17,15 @@ struct FLK_API Tile
 	bool isWalkable;
 };
 
-class FLK_API Tilemap 
+class FLK_API Tilemap
 {
 private:
 	static const int maxTLX = 3;
 	static const int maxTLY = 3;
 	static const int tileSize = 80;
 
+	int convertedPosX;
+	int convertedPosY;
 	Shader shader;
 	std::vector<Tile> tiles;
 
@@ -36,6 +38,8 @@ public:
 	Vector2 getConvertedPos(int x, int y);
 	Tile GetTile(int x, int y) const;
 	void SetTileID(int x, int y, int id);
-	void Draw();	
+	void Draw();
+
+	//void CheckCollision(Entity2D& object);
 };
 #endif

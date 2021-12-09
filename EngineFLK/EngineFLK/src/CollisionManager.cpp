@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 
 #include "Entity2D.h"
+#include "Tilemap.h"
 
 bool CollisionManager::CheckCollision(const Entity2D* one, const Entity2D* two)
 {
@@ -14,4 +15,9 @@ bool CollisionManager::CheckCollision(const Entity2D* one, const Entity2D* two)
 
    
     return collisionX && collisionY;
+}
+
+bool CollisionManager::CheckCollision(const Entity2D* one, const Tile* two)
+{
+    return false;
 }

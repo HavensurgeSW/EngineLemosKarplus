@@ -5,16 +5,16 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "Tilemap.h"
-
+#include "Player.h"
 
 class Game : public BaseGame
 {
 private:
+	Player* player;
 	AnimatedSprite* rock;
 	Shape* shape;
 	Sprite* enano;
 	Sprite* illuminati;
-	Sprite* player;
 	Tilemap* tilemap;
 
 	bool showTilemap;

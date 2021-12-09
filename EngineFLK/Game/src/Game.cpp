@@ -24,7 +24,7 @@ void Game::Init()
 	enano->SetTexture("res/textures/EnanoBostero.png");
 
 	Shader playerShader("res/shaders/Sprite.shader");
-	player = new Sprite(playerShader);
+	player = new Player(playerShader);
 	player->SetTexture("res/textures/amogus.png");
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
@@ -150,6 +150,13 @@ void Game::Update()
 
 		if (Input::GetKey(KeyCode::W))
 		{
+			//if(player->posY > 0 && tilemap->board[player->posY + 1][player->posX].id == 1)
+			//{
+			//	player->posY++;
+			//std::cout << player->posY << std::endl;
+			//}
+			//
+			//player->transform.Translate({ static_cast<float>(player->posY), static_cast<float>(player->posX), 0.0f });
 			player->transform.Translate({ 0, 0.01f, 0 });
 		}
 		if (Input::GetKey(KeyCode::S))

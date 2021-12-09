@@ -19,6 +19,9 @@
     <Filter Include="res\spritesheets">
       <UniqueIdentifier>{f2980472-40ca-407a-b4a9-4dd9c1cb2ad7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\player">
+      <UniqueIdentifier>{a3082b37-bc01-46f3-9b54-5b5d673cd3e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -27,10 +30,16 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>src\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
       <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>src\player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
