@@ -143,33 +143,41 @@ void Game::Update()
 	}
 	else
 	{
-		//if (GetCollisionManager()->CheckCollision(player, enano))
-		//{
-		//	std::cout << "Harry esta mas turbado que nunca" << std::endl;
-		//}
 
 		if (Input::GetKey(KeyCode::W))
 		{
-			//if(player->posY > 0 && tilemap->board[player->posY + 1][player->posX].id == 1)
-			//{
-			//	player->posY++;
-			//std::cout << player->posY << std::endl;
-			//}
-			//
+			if(player->posY <=1 && tilemap->board[player->posY + 1][player->posX].id == 1)
+			{
+				player->posY++;		
+				player->ConvertCoord();
+			}
+			
 			//player->transform.Translate({ static_cast<float>(player->posY), static_cast<float>(player->posX), 0.0f });
-			player->transform.Translate({ 0, 0.01f, 0 });
+			
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			player->transform.Translate({ 0, -0.01f, 0 });
+			if (player->posY >= 0 && tilemap->board[player->posY - 1][player->posX].id == 1)
+			{
+				player->posY--;
+				player->ConvertCoord();
+			}
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
-			player->transform.Translate({ 0.01f, 0, 0 });
+			if (player->posX <= 2 && tilemap->board[player->posY][player->posX+1].id == 1)
+			{
+				player->posX++;
+				player->ConvertCoord();
+			}
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			player->transform.Translate({ -0.01f,0,0 });
+			if (player->posX >= 0 && tilemap->board[player->posY][player->posX-1].id == 1)
+			{
+				player->posX--;
+				player->ConvertCoord();
+			}
 		}
 
 		tilemap->Draw();

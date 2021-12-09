@@ -17,6 +17,11 @@ public:
 	int posX;
 	int posY;
 
+	float conPosX;
+	float conPosY;
+
+	void ConvertCoord();
+
 
 	//void Draw() override;
 };
