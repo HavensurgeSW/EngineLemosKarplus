@@ -150,10 +150,7 @@ void Game::Update()
 			{
 				player->posY++;		
 				player->ConvertCoord();
-			}
-			
-			//player->transform.Translate({ static_cast<float>(player->posY), static_cast<float>(player->posX), 0.0f });
-			
+			}			
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
