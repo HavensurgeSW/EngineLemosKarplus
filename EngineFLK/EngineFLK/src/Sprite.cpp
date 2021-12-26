@@ -2,6 +2,7 @@
 #include "Color.h"
 #include "Texture.h"
 #include "Renderer.h"
+#include "Vector4.h"
 
 Sprite::Sprite()
 {
@@ -49,22 +50,34 @@ void Sprite::SetTexture(const Texture& texture)
 	SetColorTint(Color::White());
 }
 
-void Sprite::SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft)
+void Sprite::SetUVs(Vector4 uvs)
 {
-	quadVertices[6] = topRight.x;
-	quadVertices[7] = topRight.y;
+	this->uvs[0].u = uvs.x + uvs.z;
+	this->uvs[0].v = uvs.y + uvs.w;
 
-	quadVertices[14] = bottomRight.x;
-	quadVertices[15] = bottomRight.y;
+	this->uvs[1].u = uvs.x + uvs.z;
+	this->uvs[1].v = uvs.y;
 
-	quadVertices[22] = bottomLeft.x;
-	quadVertices[23] = bottomLeft.y;
+	this->uvs[2].u = uvs.x;
+	this->uvs[2].v = uvs.y;
+	
+	this->uvs[3].u = uvs.x;
+	this->uvs[3].v = uvs.y + uvs.w;
+}
 
-	quadVertices[30] = topLeft.x;
-	quadVertices[31] = topLeft.y;
+void Sprite::UpdateTextureCoordinates()
+{
+	quadVertices[6] = uvs[0].u;
+	quadVertices[7] = uvs[0].v;
 
-	//vertexBuffer.SetData(quadVertices, quadVerticesAmount);
-	//vertexArray.SetData(vertexBuffer);
+	quadVertices[14] = uvs[1].u;
+	quadVertices[15] = uvs[1].v;
+
+	quadVertices[22] = uvs[2].u;
+	quadVertices[23] = uvs[2].v;
+
+	quadVertices[30] = uvs[3].u;
+	quadVertices[31] = uvs[3].v;
 }
 
 void Sprite::Draw()

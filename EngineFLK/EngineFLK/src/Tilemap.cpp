@@ -1,157 +1,175 @@
 #include "Tilemap.h"
-#include "Color.h";
+#include "Tile.h"
+#include "xml_lib/tinyxml2.h"	
+#include <sstream>
 
-Tilemap::Tilemap()
+Tilemap::Tilemap(Vector2 dimensions, Shader shader, std::string imagePath) 
 {
-	initMap();
-	convertedPosX = 0;
-	convertedPosY = 0;
+	this->dimensions = dimensions;
+	this->shader = shader;
+	this->imagePath = imagePath;
 }
 
-Tilemap::~Tilemap()
+Tilemap::~Tilemap() 
 {
-	for (int i = 0; i < tiles.size(); i++)
+	if (!grid.empty()) 
 	{
-		delete tiles[i].sprite;
-	}
-}
-
-void Tilemap::initMap()
-{
-	float aux = -0.5f;
-	float aux2 = -0.5f;
-
-	for (int i = 0; i < maxTLY; i++) {
-		for (int j = 0; j < maxTLX; j++) {
-			
-			Shader shader("res/shaders/Sprite.shader");
-			board[i][j].sprite = new Sprite(shader);
-			board[i][j].sprite->SetTexture("res/textures/center.png");
-			board[i][j].pos.x = j;
-			board[i][j].pos.y = i;
-			board[i][j].isWalkable = true;
-
-			//SHAMELESSLY PULLED FROM MY OTHER PROJECT
-			board[i][j].convertedPos = {static_cast<float>(aux), static_cast<float>(aux2)};
-			aux += 0.5f;
-			board[i][j].sprite->transform.SetScale(0.5f);
-			board[i][j].sprite->transform.SetPosition(board[i][j].convertedPos);
-
-			board[i][j].id = 10; //10 is well outside any of the IDs used for the game.
-			tiles.push_back(board[i][j]);
+		for (int l = 0; l < grid.size(); l++) 
+		{
+			for (int y = 0; y < grid[l].size(); y++) 
+			{
+				for (int x = 0; x < grid[l][y].size(); x++) 
+				{
+					grid[l][y][x] = 0;
+				}
+			}
 		}
-		aux = -0.5f;
-		aux2 += 0.5f;
+		grid.clear();
+	}
+
+	if (!tiles.empty()) {
+		for (int i = 0; i < tiles.size(); i++) {
+			if (tiles[i] != NULL) {
+				delete tiles[i];
+				tiles[i] == NULL;
+			}
+		}
+		tiles.clear();
 	}
 }
 
-Vector2 Tilemap::getPos(int x, int y)
+void Tilemap::SetImagePath(std::string imagepath) 
 {
-	return board[y][x].pos;
+	this->imagePath = imagepath;
 }
 
-Vector2 Tilemap::getConvertedPos(int x, int y)
+void Tilemap::LoadMap(std::string path) 
 {
-	return board[y][x].convertedPos;
-}
+	tinyxml2::XMLDocument map;
+	map.LoadFile(path.c_str());
+	tinyxml2::XMLElement* mapElements = map.FirstChildElement("map");
 
-Tile Tilemap::GetTile(int x, int y) const
-{
-	return board[y][x];
-}
-
-void Tilemap::SetTileID(int x, int y, int id)
-{
-	board[y][x].id = id;
-
-	switch (id)
+	if (mapElements == NULL) 
 	{
-	case 1:
-		//board[y][x].sprite->SetColorTint(Color::Red());
-		board[y][x].isWalkable = false;
-		break;
-
-	case 2:
-		//board[y][x].sprite->SetColorTint(Color::Green());
-		board[y][x].isWalkable = true;
-		break;
-
-	default:
-		//board[y][x].sprite->SetColorTint(Color::White());
-		board[y][x].isWalkable = true;
-		break;
+		std::cout << "Error loading tilemap" << std::endl;
+		return;
 	}
+
+	int width = mapElements->IntAttribute("width");
+	int height = mapElements->IntAttribute("height");
+	tileWidth = mapElements->IntAttribute("tilewidth");
+	tileHeight = mapElements->IntAttribute("tileheight");
+
+	int layers = 0;
+	std::vector<tinyxml2::XMLElement*>layerElement;
+	for (tinyxml2::XMLElement* child = mapElements->FirstChildElement(); child; child = child->NextSiblingElement()) 
+	{
+		std::string name = child->Name();
+		std::string layer = "layer";
+		if (child != NULL && name == layer) 
+		{
+			layers++;
+			layerElement.push_back(child);
+		}
+	}
+
+	std::cout << layers << std::endl;
+	grid.resize(layers);
+	for (int l = 0; l < grid.size(); l++) 
+	{
+		tinyxml2::XMLText* dataElement = layerElement[l]->FirstChildElement("data")->FirstChild()->ToText();
+		if (dataElement == NULL) 
+		{
+			std::cout << "Error loading tilemap" << std::endl;
+			return;
+		}
+
+		std::string mapGrid;
+		mapGrid = dataElement->Value();
+		std::stringstream ss(mapGrid);
+		grid[l].resize(height);
+		for (int y = 0; y < width; y++) 
+		{
+			grid[l][y].resize(width);
+
+			for (int x = 0; x < height; x++) 
+			{
+				std::string value;
+				std::getline(ss, value, ',');
+
+				if (!ss.good()) 
+				{
+					break;
+				}
+
+				int val;
+				if (std::stringstream(value) >> val) 
+				{
+					grid[l][y][x] = val;
+				}
+
+				tilesAmmount++;
+			}
+		}
+	}
+	LoadTilesFromMap();
+}
+
+
+void Tilemap::LoadTilesFromMap() 
+{
+	//_texture->SetPath(imagePath);
+	//_texture->LoadImage(imageWidth, imageHeight, true);
+	float xPos = 0;
+	float yPos = 720;
+
+	for (int l = 0; l < grid.size(); l++) 
+	{
+		for (int y = 0; y < grid[l].size(); y++) 
+		{
+			for (int x = 0; x < grid[l][y].size(); x++) 
+			{
+				Tile* newTile = new Tile(grid[l][y][x], true, shader);
+				//newTile->SetPath(imagePath);
+				newTile->Init();
+				newTile->transform.Translate({ xPos, yPos, l - 0.5f });
+				newTile->transform.SetScale({ tileWidth, tileHeight, 1 });
+
+				int id = newTile->GetID() <= 0 && l > 0 ? grid[l - 1][y][x] - 1 : newTile->GetID() - 1;
+				newTile->SetUVs(GetTileFromID(id));
+
+				tiles.push_back(newTile);
+				xPos += newTile->transform.GetScale().x + tileWidth;
+			}
+
+			yPos -= tileHeight + tileHeight;
+			xPos = 0;
+		}
+	}
+}
+
+Vector4 Tilemap::GetTileFromID(unsigned int id)
+{
+	int xTile = id % static_cast<int>(dimensions.x);
+	int yTile = id / static_cast<int>(dimensions.x);
+	yTile = imageHeight - yTile - 1;
+
+	Vector4 uv;
+	uv.x = xTile / dimensions.x;
+	uv.y = yTile / dimensions.y;
+	uv.z = 1.0f / dimensions.x; 
+	uv.w = 1.0f / dimensions.y; 
+
+	return uv;
 }
 
 void Tilemap::Draw()
 {
-	for (int i = 0; i < maxTLY; i++)
+	for (int i = 0; i < tiles.size(); i++)
 	{
-		for (int j = 0; j < maxTLX; j++)
+		if (tiles[i] != NULL)
 		{
-			if (board[i][j].isWalkable)
-			{
-				board[i][j].sprite->Draw();
-			}
+			tiles[i]->Draw();
 		}
 	}
 }
-
-//void Tilemap::CheckCollision(Entity2D& object) 
-//{
-//
-//	convertedPosX = object.transform.GetPosition().x + (_width / 2) * _tileWidth;
-//	convertedPosY = object.transform.GetPosition().y - (_height / 2) * _tileHeight;
-//
-//	int left_tile = convertedPosX / _tileWidth;
-//	int right_tile = (convertedPosX + object.transform.GetScale().x) / _tileWidth;
-//
-//	int top_tile = (convertedPosY / _tileHeight) * -1;
-//	int bottom_tile = ((convertedPosY - object.transform.GetScale().y) / _tileHeight) * -1; // Se resta porque el eje Y crece hacia arriba
-//
-//	if (left_tile < 0)
-//		left_tile = 0;
-//
-//	if (right_tile >= _width)
-//		right_tile = _width - 1;
-//
-//	if (top_tile < 0)
-//		top_tile = 0;
-//
-//	if (bottom_tile >= _height)
-//		bottom_tile = _height - 1;
-//
-//	/*
-//	cout << "converted X: " << convertedPosX << endl;
-//	cout << "converted Y: " << convertedPosY << endl;
-//
-//	cout << "left: " <<left_tile << endl;
-//	cout << "right: "<<right_tile << endl;
-//	cout << "top: " << top_tile << endl;
-//	cout << "bottom: "<<bottom_tile << endl;
-//	*/
-//
-//	for (int i = left_tile; i <= right_tile; i++) {
-//
-//		for (int j = top_tile; j <= bottom_tile; j++) {
-//
-//			for (int k = 0; k < _tileMapGrid.size(); k++) {
-//				//cout << "caminable " << "[" << k << "]" << "[" << j << "]" << "[" << i << "] : "<< _tileMapGrid[k][j][i].isWalkable() << endl; // true == 1  ; false == 0
-//				//cout << true << endl;
-//				if (!_tileMapGrid[k][j][i].isWalkable()) {
-//
-//					if (_tileMapGrid[k][j][i].checkCollision(object) == CollisionHorizontalRight ||
-//						_tileMapGrid[k][j][i].checkCollision(object) == CollisionHorizontalLeft)
-//						object.returnToPreviusPosH();
-//
-//					if (_tileMapGrid[k][j][i].checkCollision(object) == CollisionVerticalUp)
-//						object.returnToPreviusPos(object.posX(), object.previusPosY() + 0.2);
-//
-//					else if (_tileMapGrid[k][j][i].checkCollision(object) == CollisionVerticalDown)
-//						object.returnToPreviusPos(object.posX(), object.previusPosY() - 0.2);
-//				}
-//			}
-//		}
-//	}
-//}
-

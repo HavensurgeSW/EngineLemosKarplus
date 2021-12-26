@@ -69,33 +69,17 @@ void AnimatedSprite::SetCurrentAnimation(std::string animationName)
 	currentAnimation = animations[animationName];
 }
 
-void AnimatedSprite::DrawAnimation()
+void AnimatedSprite::UpdateAnimation()
 {
-	const Vector4& uv = currentAnimation.GetFrameUVs();
-
-	uvs[0].u = uv.x + uv.z;
-	uvs[0].v = uv.y + uv.w;
-
-	uvs[1].u = uv.x + uv.z;
-	uvs[1].v = uv.y;
-
-	uvs[2].u = uv.x;
-	uvs[2].v = uv.y;
-
-	uvs[3].u = uv.x;
-	uvs[3].v = uv.y + uv.w;
-
-	SetTextureCoordinates({ uvs[0].u, uvs[0].v },
-						  { uvs[1].u, uvs[1].v },
-						  { uvs[2].u, uvs[2].v },
-						  { uvs[3].u, uvs[3].v });
+	SetUVs(currentAnimation.GetFrameUVs());
+	UpdateTextureCoordinates();
 }
 
 void AnimatedSprite::Draw()
 {
 	if (hasAnimations)
 	{
-		DrawAnimation();
+		UpdateAnimation();
 		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
 		vertexArray.SetData(vertexBuffer);
 		currentAnimation.UpdateAnimation();

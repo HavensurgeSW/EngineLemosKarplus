@@ -3,16 +3,16 @@
 void Game::Init()
 {
 	showTilemap = false;
-	tilemap = new Tilemap();
-	tilemap->SetTileID(0, 0, 1);
-	tilemap->SetTileID(1, 0, 1);
-	tilemap->SetTileID(2, 0, -1);
-	tilemap->SetTileID(0, 1, -1);
-	tilemap->SetTileID(1, 1, 1);
-	tilemap->SetTileID(2, 1, 1);
-	tilemap->SetTileID(0, 2, 1);
-	tilemap->SetTileID(1, 2, 1);
-	tilemap->SetTileID(2, 2, -1);
+	//tilemap = new Tilemap();
+	//tilemap->SetTileID(0, 0, 1);
+	//tilemap->SetTileID(1, 0, 1);
+	//tilemap->SetTileID(2, 0, -1);
+	//tilemap->SetTileID(0, 1, -1);
+	//tilemap->SetTileID(1, 1, 1);
+	//tilemap->SetTileID(2, 1, 1);
+	//tilemap->SetTileID(0, 2, 1);
+	//tilemap->SetTileID(1, 2, 1);
+	//tilemap->SetTileID(2, 2, -1);
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -144,40 +144,40 @@ void Game::Update()
 	else
 	{
 
-		if (Input::GetKey(KeyCode::W))
-		{
-			if(player->posY <=1 && tilemap->board[player->posY + 1][player->posX].id == 1)
-			{
-				player->posY++;		
-				player->ConvertCoord();
-			}			
-		}
-		if (Input::GetKey(KeyCode::S))
-		{
-			if (player->posY >= 0 && tilemap->board[player->posY - 1][player->posX].id == 1)
-			{
-				player->posY--;
-				player->ConvertCoord();
-			}
-		}
-		if (Input::GetKey(KeyCode::D))
-		{
-			if (player->posX <= 2 && tilemap->board[player->posY][player->posX+1].id == 1)
-			{
-				player->posX++;
-				player->ConvertCoord();
-			}
-		}
-		if (Input::GetKey(KeyCode::A))
-		{
-			if (player->posX >= 0 && tilemap->board[player->posY][player->posX-1].id == 1)
-			{
-				player->posX--;
-				player->ConvertCoord();
-			}
-		}
-
-		tilemap->Draw();
+		//if (Input::GetKey(KeyCode::W))
+		//{
+		//	if(player->posY <=1 && tilemap->board[player->posY + 1][player->posX].id == 1)
+		//	{
+		//		player->posY++;		
+		//		player->ConvertCoord();
+		//	}			
+		//}
+		//if (Input::GetKey(KeyCode::S))
+		//{
+		//	if (player->posY >= 0 && tilemap->board[player->posY - 1][player->posX].id == 1)
+		//	{
+		//		player->posY--;
+		//		player->ConvertCoord();
+		//	}
+		//}
+		//if (Input::GetKey(KeyCode::D))
+		//{
+		//	if (player->posX <= 2 && tilemap->board[player->posY][player->posX+1].id == 1)
+		//	{
+		//		player->posX++;
+		//		player->ConvertCoord();
+		//	}
+		//}
+		//if (Input::GetKey(KeyCode::A))
+		//{
+		//	if (player->posX >= 0 && tilemap->board[player->posY][player->posX-1].id == 1)
+		//	{
+		//		player->posX--;
+		//		player->ConvertCoord();
+		//	}
+		//}
+		//
+		//tilemap->Draw();
 		player->Draw();
 	}	
 }

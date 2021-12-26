@@ -4,10 +4,21 @@
 #include "Entity2D.h"
 #include "Texture.h"
 
+class Vector4;
+
 class FLK_API Sprite : public Entity2D
 {
+private:
+	struct UV
+	{
+		float u;
+		float v;
+	};
+
 protected:
 	Texture texture;
+	UV uvs[4];
+
 
 public:
 	Sprite();
@@ -18,9 +29,9 @@ public:
 
 	void SetTexture(const std::string& path);
 	void SetTexture(const Texture& texture);
+	void SetUVs(Vector4 uv);
 
-
-	void SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft);
+	void UpdateTextureCoordinates();
 
 	virtual void Draw();
 };

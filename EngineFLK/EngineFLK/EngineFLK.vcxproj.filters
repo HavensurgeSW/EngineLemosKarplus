@@ -85,6 +85,12 @@
     <Filter Include="src\entities\animated_sprite">
       <UniqueIdentifier>{6eccf64e-c0d8-492a-8ab8-8410dfa2d2e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="other\texture_scripts">
+      <UniqueIdentifier>{31a3e671-8174-437f-8ff7-f068d4e272e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other\tilemap_scripts">
+      <UniqueIdentifier>{ba234e90-fd1c-463b-a46c-5ee6d33e2769}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseGame.cpp">
@@ -162,6 +168,12 @@
     <ClCompile Include="src\Tile.cpp">
       <Filter>src\entities\tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="src\xml_lib\tinyxml2.cpp">
+      <Filter>other\tilemap_scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml_lib\xmltest.cpp">
+      <Filter>other\tilemap_scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exports.h">
@@ -230,9 +242,6 @@
     <ClInclude Include="src\LibIncludes.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image\stb_image.h">
-      <Filter>other</Filter>
-    </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>src\texture</Filter>
     </ClInclude>
@@ -247,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="src\Tile.h">
       <Filter>src\entities\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image\stb_image.h">
+      <Filter>other\texture_scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml_lib\tinyxml2.h">
+      <Filter>other\tilemap_scripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,11 +9,6 @@
 class FLK_API AnimatedSprite : public Sprite
 {
 private:
-	struct UV
-	{
-		float u;
-		float v;
-	};
 
 	std::map<std::string, Animation> animations;
 
@@ -21,7 +16,6 @@ private:
 
 	Vector2 spriteSheetDimensions;
 
-	UV uvs[4];
 	bool hasAnimations;
 
 public:
@@ -41,7 +35,7 @@ public:
 	void Draw() override;
 
 private:
-	void DrawAnimation();
+	void UpdateAnimation();
 };
 
 #endif

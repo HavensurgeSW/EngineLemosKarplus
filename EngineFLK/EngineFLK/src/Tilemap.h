@@ -1,45 +1,45 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
-#include "Texture.h"
 #include <vector>
 #include <string>
+#include "Shader.h"
 #include "Vector2.h"
-#include "Sprite.h"
+#include "Vector4.h"
 
-struct FLK_API Tile
-{
-	unsigned int id;
-	Sprite* sprite;
-	Vector2 pos;
-	Vector2 convertedPos;
-
-	bool isWalkable;
-};
+class Tile;
 
 class FLK_API Tilemap
 {
 private:
-	static const int maxTLX = 3;
-	static const int maxTLY = 3;
-	static const int tileSize = 80;
+	std::vector<Tile*> tiles;
+	std::vector<std::vector<std::vector<int>>> grid;
 
-	int convertedPosX;
-	int convertedPosY;
+	Vector2 dimensions;
 	Shader shader;
-	std::vector<Tile> tiles;
+
+	std::string imagePath;
+
+	int imageWidth = 0;
+	int imageHeight = 0;
+	float tileWidth = 0;
+	float tileHeight = 0;
+	int tilesAmmount = 0;
+
+	void LoadTilesFromMap();
 
 public:
-	Tile board[maxTLY][maxTLX];
-	Tilemap();
+	Tilemap(Vector2 dimensions, Shader shader, std::string imagePath);
 	~Tilemap();
-	void initMap();
-	Vector2 getPos(int x, int y);
-	Vector2 getConvertedPos(int x, int y);
-	Tile GetTile(int x, int y) const;
-	void SetTileID(int x, int y, int id);
-	void Draw();
+	void SetImagePath(std::string imagepath);
+	void LoadMap(std::string path);
+	Vector4 GetTileFromID(unsigned int id);
 
-	//void CheckCollision(Entity2D& object);
+	void Draw();
 };
-#endif
+
+
+
+
+#endif // !TILEMAP_H
+
