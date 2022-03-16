@@ -97,6 +97,10 @@ void AnimatedSprite::DrawAnimation()
 
 	quadVertices[30] = uvs[3].u;
 	quadVertices[31] = uvs[3].v;
+
+	vertexBuffer.SetData(quadVertices, quadVerticesAmount);
+	vertexArray.SetData(vertexBuffer);
+	currentAnimation.UpdateAnimation();
 }
 
 void AnimatedSprite::Draw()
@@ -104,9 +108,6 @@ void AnimatedSprite::Draw()
 	if (hasAnimations)
 	{
 		DrawAnimation();
-		vertexBuffer.SetData(quadVertices, quadVerticesAmount);
-		vertexArray.SetData(vertexBuffer);
-		currentAnimation.UpdateAnimation();
 	}
 
 	Sprite::Draw();
