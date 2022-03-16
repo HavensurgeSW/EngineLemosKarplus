@@ -1,13 +1,41 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
-#include "Entity2D.h"
+#include "Texture.h"
+#include <vector>
+#include <string>
+#include "Vector2.h"
+#include "Sprite.h"
 
-class FLK_API Tilemap : public Entity2D
+struct FLK_API Tile 
 {
-private:
+	unsigned int id;
+	Sprite* sprite;
+	Vector2 pos;
+	Vector2 convertedPos;
 
-public:
+	bool isWalkable;
 };
 
+class FLK_API Tilemap 
+{
+private:
+	static const int maxTLX = 3;
+	static const int maxTLY = 3;
+	static const int tileSize = 80;
+
+	Shader shader;
+	std::vector<Tile> tiles;
+
+public:
+	Tile board[maxTLY][maxTLX];
+	Tilemap();
+	~Tilemap();
+	void initMap();
+	Vector2 getPos(int x, int y);
+	Vector2 getConvertedPos(int x, int y);
+	Tile GetTile(int x, int y) const;
+	void SetTileID(int x, int y, int id);
+	void Draw();	
+};
 #endif

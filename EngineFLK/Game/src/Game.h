@@ -4,6 +4,8 @@
 #include "Shape.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "Tilemap.h"
+
 
 class Game : public BaseGame
 {
@@ -12,6 +14,10 @@ private:
 	Shape* shape;
 	Sprite* enano;
 	Sprite* illuminati;
+	Sprite* player;
+	Tilemap* tilemap;
+
+	bool showTilemap;
 
 public:
 	void Init() override;

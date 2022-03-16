@@ -30,6 +30,7 @@ void BaseGame::InitGlew()
 void BaseGame::InitEngine()
 {
 	srand(NULL);
+
 	bool initResult = glfwInit();
 	if (!initResult)
 	{

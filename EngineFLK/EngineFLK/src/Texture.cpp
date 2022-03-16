@@ -104,7 +104,7 @@ void Texture::LoadTexture(const std::string& path)
 		break;
 
 	case 4:
-		internalFormat = GL_RGBA;
+		internalFormat = GL_RGBA8;
 		format = GL_RGBA;
 		break;
 	}
