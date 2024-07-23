@@ -56,7 +56,7 @@ void VertexArray::Delete() const
 template<typename T>
 void VertexArray::Push(int count)
 {
-	static_assert(false);
+	//static_assert(false);
 }
 
 template<>
