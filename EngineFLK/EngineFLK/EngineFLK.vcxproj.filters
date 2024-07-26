@@ -162,6 +162,9 @@
     <ClCompile Include="src\Tile.cpp">
       <Filter>src\entities\tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="src\spritesheet.cpp">
+      <Filter>src\entities\tilemap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exports.h">
@@ -246,6 +249,9 @@
       <Filter>src\entities\animated_sprite</Filter>
     </ClInclude>
     <ClInclude Include="src\Tile.h">
+      <Filter>src\entities\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spritesheet.h">
       <Filter>src\entities\tilemap</Filter>
     </ClInclude>
   </ItemGroup>

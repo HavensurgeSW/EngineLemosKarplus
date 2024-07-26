@@ -14,23 +14,26 @@
 class FLK_API spritesheet
 {
 private: 
-	struct UV {
-		float u;
-		float v;
+	struct SpriteFrame {
+		Vector4 uvs;
 	};
 
-	Sprite texturesheet;
+
+	Texture texturesheet;
 	Vector2 sheetDimensions;
 
 	Vector2 spriteDimensions;
 	std::vector<Tile> tileID;
 
 public:
-	spritesheet(Sprite sheet, Vector2 sheetDim, Vector2 spriteDim);
+	spritesheet(Texture tex, Vector2 sheetDim, Vector2 spriteDim);
 	~spritesheet();
+	
 
 private:
 	void SpliceSheet();
+	Vector4 GetFrameUVs() const;
+	
 };
 
 #endif
