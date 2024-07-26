@@ -35,7 +35,6 @@
     <ClCompile Include="src\spritesheet.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Tile.cpp" />
-    <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\Utils.cpp" />
@@ -66,7 +65,6 @@
     <ClInclude Include="src\stb_image\stb_image.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Tile.h" />
-    <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\TimeManager.h" />
     <ClInclude Include="src\Transform.h" />
     <ClInclude Include="src\Utils.h" />

@@ -6,7 +6,8 @@
 #include "Vector4.h"
 #include "Vector2.h"
 
-#include "Tile.h"
+//#include "Tile.h"
+#include "texture.h"
 
 #include <iostream>
 #include <vector>
@@ -18,24 +19,23 @@ private:
 		Vector4 uvs;
 	};
 
-
-	Texture texturesheet;
+	Texture* texturesheet;
 	Vector2 sheetDimensions;
 
 	Vector2 spriteDimensions;
 	SpriteFrame uvs;
-	std::vector<Tile> tileID;
+	//std::vector<Tile> tileID;
 	std::vector<SpriteFrame> frames;
 
 public:
-	spritesheet(Texture tex, Vector2 sheetDim, Vector2 spriteDim);
+	spritesheet(const std::string& path, Vector2 sheetDim, Vector2 spriteDim);
 	~spritesheet();
 	
+	void ShowFrameUVs();
 
 private:
 	void SpliceSheet();
 	void CreateEmptyFrames();
-	Vector4 GetFrameUVs() const;
 	
 };
 

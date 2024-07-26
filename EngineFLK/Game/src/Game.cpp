@@ -2,7 +2,7 @@
 
 void Game::Init()
 {
-	showTilemap = false;
+	/*showTilemap = false;
 	tilemap = new Tilemap();
 	tilemap->SetTileID(0, 0, 1);
 	tilemap->SetTileID(1, 0, 1);
@@ -12,7 +12,9 @@ void Game::Init()
 	tilemap->SetTileID(2, 1, 1);
 	tilemap->SetTileID(0, 2, 1);
 	tilemap->SetTileID(1, 2, 1);
-	tilemap->SetTileID(2, 2, -1);
+	tilemap->SetTileID(2, 2, -1);*/
+
+	dungeonSheet = new spritesheet("res/spritesheets/dungeontileset.png", { 240,288 }, {16,16});
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -72,6 +74,11 @@ void Game::Update()
 	if (Input::GetKey(KeyCode::NUMPAD_2))
 	{
 		showTilemap = false;
+	}
+
+	if (Input::GetKey(KeyCode::NUMPAD_3))
+	{
+		dungeonSheet->ShowFrameUVs();
 	}
 
 	if (!showTilemap) 
@@ -165,7 +172,7 @@ void Game::Update()
 			player->transform.Translate({ -0.01f,0,0 });
 		}
 
-		tilemap->Draw();
+		//tilemap->Draw();
 		player->Draw();
 	}	
 }

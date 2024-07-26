@@ -138,9 +138,6 @@
     <ClCompile Include="src\Sprite.cpp">
       <Filter>src\entities\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tilemap.cpp">
-      <Filter>src\entities\tilemap</Filter>
-    </ClCompile>
     <ClCompile Include="src\VertexArray.cpp">
       <Filter>src\vertex_array</Filter>
     </ClCompile>
@@ -220,9 +217,6 @@
     </ClInclude>
     <ClInclude Include="src\Sprite.h">
       <Filter>src\entities\sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Tilemap.h">
-      <Filter>src\entities\tilemap</Filter>
     </ClInclude>
     <ClInclude Include="src\VertexArray.h">
       <Filter>src\vertex_array</Filter>

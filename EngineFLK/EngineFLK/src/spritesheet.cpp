@@ -1,10 +1,11 @@
 #include "spritesheet.h"
 
-spritesheet::spritesheet(Texture sheet, Vector2 sheetDim, Vector2 spriteDim)
+spritesheet::spritesheet(const std::string& path, Vector2 sheetDim, Vector2 spriteDim)
 {
-	texturesheet = sheet;
+	texturesheet = new Texture(path);
 	sheetDimensions = sheetDim;
 	spriteDimensions = spriteDim;
+	CreateEmptyFrames();
 }
 
 spritesheet::~spritesheet()
@@ -60,5 +61,10 @@ void spritesheet::CreateEmptyFrames()
 		}
 		
 	}
+
+}
+
+void spritesheet::ShowFrameUVs(){
+	std::cout << frames.size() << std::endl;
 
 }

@@ -7,7 +7,7 @@
 #include "Vector2.h"
 #include "Sprite.h"
 
-struct FLK_API Tile 
+struct FLK_API Tile
 {
 	unsigned int id;
 	Sprite* sprite;

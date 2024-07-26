@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "Tilemap.h"
+#include "spritesheet.h"
 
 
 class Game : public BaseGame
@@ -15,7 +16,8 @@ private:
 	Sprite* enano;
 	Sprite* illuminati;
 	Sprite* player;
-	Tilemap* tilemap;
+	//Tilemap* tilemap;
+	spritesheet* dungeonSheet;
 
 	bool showTilemap;
 
