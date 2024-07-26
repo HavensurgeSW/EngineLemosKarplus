@@ -23,7 +23,9 @@ private:
 	Vector2 sheetDimensions;
 
 	Vector2 spriteDimensions;
+	SpriteFrame uvs;
 	std::vector<Tile> tileID;
+	std::vector<SpriteFrame> frames;
 
 public:
 	spritesheet(Texture tex, Vector2 sheetDim, Vector2 spriteDim);
@@ -32,6 +34,7 @@ public:
 
 private:
 	void SpliceSheet();
+	void CreateEmptyFrames();
 	Vector4 GetFrameUVs() const;
 	
 };

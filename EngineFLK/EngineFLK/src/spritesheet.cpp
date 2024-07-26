@@ -13,16 +13,11 @@ spritesheet::~spritesheet()
 
 void spritesheet::SpliceSheet()
 {
-	int tilesX = sheetDimensions.x / spriteDimensions.x;
-	int tilesY = sheetDimensions.y / spriteDimensions.y;
+	
 	int IDCount = 0;
 
-	uvs.x = xTile / dimensions.x;
-	uvs.y = yTile / dimensions.y;
-	uvs.z = 1.0f / dimensions.x;
-	uvs.w = 1.0f / dimensions.y;
-
-	for (int  y = 0; y < tilesY; y++)
+	
+	/*for (int  y = 0; y < tilesY; y++)
 	{
 		for (int x = 0; x < tilesX; x++)
 		{
@@ -38,5 +33,32 @@ void spritesheet::SpliceSheet()
 			IDCount++;
 			
 		}
+	}*/
+}
+
+void spritesheet::CreateEmptyFrames()
+{
+
+	int tilesX = sheetDimensions.x / spriteDimensions.x;
+	int tilesY = sheetDimensions.y / spriteDimensions.y;
+	for (int y = 0; y < tilesY; y++)
+	{
+		for (int x = 0; x < tilesX; x++)
+		{
+			SpriteFrame frame;
+
+			int xTile = x % static_cast<int>(spriteDimensions.x);
+			int yTile = y / static_cast<int>(spriteDimensions.y);
+
+			frame.uvs.x = xTile / spriteDimensions.x;
+			frame.uvs.y = yTile / spriteDimensions.y;
+			frame.uvs.z = 1.0f / spriteDimensions.x;
+			frame.uvs.w = 1.0f / spriteDimensions.y;
+
+			frames.push_back(frame);
+			//maxFrames++;
+		}
+		
 	}
+
 }
