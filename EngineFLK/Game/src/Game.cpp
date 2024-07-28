@@ -76,7 +76,7 @@ void Game::Update()
 		showTilemap = false;
 	}
 
-	if (Input::GetKey(KeyCode::NUMPAD_3))
+	if (Input::GetKey(KeyCode::NUMPAD_9))
 	{
 		dungeonSheet->ShowFrameUVs();
 	}

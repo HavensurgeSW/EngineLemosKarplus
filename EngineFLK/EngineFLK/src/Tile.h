@@ -3,7 +3,7 @@
 
 #include "Sprite.h"
 
-class Vector2;
+
 
 class FLK_API Tile : public Sprite
 {

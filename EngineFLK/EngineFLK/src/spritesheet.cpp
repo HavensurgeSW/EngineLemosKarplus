@@ -14,27 +14,42 @@ spritesheet::~spritesheet()
 
 void spritesheet::SpliceSheet()
 {
-	
+	int tilesX = sheetDimensions.x / spriteDimensions.x;
+	int tilesY = sheetDimensions.y / spriteDimensions.y;
 	int IDCount = 0;
 
 	
-	/*for (int  y = 0; y < tilesY; y++)
+	for (int  y = 0; y < tilesY; y++)
 	{
 		for (int x = 0; x < tilesX; x++)
 		{
 			Tile buffer;
 			buffer.SetId(IDCount);
-			buffer.SetTexture(texturesheet);
+			
+			const Vector4& uv = GetFrameUVs(IDCount);
+
+			uvs[0].u = uv.x + uv.z;
+			uvs[0].v = uv.y + uv.w;
+
+			uvs[1].u = uv.x + uv.z;
+			uvs[1].v = uv.y;
+
+			uvs[2].u = uv.x;
+			uvs[2].v = uv.y;
+
+			uvs[3].u = uv.x;
+			uvs[3].v = uv.y + uv.w;
+			
+
 			buffer.SetTextureCoordinates({ uvs[0].u, uvs[0].v },
 				{ uvs[1].u, uvs[1].v },
 				{ uvs[2].u, uvs[2].v },
 				{ uvs[3].u, uvs[3].v });
-			
 			tileID.push_back(buffer);
 			IDCount++;
 			
 		}
-	}*/
+	}
 }
 
 void spritesheet::CreateEmptyFrames()
@@ -62,6 +77,11 @@ void spritesheet::CreateEmptyFrames()
 		
 	}
 
+}
+
+Vector4 spritesheet::GetFrameUVs(int n)
+{
+	return frames[n].uvs;
 }
 
 void spritesheet::ShowFrameUVs(){

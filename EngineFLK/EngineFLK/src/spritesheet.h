@@ -6,7 +6,7 @@
 #include "Vector4.h"
 #include "Vector2.h"
 
-//#include "Tile.h"
+#include "Tile.h"
 #include "texture.h"
 
 #include <iostream>
@@ -14,17 +14,23 @@
 
 class FLK_API spritesheet
 {
-private: 
+private:
 	struct SpriteFrame {
-		Vector4 uvs;
+		Vector4 corners;
+	};
+
+	struct UV {
+		float u;
+		float v;
 	};
 
 	Texture* texturesheet;
 	Vector2 sheetDimensions;
+	UV uvs[4];
 
 	Vector2 spriteDimensions;
 	SpriteFrame uvs;
-	//std::vector<Tile> tileID;
+	std::vector<Tile> tileID;
 	std::vector<SpriteFrame> frames;
 
 public:
@@ -36,6 +42,7 @@ public:
 private:
 	void SpliceSheet();
 	void CreateEmptyFrames();
+	Vector4 GetFrameUVs(int n);
 	
 };
 
