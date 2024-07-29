@@ -13,6 +13,7 @@ class Game : public BaseGame
 private:
 	AnimatedSprite* rock;
 	Shape* shape;
+	Tile* boxy;
 	Sprite* enano;
 	Sprite* illuminati;
 	Sprite* player;

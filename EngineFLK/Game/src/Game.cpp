@@ -14,7 +14,16 @@ void Game::Init()
 	tilemap->SetTileID(1, 2, 1);
 	tilemap->SetTileID(2, 2, -1);*/
 
-	dungeonSheet = new spritesheet("res/spritesheets/dungeontileset.png", { 240,288 }, {16,16});
+	dungeonSheet = new spritesheet("res/spritesheets/plswork.png", { 160,160 }, { 16,16 });
+	Shader dungeonShader("res/shaders/Sprite.shader");
+	boxy = new Tile(dungeonShader);
+	//boxy = dungeonSheet->GetTilebyID(2);
+	boxy->SetTexture("res/spritesheets/plswork.png");
+
+	Vector2 UVsRancios[4] = { { 0.0625,0.0625 }, { 0.0625,0 }, { 0,0 }, { 0,0.0625 } };
+	//float UVsRancios[2] = { 0.0f, 0.0625f };
+	boxy->SetTextureCoordinates(UVsRancios[0], UVsRancios[1], UVsRancios[2], UVsRancios[3]);
+	
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -62,6 +71,9 @@ void Game::Init()
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
+
+	boxy->transform.SetPosition(0.0f, -0.5f, 0.0f);
+	boxy->transform.SetScale(0.5f);
 }
 
 void Game::Update()
@@ -147,6 +159,7 @@ void Game::Update()
 		shape->Draw();
 		rock->Draw();
 		enano->Draw();
+		boxy->Draw();
 	}
 	else
 	{

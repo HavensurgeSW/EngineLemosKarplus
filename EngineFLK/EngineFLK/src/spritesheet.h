@@ -29,8 +29,7 @@ private:
 	UV uvs[4];
 
 	Vector2 spriteDimensions;
-	SpriteFrame uvs;
-	std::vector<Tile> tileID;
+	SpriteFrame corners;
 	std::vector<SpriteFrame> frames;
 
 public:
@@ -38,6 +37,8 @@ public:
 	~spritesheet();
 	
 	void ShowFrameUVs();
+	Tile* GetTilebyID(int n);
+	std::vector<Tile*> tileID;
 
 private:
 	void SpliceSheet();

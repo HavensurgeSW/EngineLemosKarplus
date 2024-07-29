@@ -13,6 +13,7 @@ private:
 
 public:
 	Tile();
+	Tile(Shader& shader, bool initalize = true);
 	~Tile();
 
 	void SetId(unsigned int id);
@@ -20,6 +21,7 @@ public:
 
 	void SetIsWalkable(bool isWalkable);
 	bool GetIsWalkable() const;
+	void Draw();
 };
 
 #endif
