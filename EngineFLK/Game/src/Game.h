@@ -4,8 +4,8 @@
 #include "Shape.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
-#include "Tilemap.h"
 #include "spritesheet.h"
+#include "Tilemap.h"
 
 
 class Game : public BaseGame
@@ -13,12 +13,13 @@ class Game : public BaseGame
 private:
 	AnimatedSprite* rock;
 	Shape* shape;
-	Tile* boxy;
 	Sprite* enano;
 	Sprite* illuminati;
 	Sprite* player;
-	//Tilemap* tilemap;
+	
 	spritesheet* dungeonSheet;
+	Tile* boxy;
+	Tilemap* tilemap;
 
 	bool showTilemap;
 

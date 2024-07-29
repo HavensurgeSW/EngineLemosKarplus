@@ -1,98 +1,57 @@
 #include "Tilemap.h"
-#include "Color.h";
 
-Tilemap::Tilemap()
-{
-	initMap();
+
+Tilemap::Tilemap(){
+	basesheet = new spritesheet("", {0,0}, {0,0});
 }
 
-Tilemap::~Tilemap()
-{
-	for (int i = 0; i < tiles.size(); i++)
+Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXSize, Vector2 mapDimensions, Shader shader) {
+	basesheet = new spritesheet(texPath, sheetPXSize, TilePXSize);
+	mapDim = mapDimensions;
+	shaderPath = shader;
+	
+	map = new Tile** [mapDim.y];
+	for (int i = 0; i < mapDim.y; i++)
 	{
-		delete tiles[i].sprite;
+		map[i] = new Tile*[mapDim.x];
+		
 	}
-}
 
-void Tilemap::initMap()
-{
-	float aux = -0.5f;
-	float aux2 = -0.5f;
-
-	for (int i = 0; i < maxTLY; i++) {
-		for (int j = 0; j < maxTLX; j++) {
-			
-			Shader shader("res/shaders/Sprite.shader");
-			board[i][j].sprite = new Sprite(shader);
-			board[i][j].sprite->SetTexture("res/textures/center.png");
-			board[i][j].pos.x = j;
-			board[i][j].pos.y = i;
-			board[i][j].isWalkable = true;
-
-			//SHAMELESSLY PULLED FROM MY OTHER PROJECT
-			board[i][j].convertedPos = {static_cast<float>(aux), static_cast<float>(aux2)};
-			aux += 0.5f;
-			board[i][j].sprite->transform.SetScale(0.5f);
-			board[i][j].sprite->transform.SetPosition(board[i][j].convertedPos);
-
-			board[i][j].id = 10; //10 is well outside any of the IDs used for the game.
-			tiles.push_back(board[i][j]);
-		}
-		aux = -0.5f;
-		aux2 += 0.5f;
-	}
-}
-
-Vector2 Tilemap::getPos(int x, int y)
-{
-	return board[y][x].pos;
-}
-
-Vector2 Tilemap::getConvertedPos(int x, int y)
-{
-	return board[y][x].convertedPos;
-}
-
-Tile Tilemap::GetTile(int x, int y) const
-{
-	return board[y][x];
-}
-
-void Tilemap::SetTileID(int x, int y, int id)
-{
-	board[y][x].id = id;
-
-	switch (id)
+	Tile* temp;
+	for (int i = 0; i < mapDim.y; i++)
 	{
-	case 1:
-		//board[y][x].sprite->SetColorTint(Color::Red());
-		board[y][x].isWalkable = false;
-		break;
-
-	case 2:
-		//board[y][x].sprite->SetColorTint(Color::Green());
-		board[y][x].isWalkable = true;
-		break;
-
-	default:
-		//board[y][x].sprite->SetColorTint(Color::White());
-		board[y][x].isWalkable = true;
-		break;
-	}
-}
-
-void Tilemap::Draw()
-{
-	for (int i = 0; i < maxTLY; i++)
-	{
-		for (int j = 0; j < maxTLX; j++)
+		for (int j = 0; j < mapDim.x; j++)
 		{
-			if (board[i][j].isWalkable)
-			{
-				board[i][j].sprite->Draw();
-			}
+			temp = new Tile(shader);
+			map[i][j] = temp;
+
+		}
+	}	
+}
+
+Tilemap::~Tilemap() {
+	for (int i = 0; i < mapDim.y; ++i) {
+		delete[] map[i];
+	}
+	delete[] map;
+}
+
+Tile* Tilemap::getTile(int x, int y)
+{
+	return map[y][x];
+}
+
+Tile* Tilemap::getTile(Vector2 tileCoord)
+{
+	int x = tileCoord.x;
+	int y = tileCoord.y;
+	return map[y][x];
+}
+
+void Tilemap::Draw() {
+	for (int i = 0; i < mapDim.y; ++i) {
+		for (int j = 0; j < mapDim.x; ++j) {
+			map[i][j]->Draw();
 		}
 	}
 }
-
-

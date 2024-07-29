@@ -20,6 +20,9 @@ void Game::Init()
 	dungeonSheet->SetTilebyID(boxy, 63);
 	boxy->SetTexture("res/spritesheets/grassTiles.png");
 
+	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {10,10}, "res/shaders/Sprite.shader");
+
+
 	//Vector2 UVsRancios[4] = { { 0.0625f,0.0625f }, { 0.0625f,0.0f }, { 0.0f,0.0f }, { 0.0f,0.0625f } };
 	//Vector2 UVsRancios2[4] = { { 0.5f,0.5f }, { 0.5f,0 }, { 0,0 }, { 0,0.5f } };
 	//float UVsRancios[2] = { 0.0f, 0.0625f };
