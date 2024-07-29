@@ -2,31 +2,33 @@
 
 void Game::Init()
 {
-	/*showTilemap = false;
-	tilemap = new Tilemap();
-	tilemap->SetTileID(0, 0, 1);
-	tilemap->SetTileID(1, 0, 1);
-	tilemap->SetTileID(2, 0, -1);
-	tilemap->SetTileID(0, 1, -1);
-	tilemap->SetTileID(1, 1, 1);
-	tilemap->SetTileID(2, 1, 1);
-	tilemap->SetTileID(0, 2, 1);
-	tilemap->SetTileID(1, 2, 1);
-	tilemap->SetTileID(2, 2, -1);*/
+	
 
-	dungeonSheet = new spritesheet("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 });
-	Shader dungeonShader("res/shaders/Sprite.shader");
-	boxy = new Tile(dungeonShader);
-	dungeonSheet->SetTilebyID(boxy, 63);
-	boxy->SetTexture("res/spritesheets/grassTiles.png");
+	Shader grassShader("res/shaders/Sprite.shader");
+	
+	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {5,4}, grassShader);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 1);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 2), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 3), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 2), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 3), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 1), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 3), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 1), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 2), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 3), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 1), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 2), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 3), 0);
 
-	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {10,10}, "res/shaders/Sprite.shader");
 
-
-	//Vector2 UVsRancios[4] = { { 0.0625f,0.0625f }, { 0.0625f,0.0f }, { 0.0f,0.0f }, { 0.0f,0.0625f } };
-	//Vector2 UVsRancios2[4] = { { 0.5f,0.5f }, { 0.5f,0 }, { 0,0 }, { 0,0.5f } };
-	//float UVsRancios[2] = { 0.0f, 0.0625f };
-	//boxy->SetTextureCoordinates(UVsRancios2[0], UVsRancios2[1], UVsRancios2[2], UVsRancios2[3]);
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -76,8 +78,8 @@ void Game::Init()
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
 
-	boxy->transform.SetPosition(0.0f, -0.5f, 0.0f);
-	boxy->transform.SetScale(0.125f);
+	//boxy->transform.SetPosition(0.0f, -0.5f, 0.0f);
+	//boxy->transform.SetScale(0.125f);
 }
 
 void Game::Update()
@@ -92,10 +94,6 @@ void Game::Update()
 		showTilemap = false;
 	}
 
-	if (Input::GetKey(KeyCode::NUMPAD_9))
-	{
-		dungeonSheet->ShowFrameUVs();
-	}
 
 	if (!showTilemap) 
 	{
@@ -163,7 +161,7 @@ void Game::Update()
 		shape->Draw();
 		rock->Draw();
 		enano->Draw();
-		boxy->Draw();
+		//tilemap->Draw();
 	}
 	else
 	{
@@ -189,7 +187,7 @@ void Game::Update()
 			player->transform.Translate({ -0.01f,0,0 });
 		}
 
-		//tilemap->Draw();
+		tilemap->Draw();
 		player->Draw();
 	}	
 }

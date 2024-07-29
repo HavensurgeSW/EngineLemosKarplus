@@ -23,6 +23,7 @@ public:
 
 	Tile* getTile(int x, int y);
 	Tile* getTile(Vector2 tileCoord);
+	spritesheet* getSheet();
 
 
 	void Draw();

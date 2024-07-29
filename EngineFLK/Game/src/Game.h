@@ -17,8 +17,7 @@ private:
 	Sprite* illuminati;
 	Sprite* player;
 	
-	spritesheet* dungeonSheet;
-	Tile* boxy;
+
 	Tilemap* tilemap;
 
 	bool showTilemap;
