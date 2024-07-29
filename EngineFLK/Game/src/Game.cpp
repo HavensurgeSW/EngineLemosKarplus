@@ -14,15 +14,16 @@ void Game::Init()
 	tilemap->SetTileID(1, 2, 1);
 	tilemap->SetTileID(2, 2, -1);*/
 
-	dungeonSheet = new spritesheet("res/spritesheets/plswork.png", { 160,160 }, { 16,16 });
+	dungeonSheet = new spritesheet("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 });
 	Shader dungeonShader("res/shaders/Sprite.shader");
 	boxy = new Tile(dungeonShader);
-	//boxy = dungeonSheet->GetTilebyID(2);
-	boxy->SetTexture("res/spritesheets/plswork.png");
+	dungeonSheet->SetTilebyID(boxy, 63);
+	boxy->SetTexture("res/spritesheets/grassTiles.png");
 
-	Vector2 UVsRancios[4] = { { 0.0625,0.0625 }, { 0.0625,0 }, { 0,0 }, { 0,0.0625 } };
+	//Vector2 UVsRancios[4] = { { 0.0625f,0.0625f }, { 0.0625f,0.0f }, { 0.0f,0.0f }, { 0.0f,0.0625f } };
+	//Vector2 UVsRancios2[4] = { { 0.5f,0.5f }, { 0.5f,0 }, { 0,0 }, { 0,0.5f } };
 	//float UVsRancios[2] = { 0.0f, 0.0625f };
-	boxy->SetTextureCoordinates(UVsRancios[0], UVsRancios[1], UVsRancios[2], UVsRancios[3]);
+	//boxy->SetTextureCoordinates(UVsRancios2[0], UVsRancios2[1], UVsRancios2[2], UVsRancios2[3]);
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -73,7 +74,7 @@ void Game::Init()
 	rock->transform.SetScale(0.6f + 0.3f);
 
 	boxy->transform.SetPosition(0.0f, -0.5f, 0.0f);
-	boxy->transform.SetScale(0.5f);
+	boxy->transform.SetScale(0.125f);
 }
 
 void Game::Update()

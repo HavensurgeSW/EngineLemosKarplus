@@ -65,13 +65,13 @@ void spritesheet::CreateEmptyFrames()
 		{
 			SpriteFrame frame;
 
-			int xTile = x % static_cast<int>(spriteDimensions.x);
-			int yTile = y / static_cast<int>(spriteDimensions.y);
+			int xTile = x * static_cast<int>(spriteDimensions.x);
+			int yTile = y * static_cast<int>(spriteDimensions.y);
 
-			frame.corners.x = xTile / spriteDimensions.x;
-			frame.corners.y = yTile / spriteDimensions.y;
-			frame.corners.z = 1.0f / spriteDimensions.x;
-			frame.corners.w = 1.0f / spriteDimensions.y;
+			frame.corners.x = static_cast<float>(xTile) / sheetDimensions.x;
+			frame.corners.y = static_cast<float>(yTile) / sheetDimensions.y;;
+			frame.corners.z = static_cast<float>(spriteDimensions.x) / sheetDimensions.x;
+			frame.corners.w = static_cast<float>(spriteDimensions.y) / sheetDimensions.x;
 
 			frames.push_back(frame);
 			
@@ -91,7 +91,24 @@ void spritesheet::ShowFrameUVs(){
 
 }
 
-Tile* spritesheet::GetTilebyID(int n)
+void spritesheet::SetTilebyID(Tile* t, int n)
 {
-	return tileID.at(n);
+	const Vector4& uv = GetFrameUVs(n);
+
+	uvs[0].u = uv.x + uv.z;
+	uvs[0].v = uv.y + uv.w;
+
+	uvs[1].u = uv.x + uv.z;
+	uvs[1].v = uv.y;
+
+	uvs[2].u = uv.x;
+	uvs[2].v = uv.y;
+
+	uvs[3].u = uv.x;
+	uvs[3].v = uv.y + uv.w;
+
+	t->SetTextureCoordinates({ uvs[0].u, uvs[0].v },
+		{ uvs[1].u, uvs[1].v },
+		{ uvs[2].u, uvs[2].v },
+		{ uvs[3].u, uvs[3].v });
 }

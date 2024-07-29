@@ -37,7 +37,7 @@ public:
 	~spritesheet();
 	
 	void ShowFrameUVs();
-	Tile* GetTilebyID(int n);
+	void SetTilebyID(Tile* t, int n);
 	std::vector<Tile*> tileID;
 
 private:

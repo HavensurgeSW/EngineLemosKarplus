@@ -37,7 +37,7 @@ void BaseGame::InitEngine()
 		std::cout << "Failed to initialize GLFW." << std::endl;
 	}
 
-	window->SetWindow(window->CreateWindow(800, 600, "Hello World", NULL, NULL));
+	window->SetWindow(window->CreateWindow(1280, 720, "E-FLK (Engine FernandezLemos Karplus", NULL, NULL));
 	input->SetContextWindow(window);
 
 	if (!window->GetGLFWWindow()) {
