@@ -3,6 +3,8 @@
 
 Tilemap::Tilemap(){
 	basesheet = new spritesheet("", {0,0}, {0,0});
+	
+
 }
 
 Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXSize, Vector2 mapDimensions, Shader shader) {
@@ -40,6 +42,20 @@ Tilemap::~Tilemap() {
 	delete[] map;
 }
 
+void Tilemap::GenerateMapFromVec(const std::vector<int>& vec)
+{
+	int tempI = 0;
+
+	for (int i = 0; i < mapDim.y; i++)
+	{
+		for (int j = 0; j < mapDim.x; j++)
+		{
+			basesheet->SetTilebyID(map[i][j], vec[tempI]);
+			tempI++;
+		}
+	}
+}
+
 Tile* Tilemap::getTile(int x, int y)
 {
 	return map[y][x];
@@ -59,7 +75,7 @@ spritesheet* Tilemap::getSheet()
 
 void Tilemap::TurnUnwalkableByID(int id)
 {
-	for (int i = 0; i < mapDim.y-1; i++)
+	for (int i = 0; i < mapDim.y-1; i++) // -1 so it doesnt break out of the array
 	{
 		for (int j = 0; j < mapDim.x-1; j++)
 		{

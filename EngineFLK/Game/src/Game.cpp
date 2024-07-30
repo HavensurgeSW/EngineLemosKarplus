@@ -7,38 +7,15 @@ void Game::Init()
 	Shader grassShader("res/shaders/Sprite.shader");
 	
 	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {6,5}, grassShader);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 62);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 2), 62);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 3), 24);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 4), 52);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 55);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 8);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 2), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 3), 24);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 4), 2);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 0), 55);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 1), 8);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 55);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 3), 24);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 4), 26);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 0), 55);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 1), 8);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 2), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 3), 24);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 4), 42);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 0), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 1), 3);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 2), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 3), 24);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 4), 12);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 0), 56);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 1), 3);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 2), 62);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 3), 47);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 4), 12);
+	std::vector<int> mapFile = { 62,56,62,24,52,
+								 55,8,56,24,2,
+									1,1,1,1,1,
+									1,1,1,1,1,
+									1,1,1,1,1,
+									1,1,1,1,1};
+	tilemap->GenerateMapFromVec(mapFile);
 
-	tilemap->getTile(0,3)->SetIsWalkable(false);
+	
 
 
 	
@@ -70,7 +47,6 @@ void Game::Init()
 	rock = new AnimatedSprite(rockShader, { 32, 5 });
 
 	rock->SetTexture("res/spritesheets/rock-min.png");
-	//rock->SetTexture("res/spritesheets/rock.png");
 	rock->AddAnimation("JOHN_CHINA", 4.0f, 0, 31, true);   //
 	rock->AddAnimation("SUSSY_BOOM", 1.0f, 32, 41, true);  //
 	rock->AddAnimation("BOOM", 1.0f, 64, 73, true);        // Animations look fucked because the spritesheet 
@@ -205,32 +181,32 @@ void Game::Update()
 
 		if (Input::GetKey(KeyCode::UP))
 		{
-			if (tilemap->getTile(p1.pos.x, p1.pos.y + 1)->GetIsWalkable()){
+			
 				p1.pos.y++;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			}
+			
 		}
 		if (Input::GetKey(KeyCode::DOWN))
 		{
-			if (tilemap->getTile(p1.pos.x, p1.pos.y - 1)->GetIsWalkable()){
+			
 				p1.pos.y--;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			}
+			
 
 		}
 		if (Input::GetKey(KeyCode::RIGHT))
 		{
-			if (tilemap->getTile(p1.pos.x + 1, p1.pos.y)->GetIsWalkable()) {
+			
 				p1.pos.x++;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			}
+			
 		}
 		if (Input::GetKey(KeyCode::LEFT))
 		{
-			if (tilemap->getTile(p1.pos.x - 1, p1.pos.y)->GetIsWalkable()){
+			
 				p1.pos.x--;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			}
+			
 		}
 
 

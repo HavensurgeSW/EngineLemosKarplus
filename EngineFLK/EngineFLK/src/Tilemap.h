@@ -21,6 +21,8 @@ public:
 	Tilemap(const std::string& texPath, Vector2 sheetPXSize, Vector2 tilePXSize, Vector2 mapDimensions, Shader shader);
 	~Tilemap();
 
+	void GenerateMapFromVec(const std::vector<int>& vec);
+
 	Tile* getTile(int x, int y);
 	Tile* getTile(Vector2 tileCoord);
 	spritesheet* getSheet();
