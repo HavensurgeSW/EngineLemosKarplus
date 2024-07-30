@@ -11,6 +11,7 @@ void Game::Init()
 	Vector2 tilePXSize = { 32,32 };
 	std::vector<int> mapFile;
 	tilemap = new Tilemap("res/spritesheets/grassTiles.png", sheetPXSize, tilePXSize, mapSize, grassShader);
+
 	for (int i = 0; i < mapSize.x*mapSize.y; i++)
 	{
 		int random = std::rand() % static_cast<int>(((sheetPXSize.x * sheetPXSize.y) / (tilePXSize.x * tilePXSize.y)));
@@ -18,9 +19,6 @@ void Game::Init()
 	}
 
 	tilemap->GenerateMapFromVec(mapFile);
-
-	
-	tilemap->getTile(0, 0)->SetIsWalkable(true);
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -33,12 +31,9 @@ void Game::Init()
 	enano->SetTexture("res/textures/EnanoBostero.png");
 
 	Shader playerShader("res/shaders/Sprite.shader");
-	player = new Sprite(playerShader);
-	player->SetTexture("res/textures/ghost.png");
-
 	p1.tex = new Sprite(playerShader);
 	p1.tex->SetTexture("res/textures/ghost.png");
-	p1.tex->SetColorTint(Color::Red());
+	p1.tex->SetColorTint(Color::White());
 	p1.pos = { 0,0 };
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
@@ -70,11 +65,6 @@ void Game::Init()
 	enano->transform.SetPosition(0.7f, 0.0f, 0.0f);
 	enano->transform.SetScale(0.6f);
 
-	player->transform.SetPosition(tilemap->getTile(0, 0)->transform.GetPosition());
-	
-	player->transform.SetScale(0.125f);
-	player->SetColorTint(Color::White());
-
 	p1.tex->transform.SetScale(0.125f);
 	p1.pos.x = 1;
 	p1.pos.y = 1;
@@ -103,12 +93,12 @@ void Game::Update()
 	{
 		if (GetCollisionManager()->CheckCollision(illuminati, enano))
 		{
-			std::cout << "Ah re loco" << std::endl;
+			std::cout << "Collision between Illuminati and Enano" << std::endl;
 		}
 
 		if (GetCollisionManager()->CheckCollision(shape, enano))
 		{
-			std::cout << "Harry esta mas turbado que nunca" << std::endl;
+			std::cout << "Collision between shape and Enano" << std::endl;
 		}
 
 		if (Input::GetKey(KeyCode::W))
@@ -165,29 +155,11 @@ void Game::Update()
 		shape->Draw();
 		rock->Draw();
 		enano->Draw();
-		//tilemap->Draw();
+	
 	}
 	else
 	{
 		
-
-		if (Input::GetKey(KeyCode::W))
-		{
-			player->transform.Translate({ 0, 0.005f, 0 });
-		}
-		if (Input::GetKey(KeyCode::S))
-		{
-			player->transform.Translate({ 0, -0.005f, 0 });
-		}
-		if (Input::GetKey(KeyCode::D))
-		{
-			player->transform.Translate({ 0.005f, 0, 0 });
-		}
-		if (Input::GetKey(KeyCode::A))
-		{
-			player->transform.Translate({ -0.005f,0,0 });
-		}
-
 		if (Input::GetKey(KeyCode::UP))
 		{
 			if(p1.pos.y < p1.bounds.y)
@@ -226,7 +198,6 @@ void Game::Update()
 
 
 		tilemap->Draw();
-		player->Draw();
 		p1.tex->Draw();
 	}	
 }
@@ -237,6 +208,5 @@ void Game::DeInit()
 	delete rock;
 	delete enano;
 	delete illuminati;
-	delete player;
 	delete tilemap;
 }

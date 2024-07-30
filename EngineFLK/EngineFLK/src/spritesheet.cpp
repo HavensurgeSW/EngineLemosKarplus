@@ -46,7 +46,10 @@ void spritesheet::SpliceSheet()
 				{ uvs[1].u, uvs[1].v },
 				{ uvs[2].u, uvs[2].v },
 				{ uvs[3].u, uvs[3].v });
+			buffer->Configure();
+
 			tileID.push_back(buffer);
+
 			IDCount++;
 
 			

@@ -47,6 +47,7 @@ void Shape::Init()
 		vertexArray.SetData(vertexBuffer);
 
 		indexBuffer.SetData(quadIndices, quadIndicesAmount);
+
 		break;
 	}
 }

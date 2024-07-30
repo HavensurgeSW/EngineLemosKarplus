@@ -10,6 +10,8 @@ Tile::Tile()
 Tile::Tile(Shader& shader, bool initalize) : Sprite(shader, initalize) {
 	id = 0;
 	isWalkable = true;
+
+
 }
 
 Tile::~Tile() 
@@ -31,6 +33,12 @@ unsigned int Tile::GetId() const
 	return id;
 }
 
+void Tile::Configure()
+{
+	/*vertexBuffer.SetData(quadVertices, quadVerticesAmount);
+	vertexArray.SetData(vertexBuffer);*/
+}
+
 void Tile::SetId(unsigned int id) 
 {
 	this->id = id;
@@ -41,5 +49,6 @@ void Tile::Draw() {
 	vertexArray.SetData(vertexBuffer);
 
 	Sprite::Draw();
+
 	
 }

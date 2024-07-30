@@ -22,10 +22,9 @@ private:
 	Shape* shape;
 	Sprite* enano;
 	Sprite* illuminati;
-	Sprite* player;
-	tilePlayer p1;
 
 	Tilemap* tilemap;
+	tilePlayer p1;
 
 	bool showTilemap;
 

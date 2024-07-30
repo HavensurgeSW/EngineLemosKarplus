@@ -19,6 +19,8 @@ public:
 	void SetId(unsigned int id);
 	unsigned int GetId() const;
 
+	void Configure();
+	void SetUVs();
 
 	void SetIsWalkable(bool isWalkable);
 	bool GetIsWalkable() const;
