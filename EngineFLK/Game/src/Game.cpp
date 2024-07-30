@@ -6,18 +6,21 @@ void Game::Init()
 
 	Shader grassShader("res/shaders/Sprite.shader");
 	
-	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {6,5}, grassShader);
-	std::vector<int> mapFile = { 62,56,62,24,52,
-								 55,8,56,24,2,
-									1,1,1,1,1,
-									1,1,1,1,1,
-									1,1,1,1,1,
-									1,1,1,1,1};
+	Vector2 mapSize = { 15,15 };
+	Vector2 sheetPXSize = { 256,256 };
+	Vector2 tilePXSize = { 32,32 };
+	std::vector<int> mapFile;
+	tilemap = new Tilemap("res/spritesheets/grassTiles.png", sheetPXSize, tilePXSize, mapSize, grassShader);
+	for (int i = 0; i < mapSize.x*mapSize.y; i++)
+	{
+		int random = std::rand() % static_cast<int>(((sheetPXSize.x * sheetPXSize.y) / (tilePXSize.x * tilePXSize.y)));
+		mapFile.push_back(random); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
+	}
+
 	tilemap->GenerateMapFromVec(mapFile);
 
 	
-
-
+	tilemap->getTile(0, 0)->SetIsWalkable(true);
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -37,6 +40,8 @@ void Game::Init()
 	p1.tex->SetTexture("res/textures/ghost.png");
 	p1.tex->SetColorTint(Color::Red());
 	p1.pos = { 0,0 };
+	p1.bounds.x = mapSize.x-1;
+	p1.bounds.y = mapSize.y - 1;
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(illuminatiShader);
@@ -69,7 +74,11 @@ void Game::Init()
 	
 	player->transform.SetScale(0.125f);
 	player->SetColorTint(Color::White());
+
 	p1.tex->transform.SetScale(0.125f);
+	p1.pos.x = 1;
+	p1.pos.y = 1;
+	p1.tex->transform.SetPosition(tilemap->getTile(1, 1)->transform.GetPosition());
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
@@ -181,32 +190,38 @@ void Game::Update()
 
 		if (Input::GetKey(KeyCode::UP))
 		{
-			
+			if(p1.pos.y < p1.bounds.y)
+			if (tilemap->getTile(p1.pos.x, p1.pos.y+1)->GetIsWalkable()) {
 				p1.pos.y++;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+				std::cout << p1.pos.y << std::endl;
+			}
 			
 		}
 		if (Input::GetKey(KeyCode::DOWN))
 		{
-			
-				p1.pos.y--;
-				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			
+			if (p1.pos.y >	0)
+				if (tilemap->getTile(p1.pos.x, p1.pos.y - 1)->GetIsWalkable()) {
+					p1.pos.y--;
+					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+				}
 
 		}
 		if (Input::GetKey(KeyCode::RIGHT))
 		{
-			
-				p1.pos.x++;
-				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			
+			if (p1.pos.x < p1.bounds.x)
+				if (tilemap->getTile(p1.pos.x+1, p1.pos.y)->GetIsWalkable()) {
+					p1.pos.x++;
+					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+				}
 		}
 		if (Input::GetKey(KeyCode::LEFT))
 		{
-			
-				p1.pos.x--;
-				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			
+			if (p1.pos.x > 0)
+				if (tilemap->getTile(p1.pos.x-1, p1.pos.y)->GetIsWalkable()) {
+					p1.pos.x--;
+					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+				}
 		}
 
 

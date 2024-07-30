@@ -6,11 +6,13 @@
 #include "AnimatedSprite.h"
 #include "spritesheet.h"
 #include "Tilemap.h"
+#include "Utils.h"
 
 
 struct tilePlayer {
 	Sprite* tex;
 	Vector2 pos;
+	Vector2 bounds;
 };
 
 class Game : public BaseGame

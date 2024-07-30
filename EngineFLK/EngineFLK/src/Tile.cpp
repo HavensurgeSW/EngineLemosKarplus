@@ -4,12 +4,12 @@ Tile::Tile()
 {
 	
 	id = 0;
-	isWalkable = false;
+	isWalkable = true;
 }
 
 Tile::Tile(Shader& shader, bool initalize) : Sprite(shader, initalize) {
 	id = 0;
-	isWalkable = false;
+	isWalkable = true;
 }
 
 Tile::~Tile() 
