@@ -19,8 +19,10 @@ public:
 	void SetId(unsigned int id);
 	unsigned int GetId() const;
 
+
 	void SetIsWalkable(bool isWalkable);
 	bool GetIsWalkable() const;
+
 	void Draw();
 };
 

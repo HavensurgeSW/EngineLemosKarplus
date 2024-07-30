@@ -57,6 +57,19 @@ spritesheet* Tilemap::getSheet()
 	return basesheet;
 }
 
+void Tilemap::TurnUnwalkableByID(int id)
+{
+	for (int i = 0; i < mapDim.y-1; i++)
+	{
+		for (int j = 0; j < mapDim.x-1; j++)
+		{
+			if (map[j][i]->GetId() == id)
+				map[j][i]->SetIsWalkable(false);
+
+		}
+	}
+}
+
 void Tilemap::Draw() {
 	for (int i = 0; i < mapDim.y; ++i) {
 		for (int j = 0; j < mapDim.x; ++j) {

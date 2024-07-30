@@ -8,6 +8,11 @@
 #include "Tilemap.h"
 
 
+struct tilePlayer {
+	Sprite* tex;
+	Vector2 pos;
+};
+
 class Game : public BaseGame
 {
 private:
@@ -16,7 +21,7 @@ private:
 	Sprite* enano;
 	Sprite* illuminati;
 	Sprite* player;
-	
+	tilePlayer p1;
 
 	Tilemap* tilemap;
 

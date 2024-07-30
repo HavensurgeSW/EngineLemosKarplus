@@ -25,6 +25,8 @@ public:
 	Tile* getTile(Vector2 tileCoord);
 	spritesheet* getSheet();
 
+	void TurnUnwalkableByID(int id);
+
 
 	void Draw();
 };

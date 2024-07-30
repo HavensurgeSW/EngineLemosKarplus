@@ -6,27 +6,39 @@ void Game::Init()
 
 	Shader grassShader("res/shaders/Sprite.shader");
 	
-	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {5,4}, grassShader);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 1);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 2), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 3), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 2), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 3), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 1), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 3), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 1), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 2), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 3), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 1), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 2), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 3), 0);
+	tilemap = new Tilemap("res/spritesheets/grassTiles.png", { 256,256 }, { 32,32 }, {6,5}, grassShader);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 62);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 2), 62);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 3), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 4), 52);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 55);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 8);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 2), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 3), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 4), 2);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 0), 55);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 1), 8);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 55);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 3), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 4), 26);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 0), 55);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 1), 8);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 2), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 3), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(3, 4), 42);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 0), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 1), 3);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 2), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 3), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 4), 12);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 0), 56);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 1), 3);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 2), 62);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 3), 47);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(5, 4), 12);
+
+	tilemap->getTile(0,3)->SetIsWalkable(false);
 
 
 	
@@ -42,7 +54,12 @@ void Game::Init()
 
 	Shader playerShader("res/shaders/Sprite.shader");
 	player = new Sprite(playerShader);
-	player->SetTexture("res/textures/amogus.png");
+	player->SetTexture("res/textures/ghost.png");
+
+	p1.tex = new Sprite(playerShader);
+	p1.tex->SetTexture("res/textures/ghost.png");
+	p1.tex->SetColorTint(Color::Red());
+	p1.pos = { 0,0 };
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(illuminatiShader);
@@ -72,14 +89,16 @@ void Game::Init()
 	enano->transform.SetPosition(0.7f, 0.0f, 0.0f);
 	enano->transform.SetScale(0.6f);
 
-	player->transform.SetPosition({ 0.0f, 0.0f, 0.0f });
-	player->transform.SetScale(0.45f);
+	player->transform.SetPosition(tilemap->getTile(0, 0)->transform.GetPosition());
+	
+	player->transform.SetScale(0.125f);
+	player->SetColorTint(Color::White());
+	p1.tex->transform.SetScale(0.125f);
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
 
-	//boxy->transform.SetPosition(0.0f, -0.5f, 0.0f);
-	//boxy->transform.SetScale(0.125f);
+	
 }
 
 void Game::Update()
@@ -165,30 +184,59 @@ void Game::Update()
 	}
 	else
 	{
-		//if (GetCollisionManager()->CheckCollision(player, enano))
-		//{
-		//	std::cout << "Harry esta mas turbado que nunca" << std::endl;
-		//}
+		
 
 		if (Input::GetKey(KeyCode::W))
 		{
-			player->transform.Translate({ 0, 0.01f, 0 });
+			player->transform.Translate({ 0, 0.005f, 0 });
 		}
 		if (Input::GetKey(KeyCode::S))
 		{
-			player->transform.Translate({ 0, -0.01f, 0 });
+			player->transform.Translate({ 0, -0.005f, 0 });
 		}
 		if (Input::GetKey(KeyCode::D))
 		{
-			player->transform.Translate({ 0.01f, 0, 0 });
+			player->transform.Translate({ 0.005f, 0, 0 });
 		}
 		if (Input::GetKey(KeyCode::A))
 		{
-			player->transform.Translate({ -0.01f,0,0 });
+			player->transform.Translate({ -0.005f,0,0 });
 		}
+
+		if (Input::GetKey(KeyCode::UP))
+		{
+			if (tilemap->getTile(p1.pos.x, p1.pos.y + 1)->GetIsWalkable()){
+				p1.pos.y++;
+				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+			}
+		}
+		if (Input::GetKey(KeyCode::DOWN))
+		{
+			if (tilemap->getTile(p1.pos.x, p1.pos.y - 1)->GetIsWalkable()){
+				p1.pos.y--;
+				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+			}
+
+		}
+		if (Input::GetKey(KeyCode::RIGHT))
+		{
+			if (tilemap->getTile(p1.pos.x + 1, p1.pos.y)->GetIsWalkable()) {
+				p1.pos.x++;
+				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+			}
+		}
+		if (Input::GetKey(KeyCode::LEFT))
+		{
+			if (tilemap->getTile(p1.pos.x - 1, p1.pos.y)->GetIsWalkable()){
+				p1.pos.x--;
+				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
+			}
+		}
+
 
 		tilemap->Draw();
 		player->Draw();
+		p1.tex->Draw();
 	}	
 }
 
@@ -198,4 +246,6 @@ void Game::DeInit()
 	delete rock;
 	delete enano;
 	delete illuminati;
+	delete player;
+	delete tilemap;
 }
