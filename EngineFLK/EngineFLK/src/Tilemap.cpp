@@ -28,7 +28,7 @@ Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXS
 			temp->SetTexture(texPath);
 			temp->transform.SetScale(0.125f);
 			temp->transform.SetPosition({ (0.125f * j)-0.875f,(0.125f * i)-0.875f, 0.0f });
-			temp->Configure();
+			
 
 			map[i][j] = temp;
 
@@ -73,6 +73,11 @@ Tile* Tilemap::getTile(Vector2 tileCoord)
 spritesheet* Tilemap::getSheet()
 {
 	return basesheet;
+}
+
+Vector2 Tilemap::GetMapDim()
+{
+	return mapDim;
 }
 
 void Tilemap::TurnUnwalkableByID(int id)

@@ -33,11 +33,16 @@ unsigned int Tile::GetId() const
 	return id;
 }
 
-void Tile::Configure()
+void Tile::SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft)
 {
-	/*vertexBuffer.SetData(quadVertices, quadVerticesAmount);
-	vertexArray.SetData(vertexBuffer);*/
+	Sprite::SetTextureCoordinates(topRight, bottomRight, bottomLeft, topLeft);
+	vertexBuffer.SetData(quadVertices, quadVerticesAmount);
+	vertexArray.SetData(vertexBuffer);
+
 }
+
+
+
 
 void Tile::SetId(unsigned int id) 
 {
@@ -45,10 +50,6 @@ void Tile::SetId(unsigned int id)
 }
 
 void Tile::Draw() {
-	vertexBuffer.SetData(quadVertices, quadVerticesAmount);
-	vertexArray.SetData(vertexBuffer);
 
-	Sprite::Draw();
-
-	
+	Sprite::Draw();	
 }

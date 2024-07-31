@@ -2,6 +2,7 @@
 #define TILE_H
 
 #include "Sprite.h"
+#include "Input.h"
 
 
 
@@ -19,8 +20,7 @@ public:
 	void SetId(unsigned int id);
 	unsigned int GetId() const;
 
-	void Configure();
-	void SetUVs();
+	void SetTextureCoordinates(Vector2 topRight, Vector2 bottomRight, Vector2 bottomLeft, Vector2 topLeft) override;
 
 	void SetIsWalkable(bool isWalkable);
 	bool GetIsWalkable() const;

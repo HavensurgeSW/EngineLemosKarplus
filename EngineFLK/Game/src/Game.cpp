@@ -19,6 +19,10 @@ void Game::Init()
 	}
 
 	tilemap->GenerateMapFromVec(mapFile);
+	tilemap->getTile(0, 0)->SetIsWalkable(false);
+	tilemap->getTile(0, 1)->SetIsWalkable(false);
+	tilemap->getTile(0, 2)->SetIsWalkable(false);
+	tilemap->getTile(0, 3)->SetIsWalkable(false);
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -66,13 +70,12 @@ void Game::Init()
 	enano->transform.SetScale(0.6f);
 
 	p1.tex->transform.SetScale(0.125f);
-	p1.pos.x = 1;
-	p1.pos.y = 1;
-	p1.tex->transform.SetPosition(tilemap->getTile(1, 1)->transform.GetPosition());
+	p1.pos.x = 2;
+	p1.pos.y = 2;
+	p1.tex->transform.SetPosition(tilemap->getTile(2, 2)->transform.GetPosition());
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
-
 	
 }
 
@@ -159,14 +162,20 @@ void Game::Update()
 	}
 	else
 	{
+		if (GetCollisionManager()->UpdateCollisions(tilemap, p1.tex)) {
+			std::cout << "Walking where you shouldnt" << std::endl;
+		}
 		
-		if (Input::GetKey(KeyCode::UP))
+
+		/*if (GetCollisionManager()->CheckCollision(tilemap->getTile(0,0), p1.tex)) {
+			std::cout << "Walking where you shouldnt" << std::endl;
+		}*/
+		/*if (Input::GetKey(KeyCode::UP))
 		{
 			if(p1.pos.y < p1.bounds.y)
 			if (tilemap->getTile(p1.pos.x, p1.pos.y+1)->GetIsWalkable()) {
 				p1.pos.y++;
 				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-				std::cout << p1.pos.y << std::endl;
 			}
 			
 		}
@@ -194,8 +203,22 @@ void Game::Update()
 					p1.pos.x--;
 					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
 				}
+		}*/
+
+		if (Input::GetKey(KeyCode::UP)) {
+			p1.tex->transform.Translate({ 0, 0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::DOWN)) {
+			p1.tex->transform.Translate({ 0, -0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::RIGHT)) {
+			p1.tex->transform.Translate({ 0.01f, 0.0f, 0 });
+		}
+		if (Input::GetKey(KeyCode::LEFT)) {
+			p1.tex->transform.Translate({ -0.01f, 0.0f, 0 });
 		}
 
+		
 
 		tilemap->Draw();
 		p1.tex->Draw();

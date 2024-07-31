@@ -39,6 +39,7 @@ public:
 	void ShowFrameUVs();
 	void SetTilebyID(Tile* t, int n);
 	std::vector<Tile*> tileID;
+	Vector2 GetSpriteDim();
 
 private:
 	void SpliceSheet();
