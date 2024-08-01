@@ -15,10 +15,3 @@ bool CollisionManager::CheckCollision(const Entity2D* one, const Entity2D* two)
    
     return collisionX && collisionY;
 }
-
-
-
-
-Vector2 WorldToTile() {
-    return { 0,0 };
-}

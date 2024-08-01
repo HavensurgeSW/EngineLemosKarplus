@@ -12,6 +12,7 @@
 class FLK_API Transform {
 private:
 	Vector3 position;
+	Vector3 previousPosition;
 	Vector3 rotation;
 	Vector3 localScale;
 
@@ -54,6 +55,7 @@ public:
 	Vector3 GetRight() const;
 	Vector3 GetUp() const;
 	Vector3 GetPosition() const;
+	Vector3 GetPrevPosition() const;
 	Vector3 GetRotation() const;
 	Vector3 GetScale() const;
 	

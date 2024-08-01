@@ -93,7 +93,7 @@ void Tilemap::CheckTileCollisions(Entity2D* actor)
 
 	Vector2 actorScale = { (actor->transform.GetScale().x / tileScale.x) / 2, 
 							(actor->transform.GetScale().y / tileScale.y) / 2};
-	//std::cout << "Player tile location: " << (int)convertedPosX << ":" << (int)convertedPosY << std::endl;
+	
 	
 	std::vector<Vector2> adjTiles =
 	{
@@ -106,16 +106,15 @@ void Tilemap::CheckTileCollisions(Entity2D* actor)
 
 	for (int i = 0; i < adjTiles.size(); i++)
 	{
-		if (CollisionWithATile(actor, adjTiles[i]))
+		if (CollisionWithAdjTile(actor, adjTiles[i]))
 		{
-			//actor->TriggerCollision(_tilesVector[tiles[i].x][tiles[i].y]);
+			actor->TriggerCollision(_tilesVector[tiles[i].x][tiles[i].y]);
 			break;
 		}
 	}
 }
 
-
-bool Tilemap::CollisionWithATile(Entity2D* actor, Vector2 tile)
+bool Tilemap::CollisionWithAdjTile(Entity2D* actor, Vector2 tile)
 {
 
 

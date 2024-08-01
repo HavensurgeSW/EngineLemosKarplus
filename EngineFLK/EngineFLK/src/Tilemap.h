@@ -31,7 +31,7 @@ public:
 	Vector2 GetMapDim();
 
 	void CheckTileCollisions(Entity2D* actor);
-	bool CollisionWithATile(Entity2D* actor, Vector2 tile);
+	bool CollisionWithAdjTile(Entity2D* actor, Vector2 tile);
 
 	void TurnUnwalkableByID(int id);
 

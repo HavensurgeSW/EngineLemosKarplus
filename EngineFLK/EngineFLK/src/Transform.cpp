@@ -28,6 +28,8 @@ Transform::~Transform()
 
 void Transform::SetPosition(float x, float y, float z)
 {
+	previousPosition = position;
+
 	this->position = {x,y,z};
 	translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
 
@@ -162,6 +164,11 @@ Vector3 Transform::GetRight() const
 Vector3 Transform::GetPosition() const 
 {
 	return position;
+}
+
+Vector3 Transform::GetPrevPosition() const
+{
+	return previousPosition;
 }
 
 Vector3 Transform::GetUp() const 
