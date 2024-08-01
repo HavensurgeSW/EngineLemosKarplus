@@ -8,13 +8,14 @@
 
 #include <iostream>
 #include <vector>
-class FLK_API Tilemap
+class FLK_API Tilemap : Entity2D
 {
 private:
 	spritesheet* basesheet;
 	Shader shaderPath;
 	Tile*** map;
 	Vector2 mapDim;
+
 
 public:
 	Tilemap();
@@ -27,6 +28,8 @@ public:
 	Tile* getTile(Vector2 tileCoord);
 	spritesheet* getSheet();
 	Vector2 GetMapDim();
+
+	void CheckTileCollisions(Entity2D* actor);
 
 	void TurnUnwalkableByID(int id);
 

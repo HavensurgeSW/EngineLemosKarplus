@@ -162,9 +162,11 @@ void Game::Update()
 	}
 	else
 	{
-		if (GetCollisionManager()->UpdateCollisions(tilemap, p1.tex)) {
+		/*if (GetCollisionManager()->UpdateCollisions(tilemap, p1.tex)) {
 			std::cout << "Walking where you shouldnt" << std::endl;
-		}
+		}*/
+
+		tilemap->CheckTileCollisions(p1.tex);
 		
 
 		/*if (GetCollisionManager()->CheckCollision(tilemap->getTile(0,0), p1.tex)) {

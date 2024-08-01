@@ -8,6 +8,7 @@
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Transform.h"
+#include "Renderer.h"
 
 #include <iostream>
 

@@ -16,8 +16,7 @@ private:
 public:
 	bool CheckCollision(const Entity2D* one, const Entity2D* two);
 
-	bool UpdateCollisions(Tilemap* tilemap, Entity2D* actor);
-
+	
 };
 
 #endif
