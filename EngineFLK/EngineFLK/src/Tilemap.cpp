@@ -27,9 +27,7 @@ Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXS
 			temp = new Tile(shader);
 			temp->SetTexture(texPath);
 			temp->transform.SetScale(0.125f);
-			temp->transform.SetPosition({ ((0.125f * j)-1.0f)+temp->transform.GetScale().x/2,((0.125f * i) - 1.0f) + temp->transform.GetScale().y / 2, 0.0f});
-			//temp->transform.SetPosition({ ((0.25f * j)-1.0f),((0.25f * i)-1.0f), 0.0f});
-
+			temp->transform.SetPosition({ ((0.125f * j)-0.875f)+temp->transform.GetScale().x/2,((0.125f * i) - 0.875f) + temp->transform.GetScale().y / 2, 0.0f});
 			map[i][j] = temp;
 
 		}
@@ -113,6 +111,13 @@ bool Tilemap::CheckTileCollisions(Entity2D* actor)
 		std::cout << "Bottom tile: " << (int)adjTiles[2].x << " " << (int)adjTiles[2].y << std::endl;
 		std::cout << "Left tile: " << (int)adjTiles[3].x << " " << (int)adjTiles[3].y << std::endl;
 	}
+
+	if (Input::GetKey(KeyCode::ALPHA_1)) {
+		std::cout << "Player tile location: " << (int)convertedPosX << ":" << (int)convertedPosY << std::endl;
+		std::cout << "Player world location: " << actor->transform.GetPosition().ToString()<<std::endl;	
+		std::cout<<"Tile world position: " << getTile(0, 0)->transform.GetPosition().ToString() << std::endl;
+		std::cout << "--------------" << std::endl;
+	}
 #endif
 	
 
@@ -124,7 +129,7 @@ bool Tilemap::CheckTileCollisions(Entity2D* actor)
 
 		if (CollisionWithAdjTile(actor, adjTiles[i]))
 		{
-			std::cout << "Map tile location: " << tileX << ":" << tileY << std::endl;
+			//std::cout << "Map tile location: " << tileX << ":" << tileY << std::endl;
 
 			if (actor->TriggerCollision(getTile(tileX, tileY)))
 				return true;

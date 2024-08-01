@@ -6,7 +6,7 @@ void Game::Init()
 
 	Shader grassShader("res/shaders/Sprite.shader");
 	
-	Vector2 mapSize = { 5,5 };
+	Vector2 mapSize = { 2,2 };
 	Vector2 sheetPXSize = { 256,256 };
 	Vector2 tilePXSize = { 32,32 };
 	std::vector<int> mapFile;
@@ -21,10 +21,12 @@ void Game::Init()
 
 	tilemap->GenerateMapFromVec(mapFile);
 	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
-	tilemap->getTile(2, 2)->SetIsWalkable(false);
+	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 0);
+	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
+	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
+	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 24);
+
+	tilemap->getTile(0, 0)->SetIsWalkable(false);
 	
 
 
@@ -35,10 +37,10 @@ void Game::Init()
 	p1.pos = { 0,0 };
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
-	p1.tex->transform.SetScale(0.0625f);
+	p1.tex->transform.SetScale(0.125f);
 	p1.pos.x = 2;
 	p1.pos.y = 2;
-	p1.tex->transform.SetPosition(tilemap->getTile(0, 0)->transform.GetPosition());
+	p1.tex->transform.SetPosition({-0.5f,-0.5f, 0});
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -168,8 +170,14 @@ void Game::Update()
 	else
 	{
 		if (tilemap->CheckTileCollisions(p1.tex)) {
-			p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
+			//p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
 		}
+
+		if (GetCollisionManager()->CheckCollision(p1.tex, tilemap->getTile(0, 0)))
+		{
+			std::cout << "Collision between Player and Tile" << std::endl;
+		}
+		
 	
 		/*if (Input::GetKey(KeyCode::UP))
 		{
@@ -217,6 +225,19 @@ void Game::Update()
 		}
 		if (Input::GetKey(KeyCode::LEFT)) {
 			p1.tex->transform.Translate({ -0.01f, 0.0f, 0 });
+		}
+
+		if (Input::GetKey(KeyCode::W)) {
+			tilemap->getTile(0,0)->transform.Translate({ 0, 0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::A)) {
+			tilemap->getTile(0, 0)->transform.Translate({ -0.01f, 0, 0 });
+		}
+		if (Input::GetKey(KeyCode::S)) {
+			tilemap->getTile(0, 0)->transform.Translate({ 0, -0.01f, 0 });
+		}
+		if (Input::GetKey(KeyCode::D)) {
+			tilemap->getTile(0, 0)->transform.Translate({ 0.01f, 0, 0 });
 		}
 
 		tilemap->Draw();
