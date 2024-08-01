@@ -34,6 +34,8 @@ Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXS
 
 		}
 	}	
+
+	mapSlots = mapDim.x * mapDim.y;
 }
 
 Tilemap::~Tilemap() {
@@ -91,7 +93,7 @@ void Tilemap::CheckTileCollisions(Entity2D* actor)
 
 	Vector2 actorScale = { (actor->transform.GetScale().x / tileScale.x) / 2, 
 							(actor->transform.GetScale().y / tileScale.y) / 2};
-	std::cout << "Player tile location: " << (int)convertedPosX << ":" << (int)convertedPosY << std::endl;
+	//std::cout << "Player tile location: " << (int)convertedPosX << ":" << (int)convertedPosY << std::endl;
 	
 	std::vector<Vector2> adjTiles =
 	{
@@ -102,35 +104,35 @@ void Tilemap::CheckTileCollisions(Entity2D* actor)
 	};
 
 
-	//for (int i = 0; i < adjTiles.size(); i++)
-	//{
-	//	if (CollisionWithATile(actor, adjTiles[i]))
-	//	{
-	//		//actor->TriggerCollision(_tilesVector[tiles[i].x][tiles[i].y]);
-	//		break;
-	//	}
-	//}
+	for (int i = 0; i < adjTiles.size(); i++)
+	{
+		if (CollisionWithATile(actor, adjTiles[i]))
+		{
+			//actor->TriggerCollision(_tilesVector[tiles[i].x][tiles[i].y]);
+			break;
+		}
+	}
 }
 
 
-//bool CollisionWithATile(Entity2D* actor, Vector2 tile)
-//{
-//
-//
-//	if (tile.x >= 0 && tile.y >= 0)
-//	{
-//		if (tile.x < MAP.size() && tile.y < tile[0])
-//		{
-//			if (_tilesVector[tile.x][tile.y]->GetColliderState())
-//			{
-//				cout << "Colisiono con el tile: " << tile.x << ":" << tile.y << endl;
-//				return true;
-//			}
-//		}
-//	}
-//
-//	return false;
-//}
+bool Tilemap::CollisionWithATile(Entity2D* actor, Vector2 tile)
+{
+
+
+	if (tile.x >= 0 && tile.y >= 0)
+	{
+		if (tile.x < (mapSlots) && tile.y < mapSlots)
+		{
+			if (!getTile(tile.x,tile.y)->GetIsWalkable())
+			{
+				std::cout << "Colisiono con el tile: " << tile.x << ":" << tile.y << std::endl;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
 
 void Tilemap::TurnUnwalkableByID(int id)
 {
