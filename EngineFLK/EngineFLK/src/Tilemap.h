@@ -5,6 +5,7 @@
 
 #include "Tile.h"
 #include "spritesheet.h"
+#include "CollisionManager.h"
 
 #include <iostream>
 #include <vector>
@@ -17,11 +18,15 @@ private:
 	Vector2 mapDim;
 	int mapSlots;
 
+	CollisionManager* collisionManager;
+
 
 public:
 	Tilemap();
 	Tilemap(const std::string& texPath, Vector2 sheetPXSize, Vector2 tilePXSize, Vector2 mapDimensions, Shader shader);
 	~Tilemap();
+
+	void SetCollisionManager(CollisionManager* cm);
 
 	void GenerateMapFromVec(const std::vector<int>& vec);
 
@@ -30,7 +35,7 @@ public:
 	spritesheet* getSheet();
 	Vector2 GetMapDim();
 
-	void CheckTileCollisions(Entity2D* actor);
+	bool CheckTileCollisions(Entity2D* actor);
 	bool CollisionWithAdjTile(Entity2D* actor, Vector2 tile);
 
 	void TurnUnwalkableByID(int id);

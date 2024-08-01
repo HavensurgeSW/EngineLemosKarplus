@@ -53,6 +53,8 @@ public:
 	virtual void SetVertexColor(const Color& topRight, const Color& bottomRight, const Color& bottomLeft, const Color& topLeft);
 	virtual void SetVertexColor(const Color& color);
 
+	bool TriggerCollision(Entity2D* other);
+
 	Transform transform;
 };
 

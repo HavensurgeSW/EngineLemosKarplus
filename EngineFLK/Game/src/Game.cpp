@@ -6,11 +6,12 @@ void Game::Init()
 
 	Shader grassShader("res/shaders/Sprite.shader");
 	
-	Vector2 mapSize = { 15,15 };
+	Vector2 mapSize = { 5,5 };
 	Vector2 sheetPXSize = { 256,256 };
 	Vector2 tilePXSize = { 32,32 };
 	std::vector<int> mapFile;
 	tilemap = new Tilemap("res/spritesheets/grassTiles.png", sheetPXSize, tilePXSize, mapSize, grassShader);
+	tilemap->SetCollisionManager(GetCollisionManager());
 
 	for (int i = 0; i < mapSize.x*mapSize.y; i++)
 	{
@@ -19,10 +20,25 @@ void Game::Init()
 	}
 
 	tilemap->GenerateMapFromVec(mapFile);
-	tilemap->getTile(0, 0)->SetIsWalkable(false);
-	tilemap->getTile(0, 1)->SetIsWalkable(false);
-	tilemap->getTile(0, 2)->SetIsWalkable(false);
-	tilemap->getTile(0, 3)->SetIsWalkable(false);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
+	tilemap->getTile(2, 2)->SetIsWalkable(false);
+	
+
+
+	Shader playerShader("res/shaders/Sprite.shader");
+	p1.tex = new Sprite(playerShader);
+	p1.tex->SetTexture("res/textures/ghost.png");
+	p1.tex->SetColorTint(Color::White());
+	p1.pos = { 0,0 };
+	p1.bounds.x = mapSize.x-1;
+	p1.bounds.y = mapSize.y - 1;
+	p1.tex->transform.SetScale(0.0625f);
+	p1.pos.x = 2;
+	p1.pos.y = 2;
+	p1.tex->transform.SetPosition(tilemap->getTile(0, 0)->transform.GetPosition());
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
@@ -34,13 +50,6 @@ void Game::Init()
 	enano->SetVertexColor(Color::Blue(), Color::Yellow(), Color::Blue(), Color::Yellow());
 	enano->SetTexture("res/textures/EnanoBostero.png");
 
-	Shader playerShader("res/shaders/Sprite.shader");
-	p1.tex = new Sprite(playerShader);
-	p1.tex->SetTexture("res/textures/ghost.png");
-	p1.tex->SetColorTint(Color::White());
-	p1.pos = { 0,0 };
-	p1.bounds.x = mapSize.x-1;
-	p1.bounds.y = mapSize.y - 1;
 
 	Shader illuminatiShader("res/shaders/Sprite.shader");
 	illuminati = new Sprite(illuminatiShader);
@@ -69,10 +78,6 @@ void Game::Init()
 	enano->transform.SetPosition(0.7f, 0.0f, 0.0f);
 	enano->transform.SetScale(0.6f);
 
-	p1.tex->transform.SetScale(0.125f);
-	p1.pos.x = 2;
-	p1.pos.y = 2;
-	p1.tex->transform.SetPosition(tilemap->getTile(2, 2)->transform.GetPosition());
 
 	rock->transform.SetPosition(0.0f, -0.5f, 0.0f);
 	rock->transform.SetScale(0.6f + 0.3f);
@@ -162,16 +167,10 @@ void Game::Update()
 	}
 	else
 	{
-		/*if (GetCollisionManager()->UpdateCollisions(tilemap, p1.tex)) {
-			std::cout << "Walking where you shouldnt" << std::endl;
-		}*/
-
-		tilemap->CheckTileCollisions(p1.tex);
-		
-
-		/*if (GetCollisionManager()->CheckCollision(tilemap->getTile(0,0), p1.tex)) {
-			std::cout << "Walking where you shouldnt" << std::endl;
-		}*/
+		if (tilemap->CheckTileCollisions(p1.tex)) {
+			p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
+		}
+	
 		/*if (Input::GetKey(KeyCode::UP))
 		{
 			if(p1.pos.y < p1.bounds.y)
@@ -219,8 +218,6 @@ void Game::Update()
 		if (Input::GetKey(KeyCode::LEFT)) {
 			p1.tex->transform.Translate({ -0.01f, 0.0f, 0 });
 		}
-
-		
 
 		tilemap->Draw();
 		p1.tex->Draw();

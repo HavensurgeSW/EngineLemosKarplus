@@ -9,10 +9,10 @@
 #include "Utils.h"
 
 
-struct tilePlayer {
+struct tilePlayer{
 	Sprite* tex;
 	Vector2 pos;
-	Vector2 bounds;
+	Vector2 bounds;	
 };
 
 class Game : public BaseGame

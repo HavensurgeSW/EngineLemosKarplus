@@ -77,6 +77,12 @@ void Entity2D::SetVertexColor(const Color& color)
 	vertexArray.SetData(vertexBuffer);
 }
 
+bool Entity2D::TriggerCollision(Entity2D* other)
+{
+	return true;
+}
+
+
 
 void Entity2D::UnbindBuffers()
 {
