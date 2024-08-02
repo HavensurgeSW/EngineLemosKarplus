@@ -7,11 +7,11 @@ Tilemap::Tilemap(){
 
 }
 
-Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXSize, Vector2 mapDimensions, Shader shader) {
+Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXSize, float transformScale, Vector2 mapDimensions, Shader shader) {
 	basesheet = new spritesheet(texPath, sheetPXSize, TilePXSize);
 	mapDim = mapDimensions;
 	shaderPath = shader;
-	float scale = 0.125f;
+	tileScale = transformScale;
 	
 	map = new Tile** [mapDim.y];
 	for (int i = 0; i < mapDim.y; i++)
@@ -27,8 +27,8 @@ Tilemap::Tilemap(const std::string& texPath, Vector2 sheetPXSize,Vector2 TilePXS
 		{
 			temp = new Tile(shader);
 			temp->SetTexture(texPath);
-			temp->transform.SetScale(scale);
-			temp->transform.SetPosition({ ((scale * j)-1.0f)+temp->transform.GetScale().x/2,((scale * i) - 1.0f) + temp->transform.GetScale().y / 2, 0.0f});
+			temp->transform.SetScale(tileScale);
+			temp->transform.SetPosition({ ((tileScale * j)-1.0f)+temp->transform.GetScale().x/2,((tileScale * i) - 1.0f) + temp->transform.GetScale().y / 2, 0.0f});
 			map[i][j] = temp;
 
 		}
@@ -147,6 +147,49 @@ void Tilemap::TurnUnwalkableByID(int id)
 		}
 	}
 }
+
+void Tilemap::MakeOuterWallUnwalkable()
+{
+	int rows = mapDim.y;
+	if (rows == 0) return;
+	int cols = mapDim.x;
+	if (cols == 0) return;
+
+	for (int col = 0; col < cols; ++col) {
+		map[0][col]->SetIsWalkable(false); // Top row
+		map[rows - 1][col]->SetIsWalkable(false); // Bottom row
+	}
+
+	for (int row = 1; row < rows - 1; ++row) {
+		map[row][0]->SetIsWalkable(false); // Left column
+		map[row][cols-1]->SetIsWalkable(false); // Right column
+	}
+}
+
+void Tilemap::MakeOuterWallWithID(int id)
+{
+	int rows = mapDim.y;
+	if (rows == 0) return;
+	int cols = mapDim.x;
+	if (cols == 0) return;
+
+	for (int col = 0; col < cols; ++col) {
+		basesheet->SetTilebyID(map[0][col], id);
+		basesheet->SetTilebyID(map[rows - 1][col],id); 
+		map[0][col]->SetId(id);
+		map[rows - 1][col]->SetId(id);
+
+	}
+
+	for (int row = 1; row < rows - 1; ++row) {
+		basesheet->SetTilebyID(map[row][0], id); 
+		basesheet->SetTilebyID(map[row][cols-1], id); 
+		map[row][0]->SetId(id);
+		map[row][cols-1]->SetId(id);
+	}
+
+}
+
 
 void Tilemap::Draw() {
 	for (int i = 0; i < mapDim.y; ++i) {

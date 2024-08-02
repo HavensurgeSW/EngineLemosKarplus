@@ -2,29 +2,45 @@
 
 void Game::Init()
 {
-	
-
 	Shader grassShader("res/shaders/Sprite.shader");
 	
 	Vector2 mapSize = { 16,16 };
 	Vector2 sheetPXSize = { 256,256 };
 	Vector2 tilePXSize = { 32,32 };
-	std::vector<int> mapFile;
-	tilemap = new Tilemap("res/spritesheets/grassTiles.png", sheetPXSize, tilePXSize, mapSize, grassShader);
-	tilemap->SetCollisionManager(GetCollisionManager());
+	float scaling = 0.125f;
 
+
+	std::vector<int> mapFile;
+	tilemap = new Tilemap("res/spritesheets/grassTiles.png", sheetPXSize, tilePXSize, scaling, mapSize, grassShader);
+	tilemap->SetCollisionManager(GetCollisionManager());
 	for (int i = 0; i < mapSize.x*mapSize.y; i++)
 	{
 		int random = std::rand() % static_cast<int>(((sheetPXSize.x * sheetPXSize.y) / (tilePXSize.x * tilePXSize.y)));
 		mapFile.push_back(random); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
 	}
-
 	tilemap->GenerateMapFromVec(mapFile);
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
+	tilemap->MakeOuterWallWithID(24);
 
-	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 4), 24);
+	tilemap->getTile(7,8)->SetIsWalkable(false);
+	tilemap->getTile(7,7)->SetIsWalkable(false);
+	tilemap->getTile(7,6)->SetIsWalkable(false);
+	tilemap->getTile(6,8)->SetIsWalkable(false);
+	tilemap->getTile(6,7)->SetIsWalkable(false);
+	tilemap->getTile(6,6)->SetIsWalkable(false);
+	tilemap->getTile(8,8)->SetIsWalkable(false);
+	tilemap->getTile(8,7)->SetIsWalkable(false);
+	tilemap->getTile(8,6)->SetIsWalkable(false);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(7,8),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(7,7),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(7,6),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(6,8),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(6,7),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(6,6),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(8,8),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(8,7),24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(8,6),24);
+	
 
-	tilemap->getTile(4, 4)->SetIsWalkable(false);
 
 
 	Shader playerShader("res/shaders/Sprite.shader");
@@ -34,10 +50,8 @@ void Game::Init()
 	p1.pos = { 0,0 };
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
-	p1.tex->transform.SetScale(0.125f);
-	p1.tex->transform.SetPosition({0,0,0});
-
-	
+	p1.tex->transform.SetScale(scaling);
+	p1.tex->transform.SetPosition(tilemap->getTile(1, 1)->transform.GetPosition());
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
@@ -168,42 +182,6 @@ void Game::Update()
 		if (tilemap->CheckTileCollisions(p1.tex)) {
 			p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
 		}
-
-
-		/*if (Input::GetKey(KeyCode::UP))
-		{
-			if(p1.pos.y < p1.bounds.y)
-			if (tilemap->getTile(p1.pos.x, p1.pos.y+1)->GetIsWalkable()) {
-				p1.pos.y++;
-				p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-			}
-			
-		}
-		if (Input::GetKey(KeyCode::DOWN))
-		{
-			if (p1.pos.y >	0)
-				if (tilemap->getTile(p1.pos.x, p1.pos.y - 1)->GetIsWalkable()) {
-					p1.pos.y--;
-					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-				}
-
-		}
-		if (Input::GetKey(KeyCode::RIGHT))
-		{
-			if (p1.pos.x < p1.bounds.x)
-				if (tilemap->getTile(p1.pos.x+1, p1.pos.y)->GetIsWalkable()) {
-					p1.pos.x++;
-					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-				}
-		}
-		if (Input::GetKey(KeyCode::LEFT))
-		{
-			if (p1.pos.x > 0)
-				if (tilemap->getTile(p1.pos.x-1, p1.pos.y)->GetIsWalkable()) {
-					p1.pos.x--;
-					p1.tex->transform.SetPosition({ (0.125f * p1.pos.x) - 0.875f,(0.125f * p1.pos.y) - 0.875f, 0.0f });
-				}
-		}*/
 
 		if (Input::GetKey(KeyCode::UP)) {
 			p1.tex->transform.Translate({ 0, 0.01f, 0 });

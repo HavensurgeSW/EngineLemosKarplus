@@ -17,6 +17,7 @@ private:
 	Tile*** map;
 	Vector2 mapDim;
 	int mapSlots;
+	float tileScale;
 
 
 	CollisionManager* collisionManager;
@@ -24,7 +25,7 @@ private:
 
 public:
 	Tilemap();
-	Tilemap(const std::string& texPath, Vector2 sheetPXSize, Vector2 tilePXSize, Vector2 mapDimensions, Shader shader);
+	Tilemap(const std::string& texPath, Vector2 sheetPXSize, Vector2 tilePXSize, float transformScale, Vector2 mapDimensions, Shader shader);
 	~Tilemap();
 
 	void SetCollisionManager(CollisionManager* cm);
@@ -39,7 +40,10 @@ public:
 	bool CheckTileCollisions(Entity2D* actor);
 	bool CollisionWithAdjTile(Entity2D* actor, Vector2 tile);
 
+	//painting functions
 	void TurnUnwalkableByID(int id);
+	void MakeOuterWallUnwalkable();
+	void MakeOuterWallWithID(int id);
 
 
 	void Draw();
