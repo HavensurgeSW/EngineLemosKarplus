@@ -95,47 +95,25 @@ bool Tilemap::CheckTileCollisions(Entity2D* actor)
 	int convertedPosX = static_cast<int>(((actor->transform.GetPosition().x + actor->transform.GetScale().x/2) - firstTilePos.x) / tileScale.x);
 	int convertedPosY = static_cast<int>(((actor->transform.GetPosition().y + actor->transform.GetScale().y/2) - firstTilePos.y) / tileScale.y);
 
-	adjTiles =
+	std::vector<Vector2>adjTiles =
 	{
-		getTile(convertedPosX, convertedPosY + 1),
-		getTile(convertedPosX+1, convertedPosY),
-		getTile(convertedPosX, convertedPosY - 1),
-		getTile(convertedPosX-1, convertedPosY),
-		getTile(convertedPosX+1, convertedPosY + 1),
-		getTile(convertedPosX + 1, convertedPosY-1),
-		getTile(convertedPosX-1, convertedPosY - 1),
-		getTile(convertedPosX - 1, convertedPosY+1)
+		{(float)convertedPosX, (float)convertedPosY + 1},
+		{(float)convertedPosX + 1, (float)convertedPosY},
+		{(float)convertedPosX, (float)convertedPosY - 1},
+		{(float)convertedPosX - 1, (float)convertedPosY},
+		{(float)convertedPosX + 1, (float)convertedPosY + 1},
+		{(float)convertedPosX + 1, (float)convertedPosY - 1},
+		{(float)convertedPosX - 1, (float)convertedPosY - 1},
+		{(float)convertedPosX - 1, (float)convertedPosY + 1}
 		
 	};
 
-	//std::cout << "Player world location: X: " << actor->transform.GetPosition().x << " Y: " << actor->transform.GetPosition().y << std::endl;
-#if _DEBUG
-	if (Input::GetKey(KeyCode::ENTER)) {
-		std::cout << "Player tile location: " << convertedPosX << ":" << convertedPosY << std::endl;
-
-	}
-
-	if (Input::GetKey(KeyCode::ALPHA_1)) {
-		std::cout << "Player tile location: " << (int)convertedPosX << ":" << (int)convertedPosY << std::endl;
-		std::cout << "Player world location: " << actor->transform.GetPosition().ToString()<<std::endl;	
-		std::cout<<"Tile world position: " << getTile(0, 0)->transform.GetPosition().ToString() << std::endl;
-		std::cout << "--------------" << std::endl;
-	}
-	
-#endif
-	
-
 	for (int i = 0; i < adjTiles.size(); i++)
 	{
-		
-		/*int tileX = static_cast<int>(adjTiles[i].x);
-		int tileY = static_cast<int>(adjTiles[i].y);*/
-
 		if (CollisionWithAdjTile(actor, adjTiles[i]))
 		{
-			//std::cout << "Map tile location: " << tileX << ":" << tileY << std::endl;
-
-			if (actor->TriggerCollision(adjTiles[i]))
+			Tile* tempTile = getTile(adjTiles[i]);
+			if (actor->TriggerCollision(tempTile))
 				return true;
 			break;
 		}
@@ -144,16 +122,16 @@ bool Tilemap::CheckTileCollisions(Entity2D* actor)
 	return false;
 }
 
-//bool Tilemap::CollisionWithAdjTile(Entity2D* actor, Vector2 tile)
-bool Tilemap::CollisionWithAdjTile(Entity2D* actor, Tile* tile)
+bool Tilemap::CollisionWithAdjTile(Entity2D* actor, Vector2 tile)
 {
-		if (!tile->GetIsWalkable() && collisionManager->CheckCollision(actor, tile))
+	if ((tile.x > 0 && tile.x < mapDim.x - 1) && (tile.y > 0 && tile.y < mapDim.y - 1)) {
+		Tile* tempTile = getTile(tile);
+		if (!tempTile->GetIsWalkable() && collisionManager->CheckCollision(actor, tempTile))
 		{
-			std::cout << "Colisiono con el tile:"<< std::endl;
+			std::cout << "Colisiono con el tile:" << std::endl;
 			return true;
 		}
-	
-
+	}
 	return false;
 }
 
@@ -177,3 +155,4 @@ void Tilemap::Draw() {
 		}
 	}
 }
+

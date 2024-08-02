@@ -22,9 +22,7 @@ void Game::Init()
 
 	tilemap->GenerateMapFromVec(mapFile);
 	tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 0), 0);
-	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 0);
-	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
-	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
+
 	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 4), 24);
 
 	tilemap->getTile(4, 4)->SetIsWalkable(false);
@@ -38,7 +36,6 @@ void Game::Init()
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
 	p1.tex->transform.SetScale(0.125f);
-	//p1.tex->transform.SetPosition(tilemap->getTile(1,1)->transform.GetPosition());
 	p1.tex->transform.SetPosition({0,0,0});
 
 	
@@ -172,11 +169,6 @@ void Game::Update()
 		if (tilemap->CheckTileCollisions(p1.tex)) {
 			//p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
 		}
-
-		/*if (GetCollisionManager()->CheckCollision(p1.tex, tilemap->getTile(0, 0)))
-		{
-			std::cout << "Collision between Player and Tile" << std::endl;
-		}*/
 
 
 		/*if (Input::GetKey(KeyCode::UP))
