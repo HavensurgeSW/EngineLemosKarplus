@@ -92,19 +92,20 @@ bool Tilemap::CheckTileCollisions(Entity2D* actor)
 	Vector2 tileScale = { getTile(0,0)->transform.GetScale().x, getTile(0,0)->transform.GetScale().y };
 	
 	
-	int convertedPosX = static_cast<int>((actor->transform.GetPosition().x - firstTilePos.x) / tileScale.x);
-	int convertedPosY = static_cast<int>((actor->transform.GetPosition().y - firstTilePos.y) / tileScale.y);
+	int convertedPosX = static_cast<int>(((actor->transform.GetPosition().x + actor->transform.GetScale().x/2) - firstTilePos.x) / tileScale.x);
+	int convertedPosY = static_cast<int>(((actor->transform.GetPosition().y + actor->transform.GetScale().y/2) - firstTilePos.y) / tileScale.y);
 
 	adjTiles =
 	{
 		getTile(convertedPosX, convertedPosY + 1),
 		getTile(convertedPosX+1, convertedPosY),
 		getTile(convertedPosX, convertedPosY - 1),
-		getTile(convertedPosX-1, convertedPosY)
-		//Vector2(convertedPosX, convertedPosY+1),
-		/*Vector2(convertedPosX + 1, convertedPosY),
-		Vector2(convertedPosX, convertedPosY-1),
-		Vector2(convertedPosX - 1, convertedPosY),*/
+		getTile(convertedPosX-1, convertedPosY),
+		getTile(convertedPosX+1, convertedPosY + 1),
+		getTile(convertedPosX + 1, convertedPosY-1),
+		getTile(convertedPosX-1, convertedPosY - 1),
+		getTile(convertedPosX - 1, convertedPosY+1)
+		
 	};
 
 	//std::cout << "Player world location: X: " << actor->transform.GetPosition().x << " Y: " << actor->transform.GetPosition().y << std::endl;

@@ -25,7 +25,7 @@ private:
 
 	Tilemap* tilemap;
 	tilePlayer p1;
-	Shape* adj[4];
+
 
 	bool showTilemap;
 

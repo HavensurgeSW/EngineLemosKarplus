@@ -16,7 +16,8 @@ void Game::Init()
 	for (int i = 0; i < mapSize.x*mapSize.y; i++)
 	{
 		int random = std::rand() % static_cast<int>(((sheetPXSize.x * sheetPXSize.y) / (tilePXSize.x * tilePXSize.y)));
-		mapFile.push_back(random); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
+		int fuckyou = 57;
+		mapFile.push_back(fuckyou); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
 	}
 
 	tilemap->GenerateMapFromVec(mapFile);
@@ -37,24 +38,14 @@ void Game::Init()
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
 	p1.tex->transform.SetScale(0.125f);
-	p1.tex->transform.SetPosition(tilemap->getTile(1,1)->transform.GetPosition());
+	//p1.tex->transform.SetPosition(tilemap->getTile(1,1)->transform.GetPosition());
+	p1.tex->transform.SetPosition({0,0,0});
 
-	/*adj[0]->transform.SetPosition(p1.tex->transform.GetPosition() + {});
-	adj[1]->transform.SetPosition();
-	adj[2]->transform.SetPosition();
-	adj[3]->transform.SetPosition();*/
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
 	shape->SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
-
-	for (int i = 0; i < 4; i++)
-	{
-		adj[i] = new Shape(shapeShader, PrimitiveType::QUAD);
-		adj[i]->transform.SetScale(0.125f);
-		adj[i]->SetVertexColor(Color::White(), Color::Red(), Color::White(), Color::Red());
-	}
 
 	Shader enanoShader("res/shaders/Sprite.shader");
 	enano = new Sprite(enanoShader);
@@ -188,13 +179,6 @@ void Game::Update()
 		}*/
 
 
-		for (int i = 0; i < tilemap->adjTiles.size(); i++)
-		{
-			adj[i]->transform.SetPosition(tilemap->adjTiles[i]->transform.GetPosition());
-		}
-
-		
-	
 		/*if (Input::GetKey(KeyCode::UP))
 		{
 			if(p1.pos.y < p1.bounds.y)
@@ -232,52 +216,19 @@ void Game::Update()
 
 		if (Input::GetKey(KeyCode::UP)) {
 			p1.tex->transform.Translate({ 0, 0.01f, 0 });
-			for (int i = 0;  i < 4; i++)
-			{
-				adj[i]->transform.Translate({ 0, 0.01f, 0 });
-			}
 		}
 		if (Input::GetKey(KeyCode::DOWN)) {
 			p1.tex->transform.Translate({ 0, -0.01f, 0 });
-			for (int i = 0; i < 4; i++)
-			{
-				adj[i]->transform.Translate({ 0, -0.01f, 0 });
-			}
 		}
 		if (Input::GetKey(KeyCode::RIGHT)) {
-			p1.tex->transform.Translate({ 0.01f, 0.0f, 0 });
-			for (int i = 0; i < 4; i++)
-			{
-				adj[i]->transform.Translate({ 0.01f, 0.0f, 0 });
-			}
+			p1.tex->transform.Translate({ 0.01f, 0.0f, 0 });	
 		}
 		if (Input::GetKey(KeyCode::LEFT)) {
 			p1.tex->transform.Translate({ -0.01f, 0.0f, 0 });
-			for (int i = 0; i < 4; i++)
-			{
-				adj[i]->transform.Translate({ -0.01f, 0.0f, 0 });
-			}
 		}
-
-		//if (Input::GetKey(KeyCode::W)) {
-		//	tilemap->getTile(0,0)->transform.Translate({ 0, 0.01f, 0 });
-		//}
-		//if (Input::GetKey(KeyCode::A)) {
-		//	tilemap->getTile(0, 0)->transform.Translate({ -0.01f, 0, 0 });
-		//}
-		//if (Input::GetKey(KeyCode::S)) {
-		//	tilemap->getTile(0, 0)->transform.Translate({ 0, -0.01f, 0 });
-		//}
-		//if (Input::GetKey(KeyCode::D)) {
-		//	tilemap->getTile(0, 0)->transform.Translate({ 0.01f, 0, 0 });
-		//}
-
 		tilemap->Draw();
 		p1.tex->Draw();
-		for (int i = 0; i < 4; i++)
-		{
-			adj[i]->Draw();
-		}
+		
 	}	
 }
 
