@@ -16,8 +16,7 @@ void Game::Init()
 	for (int i = 0; i < mapSize.x*mapSize.y; i++)
 	{
 		int random = std::rand() % static_cast<int>(((sheetPXSize.x * sheetPXSize.y) / (tilePXSize.x * tilePXSize.y)));
-		int fuckyou = 57;
-		mapFile.push_back(fuckyou); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
+		mapFile.push_back(random); //This vector NEEDS to be the same size as the map dimensions (15,15 in this case)
 	}
 
 	tilemap->GenerateMapFromVec(mapFile);
