@@ -167,7 +167,7 @@ void Game::Update()
 	else
 	{
 		if (tilemap->CheckTileCollisions(p1.tex)) {
-			//p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
+			p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
 		}
 
 
