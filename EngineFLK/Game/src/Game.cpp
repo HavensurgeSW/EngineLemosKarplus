@@ -6,7 +6,7 @@ void Game::Init()
 
 	Shader grassShader("res/shaders/Sprite.shader");
 	
-	Vector2 mapSize = { 2,2 };
+	Vector2 mapSize = { 16,16 };
 	Vector2 sheetPXSize = { 256,256 };
 	Vector2 tilePXSize = { 32,32 };
 	std::vector<int> mapFile;
@@ -24,10 +24,9 @@ void Game::Init()
 	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(0, 1), 0);
 	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 0), 0);
 	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(1, 1), 0);
-	//tilemap->getSheet()->SetTilebyID(tilemap->getTile(2, 2), 24);
+	tilemap->getSheet()->SetTilebyID(tilemap->getTile(4, 4), 24);
 
-	tilemap->getTile(0, 0)->SetIsWalkable(false);
-	
+	tilemap->getTile(4, 4)->SetIsWalkable(false);
 
 
 	Shader playerShader("res/shaders/Sprite.shader");
@@ -38,14 +37,24 @@ void Game::Init()
 	p1.bounds.x = mapSize.x-1;
 	p1.bounds.y = mapSize.y - 1;
 	p1.tex->transform.SetScale(0.125f);
-	p1.pos.x = 2;
-	p1.pos.y = 2;
-	p1.tex->transform.SetPosition({-0.5f,-0.5f, 0});
+	p1.tex->transform.SetPosition(tilemap->getTile(1,1)->transform.GetPosition());
+
+	/*adj[0]->transform.SetPosition(p1.tex->transform.GetPosition() + {});
+	adj[1]->transform.SetPosition();
+	adj[2]->transform.SetPosition();
+	adj[3]->transform.SetPosition();*/
 	
 
 	Shader shapeShader("res/shaders/Shape.shader");
 	shape = new Shape(shapeShader, PrimitiveType::QUAD);
 	shape->SetVertexColor(Color::Red(), Color::Yellow(), Color::Red(), Color::Yellow());
+
+	for (int i = 0; i < 4; i++)
+	{
+		adj[i] = new Shape(shapeShader, PrimitiveType::QUAD);
+		adj[i]->transform.SetScale(0.125f);
+		adj[i]->SetVertexColor(Color::White(), Color::Red(), Color::White(), Color::Red());
+	}
 
 	Shader enanoShader("res/shaders/Sprite.shader");
 	enano = new Sprite(enanoShader);
@@ -173,10 +182,17 @@ void Game::Update()
 			//p1.tex->transform.SetPosition(p1.tex->transform.GetPrevPosition());
 		}
 
-		if (GetCollisionManager()->CheckCollision(p1.tex, tilemap->getTile(0, 0)))
+		/*if (GetCollisionManager()->CheckCollision(p1.tex, tilemap->getTile(0, 0)))
 		{
 			std::cout << "Collision between Player and Tile" << std::endl;
+		}*/
+
+
+		for (int i = 0; i < tilemap->adjTiles.size(); i++)
+		{
+			adj[i]->transform.SetPosition(tilemap->adjTiles[i]->transform.GetPosition());
 		}
+
 		
 	
 		/*if (Input::GetKey(KeyCode::UP))
@@ -216,32 +232,52 @@ void Game::Update()
 
 		if (Input::GetKey(KeyCode::UP)) {
 			p1.tex->transform.Translate({ 0, 0.01f, 0 });
+			for (int i = 0;  i < 4; i++)
+			{
+				adj[i]->transform.Translate({ 0, 0.01f, 0 });
+			}
 		}
 		if (Input::GetKey(KeyCode::DOWN)) {
 			p1.tex->transform.Translate({ 0, -0.01f, 0 });
+			for (int i = 0; i < 4; i++)
+			{
+				adj[i]->transform.Translate({ 0, -0.01f, 0 });
+			}
 		}
 		if (Input::GetKey(KeyCode::RIGHT)) {
 			p1.tex->transform.Translate({ 0.01f, 0.0f, 0 });
+			for (int i = 0; i < 4; i++)
+			{
+				adj[i]->transform.Translate({ 0.01f, 0.0f, 0 });
+			}
 		}
 		if (Input::GetKey(KeyCode::LEFT)) {
 			p1.tex->transform.Translate({ -0.01f, 0.0f, 0 });
+			for (int i = 0; i < 4; i++)
+			{
+				adj[i]->transform.Translate({ -0.01f, 0.0f, 0 });
+			}
 		}
 
-		if (Input::GetKey(KeyCode::W)) {
-			tilemap->getTile(0,0)->transform.Translate({ 0, 0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::A)) {
-			tilemap->getTile(0, 0)->transform.Translate({ -0.01f, 0, 0 });
-		}
-		if (Input::GetKey(KeyCode::S)) {
-			tilemap->getTile(0, 0)->transform.Translate({ 0, -0.01f, 0 });
-		}
-		if (Input::GetKey(KeyCode::D)) {
-			tilemap->getTile(0, 0)->transform.Translate({ 0.01f, 0, 0 });
-		}
+		//if (Input::GetKey(KeyCode::W)) {
+		//	tilemap->getTile(0,0)->transform.Translate({ 0, 0.01f, 0 });
+		//}
+		//if (Input::GetKey(KeyCode::A)) {
+		//	tilemap->getTile(0, 0)->transform.Translate({ -0.01f, 0, 0 });
+		//}
+		//if (Input::GetKey(KeyCode::S)) {
+		//	tilemap->getTile(0, 0)->transform.Translate({ 0, -0.01f, 0 });
+		//}
+		//if (Input::GetKey(KeyCode::D)) {
+		//	tilemap->getTile(0, 0)->transform.Translate({ 0.01f, 0, 0 });
+		//}
 
 		tilemap->Draw();
 		p1.tex->Draw();
+		for (int i = 0; i < 4; i++)
+		{
+			adj[i]->Draw();
+		}
 	}	
 }
 

@@ -18,6 +18,7 @@ private:
 	Vector2 mapDim;
 	int mapSlots;
 
+
 	CollisionManager* collisionManager;
 
 
@@ -36,11 +37,12 @@ public:
 	Vector2 GetMapDim();
 
 	bool CheckTileCollisions(Entity2D* actor);
-	bool CollisionWithAdjTile(Entity2D* actor, Vector2 tile);
+	bool CollisionWithAdjTile(Entity2D* actor, Tile* tile);
 
 	void TurnUnwalkableByID(int id);
 
 	
+	std::vector<Tile*> adjTiles;
 
 
 	void Draw();
